@@ -1,8 +1,8 @@
 # Conteúdo do Boletim
 
-Nesse diretório fica o conteúdo de cada capítulo e alguns arquivos básicos do boletim.
+Conteúdo de cada capítulo e alguns arquivos básicos do boletim.
 
-Cada capítulo é uma pasta, genericamente nomeado da seguinte forma: `cap_nomedocapitulo`
+Cada capítulo é uma pasta, genericamente nomeada da seguinte forma: `cap_nomedocapitulo`
 
 * [`cap_introducao`](./cap_introducao): Introdução do Boletim
 * [`cap_emprego`](./cap_emprego): Capítulo sobre Empregos no Estado

@@ -58,5 +58,10 @@
 *.run.xml
 
 # Arquivos Word
-.doc
-.docx
+*.doc
+*.docx
+
+# Outros
+*.zip
+*.rar
+*.7z

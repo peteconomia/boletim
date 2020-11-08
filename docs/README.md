@@ -1,4 +1,4 @@
-# Documentos
+# Documentação
 
 ## Planejamento Boletim 2020
 
@@ -28,12 +28,12 @@
 | Social | Trimestal e Anual | PNAD/IBGE |
 | Agricultura | Mensal | SIDRA/IBGE |
 | Balança Comercial | Trimestral e Mensal | FIETO, MDIC |
-| PIB | Trimestal | IBGE |
+| PIB | Trimestral | IBGE |
 
 
 ### Fiscais/Contas Públicas
 
-Os dados fiscais são extraidos do Siconfi/Tesouro Nacional, os de frequência bimestral estão no Relatório Resumido de Execução Orçamentária (RREO), nele são apresentado dados da execução orçamentária para todos os entes da federação, sendo possível obter dados à nivel de município. Dados de frequência quadrimestral estão contidos no Relatório de Gestão Fiscal (RGF). O RGF é menos detalhado que RREO, nele há demonstrativo da despesa com pessoal, dívida consolidada, operações de crédito, entre outros.
+Os dados fiscais são extraíos do Siconfi/Tesouro Nacional, os de frequência bimestral estão no Relatório Resumido de Execução Orçamentária (RREO), nele é apresentado dados da execução orçamentária para todos os entes da federação, sendo possível obter dados à nivel de município. Dados de frequência quadrimestral estão contidos no Relatório de Gestão Fiscal (RGF). O RGF é menos detalhado que RREO, nele há demonstrativo da despesa com pessoal, dívida consolidada, operações de crédito, entre outros.
 
 Publicações do Tesouro Nacional:
 * [RREO](https://www.tesourotransparente.gov.br/publicacoes/rreo-em-foco-estados-e-municipios/2020/16)

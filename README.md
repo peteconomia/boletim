@@ -2,6 +2,6 @@
 
 > Repositório contendo todos os dados, scripts e documentos da elaboração do boletim
 
-* [Documentos](/docs)
+* [Documentação](/docs)
 * [Boletim Tex](/tex)
 * [Scripts/Código](/scripts)

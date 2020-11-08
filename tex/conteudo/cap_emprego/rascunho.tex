@@ -1,0 +1,292 @@
+\chapter{Empregos}
+\section{Introdução}
+\par Os empregos são ótimos vetores de indicações para a atividade econômica de um país, por isso, o governo federal realiza inúmeras pesquisas sobre os empregos formais e informais. Assim, temos o CAGED (Cadastro Geral de Empregados e Desempregados) que reune inúmeras informações sobre os empregos formais, sendo, admissão, desligamento, salários, funções, cargos, etc.
+\par O CAGED é atualizado mensalmente pelo ministério do trabalho, gerando uma ótima atualização destes dados para realização de pesquisas e prognósticos econômicos. Outro ponto, é que o CAGED abrange tanto a unidade federativa geral, como estados e municípios, gerando uma grandeza de dados maiores. Nos tópicos a seguir desta sessão de empregos, iremos analisar e estudar dados sobre empregos formais referentes ao primeiro e segundo trimestre de 2020.
+\par Também iremos usar os dados do PNAD, para se calcular a taxa de desemprego, ocupação, renda média dos trabalhadores. Utilizando esses dois conjuntos de dados partiremos para uma breve analise da situação do mercado de trabalho no estado do Tocantins, partindo de objetivo o estudo do primeiro trimestre de 2020 e comparando com primeiro trimestre do exercício anterior.
+
+\begin{smbox}[label={labelbox},nameref={Empregos}]{Empregos}
+O CAGED (Cadastro Geral de Empregados e Desempregados) tem um inicio da série em 1992 para o Brasil em geral, agora para os estados tem de inicio por volta de 1996, sempre feito pelo Ministério do Trabalho. Porém, um problema nacional é a nossa mudança de metodologias que ocorrem em decorrer desse período. O CAGED e divulgado todos os meses, por voltado dos dias 02 até o dia 10 do mês vigente.
+\end{smbox}
+
+\section{Saldo de Empregos}
+\par Analisando os dados do saldo de emprego até o segundo trimestre. Temos a noção do impacto do COVID-19 nos meses auge do isolamento social causado pela pandemia.
+
+\begin{figure}[h]
+	\caption{Saldo de Empregos - Tocantins}
+	\includegraphics[width=\linewidth]{fig/Saldo de empregos - Tocantins.pdf}
+	\source{Ministério do Trabalho}
+	\notes{Note-se que já esta em curso uma recuperação dos empregos formais no estado tocantinense.}
+\end{figure}
+
+\par Analisando a situação do Tocantins, vemos que de Março a Maio, o impacto dos
+empregos no Tocantins foram maiores, gerando uma perda total de \textbf{-4.127}. Um impacto
+violento, porém já iniciamos uma breve recuperação destes empregos nos meses de Junho
+a Julho, bem justificado pela volta das atividades econômicas.
+
+\par Já no caso da Região Norte, temos um movimento bem similar ao do Tocantins. Existe
+uma relação forte dos desligamentos dos meses de Março a Maio, conforme citado acima.
+Foram os efeitos causados pela pandemia e consequentemente o isolamento social.
+
+\begin{figure}[h]
+	\caption{Saldo de Empregos - Região Norte}
+	\includegraphics[width=\linewidth]{fig/Saldo de Empregos - Região Norte.pdf}
+	\source{Ministério do Trabalho}
+	\notes{Note-se que já esta em curso uma recuperação dos empregos formais na região norte do Brasil, semelhante ao movimento tocantinense.}
+\end{figure}
+
+\section{Saldo Trimestral - TO}
+\par Realizando uma análise por trimestres no Tocantins é de se observar que estávamos em uma boa crescente de empregos gerados do 1T até o 3T de 2019, porém no 4T começa uma quebra nessa gerações de empregos. Em 2020, estava havendo uma recuperação no mercado de trabalho, conforme relatado no 1T. Mas, no 2T tivemos o impacto do Covid-19, gerando uma grande perda de vagas formais.
+
+\begin{figure}[h]
+	\caption{Série de Empregos - Tocantins}
+	\includegraphics[width=\linewidth]{fig/Saldo por trimestre - Tocantins.pdf}
+	\source{Ministério do Trabalho}
+	\notes{Relação por trimestre a partir do 1T de 2019 para acompanhar o movimento que os empregos estão tendo.}
+\end{figure}
+
+\section{Saldo Trimestral - Região Norte}
+\par O mesmo padrão ocorre na região norte, conforme o gráfico abaixo. Menos no 1T de 2019, porque o estado do Tocantins teve números melhores do que a própria região norte, entretanto, a geração e perda de empregos formais é semelhante ao do estado tocantinense.
+
+\begin{figure}[h]
+	\caption{Série de Empregos - Tocantins}
+	\includegraphics[width=\linewidth]{fig/Saldo por trimestre - Região Norte.pdf}
+	\source{Ministério do Trabalho}
+	\notes{Relação por trimestre a partir do 1T de 2019 para acompanhar o movimento que os empregos estão tendo.}
+\end{figure}
+
+\section{Grau de instrução dos admitidos e demitidos}
+
+\par Um ponto para se analisar é o nível de instrução dos admitidos e demitidos no Tocantins no primeiro trimestre de 2020, iremos apontar qual o nível de formação dos admitidos do estado tocantinense.
+
+\begin{table}[h]
+\caption{Admitidos e Demitidos por Grau de Instrução}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{4cm}>{\raggedleft}X>{\raggedleft}X}
+\toprule
+Instrução & Admitidos & Demitidos\\
+\midrule
+Analfabeto & 0.37\% & 0.35\%\\
+Até 5ª Incompleto & 2.32\% & 1.71\%\\
+5ª Completo Fundamental & 1.42\% & 5.37\%\\
+6ª a 9ª Fundamental & 3.44\% & 3.62\%\\
+Fundamental Completo & 5.25\% & 3.49\%\\
+\addlinespace
+Médio Incompleto & 6.63\% & 6.81\%\\
+Médio Completo & 66.63\% & 66.55\%\\
+Superior Incompleto & 4.24\% & 4.5\%\\
+Superior Completo & 8.5\% & 7\%\\
+Mestrado & 0.37\% & 0.19\%\\
+\addlinespace
+Doutorado & 0.1\% & 0.08\%\\
+Pós-Graduação completa & 0.73\% & 0.4\%\\
+\bottomrule
+\source{CAGED}
+\end{tabu}
+\end{table}
+
+\par Um ponto interessante é a quantidade de pessoas com o ensino médio completo sendo admitidas, mostrando que o grau de empregos gerados no Tocantins é de nível médio e superior completo. Com o ensino médio correspondendo 66,63 ¨\% e com o ensino superior 8,50 \%.
+
+\par Já nos desligamentos e o seu grau de instrução, é bem similar aos admitidos, no primeiro trimestre também tivemos uma demissão maior com pessoas de ensino médio e também o médio incompleto com o superior completo. Dá pra se pensar que existe uma alta rotatividade de vagas referente ao ensino médio.
+
+\section{Setores de contratações e demissões.}
+\par Um ponto crucial para entender o contexto dessas admissões e desligamentos é compreender os setores que mais contratam e consequentemente também demitem. Por isso temos o CNAE (Classificação Nacional de Atividades Econômicas). Onde é realizado várias categorias de trabalho, porém, como o Tocantins não tem movimentações em todas as categorias do CNAE, usaremos as que tem movimentações.
+
+\begin{table*}[h]
+\caption{Admitidos e Demitidos por Setor}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X}
+\toprule
+Setor & Admitidos & Demitidos\\
+\midrule
+Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura & 1421 & 1164\\
+Indústrias Extrativas & 105 & 62\\
+Indústrias de Transformação & 1639 & 1562\\
+Eletricidade e Gás & 44 & 63\\
+Água, Esgoto, Atividades de Gestão de Resíduos e Descontaminação & 77 & 65\\
+\addlinespace
+Construção & 1871 & 2071\\
+Comércio, Reparação de Veículos Automotores e Motocicletas & 5794 & 5699\\
+Transporte, Armazenagem e Correio & 1365 & 964\\
+Alojamento e Alimentação & 1039 & 1032\\
+Informação e Comunicação & 273 & 208\\
+\addlinespace
+Atividades Financeiras, de Seguros e Serviços Relacionados & 129 & 72\\
+Atividades Imobiliárias & 64 & 57\\
+Atividades Profissionais, Científicas e Técnicas & 719 & 511\\
+Atividades Administrativas e Serviços Complementares & 1453 & 1351\\
+Administração Pública, Defesa e Seguridade Social & 5 & 3565\\
+\addlinespace
+Educação & 873 & 565\\
+Saúde Humana e Serviços Sociais & 720 & 547\\
+Artes, Cultura, Esporte e Recreação & 94 & 64\\
+Outras Atividades de Serviços & 436 & 448\\
+\bottomrule
+\end{tabu}
+\end{table*}
+
+\par No primeiro trimestre de 2020, as admissões se concentraram no setor do comércio. Demonstrando o poder do setor na nossa economia tocantinense, abrindo 5.794 vagas no período do primeiro trimestre. É de se estudar que o Tocantins é um estado novo, mas com uma economia dinâmica e com padrões de movimentos bruscos nos setores de empregos. 
+\par Assim, o nosso saldo por setores no primeiro trimestre é composto pelos seguintes números:
+
+\begin{figure}[h]
+	\caption{Saldo por setores - Tocantins}
+	\includegraphics[width=\linewidth]{fig/Saldo por setores.pdf}
+	\source{Ministério do Trabalho}
+	\notes{Relação do primeiro trimestre de 2020 por setores.}
+\end{figure}
+
+\section{Perfil de Idade}
+
+\par Nessa sessão iremos expor o perfil de idade dos contratados e demitidos, expondo por um corte de idades.
+
+
+\par Nos admitidos temos a noção de que pelo primeiro corte de 14-34 anos, vemos uma maior contratação.
+
+\begin{table}
+\caption{Admitidos e Demitidos por Idade}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X}
+\toprule
+Idade & Admitidos & Demitidos\\
+\midrule
+14-34 & 12933 & 11375\\
+35-65 & 5270 & 5677\\
+65+ & 21 & 59\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+\par Os desligamentos seguem o mesmo movimento, é possível analisar que existe uma variabilidade de contratações e demissões para a população mais jovem. E nesse primeiro trimestre isso foi corroborado. 
+
+\begin{figure}[h]
+	\caption{Saldo por faixa etária - Tocantins}
+	\includegraphics[width=\linewidth]{fig/Saldo de empregos por faixa etária.pdf}
+	\source{Ministério do Trabalho \\ Elaborado por: PET-Economia}
+	\notes{Relação do primeiro trimestre de 2020 por idade.}
+\end{figure}
+
+\par No primeiro trimestre de 2020, temos a noção que indivíduos com mais de 35 anos, tiveram mais demissões do que indivíduos com idades inferiores.
+
+\section{Genêro}
+\par Outro parâmetro para realizarmos a exposição destes saldos é ter uma visão por gênero, entender como o mercado de trabalho está funcionando para homens e mulheres. 
+
+\begin{table}
+\caption{Admitidos e Demitidos por Sexo}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X}
+\toprule
+Sexo & Admitidos & Demitidos\\
+\midrule
+Homem & 11043 & 10869\\
+Mulher & 6243 & 5736\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+\begin{figure}[h]
+	\caption{Saldo por gênero - Tocantins}
+	\includegraphics[width=\linewidth]{fig/Saldo por genero.pdf}
+	\source{Ministério do Trabalho}
+	\notes{Relação do primeiro trimestre de 2020 por gênero.}
+\end{figure}
+
+\par No primeiro trimestre de 2020, temos que as mulheres conseguiram manter os seus empregos, mesmo havendo menos contrações do que os homens, um ponto interessante desse primeiro trimestre é de como as mulheres conseguiram manter os seus empregos formais de forma mais visíveis do que os homens.
+
+
+\begin{smbox}[label={labelbox},nameref={Desigualdade por gênero}]{Desigualdade por gênero}
+	Já é um tópico bem usual que o mercado de trabalho formal é um quanto desigual para as mulheres, existe uma vasta literatura sobre desigualdades salarias, vagas de empregos, oportunidades, etc. \cite{bibCotrim2020desigualdade} e \cite{bibHaussmann2018desigualdades} fazem um bom estudo e mais aprofundado sobre estas desigualdades.
+\end{smbox}
+
+\section{Etnia}
+\par Agora, seguindo nossa análise desse trimestre, iremos expor os dados referentes a etnia desses indivíduos.
+
+\begin{figure}[h]
+	\caption{Saldo por gênero - Tocantins}
+	\includegraphics[width=\linewidth]{fig/Saldo por etnia.pdf}
+	\source{Ministério do Trabalho}
+	\notes{Relação do primeiro trimestre de 2020 por etnia.}
+\end{figure}
+
+\par De uma forma contundente, é de se analisar que a movimentação dos empregos é de estudar, por exemplo, a uma quantidade grande de pessoas que não declaram sua etnia e quando declaram, é majoritariamente parda. Finalizando essa parte dos dados oriundos do Caged, um adendo importante para se entender é que as áreas que ocorre as maiores contratações são \textbf{auxiliar de escritório, operador de caixa, faxineiro, vendedor de comércio varejista, servente de obras, motorista de caminhão e assistente administrativo}.
+
+\section{Taxa de Desemprego}
+
+\par A taxa de desemprego é fornecida pela PNAD-C/IBGE (Pesquisa Nacional por Amostra de Domicílios). É divulgada pelo IBGE de forma trimestral e para todos os estados da federação, ela calcula a população ocupada pela desocupada, assim, gerando a nossa taxa de desemprego. A seguir, iremos expor a atual taxa de desemprego tocantinense.
+
+\begin{figure}[h]
+	\caption{Taxa de desemprego - Tocantins}
+	\includegraphics[width=\linewidth]{fig/taxa de desemprego - Tocantins.pdf}
+	\source{PNAD/IBGE}
+	\notes{Relação taxa de desemprego primeiro trimestre de 2020.}
+\end{figure}
+
+\par A taxa de desemprego no Tocantins estava num movimento de queda a partir do primeiro trimestre de 2019, porém, a partir do 4T de 2019 até o 1T de 2020 ocorre um movimento de elevação da taxa de desemprego.
+
+\section{Seguro Desemprego}
+
+\par Outro termômetro claro para o setor de empregos são os pedidos seguro-desemprego, que é uma politica macroeconômico para gerar uma segurança branda para o trabalhador recém demitido. Num contexto mais claro, significa que se ocorre uma elevação dos pedidos seguro desemprego, significa que o mercado de trabalho não está em um bom funcionamento. O inverso é bem intuitivo, se a poucos pedidos é uma reação a um bom momento econômico.
+
+\begin{figure}[h]
+	\caption{Pedidos seguro desemprego - Tocantins}
+	\includegraphics[width=\linewidth]{fig/Pedidos seguro desemprego.pdf}
+	\source{Ministério do Trabalho}
+	\notes{Relação pedidos seguro desemprego  primeiro trimestre de 2020.}
+\end{figure}
+
+\par Fazendo uma comparação com a taxa de desemprego, temos a noção de que a taxa se eleva e gera um aumento nos pedidos de seguro desemprego, uma demonstração clara de como a taxa é crucial para a avaliação macroeconômica. Realizando uma regressão para definir o quão importante é a taxa de desemprego em relação ao seguro desemprego, iremos analisar o seguinte caso:
+
+\begin{figure}[h]
+	\caption{Relação taxa de desemprego x pedidos seguro desemprego}
+	\includegraphics[width=\linewidth]{fig/Relação taxa desemprego x seguro desemprego.pdf}
+	\source{Ministério do Trabalho}
+	\notes{Relação pedidos seguro desemprego com a taxa de desemprego  primeiro trimestre de 2020.}
+\end{figure}
+
+\begin{smbox}[label={labelbox},nameref={Desigualdade por gênero}]{Regressão linear}
+	Usamos uma técnica acima para provar a correlação da taxa de seguro desemprego e pedidos de seguro desemprego. Essa técnica é a regressão linear simples, quando existe apenas uma variável resposta e uma variável explicativa, por isso chamamos de regressão linear simples. A formula é determinada por $y = \alpha + \beta x$ e $\beta = \overline{y} - \overline{\alpha x}$.
+	\\
+	Por fim, utilizando um processo econométrico vemos que a relação é forte, para se ter a ideia o \textbf{R} que é referente ao processo de correlação nos aponta um número de 0,70 (quanto mais próximo de 1 for, mais forte é a relação) e o \textbf{R}$^{2}$ é de 0,66. Ou seja, essa correlação é muito forte. 
+\end{smbox}
+
+\section{População Ocupada}
+
+\par Outro ponto crucial é a população economicamente ativa ocupada, iremos demonstrar a população economicamente ativa que está trabalhando.
+
+\begin{figure}[h]
+	\caption{População Ocupada - Tocantins}
+	\includegraphics[width=\linewidth]{fig/População Ocupada.pdf}
+	\source{PNAD/IBGE}
+	\notes{Relação taxa de ocupação primeiro trimestre de 2020.}
+\end{figure}
+
+\par  A taxa de ocupação tocantinense é bem estável pelos dados, sempre na faixa de 60\%, o que demonstra uma certa estabilidade dessa população. Comparando a taxa do 1T de 2019, foi de 59\% e no prímeiro 1T de 2020 foi de 57,5\%. Uma queda percentual da população ocupada.
+
+\section{Rendimento Médio}
+
+\par O rendimento médio do Tocantins é derivado dos rendimentos dos trabalhadores, nele, é possível de se pensar na renda que esses agentes produzem. É fruto do trabalho da nossa população ocupada, sejam trabalhos principais ou habituais. 
+
+\begin{figure}[h]
+	\caption{Rendimento médio - Tocantins}
+	\includegraphics[width=\linewidth]{fig/Rendimento médio - Tocantins.pdf}
+	\source{PNAD/IBGE}
+	\notes{Relação dos rendimentos médios no primeiro trimestre de 2020.}
+\end{figure}
+
+\par A renda dos trabalhadores tocantinenses está na faixa dos R\$ 1.700,00 e R\$ 1.800,00 por alguns anos, no primeiro período de 2019, a renda foi de R\$ 1.807,00 e no primeiro trimestre de 2020, foi de R\$ 1.867. Ou seja, a partir do primeiro trimestre de 2019, houve um ganho de renda muito considerável. É claro que o rendimento médio comparado com outros estados brasileiros é bem baixa, iremos comparar com a renda da região norte e do Brasil em geral.
+
+\begin{figure}[h]
+	\caption{Rendimento médio - Região Norte}
+	\includegraphics[width=\linewidth]{fig/Rendimento médio - Região Norte.pdf}
+	\source{PNAD/IBGE}
+	\notes{Relação dos rendimentos médios no primeiro trimestre de 2020.}
+\end{figure}
+
+\par A região Norte tem uma renda média menor que a do estado do Tocantins, por exemplo, no primeiro trimestre de 2019, a renda nortenha foi de R\$ 1.637,12 e no primeiro trimestre de 2020 o resultado de R\$ 1.725,25. Houve um aumento de renda desses trabalhadores, mas, abaixo do Tocantins.
+
+\begin{figure}[h]
+	\caption{Rendimento médio - Brasil}
+	\includegraphics[width=\linewidth]{fig/Rendimento médio - Brasil.pdf}
+	\source{PNAD/IBGE}
+	\notes{Relação dos rendimentos médios no primeiro trimestre de 2020.}
+\end{figure}
+
+\par No caso da renda média nacional, acontece um "gap" maior, a renda nacional no primeiro trimestre de 2019 foi de R\$ 2.159,51 e no 1T de 2020, foi de R\$ 2.261,29. A região Norte e o estado do Tocantins estão com um nível de renda menor que o Brasil no geral, mas, a renda média nacional é puxada por regiões que o desenvolvimento é maior e por consequência, uma maior produtividade. Os eixos nacionais (Sul e Sudeste) tem os seus níveis de renda maiores.

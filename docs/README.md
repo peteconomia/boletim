@@ -1,0 +1,50 @@
+# Documentos
+
+## Planejamento Boletim 2020
+
+- [ ] Reformulalão do Boletim de conjuntura na parte estética, dados, informações e apresentação
+- [ ] Criação de um banco de Dados para deixar o Boletim o mais atualizado possível.
+- [ ] Apresentação de dados estaduais apresentando o setor privado, público, financeiro e social.
+- [ ] Criação de uma introdução do Boletim com dados nacionais sobre inflação, PIB, renda, moeda, etc.
+- [ ] Criação de uma plataforma para a divulgação do Boletim
+- [ ] Levantamento de dados em âmbito trimestral.
+- [ ] Criação de um boletim referente aos meses de Janeiro a Março, para padronização
+- [ ] Promover alterações na seção do PIB, deixando mais prático e de fácil leitura
+- [ ] Colocar dados sobre cadeias produtivas, produtos que o Estado trabalha, balança comercial(Valores, quantidades, públicos alvos, etc).
+- [ ] Utilizar o corpo docente para formulação do boletim, propondo correções e orientações de setores avaliados
+- [ ] Abordar indicadores fiscais estaduais previsto pela LRF.
+- [ ] Propor a entrega do Boletim em Outubro, respeitando os dados trimestrais.
+- [ ] Melhorar qualidade dos textos, tornando o boletim didático para não economistas
+- [ ] Propor uma metodologia para as pesquisas do Boletim
+- [ ] Realizar divulgações do Boletim de conjuntura no periodo trimestral.
+- [ ] Procurar fontes de dados compativeis ao Estado.
+
+## Frequência dos Dados
+
+|   Tema      | Frequência  |  Fonte   |
+| ----------- | ----------- | -------- |
+| Fiscais/Contas Públicas | Bimestral e Quadrimestral | Siconfi/Tesouro Nacional |
+| Emprego | Trimestral e Mensal | CAGED, RAIS |
+| Social | Trimestal e Anual | PNAD/IBGE |
+| Agricultura | Mensal | SIDRA/IBGE |
+| Balança Comercial | Trimestral e Mensal | FIETO, MDIC |
+| PIB | Trimestal | IBGE |
+
+
+### Fiscais/Contas Públicas
+
+Os dados fiscais são extraidos do Siconfi/Tesouro Nacional, os de frequência bimestral estão no Relatório Resumido de Execução Orçamentária (RREO), nele são apresentado dados da execução orçamentária para todos os entes da federação, sendo possível obter dados à nivel de município. Dados de frequência quadrimestral estão contidos no Relatório de Gestão Fiscal (RGF). O RGF é menos detalhado que RREO, nele há demonstrativo da despesa com pessoal, dívida consolidada, operações de crédito, entre outros.
+
+Publicações do Tesouro Nacional:
+* [RREO](https://www.tesourotransparente.gov.br/publicacoes/rreo-em-foco-estados-e-municipios/2020/16)
+* [RGF](https://www.tesourotransparente.gov.br/publicacoes/rgf-em-foco-estados-e-municipios/2020/27?ano_selecionado=2020)
+
+### Emprego
+
+### Social
+
+### Agricultura
+
+### Balança Comercial
+
+### PIB

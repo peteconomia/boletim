@@ -2,7 +2,7 @@
 
 ## Planejamento Boletim 2020
 
-- [ ] Reformulalão do Boletim de conjuntura na parte estética, dados, informações e apresentação
+- [ ] Reformulação do Boletim de conjuntura na parte estética, dados, informações e apresentação
 - [ ] Criação de um banco de Dados para deixar o Boletim o mais atualizado possível.
 - [ ] Apresentação de dados estaduais apresentando o setor privado, público, financeiro e social.
 - [ ] Criação de uma introdução do Boletim com dados nacionais sobre inflação, PIB, renda, moeda, etc.

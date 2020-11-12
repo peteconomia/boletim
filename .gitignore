@@ -39,6 +39,16 @@
 *.cb
 *.cb2
 .*.lb
+*.snm
+*.nav
+*.fdb_latexmk
+*.gz
+*.idx
+*.xdv
+*.xml
+*.ilg
+*.ind
+__latexindent_temp.tex
 
 ## Intermediate documents:
 *.dvi

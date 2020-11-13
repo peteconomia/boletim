@@ -1,0 +1,106 @@
+---
+title: "Boletim - PET."
+author: "Felipe Ferreira"
+date: "23/09/2020"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(kableExtra)
+library(purrr)
+
+toPerc <- function(x) paste0(x, "%")
+```
+
+## Tabelas - Grau de instruçao
+
+```{r echo = F}
+Dados_atualizados <- data.frame(
+  Instrução = c("Analfabeto", "Até 5ª Incompleto", "5ª Completo Fundamental", "6ª a 9ª Fundamental", "Fundamental Completo", "Médio Incompleto", "Médio Completo", "Superior Incompleto", "Superior Completo", "Mestrado", "Doutorado", "Pós-Graduação completa"),
+  Admitidos = map_chr(c(0.36, 2.63, 1.52, 3.89, 5.74, 6.66, 66.70, 3.97, 7.67, 0.23, 0.07, 0.55), toPerc),
+  Demitidos = map_chr(c(0.34, 2.00, 1.72, 3.86, 5.78, 7.39, 67.21, 4.40, 6.65, 0.17, 0.05, 0.41
+), toPerc)
+)
+
+Dados_atualizados %>%
+  kable(.,
+    caption = "Admitidos e Demitidos por Grau de Instrução",
+    align = "lrr",
+    digits = 2,
+    booktabs = T,
+    format.args = list(decimal.mark = ",", scientific = FALSE), 
+    "latex"
+  ) %>%
+  kable_styling(full_width = T) %>%
+  column_spec(1, width = "4cm")
+```
+
+## Tabelas - Setores de trabalho.
+
+```{r echo = F}
+Setores <- data.frame( Setor = c("Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura", "Indústrias Extrativas", "Indústrias de Transformação", "Eletricidade e Gás", "Água, Esgoto, Atividades de Gestão de Resíduos e Descontaminação", "Construção", "Comércio, Reparação de Veículos Automotores e Motocicletas", "Transporte, Armazenagem e Correio", "Alojamento e Alimentação", "Informação e Comunicação", "Atividades Financeiras, de Seguros e Serviços Relacionados", "Atividades Imobiliárias", "Atividades Profissionais, Científicas e Técnicas", "Atividades Administrativas e Serviços Complementares", "Administração Pública, Defesa e Seguridade Social", "Educação", "Saúde Humana e Serviços Sociais", "Artes, Cultura, Esporte e Recreação", "Outras Atividades de Serviços"), 
+    Admitidos = c(1421, 105, 1639, 44, 77, 1871, 5794, 1365, 1039, 273, 129, 64, 719, 1453, 5, 873, 720, 94, 436),
+    Demitidos = c(1164, 62, 1562, 63, 65, 2071, 5699, 964, 1032, 208, 72, 57, 511, 1351, 3565,565, 547, 64, 448)
+)
+
+Setores %>%
+  kable(.,
+    caption = "Admitidos e Demitidos por Setor",
+    align = "lrr",
+    digits = 2,
+    booktabs = T,
+    format.args = list(decimal.mark = ",", scientific = FALSE), 
+    "latex"
+  ) %>%
+  kable_styling(full_width = T)
+
+```
+
+## Tabelas - Por Idade
+
+```{r echo = F}
+idade_admitidos_demitidos <-  data.frame(
+  Idade = c("14-34", "35-65", "65+"),
+  Admitidos = c(12933, 5270, 21),
+  Demitidos = c(11375, 5677, 59)
+)
+
+idade_admitidos_demitidos %>%
+  kable(.,
+    caption = "Admitidos e Demitidos por Idade",
+    align = "lrr",
+    digits = 2,
+    booktabs = T,
+    format.args = list(decimal.mark = ",", scientific = FALSE), 
+    "latex"
+  ) %>%
+  kable_styling(full_width = T)
+```
+
+## Tabela - Por sexo
+
+```{r echo = F}
+Sexo <- data.frame(
+  Sexo = c("Homem", "Mulher"),
+  Admitidos = c(11043, 6243),
+  Demitidos = c(10869, 5736)
+)
+
+Sexo %>%
+  kable(.,
+    caption = "Admitidos e Demitidos por Sexo",
+    align = "lrr",
+    digits = 2,
+    booktabs = T,
+    format.args = list(decimal.mark = ",", scientific = FALSE), 
+    "latex"
+  ) %>%
+  kable_styling(full_width = T)
+```
+
+

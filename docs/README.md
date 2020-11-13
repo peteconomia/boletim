@@ -31,7 +31,7 @@
 | PIB | Trimestral | IBGE |
 
 
-### Fiscais/Contas Públicas
+### Dados Fiscais/Contas Públicas
 
 Os dados fiscais são extraíos do Siconfi/Tesouro Nacional, os de frequência bimestral estão no Relatório Resumido de Execução Orçamentária (RREO), nele é apresentado dados da execução orçamentária para todos os entes da federação, sendo possível obter dados à nivel de município. Dados de frequência quadrimestral estão contidos no Relatório de Gestão Fiscal (RGF). O RGF é menos detalhado que RREO, nele há demonstrativo da despesa com pessoal, dívida consolidada, operações de crédito, entre outros.
 

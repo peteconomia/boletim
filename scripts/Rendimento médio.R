@@ -1,0 +1,146 @@
+library(readxl)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(odbc)
+library(sidrar)
+
+#Rendimento m?dio - Janeiro
+Dados <- get_sidra(x = 6588,
+                   variable = 36,
+                   period = "202001",
+                   geo = "State",
+                   header = TRUE,
+                   format = 1)
+
+Dados_TO <- Dados %>% 
+  filter(`Unidade da Federa??o (C?digo)` == 17) %>% 
+  filter(`Produto das lavouras (C?digo)` %in% c(39428, 39432, 39441, 39442, 39443, 39456, 39467)) 
+
+
+#Rendimento m?dio - Fevereiro
+
+Dados2 <- get_sidra(x = 6588,
+                    variable = 36,
+                    period = "202002",
+                    geo = "State",
+                    header = TRUE,
+                    format = 1)
+
+Dados_TO2 <- Dados2 %>% 
+  filter(`Unidade da Federa??o (C?digo)` == 17) %>% 
+  filter(`Produto das lavouras (C?digo)` %in% c(39428, 39432, 39441, 39442, 39443, 39456, 39467)) 
+
+#Rendimento m?dio - Mar?o
+
+Dados3 <- get_sidra(x = 6588,
+                    variable = 36,
+                    period = "202003",
+                    geo = "State",
+                    header = TRUE,
+                    format = 1)
+
+Dados_TO3 <- Dados3 %>% 
+  filter(`Unidade da Federa??o (C?digo)` == 17) %>% 
+  filter(`Produto das lavouras (C?digo)` %in% c(39428, 39432, 39441, 39442, 39443, 39456, 39467)) 
+
+#Rendimento m?dio - Abril
+
+Dados4 <- get_sidra(x = 6588,
+                    variable = 36,
+                    period = "202004",
+                    geo = "State",
+                    header = TRUE,
+                    format = 1)
+
+Dados_TO4 <- Dados4 %>% 
+  filter(`Unidade da Federa??o (C?digo)` == 17) %>% 
+  filter(`Produto das lavouras (C?digo)` %in% c(39428, 39432, 39441, 39442, 39443, 39456, 39467)) 
+
+
+#Rendimento m?dio - Maio
+
+Dados5 <- get_sidra(x = 6588,
+                    variable = 36,
+                    period = "202005",
+                    geo = "State",
+                    header = TRUE,
+                    format = 1)
+
+Dados_TO5 <- Dados5 %>% 
+  filter(`Unidade da Federa??o (C?digo)` == 17) %>% 
+  filter(`Produto das lavouras (C?digo)` %in% c(39428, 39432, 39441, 39442, 39443, 39456, 39467)) 
+
+#Rendimento m?dio - Junho
+
+Dados6 <- get_sidra(x = 6588,
+                    variable = 36,
+                    period = "202006",
+                    geo = "State",
+                    header = TRUE,
+                    format = 1)
+
+Dados_TO6 <- Dados6 %>% 
+  filter(`Unidade da Federa??o (C?digo)` == 17) %>% 
+  filter(`Produto das lavouras (C?digo)` %in% c(39428, 39432, 39441, 39442, 39443, 39456, 39467)) 
+
+
+#Rendimento m?dio - Julho
+
+Dados7 <- get_sidra(x = 6588,
+                    variable = 36,
+                    period = "202007",
+                    geo = "State",
+                    header = TRUE,
+                    format = 1)
+
+Dados_TO7 <- Dados7 %>% 
+  filter(`Unidade da Federa??o (C?digo)` == 17) %>% 
+  filter(`Produto das lavouras (C?digo)` %in% c(39428, 39432, 39441, 39442, 39443, 39456, 39467)) 
+
+
+#Rendimento médio - Agosto
+
+Dados8 <- get_sidra(x = 6588,
+                    variable = 36,
+                    period = "202008",
+                    geo = "State",
+                    header = TRUE,
+                    format = 1)
+
+Dados_TO8 <- Dados8 %>% 
+  filter(`Unidade da Federação (Código)` == 17) %>% 
+  filter(`Produto das lavouras (Código)` %in% c(39428, 39432, 39441, 39442, 39443, 39456, 39467)) 
+
+
+#Rendimento Médio - Setembro
+
+
+Dados9 <- get_sidra(x = 6588,
+                    variable = 36,
+                    period = "202009",
+                    geo = "State",
+                    header = TRUE,
+                    format = 1)
+
+
+Dados_TO9 <- Dados9 %>% 
+  filter(`Unidade da Federação (Código)` == 17) %>% 
+  filter(`Produto das lavouras (Código)` %in% c(39428, 39432, 39441, 39442, 39443, 39456, 39467)) 
+
+
+Total <-  data.frame("Meses" = 1:1, "Rendimento" = c(5256,8667,3082,79224,15949), "Produtos" = c("Arroz","Milho", "Soja", "Cana-de-açúcar", "Mandioca"))
+
+
+Total %>%
+  mutate(Produtos = factor(Produtos, levels=c("Arroz","Milho", "Soja", "Cana-de-açúcar", "Mandioca"))) %>%
+  ggplot(aes(x=Produtos, y = Rendimento)) +
+  geom_bar(stat='identity', width=0.5, fill = "#4682B4") + 
+  theme_classic() + 
+  geom_text(aes(label=Rendimento), position=position_dodge(width=0.9), vjust=-0.25) +
+  scale_y_continuous(limits = c(0, 100000)) + 
+  labs( y= "Rendimento médio", x= " ") + 
+  theme(plot.title = element_text(hjust = 0.5, size = 13))
+
+
+

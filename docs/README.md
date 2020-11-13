@@ -49,7 +49,7 @@ Publicações do Ministério do Trabalho e IBGE:
 
 ### Social
 ### Agricultura
-Os dados da agricultura são extraidos do IBGE, pelo SIDRA (Sistema IBGE de Recuperação Automática), que possuem a frequência variada, mas, frequentemente mensal. Nela, temos os dados da produção agricola, rendimento médio, plantio por hectáres, abates de bovinos, suinos, frangos, etc. Como, produção de leite e produção de ovos.
+Os dados da agricultura são extraidos do IBGE, pelo SIDRA (Sistema IBGE de Recuperação Automática), que possuem a frequência variada, mas, frequentemente mensal. Nela, temos os dados da produção agricola, rendimento médio, plantio por hectáres, abates de bovinos, suinos, frangos, produção de leite e produção de ovos.
 
 Publicações do SIDRA:
 

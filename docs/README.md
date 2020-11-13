@@ -42,14 +42,22 @@ Publicações do Tesouro Nacional:
 ### Emprego
 Os dados dos empregos são extraidos do CAGED (Cadastro Geral de Empregados e Desempregados) que possuem frequência mensal submetidos a competência do Ministério do Trabalho, dele são apresentados informações sobre o emprego formal, como saldo de empregos, salários de contratação, perfil, idade, genêro. Também, são usados os dados da PNAD-Continua divulgadas pelo IBGE, com a frequência mensal, trimestral e anual, nela temos informações sobre a taxa de desemprego, rendimentos, ocupação e etc.
 
-Publicações do CAGED:
-* [CAGED] (http://pdet.mte.gov.br/novo-caged)
-* [PNAD-Continua] (https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&t=o-que-e)
-* [Seguro-desemprego] (http://pdet.mte.gov.br/seguro-desemprego)
+Publicações do Ministério do Trabalho e IBGE:
+* [CAGED](http://pdet.mte.gov.br/novo-caged)
+* [PNAD-Continua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&t=o-que-e)
+* [Seguro-desemprego](http://pdet.mte.gov.br/seguro-desemprego)
 
 ### Social
-
 ### Agricultura
+Os dados da agricultura são extraidos do IBGE, pelo SIDRA (Sistema IBGE de Recuperação Automática), que possuem a frequência variada, mas, frequentemente mensal. Nela, temos os dados da produção agricola, rendimento médio, plantio por hectáres, abates de bovinos, suinos, frangos, produção de leite e produção de ovos.
+
+Publicações do SIDRA:
+
+* [Abate](https://sidra.ibge.gov.br/home/abate/brasil)
+* [Leite](https://sidra.ibge.gov.br/home/leite/brasil)
+* [Produção de Ovos de Galinha](https://sidra.ibge.gov.br/home/pog/brasil)
+* [Levantamento Sistemático da Produção Agrícola](https://sidra.ibge.gov.br/home/lspa/brasil)
+
 
 ### Balança Comercial
 

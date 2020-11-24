@@ -1,14 +1,20 @@
 \newpagecolor{primarycolor}
 \begin{titlepage}
-	\vspace*{\fill}
-		\begin{flushleft}
-			\color{white}
-			\fontsize{80}{90}
-			\selectfont 
-			Boletim de
-			\\ Conjuntura
-			\\ Tocantins
-		\end{flushleft}
-	\vspace*{\fill}
+	\begin{flushleft}
+		\color{white}
+		\fontsize{50}{50}
+		\selectfont 
+		Boletim de
+		\\ Conjuntura do
+		\\ Tocantins
+	\end{flushleft}
+	\begin{tikzpicture}[overlay, scale=1]
+		\node[anchor=center] at (8.5,-8){\includegraphics{logos/bg.pdf}};
+	\end{tikzpicture}
+	\begin{figure}[b]
+		\begin{flushright}
+			\includegraphics[width=2cm]{logos/uft.png}
+		\end{flushright}
+	\end{figure}
 \end{titlepage}
 \newpagecolor{white}

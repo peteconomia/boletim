@@ -10,29 +10,29 @@
 	\pagenumbering{gobble} % disable page number
 	%\pagestyle{empty}
 
-	\clearpage
 	\input{conteudo/capa}
 	\input{conteudo/contracapa}
 	\input{conteudo/ficha}
+
+	\clearpage
+	\tableofcontents\thispagestyle{empty}
+
 	\clearpage
 
 	\pagenumbering{roman}
-
 	\input{conteudo/sumario_executivo}
-  
-	\tableofcontents
 
 	\twocolumn
   
 	\pagenumbering{arabic}
  
-	% \input{conteudo/cap_introducao/rascunho}
-	% \input{conteudo/cap_contaspublicas/rascunho}
-	% \input{conteudo/cap_social/rascunho}
-	% \input{conteudo/cap_emprego/rascunho}
-	% \input{conteudo/cap_balancacomercial/rascunho}
-	% \input{conteudo/cap_agricultura/rascunho}
+	\input{conteudo/cap_introducao/rascunho}
+	\input{conteudo/cap_contaspublicas/rascunho}
+	\input{conteudo/cap_social/rascunho}
+	\input{conteudo/cap_emprego/rascunho}
+	\input{conteudo/cap_balancacomercial/rascunho}
+	\input{conteudo/cap_agricultura/rascunho}
 
-	% \input{conteudo/fim}
+	\input{conteudo/fim}
 
 \end{document}

@@ -1,4 +1,5 @@
 # Script para gerar figura de fundo da capa
+# Instalação do geobr <https://github.com/ipeaGIT/geobr>
 library(geobr)
 library(ggplot2)
 

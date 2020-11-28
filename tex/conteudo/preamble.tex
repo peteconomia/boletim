@@ -69,10 +69,16 @@
 	singlelinecheck=false,
 	font={normalsize,color=primarycolor},
 	labelfont={color=primarycolor},
-	labelsep=period,
-	figurename=\textcolor{primarycolor}{Figura}
+	labelsep=space
 }
-
+\renewcommand{\thesubfigure}{.\arabic{subfigure}}
+\DeclareCaptionLabelFormat{opening}{Figura~\thechapter.\arabic{figure}.\arabic{subfigure}}
+\captionsetup[subfigure]{
+	labelformat=opening,
+	font={normalsize,color=primarycolor},
+	labelsep=space
+}
+\setkeys{Gin}{width=\linewidth} % \includegraphics por padrão terá comprimento igual a \linewidth
 % Box Config
 \newtcolorbox[auto counter,number within=chapter]{smbox}[2][]{
 	colback=boxbackground,
@@ -98,7 +104,7 @@
 }
 
 \newcommand{\notes}[1]{
-	\footnotesize{Nota: #1}
+	\footnotesize{Nota: #1}\\
 }
 
 % Links Config
@@ -131,18 +137,16 @@
 	{\LARGE\color{primarycolor}\bigskip}
 	{\thecontentslabel.~}
 	{}
-	{\enspace--\contentspage}
+	{\enspace---\enspace\contentspage}
 
 \titlecontents{section}[100pt]
 	{\large\color{primarycolor}\bigskip}
-	%{\thecontentslabel\enspace}
 	{}
 	{}
 	{\enspace---\contentspage}
 
 \titlecontents{subsection}[130pt]
 	{\normalsize\color{primarycolor}\bigskip}
-	%{\normalsize\thecontentslabel\enspace}
 	{}
 	{}
 	{\enspace---\contentspage}

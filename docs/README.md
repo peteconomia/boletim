@@ -62,3 +62,53 @@ Publicações do SIDRA:
 ### Balança Comercial
 
 ### PIB
+
+## Convenções
+
+### Estatísticas
+
+- Dados desconhecidos/nulos: indicado por `...`
+- O hífen (`-`) entre dois valores, como 2019-2020, indica um intervalo incluindo o primeiro e último valor
+- O sinal de mais (`+`) no final de um valor, como 65+, indica valores maiores e igual a ele
+- A notação `1T/2020` indica o primeiro trimestre do ano
+- A notação `1B/2020` indica o primeiro bimestre do ano
+
+### Gráficas
+
+- Título autoexplicativo
+
+- Não é necessário título para os eixos, exceto para gráficos de dispersão
+
+- Mesma paleta de cores
+
+- Fonte do título, eixos e legenda é a mesma do texto
+
+- Tamanho da fonte dos eixos e legendas são iguais
+
+- Posição da legenda é abaixo do gráfico
+
+- Título do gráfico inicia com letra maiúscula, a partir da primeira palavra inicia com letra minúscula (exceto para substantivos próprios). Mesma recomendação para tabelas
+
+   > Figura X.X Variação da receita e despesa do Tocatins em 2020
+
+- Valores dos Eixos
+
+   - Variáveis categóricas: seguem a mesma recomendação para título do gráfico
+
+   - Datas:
+
+      - Ano: Ano completo
+
+         > `2020`
+
+      - Trimestre: indicado pela letra `T`, separado por `/` e seguido pelo ano completo, mesmo que os dados estejam dentro de um ano
+
+         > `1T/2020`
+
+      - Bimestre: indicado pela letra  `B`, separado por `/` e seguido pelo ano completo, mesmo que os dados estejam dentro de um ano
+
+         > `1B/2020`
+
+      - Mês: indicado pela três primeiras letras do mês (sendo a primeira maíuscula), separado por `/` e seguido pelo ano completo, mesmo que os dados estejam dentro de um ano
+
+         >`Ago/2020`

@@ -151,16 +151,7 @@ caged_Julho <- get_caged(type = 2, month = 7, year = 2020)
 caged_Agosto <- get_caged(type = 2, month = 8, year =2020)
 caged_Setembro <- get_caged(type = 2, month = 9, year =2020)
 caged_Outubro <- get_caged(type = 2, month = 10, year =2020)
-
-
-#Rodar esse script para a leitura dos dados.
-caged_data_janeiro <- read_caged(type = 2, dire = caged_janeiro$dire)
-caged_data_fevereiro <- read_caged(type = 2, dire = caged_fevereiro$dire)
-caged_data_março <- read_caged(type = 2, dire = caged_março$dire)
-caged_data_Abril <- read_caged(type = 2, dire = caged_Abril$dire)
-caged_data_Maio <- read_caged(type = 2, dire = caged_Maio$dire)
-caged_data_Junho <- read_caged(type = 2, dire = caged_Junho$dire)
-caged_data_julho <- read_caged(type =2, dire = caged_Julho$dire)
+caged_Novembro <- get_caged(type = 2, month = 11, year = 2020)
 
 
 # Dados TOcantins - Janeiro
@@ -228,6 +219,15 @@ Caged_Tocantins9 <- caged_Setembro %>%
   summarise(saldomovimentação= sum(saldomovimentação), .groups = "drop")
 
 
+#Dados Tocantins - Outubro
+
+Caged_Tocantins10 <- caged_Outubro %>% 
+  filter(uf==17) %>% 
+  group_by(saldomovimentação) %>% 
+  summarise(saldomovimentação= sum(saldomovimentação), .groups = "drop")
+
+
+
 #Dados Norte - Janeiro
 
 Caged_Norte1 <- caged_Janeiro %>% 
@@ -291,6 +291,14 @@ Caged_Norte9 <- caged_Setembro %>%
   filter(região == 1) %>% 
   group_by(saldomovimentação) %>% 
   summarise(saldomovimentação= sum(saldomovimentação), .groups = "drop")
+
+#Dado Norte - Outubro
+
+Caged_Norte10 <- caged_Outubro %>% 
+  filter(região == 1) %>% 
+  group_by(saldomovimentação) %>% 
+  summarise(saldomovimentação= sum(saldomovimentação), .groups = "drop")
+
 
 
 # GRAU DE INSTRU??O DOS ADMITIDOS
@@ -568,7 +576,6 @@ Resultado_Final2 <- safe_left_join(Resultado_Final, Resultado_3, by = c("seção
 #Gráfico de Setores - 1T
 
 Setores <- data.frame("Empregos" = 1:5, "Saldo" = c(277,109,961,-1950,-660), "Setores" = c("Agricultura","Indústrias", "Construção", "Comércio", "Serviços"))
-arrange(Lala)
 
 
 Setores %>%
@@ -576,12 +583,15 @@ Setores %>%
   ggplot(aes(x=Setores, y = Saldo)) + 
   geom_bar(stat='identity', colour = ifelse(Setores$Saldo > 0, "#104E8B", "#8b1010"), fill = ifelse(Setores$Saldo > 0, "#104E8B", "#8B1010")) + theme_classic() +
   geom_hline(yintercept=0, colour="black", linetype="dashed") + 
-  scale_y_continuous(limits = c(-2000, 2500),breaks = seq(from = -2000, to = 2500, by = 1000)) + 
+  scale_y_continuous(limits = c(-2500, 2500),breaks = seq(from = -2000, to = 2500, by = 1000)) + 
   labs(x=" ") +
-  theme(plot.title = element_text(hjust = 0.5, size = 13)) +  
-  geom_text(aes(label = Saldo, y = Saldo + 0.08),  position = position_dodge(0.9), vjust = 0.1)
+  theme(plot.title = element_text(hjust = 0.5, size = 13)) + geom_text(aes(y = Saldo + 2.4 * sign(Saldo),label=Saldo), color="black", position = position_dodge(0.9), size=4)
 
-
+ggplot(Setores, aes(Setores, Saldo)) + 
+  geom_bar(stat = "identity") +
+  geom_text(aes(label=Saldo)) +
+  scale_y_continuous(limits = c(-2000, 2000),breaks = seq(from = -2000, to = 2000, by = 1000)) + 
+  geom_text(aes(y = Saldo + 0.4 * sign(Saldo),label=Saldo), color="yellow", position = position_dodge(width = 0.4), size=4) 
 
 # IDADE DOS ADMITIDOS
 caged_TO_IA1 <- caged_Janeiro %>%
@@ -1106,36 +1116,45 @@ caged_cargosA <- caged_janeiro %>%
 #gráfico - Tocantins
 
 
-Lala<- data.frame("Empregos" = 1:9, "Saldo" = c(199,1482,-86,-2850,-1251,1240,1810,2096,1790), "Meses" = c("Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro"))
-arrange(Lala)
+Tocantins<- data.frame("Empregos" = 1:10, "Saldo" = c(199,1482,-86,-2850,-1251,1240,1810,2096,1790,1504), "Meses" = c("Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro"))
+arrange(Tocantins)
 
 
 
-Lala %>%
-  mutate(Meses = factor(Meses, levels=c("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro"))) %>%
+Tocantins %>%
+  mutate(Meses = factor(Meses, levels=c("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro"))) %>%
   ggplot(aes(x=Meses, y = Saldo)) + 
-  geom_bar(stat='identity', colour = ifelse(Lala$Saldo > 0, "#104E8B", "#8b1010"), fill = ifelse(Lala$Saldo > 0, "#104E8B", "#8B1010")) + theme_classic() +
+  geom_bar(stat='identity', colour = ifelse(Tocantins$Saldo > 0, "#3182BD", "#08519C"), fill = ifelse(Tocantins$Saldo > 0, "#3182BD", "#08519C")) + theme_classic() +
   geom_hline(yintercept=0, colour="black", linetype="dashed") + 
   scale_y_continuous(limits = c(-4500, 4500), breaks = seq(from = -4000, to = 4000, by = 1000)) + 
   theme(plot.title = element_text(hjust = 0.5, size = 13)) +
-  labs(x= " ") +
-  geom_text(aes(label = Saldo, y = Saldo + 0.05),  position = position_dodge(0.9), vjust = 0.1)
+  labs(x= " ", y = " ") +
+    geom_text(aes(y = Saldo + 0.9 * sign(Saldo),label=Saldo), color="black", position = position_dodge(width = 1), size=4)
+
+
+ggplot(Lala, aes(Meses, Saldo)) + 
+  geom_bar(stat = "identity") +
+  geom_text(aes(label=Saldo)) +
+  geom_text(aes(y = Saldo + 0.4 * sign(Saldo),label=Saldo), color="yellow", position = position_dodge(width = 0.4), size=4) 
+
+
+
 
 #Gráfico - Norte.
 
-Norte <- data.frame("Empregos" = 1:9, "Saldo" = c(2764,10419,-6370,-30747,-11146,6093,16015,22483,20640), "Meses" = c("Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro"))
+Norte <- data.frame("Empregos" = 1:10, "Saldo" = c(2764,10419,-6370,-30747,-11146,6093,16015,22483,20640, 20658), "Meses" = c("Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro"))
 
 #Gráfico
 
 Norte %>%
-  mutate(Meses = factor(Meses, levels=c("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro"))) %>%
+  mutate(Meses = factor(Meses, levels=c("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro"))) %>%
   ggplot(aes(x=Meses, y = Saldo)) + 
-  geom_bar(stat='identity', colour = ifelse(Norte$Saldo > 0, "#104E8B", "#8b1010"), fill = ifelse(Norte$Saldo > 0, "#104E8B", "#8B1010")) + 
+  geom_bar(stat='identity', colour = ifelse(Norte$Saldo > 0, "#3182BD", "#08519C"), fill = ifelse(Norte$Saldo > 0, "#3182BD", "#08519C")) + 
   theme_classic()  + 
   geom_hline(yintercept=0, colour="black", linetype="dashed") + 
-  geom_text(aes(label = Saldo, y = Saldo + 0.05),  position = position_dodge(0.9), vjust = 0.1) +
+  geom_text(aes(label = Saldo, y = Saldo + 0.05),  position = position_dodge(width =  0.9), vjust = 0.1) +
   scale_y_continuous(limits = c(-35000, 25000), breaks = seq(from = -35000, to = 25000, by = 10000)) + 
-  theme(plot.title = element_text(hjust = 0.5, size = 13)) +  labs(x= " ") 
+  theme(plot.title = element_text(hjust = 0.5, size = 13)) +  labs(x= " ", y = " ") 
 
 
 

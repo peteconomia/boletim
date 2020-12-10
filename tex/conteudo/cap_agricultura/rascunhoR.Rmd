@@ -25,6 +25,9 @@ knitr::opts_chunk$set(
 m <- 1000
 M <- 1000000
 B <- 1000000000
+
+# converte AAAAMM para formato MT/AAAA
+triForm <- function(x) paste0(substr(x, 6, 6),"T/",substr(x, 1, 4))
 ```
 
 ```{r producao, include=T}
@@ -110,6 +113,40 @@ area_plan %>%
 	geom_bar(aes(x = produto, y = total), stat = "identity") +
 	scale_y_continuous(labels = function(n) n/m)
 ```
+```{r prod_leite}
+tibble(
+	litros=c(33189, 32958, 29721, 36369, 37273),
+  trimestre=c("1T/2019","2T/2019", "3T/2019", "4T/2019", "1T/2020")
+) %>% 
+	ggplot() +
+	geom_bar(aes(factor(trimestre, levels = trimestre), litros), stat = "identity") +
+	scale_y_continuous(labels = function(n) n/m)
+```
+```{r abate_total}
+# Abate de animais - Tocantins
+
+abate_total <- get_sidra(x = 1092,
+												 variable = 284,
+												 period = c("201904", "202001", "202002", "202003"),
+												 geo = "State",
+												 geo.filter = list("State" = 17),
+												 header = TRUE,
+												 format = 4)
+
+abate_total %>% 
+  filter(
+  	`Tipo de inspeção` == "Total",
+  	`Referência temporal` == "Total do trimestre",
+  	`Tipo de rebanho bovino` == "Total"
+  ) %>% 
+	mutate(data = triForm(`Trimestre (Código)`)) %>% 
+	ggplot() +
+	geom_bar(
+		aes(factor(data, levels = c("4T/2019", "1T/2020", "2T/2020", "3T/2020")), Valor), 
+		stat = "identity"
+	) +
+	scale_y_continuous(labels = function(n) n/m)
+```
 
 
 ```{r abates}
@@ -133,7 +170,7 @@ abate_bovino <- get_sidra(
 		`Tipo de inspeção` == "Total",
 		`Variável` == "Animais abatidos"
 	) %>% 
-	select(`Trimestre (Código)`, `Tipo de rebanho bovino`,Valor)
+	select(`Trimestre (Código)`, `Tipo de rebanho bovino`, Valor)
 	
 # Unidade em cabeças
 abate_frango <- get_sidra(x = 1094,
@@ -149,19 +186,6 @@ abate_frango <- get_sidra(x = 1094,
 	) %>% 
 	select(`Trimestre (Código)`, Valor)
 
-# sem dados para suinos
-# abate_suino <- get_sidra(x = 1093,
-# 		period = c("201903", "202001", "202002"),
-# 		geo = "State",
-# 		geo.filter = list("State" = 17),
-# 		header = TRUE,
-# 		format = 4
-# 	) %>% filter(
-# 		`Referência temporal` == "Total do trimestre",
-# 	)
-
-triForm <- function(x) paste0(substr(x, 6, 6),"T/",substr(x, 1, 4))
-
 bind_rows(
 	abate_bovino %>% mutate(tipo = `Tipo de rebanho bovino`),
 	abate_frango %>% mutate(tipo = "Frango")
@@ -172,5 +196,46 @@ bind_rows(
 	ggplot(aes(factor(tri, levels = c("3T/2019", "4T/2019", "1T/2020", "2T/2020")), Valor, fill = tipo)) +
 	geom_bar(stat = "identity", position = "dodge") +
 	scale_y_continuous(labels = function(n) n/m)
+```
+```{r galinha_poedeiras}
+
+prod_galinhas <- get_sidra(
+	x = 915,
+	period = c("201904", "202004", "202001", "202002", "202003"),
+	geo = "State",
+	geo.filter = list("State" = 17),
+	header = TRUE,
+	format = 4
+)
+
+# Cabeça
+prod_galinhas %>% 
+	filter(
+		Variável == "Número de cabeças de galinhas poedeiras nos estabelecimentos agropecuários",
+		`Referência temporal` == "Total do trimestre"
+	) %>% 
+	mutate(data = triForm(`Trimestre (Código)`)) %>% 
+	ggplot() +
+	geom_bar(
+		aes(factor(data, levels = c("4T/2019", "1T/2020", "2T/2020", "3T/2020")), Valor),
+		stat = "identity"
+	) +
+	scale_y_continuous(labels = function(n) n/M)
+```
+
+```{r ovos_galinha}
+# Quantidade de ovos produzidos, Mil dúzias
+
+prod_galinhas %>% 
+	filter(
+		Variável == "Quantidade de ovos produzidos",
+		`Referência temporal` == "Total do trimestre"
+	) %>% 
+	mutate(data = triForm(`Trimestre (Código)`)) %>% 
+	ggplot() +
+	geom_bar(
+		aes(factor(data, levels = c("4T/2019", "1T/2020", "2T/2020", "3T/2020")), Valor),
+		stat = "identity"
+	)
 ```
 

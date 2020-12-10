@@ -73,7 +73,8 @@
 	singlelinecheck=false,
 	font={normalsize,color=primarycolor},
 	labelfont={color=primarycolor},
-	labelsep=space
+	labelsep=space,
+	skip=3pt
 }
 \renewcommand{\thesubfigure}{.\arabic{subfigure}}
 \DeclareCaptionLabelFormat{opening}{Figura~\thechapter.\arabic{figure}.\arabic{subfigure}}
@@ -109,6 +110,10 @@
 
 \newcommand{\notes}[1]{
 	\scriptsize{Nota: #1}\\
+}
+
+\newcommand{\subcap}[1]{
+	\scriptsize{\color{primarycolor}#1}\newline\newline
 }
 
 % Links Config

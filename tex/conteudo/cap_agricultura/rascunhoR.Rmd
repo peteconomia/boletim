@@ -8,11 +8,10 @@ library(sidrar)
 library(rmarkdown)
 library(knitr)
 library(scales)
-library(extrafont)
 library(petgg)
+library(extrafont)
 
-extrafont::loadfonts()
-petgg::set_theme(base_family = "Times New Roman")
+petgg::set_theme(base_family = "EB Garamond")
 
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -20,8 +19,8 @@ knitr::opts_chunk$set(
 	fig.path = "fig/",
 	message = FALSE,
 	warning = FALSE,
-	dev = c("pdf"),
-	dpi = 300
+	dpi = 300,
+	dev = "cairo_pdf"
 )
 m <- 1000
 M <- 1000000

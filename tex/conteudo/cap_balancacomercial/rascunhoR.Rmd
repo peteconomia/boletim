@@ -8,8 +8,9 @@ library(rmarkdown)
 library(knitr)
 library(scales)
 library(petgg)
+library(extrafont)
 
-petgg::set_theme(base_family = "Times")
+petgg::set_theme(base_family = "EB Garamond")
 
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -17,7 +18,7 @@ knitr::opts_chunk$set(
 	fig.path = "fig/",
 	message = FALSE,
 	warning = FALSE,
-	dev = c("pdf"),
+	dev = "cairo_pdf",
 	dpi = 300
 )
 M <- 1000000

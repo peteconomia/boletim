@@ -26,6 +26,7 @@
 .Renviron
 
 # TEX FILES
+*.tex~
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

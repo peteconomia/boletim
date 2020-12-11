@@ -1,6 +1,6 @@
-\chapter{Contas Públicas Estadual}
-\section{Receita e Despesa do
-Estado}
+\hypertarget{contas-puxfablica-estadual}{%
+\chapter{Contas Pública Estadual}\label{contas-puxfablica-estadual}}
+
 As contas do Estado até agosto de 2020 está em melhor situação quando
 comparado ao mesmo período de 2019, até agosto de 2019 o resultado
 primário, diferença entre receita e despesa primário não financeira, foi
@@ -30,15 +30,18 @@ pensionistas entre outros. No primeiro bimestre de 2020, essa conta
 cresceu 37,89\% em relação ao mesmo período do ano passado. No acumulado
 até agosto o crescimento foi de apenas 0,76\%.
 
-\begin{figure}[h]
-\caption{Variação da Receita e Despesa Primária em relação ao mesmo período ano passado}
-\includegraphics[width=\linewidth]{fig/unnamed-chunk-4-1.pdf}
+\begin{figure}[!h]
+\begin{subfigure}{\linewidth}
+\caption{\label{fig:var_rec_desp}Variação da receita e despesa primária
+acumulada}
+\includegraphics{fig/var_receita_despesa_primaria-1.pdf}
+\end{subfigure}
+\begin{subfigure}{\linewidth}
+\caption{\label{fig:var_desp_func}Variação da despesa por categoria}
+\includegraphics{fig/var_despesa_categoria-1.pdf}
+\end{subfigure}
 \end{figure}
 
-\begin{figure}[h]
-\caption{Variação da Despesa por Função em relação do mesmo perído do anopassado}
-\includegraphics[width=\linewidth]{fig/unnamed-chunk-6-1.pdf}
-\end{figure}
 A Figura xx mostra as despesas por função, despesas com judiciário e
 previdência social tiveram um crescimento real no acumulado até agosto
 quando comparado ao mesmo período de 2019, os gastos com judiciário
@@ -64,14 +67,11 @@ ultrapassou o limite prudêncial, por uma pequena margem. Um recuperação
 na receita ao longo do último quatros meses sem alterar as despesas com
 pessoal pode deixar o estado abaixo do limite prudencial.
 
-\begin{figure}[h]
-\caption{Despesa Total com pessoal em Relação a RCL}
-\includegraphics[width=\linewidth]{fig/unnamed-chunk-8-1.pdf}
-\end{figure}
-
+\hypertarget{capacidade-de-pagamento-do-estado}{%
 \section{Capacidade de Pagamento do
-Estado}
-O cálculo da capacidade de pagamento \acrshort{capag} traz informações a cerca da
+Estado}\label{capacidade-de-pagamento-do-estado}}
+
+O cálculo da capacidade de pagamento (CAPAG) traz informações a cerca da
 situação fiscal do Estados e Munícipois. A nota é utlizada para Estados
 contrair empréstimos com garantia do Governo Federal. A nota atribuida a
 cada Estado ou Município é derivada de três indicadores: endividamento,
@@ -121,47 +121,8 @@ obrigações em relação a disponibilidade, ou o inverso, aumentando a
 disponibilidade, isto é, ativos de alta liquidez, e diminuir as
 obrigações.
 
-\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
-\toprule
-UF & 2018 & 2019 & 2020\\
-\midrule
-AC & B & B & B\\
-AL & B & B & B\\
-AM & B & B & B\\
-AP & B & C & Suspensa\\
-BA & C & C & C\\
-\addlinespace
-CE & B & B & B\\
-DF & C & C & C\\
-ES & A & A & A\\
-GO & C & C & C\\
-MA & C & C & C\\
-\addlinespace
-MG & n.d. & D & D\\
-MS & C & C & C\\
-MT & C & C & C\\
-PA & B & B & B\\
-PB & B & B & B\\
-\addlinespace
-PE & C & C & C\\
-PI & C & B & C\\
-PR & B & B & B\\
-RJ & D & D & D\\
-RN & C & C & C\\
-\addlinespace
-RO & B & B & A\\
-RR & C & C & C\\
-RS & D & D & D\\
-SC & C & C & C\\
-SE & C & C & C\\
-\addlinespace
-SP & B & B & B\\
-TO & C & C & C\\
-\bottomrule
-\multicolumn{4}{l}{\rule{0pt}{1em}\textit{Note: }}\\
-\multicolumn{4}{l}{\rule{0pt}{1em}Boletim de Finanças dos Entes Subnacionais 2020}\\
-\end{tabu}
-
+\begin{table}
+\caption{\label{tab:unnamed-chunk-9}Nota da capacidade de pagamento}
 \begin{tabu} to \linewidth {>{\raggedright}X>{\centering}X>{\centering}X>{\centering}X>{\centering}X>{\centering}X>{\centering}X}
 \toprule
 \multicolumn{1}{c}{ } & \multicolumn{2}{c}{Endividamento} & \multicolumn{2}{c}{\makecell[c]{Poupança\\Corrente}} & \multicolumn{2}{c}{Liquidez} \\
@@ -173,8 +134,9 @@ AM & A & A & B & B & A & A\\
 AP & B & B & A & A & A & -\\
 PA & A & A & B & B & A & A\\
 RO & B & A & A & A & C & A\\
-\addlinespace
 RR & A & A & A & A & C & C\\
 TO & A & B & B & C & C & C\\
 \bottomrule
 \end{tabu}
+\source{Boletim de Finanças dos Entes Subnacionais, 2019--2020/Tesouro Nacional}
+\end{table}

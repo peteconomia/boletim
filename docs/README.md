@@ -49,9 +49,9 @@ Publicações do Ministério do Trabalho e IBGE:
 
 ### Indicadores Sociais
 
-Apresentação dos principais indicadores sociais do estado do Tocantins, quais sejam, Taxa de Pobreza, Taxa de Extrema Pobreza e Índice de Gini. Os dados são divulgados pelo IBGE a partir de dados da PNAD Contínua e são disponibilizados a partir da divulgação do documento Sintese dos Indicadores Sociais.
+Apresentação dos principais indicadores sociais do estado do Tocantins, quais sejam, Taxa de Pobreza, Taxa de Extrema Pobreza e Índice de Gini. Os dados são divulgados pelo IBGE a partir de dados da PNAD Contínua e são disponibilizados a partir da divulgação do documento Síntese dos Indicadores Sociais.
 
-[Sintese dos Indicadores Sociais](https://www.ibge.gov.br/estatisticas/sociais/protecao-social/9221-sintese-de-indicadores-sociais.html?=&t=o-que-e)
+[Síntese dos Indicadores Sociais](https://www.ibge.gov.br/estatisticas/sociais/protecao-social/9221-sintese-de-indicadores-sociais.html?=&t=o-que-e)
 
 ### Agricultura
 Os dados da agricultura são extraidos do IBGE, pelo SIDRA (Sistema IBGE de Recuperação Automática), que possuem a frequência variada, mas, frequentemente mensal. Nela, temos os dados da produção agricola, rendimento médio, plantio por hectáres, abates de bovinos, suinos, frangos, produção de leite e produção de ovos.

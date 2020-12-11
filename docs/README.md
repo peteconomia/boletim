@@ -47,7 +47,7 @@ Publicações do Ministério do Trabalho e IBGE:
 * [PNAD-Continua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&t=o-que-e)
 * [Seguro-desemprego](http://pdet.mte.gov.br/seguro-desemprego)
 
-### IndicadoresSociais
+### Indicadores Sociais
 
 Apresentação dos principais indicadores sociais do estado do Tocantins, quais sejam, Taxa de Pobreza, Taxa de Extrema Pobreza e Índice de Gini. Os dados são divulgados pelo IBGE a partir de dados da PNAD Contínua e são disponibilizados a partir da divulgação do documento Sintese dos Indicadores Sociais.
 

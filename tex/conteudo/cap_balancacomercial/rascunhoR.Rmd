@@ -25,121 +25,35 @@ M <- 1000000
 B <- 1000000000
 ```
 
-```{r}
-bc <- readxl::read_xlsx("bc.xlsx")
-```
-
-
-```{r soja1, include=T}
-# Soja
+```{r produtos_expo}
+# Produtos exportados
 readxl::read_excel("bc.xlsx", sheet = "produtos_export") %>% 
-	filter(produto == "Soja") %>% 
-	ggplot() +
-	geom_bar(aes(data, valor), stat = "identity") +
-	scale_y_continuous(labels = function(n) n/M)
+	ggplot(aes(data, valor, fill = name)) +
+	geom_bar(stat = "identity", position = "dodge", gap = "s") +
+	scale_y_continuous(labels = function(x) x/M)
 ```
 
-```{r carne1, include=T}
-# Carne Bovina/congelada ou refrigerada
-readxl::read_excel("bc.xlsx", sheet = "produtos_export") %>% 
-	filter(produto == "Carne bovina (fresca/congelada ou refrigerada)") %>% 
-	ggplot() +
-	geom_bar(aes(data, valor), stat = "identity") +
-	scale_y_continuous(labels = function(n) n/M)
-```
-
-```{r farelos1, include=T}
-# Farelos de soja e outros alimentos (excluidos cereais não moidos)
-readxl::read_excel("bc.xlsx", sheet = "produtos_export") %>% 
-	filter(produto == "Farelos de soja e outros alimentos (excluidos cereais não moidos)") %>% 
-	ggplot() +
-	geom_bar(aes(data, valor), stat = "identity") +
-	scale_y_continuous(labels = function(n) n/M)
-```
-
-```{r transf1, include=T}
-# Demais produtos - Indústria de Tranformação
-readxl::read_excel("bc.xlsx", sheet = "produtos_export") %>% 
-	filter(produto == "Demais produtos - Indústria de Tranformação") %>% 
-	ggplot() +
-	geom_bar(aes(data, valor), stat = "identity") +
-	scale_y_continuous(labels = function(n) n/M)
-```
-
-```{r ultimo, include=T}
-# Verificar eses dados
-# Materias brutas de animais
-readxl::read_excel("bc.xlsx", sheet = "produtos_export") %>% 
-	filter(produto == "Materias brutas de animais") %>% 
-	ggplot() +
-	geom_bar(aes(data, valor), stat = "identity") +
-	scale_y_continuous(labels = function(n) n/M)
-```
-
-```{r adubos1, include=T}
-# Adubos ou fertilizantes químicos(exceto fertilizantes brutos)
+```{r produtos_import}
+# Produtos importados
 readxl::read_excel("bc.xlsx", sheet = "produtos_import") %>% 
-	filter(produto == "Adubos ou fertilizantes químicos (exceto fertilizantes brutos)") %>% 
-	ggplot() +
-	geom_bar(aes(data, valor), stat = "identity") +
-	scale_y_continuous(labels = function(n) n/M)
-```
-
-```{r lentes1, include=T}
-# Lente e itens ópticos
-readxl::read_excel("bc.xlsx", sheet = "produtos_import") %>% 
-	filter(produto == "Lentes e itens óticos") %>% 
-	ggplot() +
-	geom_bar(aes(data, valor), stat = "identity") +
-	scale_y_continuous(labels = function(n) n/M)
-```
-
-```{r outros1, include=T}
-# Demais produtos - Indústria de Tranformação
-readxl::read_excel("bc.xlsx", sheet = "produtos_import") %>% 
-	filter(produto == "Demais produtos - Indústria de Tranformação") %>% 
-	ggplot() +
-	geom_bar(aes(data, valor), stat = "identity") +
-	scale_y_continuous(labels = function(n) n/M)
-```
-
-```{r oleo, include=T}
-# Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)
-readxl::read_excel("bc.xlsx", sheet = "produtos_import") %>% 
-	filter(produto == "Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos)") %>% 
-	ggplot() +
-	geom_bar(aes(data, valor), stat = "identity") +
-	scale_y_continuous(labels = function(n) n/M)
-```
-
-```{r inst1, include=T}
-# Intrumentos e aparelhos para usos medicinais, cirúrgicos, dentários ou veterinários
-readxl::read_excel("bc.xlsx", sheet = "produtos_import") %>% 
-	filter(produto == "Intrumentos e aparelhos para usos medicinais, cirúrgicos, dentários ou veterinários") %>% 
-	ggplot() +
-	geom_bar(aes(data, valor), stat = "identity") +
-	scale_y_continuous(labels = function(n) n/M)
+	ggplot(aes(data, valor, fill = name)) +
+	geom_bar(stat = "identity", position = "dodge", gap = "s") +
+	scale_y_continuous(labels = function(x) x/M) +
+	guides(fill = guide_legend(nrow=2, byrow=TRUE))
 ```
 
 ```{r total, include=T}
-# Exportação e Importaçao 2009--2019
+# Saldo, Exportação e Importaçao 2009--2019
 bind_rows(
 	readxl::read_excel("bc.xlsx", sheet = "export") %>% 
 		mutate(conta = "Exportações"),
 	readxl::read_excel("bc.xlsx", sheet = "import") %>% 
-		mutate(conta = "Importações")
+		mutate(conta = "Importações"),
+	readxl::read_excel("bc.xlsx", sheet = "saldo") %>% 
+		mutate(conta = "Saldo")
 ) %>% 
 	ggplot(aes(x = data, y = valor, color = conta)) +
 	geom_line() +
-	scale_y_continuous(labels = function(n) n/B) +
-	scale_x_datetime(labels = date_format("%Y"), date_breaks = "1 year")
-```
-
-```{r sal1, include=T}
-# Saldo
-readxl::read_excel("bc.xlsx", sheet = "saldo") %>% 
-	ggplot() +
-	geom_line(aes(data, valor)) +
 	scale_y_continuous(labels = function(n) n/B) +
 	scale_x_datetime(labels = date_format("%Y"), date_breaks = "1 year")
 ```

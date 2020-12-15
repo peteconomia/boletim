@@ -1,0 +1,103 @@
+---
+output: latex_fragment
+---
+
+```{r setup, include=F, message=F, warning=F}
+library(tidyverse)
+library(lubridate)
+library(scales)
+library(knitr)
+library(scales)
+library(sidrar)
+library(petgg)
+library(extrafont)
+library(kableExtra)
+petgg::set_theme(base_family = "EB Garamond")
+
+knitr::opts_chunk$set(
+	echo = FALSE,
+	eval = TRUE,
+	fig.path = "fig/",
+	message = FALSE,
+	warning = FALSE,
+	dev = "cairo_pdf",
+	dpi = 300
+)
+m <- 1000
+M <- 1000000
+B <- 1000000000
+```
+
+```{r}
+# Pesquisa Mensal de Comércio, https://sidra.ibge.gov.br/pesquisa/pmc/tabelas
+
+## Tabela 3416 - Índices de volume e de receita nominal de vendas no comércio varejista, por tipos de índice (2014 = 100)
+pmc <- get_sidra(
+		x = 3416, 
+		geo = "State",
+		geo.filter = list("State" = 17),
+		period = c("201401-202009"),
+		header = T
+	) %>% 
+	as_tibble() %>%
+	filter(
+		`Variável` == "Índice de volume de vendas no comércio varejista",
+		`Tipos de índice` == "Variação acumulada no ano (base: igual período do ano anterior)"
+	) %>% 
+	mutate(
+		date = paste0(`Mês (Código)`,"-01") %>% ymd(),
+		var = "Vendas no comércio varejista"
+	) %>% 
+	select(date, var, Valor)
+
+pms <- get_sidra(
+		x = 6442, 
+		geo = "State",
+		geo.filter = list("State" = 17),
+		period = c("201401-202009"),
+		header = T
+	) %>% 
+	as_tibble() %>% 
+	filter(
+		`Variável` == "Índice de volume de serviços",
+		`Tipos de índice` == "Variação acumulada no ano (base: igual período do ano anterior)"
+	) %>% 
+	mutate(
+		date = paste0(`Mês (Código)`,"-01") %>% ymd(),
+		var = "Serviços"
+	) %>% 
+	select(date, var, Valor)
+
+bind_rows(pmc, pms) %>% 
+	ggplot(aes(date, Valor, colour = var)) +
+	geom_line() +
+	scale_x_date(
+		breaks = scales::breaks_width("6 month"),
+		labels = scales::date_format("%b\n%Y")
+	)
+```
+
+
+```{r}
+
+```
+
+
+
+```{r}
+# Expectativa de crescimento anual do PIB
+expec_anual <- rbcb::get_annual_market_expectations(
+	indic = c("PIB Agropecuária", "PIB Industrial", "PIB Serviços", "PIB Total")
+)
+
+expec_anual %>% 
+	filter(reference_year == 2020, date >= "2020-01-01") %>% 
+	ggplot(aes(date, median, colour = indic)) +
+	geom_line() +
+	scale_x_date(
+		breaks = scales::breaks_width("1 month"),
+		labels = scales::date_format("%b")
+	) +
+	scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
+```
+

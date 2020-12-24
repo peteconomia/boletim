@@ -156,7 +156,7 @@ ipeadatar::ipeadata("PNADC_RENDREALPRINCHAB_UF", language = "br") %>%
 Dados <- data.frame(taxaDesemprego = c(11,11.3,9.8,10.4,12.3,11.4,10.5,9.1,11.2,12.5),
                         Pedidos_SeguroDesemprego = c(9833,9833,8832,8784,9642,9324,9155,8182,8785,10642))
     
-    ggplot(Dados, aes(x = taxaDesemprego, y = Pedidos_SeguroDesemprego)) + geom_point()
+
     
     
     #Modelo/Gráfico

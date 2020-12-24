@@ -65,6 +65,9 @@ Publicações do SIDRA:
 
 
 ### Balança Comercial
+Os dados da balança comercial são extraídos diretamente do COMEX STAT(plataforma oficial do MDIC(Ministério da Indústria e Comércio)) e são disponibilizados dados mensais para todas as cidades, estados, produotos e setores necessários para a pesquisa!
+
+* [Tocantins](http://comexstat.mdic.gov.br/pt/comex-vis)
 
 ### PIB
 

@@ -75,7 +75,7 @@ __latexindent_temp.tex
 # Arquivos Word
 *.doc
 *.docx
-
+*.~lock.bc.xlsx#
 # Outros
 *.zip
 *.rar

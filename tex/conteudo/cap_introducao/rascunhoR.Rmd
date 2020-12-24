@@ -12,6 +12,7 @@ library(sidrar)
 library(petgg)
 library(extrafont)
 library(kableExtra)
+
 petgg::set_theme(base_family = "EB Garamond")
 
 knitr::opts_chunk$set(
@@ -28,7 +29,7 @@ M <- 1000000
 B <- 1000000000
 ```
 
-```{r}
+```{r pmc_ibge}
 # Pesquisa Mensal de Comércio, https://sidra.ibge.gov.br/pesquisa/pmc/tabelas
 
 ## Tabela 3416 - Índices de volume e de receita nominal de vendas no comércio varejista, por tipos de índice (2014 = 100)
@@ -39,7 +40,9 @@ pmc <- get_sidra(
 		period = c("201401-202009"),
 		header = T
 	) %>% 
-	as_tibble() %>%
+	as_tibble()
+
+vol_vendas <- pmc %>% 
 	filter(
 		`Variável` == "Índice de volume de vendas no comércio varejista",
 		`Tipos de índice` == "Variação acumulada no ano (base: igual período do ano anterior)"
@@ -57,7 +60,9 @@ pms <- get_sidra(
 		period = c("201401-202009"),
 		header = T
 	) %>% 
-	as_tibble() %>% 
+	as_tibble()
+
+vol_services <- pms %>% 
 	filter(
 		`Variável` == "Índice de volume de serviços",
 		`Tipos de índice` == "Variação acumulada no ano (base: igual período do ano anterior)"
@@ -68,7 +73,7 @@ pms <- get_sidra(
 	) %>% 
 	select(date, var, Valor)
 
-bind_rows(pmc, pms) %>% 
+bind_rows(vol_vendas, vol_services) %>% 
 	ggplot(aes(date, Valor, colour = var)) +
 	geom_line() +
 	scale_x_date(
@@ -78,13 +83,8 @@ bind_rows(pmc, pms) %>%
 ```
 
 
-```{r}
 
-```
-
-
-
-```{r}
+```{r pib_expec}
 # Expectativa de crescimento anual do PIB
 expec_anual <- rbcb::get_annual_market_expectations(
 	indic = c("PIB Agropecuária", "PIB Industrial", "PIB Serviços", "PIB Total")
@@ -96,7 +96,8 @@ expec_anual %>%
 	geom_line() +
 	scale_x_date(
 		breaks = scales::breaks_width("1 month"),
-		labels = scales::date_format("%b")
+		labels = scales::date_format("%b"),
+		limits = as.Date(c("2020-01-01", "2020-12-01"))
 	) +
 	scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
 ```

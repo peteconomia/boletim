@@ -91,7 +91,7 @@ empregos no Tocantins foram consideráveis, gerando uma perda total de -4.127. U
 \par Outro parâmetro para a realização da exposição destes saldos é ter uma visão por gênero, entender como o mercado de trabalho está funcionando para homens e mulheres. 
 
 
-\par No primeiro semestre de 2020, as mulheres conseguiram manter os seus empregos, mesmo havendo menos contrações do que os homens, um ponto interessante desse primeiro trimestre é de como as mulheres conseguiram manter os seus empregos formais de forma mais visíveis do que os homens.
+\par No primeiro semestre de 2020,  \ref*{tab:idadesEgeneros}, as mulheres conseguiram manter os seus empregos, mesmo havendo menos contrações do que os homens, um ponto interessante desse primeiro trimestre é de como as mulheres conseguiram manter os seus empregos formais de forma mais visíveis do que os homens.
 
 
 \begin{smbox}[label={labelbox},nameref={Desigualdade por gênero}]{Desigualdade por gênero}
@@ -100,6 +100,16 @@ empregos no Tocantins foram consideráveis, gerando uma perda total de -4.127. U
 
 
 \par Agora, seguindo a análise desse semestre, é demonstrado os dados referentes a etnia desses indivíduos.
+
+\begin{figure}[!h]
+\begin{subfigure}{\linewidth}
+	\caption{Saldo de empregos por etnia}
+	\subcap{Em mil}
+	\label{fig:sel2020}
+	\includegraphics{fig/Saldo por etnia.pdf}
+	\source{Ministério do Trabalho}
+\end{subfigure}
+\end{figure}
 
 
 \par De uma forma contundente, é de se analisar que a movimentação dos empregos é de complexa. Por exemplo, a uma quantidade grande de pessoas que não declaram sua etnia e quando declaram, é majoritariamente parda. Finalizando essa parte dos dados oriundos do CAGED, um adendo importante para se entender é que as áreas que ocorre as maiores contratações são auxiliar de escritório, operador de caixa, faxineiro, vendedor de comércio varejista, servente de obras, motorista de caminhão e assistente administrativo
@@ -115,26 +125,29 @@ empregos no Tocantins foram consideráveis, gerando uma perda total de -4.127. U
 		\subcap{Variaçao trimestral}
 		\includegraphics{fig/tx_desemprego_to-1.pdf}
 		\source{IBGE}
+		\label{fig:desemprego}
 	\end{subfigure}
 	\begin{subfigure}{\linewidth}
 		\caption{População ocupada no Tocantins}
 		\subcap{Variaçao trimestral}
 		\includegraphics{fig/pop_ocupada-1.pdf}
 		\source{IBGE}
+		\label{fig:ocupada}
 	\end{subfigure}
 	\begin{subfigure}{\linewidth}
 		\caption{Pedidos de seguro desemprego}
 		\subcap{Em mil}
 		\includegraphics{fig/pedido_segudo_desem-1.pdf}
 		\source{IBGE}
+		\label{fig:seguro}
 	\end{subfigure}
 \end{figure}
 
-\par A taxa de desemprego no Tocantins estava num movimento de queda a partir do primeiro trimestre de 2019, porém, a partir do 4T de 2019 até o 1T de 2020 ocorre um movimento de elevação da taxa de desemprego.
+\par A taxa de desemprego no Tocantins estava num movimento de queda a partir do primeiro trimestre de 2019 \ref{fig:desemprego}, porém, a partir do 4T de 2019 até o 1T de 2020 ocorre um movimento de elevação da taxa de desemprego.
 
 
 
-\par Outro termômetro claro para o setor de empregos são os pedidos seguro-desemprego, que é uma politica macroeconômico para gerar uma segurança branda para o trabalhador recém demitido. Num contexto mais claro, significa que se ocorre uma elevação dos pedidos seguro desemprego, significa que o mercado de trabalho não está em um bom funcionamento. O inverso é bem intuitivo, se a poucos pedidos é uma reação a um bom momento econômico. 
+\par Outro termômetro claro para o setor de empregos são os pedidos seguro-desemprego \ref*{fig:seguro}, que é uma politica macroeconômico para gerar uma segurança branda para o trabalhador recém demitido. Num contexto mais claro, significa que se ocorre uma elevação dos pedidos seguro desemprego, significa que o mercado de trabalho não está em um bom funcionamento. O inverso é bem intuitivo, se a poucos pedidos é uma reação a um bom momento econômico. 
 
 \par Fazendo uma comparação com a taxa de desemprego, é apresentado a noção de que a taxa se eleva e gera um aumento nos pedidos de seguro desemprego, uma demonstração clara de como a taxa é crucial para a avaliação macroeconômica. Realiza-se uma regressão para definir o quão importante é a taxa de desemprego em relação ao seguro desemprego, para o seguinte caso:
 
@@ -155,7 +168,7 @@ empregos no Tocantins foram consideráveis, gerando uma perda total de -4.127. U
 
 
 
-\par  A taxa de ocupação tocantinense é bem estável pelos dados, sempre na faixa de 60\%, o que demonstra uma certa estabilidade dessa população. Comparando a taxa do 1T de 2019, foi de 59\% e no prímeiro 1T de 2020 foi de 57,5\%. Uma queda percentual da população ocupada.
+\par  A taxa de ocupação tocantinense \ref*{fig:ocupada} é bem estável pelos dados, sempre na faixa de 60\%, o que demonstra uma certa estabilidade dessa população. Comparando a taxa do 1T de 2019, foi de 59\% e no prímeiro 1T de 2020 foi de 57,5\%. Uma queda percentual da população ocupada.
 
 
 

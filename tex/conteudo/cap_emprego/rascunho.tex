@@ -15,11 +15,13 @@ O CAGED (Cadastro Geral de Empregados e Desempregados) tem um inicio da série e
 	\begin{subfigure}{\linewidth}
 		\caption{Saldo de empregos ao longo de 2020}
 		\subcap{Em mil}
+		\label{fig:sel2020}
 		\includegraphics{fig/saldo-1.pdf}
 		\source{Ministério do Trabalho}
 	\end{subfigure}
 	\begin{subfigure}{\linewidth}
 		\caption{Saldo de empregos por setores}
+		\label{fig:setores}
 		\subcap{Em mil. No primeiro semestre de 2020.}
 		\includegraphics{fig/saldo_setor_to-1.pdf}
 		\source{Ministério do Trabalho}
@@ -29,7 +31,7 @@ O CAGED (Cadastro Geral de Empregados e Desempregados) tem um inicio da série e
 \par Analisando a situação tocantinense, observa-se que o impacto dos
 empregos no Tocantins foram consideráveis, gerando uma perda total de -4.127. Um impacto preocupante, porém, a partir de um afrouxamento do isolamento social ocorre uma recuperação destes empregos nos meses seguintes.
 
-\par Já no caso da Região Norte, compreendemos um movimento bem similar ao do Tocantins. Existe uma semelhança bem especifica no período de impacto que os empregos sofreram, muito similar ao caso tocantinense. Foram os efeitos causados pela pandemia e consequentemente o isolamento social.
+\par Já no caso da Região Norte, compreendemos um movimento bem similar ao do Tocantins \ref{fig:sel2020}. Existe uma semelhança bem especifica no período de impacto que os empregos sofreram, muito similar ao caso tocantinense. Foram os efeitos causados pela pandemia e consequentemente o isolamento social.
 
 
 
@@ -45,7 +47,7 @@ empregos no Tocantins foram consideráveis, gerando uma perda total de -4.127. U
 
 \begin{table}
 	
-	\caption{\label{tab:unnamed-chunk-1}Idade e Gênero}
+	\caption{\label{tab:idadesEgeneros}Idade e Gênero}
 	\centering
 	\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
 		\toprule
@@ -70,7 +72,7 @@ empregos no Tocantins foram consideráveis, gerando uma perda total de -4.127. U
 
 \par Já nos desligamentos e o seu grau de instrução, é bem similar aos admitidos, no primeiro trimestre também é apresentado uma demissão maior com pessoas de ensino médio e também o médio incompleto com o superior completo. Dá pra se pensar que existe uma alta rotatividade de vagas referente ao ensino médio.
 
-\par Um ponto crucial para entender o contexto dessas admissões e demissões é compreender os setores que mais contratam e consequentemente também demitem. Por isso, é usado a CNAE (Classificação Nacional de Atividades Econômicas), pois realizam esses cortes nos setores econômicos. Uma particularidade que acontece na situação tocantinense é que verificado uma falta de dados para todos os setores.
+\par Um ponto crucial para entender o contexto dessas admissões e demissões é compreender os setores que mais contratam e consequentemente também demitem \ref{fig:setores}. Por isso, é usado a CNAE (Classificação Nacional de Atividades Econômicas), pois realizam esses cortes nos setores econômicos. Uma particularidade que acontece na situação tocantinense é que verificado uma falta de dados para todos os setores.
 
 
 \par No primeiro semestre de 2020, as admissões se concentraram no setor do comércio. Demonstrando o poder do setor na na economia tocantinense, abrindo 5.794 vagas no período semestral. É de se estudar que o Tocantins é um estado novo, mas com uma economia dinâmica e com padrões de movimentos bruscos nos setores de empregos. 
@@ -78,10 +80,7 @@ empregos no Tocantins foram consideráveis, gerando uma perda total de -4.127. U
 
 
 
-\par Nessa sessão expõe o perfil de idade dos contratados e demitidos.
-
-
-\par Nos admitidos apresenta-se a noção de que pelo primeiro corte de 14-34 anos, ocorre uma maior contratação.
+\par Nessa sessão \ref*{tab:idadesEgeneros} expõe o perfil de idade dos contratados e demitidos. Nos admitidos apresenta-se a noção de que pelo primeiro corte de 14-34 anos, ocorre uma maior contratação.
 
 
 \par Os desligamentos seguem o mesmo movimento, é possível analisar que existe uma variabilidade de contratações e demissões para a população mais jovem. E nesse primeiro trimestre isso foi corroborado. 

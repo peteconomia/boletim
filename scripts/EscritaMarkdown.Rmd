@@ -103,4 +103,46 @@ Sexo %>%
   kable_styling(full_width = T)
 ```
 
+```{r}
+Exportação <-  data.frame(
+  Pais= c("China", "Espanha", "Hong Kong", "Bangladesh", "Rússia"),
+  Participacao= c(63, 6.2, 3.3, 3.1, 2.8),
+  Valores = c(500, 49.5, 26.4, 24.4, 21.9),
+  Produtos = c("Soja [1], Carnes [1]", "Soja [2]; Milho [1]", "Carnes [2]", "Soja [3], Algodão [1]´", "Carnes [3]´")
+)
+
+Exportação %>%
+  kable(.,
+    caption = "Exportação",
+    align = "lrr",
+    digits = 2,
+    booktabs = T,
+    format.args = list(decimal.mark = ",", scientific = FALSE), 
+    "latex"
+  ) %>%
+  kable_styling(full_width = T)
+```
+
+
+```{r}
+Importação <-  data.frame(
+  Pais= c("China", "Rússia", "Arábia Saudita", "México", "República Tcheca"),
+  Participacao= c(31, 26, 9.2, 4.6, 4.1),
+  Valores = c(18.4, 14.4, 9.2, 2.69, 4.1),
+  Produtos = c("Instrumentos [1], Adubos [1]", "Adubos [1]", "Adubos [1]", "Adubos [1], Plásticos [1]", "Camas [1]")
+)
+
+Importação %>%
+  kable(.,
+    caption = "Importação",
+    align = "lrr",
+    digits = 2,
+    booktabs = T,
+    format.args = list(decimal.mark = ",", scientific = FALSE), 
+    "latex"
+  ) %>%
+  kable_styling(full_width = T)
+
+```
+
 

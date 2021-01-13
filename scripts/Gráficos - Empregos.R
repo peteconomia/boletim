@@ -28,7 +28,7 @@ Tocantins<- data.frame("Empregos" = 1:10, "Saldo" = c(199,1482,-86,-2850,-1251,1
 Tocantins %>%
   mutate(Meses = factor(Meses, levels=c("Jan","Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out"))) %>%
   ggplot(aes(x=Meses, y = Saldo)) + 
-  geom_bar(stat='identity',) +
+  geom_bar(stat='identity', position = "dodge" ) +
   scale_y_continuous(limits = c(-4500, 4500), breaks = seq(from = -4000, to = 4000, by = 1000)) + 
   theme(plot.title = element_text(hjust = 0.5, size = 13)) +
   labs(x= " ", y = " ")
@@ -151,12 +151,14 @@ Saldo_TotalN %>%
     
     # Gráficos 
     
+    m <- 1000
+    
+    
     Etnia %>%
       mutate(Etnia = factor(Etnia, levels=c("Branca", "Preta", "Parda", "Amarela", "N/Informado", "N/indentificado"))) %>%
       ggplot(aes(x=Etnia, y = Saldo)) + 
-      geom_bar(stat='identity') +
-      scale_y_continuous(limits = c(-800, 1500),breaks = seq(from = -800, to = 1500, by = 500)) + 
-      theme(plot.title = element_text(hjust = 0.5, size = 13)) +  
+      geom_bar(stat='identity', position = "dodge") +
+      scale_y_continuous(labels = function(n) n/m) + 
       labs(x= " ")
     
     

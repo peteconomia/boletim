@@ -4,7 +4,7 @@
 \par O \acrshort{caged} é atualizado mensalmente pelo ministério do trabalho, gerando uma atualização destes dados para realização de pesquisas e prognósticos econômicos. Outro ponto, é que o \acrshort{caged} abrange tanto a unidade federativa geral, como estados e municípios, gerando uma demonstração uniforme nos dados nacionais. Nos tópicos a seguir desta sessão de empregos, analise-se e estuda-se os dados sobre empregos formais referentes ao primeiro semestre de 2020.
 \par Também usa-se os dados da PNAD Continua, para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores. Utilizando esses conjuntos de dados será iniciado uma analise da situação do mercado de trabalho no estado do Tocantins, começando  o objetivo de se estudar o primeiro semestre de 2020 e fazendo comparativos com o primeiro semestre de 2019.
 
-\begin{smbox}[label={labelbox},nameref={Empregos}]{Empregos}
+\begin{smbox}[label={labelbox},nameref={Empregos}]{Origem dos dados}
 	O CAGED (Cadastro Geral de Empregados e Desempregados) tem um inicio da série em 1992 para o Brasil em geral, agora para os estados tem de inicio por volta de 1996, sempre feito pelo Ministério do Trabalho. Porém, um problema nacional é a nossa mudança de metodologias que ocorrem em decorrer desse período. O \acrshort{caged} e divulgado todos os meses, por voltado dos dias 02 até o dia 10 do mês vigente.
 \end{smbox}
 
@@ -13,7 +13,7 @@
 \begin{figure}[!h]
 	\begin{subfigure}{\linewidth}
 		\caption{Saldo de empregos ao longo de 2020}
-		\subcap{Em mil}
+		\subcap{Em mil.}
 		\label{fig:empregos}
 		\includegraphics{fig/saldo-1.pdf}
 		\source{Ministério do Trabalho}
@@ -46,7 +46,7 @@
 \begin{table}
 
 	\caption{\label{tab:idadesEgeneros}Perfil dos Admitidos e Demitidos no CAGED}
-	\subcap{Adicionar}
+	\subcap{Dados acumulados do primeiro semestre de 2020.}
 	\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
 		\toprule
 		& Admitidos & Demitidos & Saldo\\
@@ -101,7 +101,7 @@
 \par No primeiro semestre de 2020, é apresentado na tabela \ref{tab:idadesEgeneros}, as mulheres conseguiram manter os seus empregos, mesmo havendo menos contrações do que os homens, um ponto interessante desse primeiro trimestre é de como as mulheres conseguiram manter os seus empregos formais de forma mais visíveis do que os homens. Outro ponto observado é a variação de empregos pela escolaridade, na tabela \ref{tab:idadesEgeneros} foi apresentado as maiores variações, entretanto, os dados por escolaridade tem outras separações além do que foi apresentado na tabela, são esses, até o quinto ano incompleta, o quinto ano completo, do sexto ao nono ano, superior incompleto, mestrado e doutorado. Essas classificações tiveram uma menor variação comparado ao que foi apresentado na tabela \ref{tab:idadesEgeneros}.
 
 
-\begin{smbox}[label={labelbox},nameref={Desigualdade por gênero}]{Desigualdade por gênero}
+\begin{smbox}[label={labelbox},nameref={Desigualdade por gênero}]{Desigualdade por gênero no mercado de trabalho}
 	Já é um tópico bem usual que o mercado de trabalho formal é um quanto desigual para as mulheres, existe uma vasta literatura sobre desigualdades salarias, vagas de empregos, oportunidades, etc. Alguns estudos buscam interpretar o efeito que uma equidade no mercado de trabalho possa gerar na economia como tudo, estudos que provocam essa afirmativa tendem a afirmar que o mercado de trabalho brasileiro é desigual em oportunidades e por consequência na renda. Na literatura ainda é possível fazer cortes e analisar que essa desigualdade envolvem também localidades, etnia, grau de instrução e um outro fator que está em evidência é o capital humano herdado pelos pais e como isso gera oportunidades melhores aos filhos desses pais com instrução elevada. 
 	\footnote{Abram, L. (2006). Desigualdades de gênero e raça no mercado de trabalho brasileiro.}
 	
@@ -116,7 +116,7 @@
 \begin{figure}[!h]
 \begin{subfigure}{\linewidth}
 	\caption{Saldo de empregos por etnia}
-	\subcap{Em mil}
+	\subcap{Em mil. No primeiro semestre de 2020}
 	\label{fig:sel2020}
 	\includegraphics{fig/Saldo por etnia.pdf}
 	\source{Ministério do Trabalho}
@@ -165,10 +165,11 @@
 
 \begin{figure}[h]
 	\caption{Relação taxa de desemprego x pedidos seguro desemprego}
+	\subcap{No primeiro semestre de 2020.}
 	\includegraphics[width=\linewidth]{fig/reg_emprego-2.pdf}
 	\source{Ministério do Trabalho}
 \end{figure}
-\begin{smbox}[label={labelbox},nameref={Desigualdade por gênero}]{Regressão linear}
+\begin{smbox}[label={labelbox},nameref={Desigualdade por gênero}]{Metódos econométricos}
 	Usando uma técnica para provar a correlação da taxa de seguro desemprego e pedidos de seguro desemprego. Essa técnica é a regressão linear simples, quando existe apenas uma variável resposta e uma variável explicativa, por isso chama-se de regressão linear simples. A formula é determinada por $y = \alpha + \beta x$ e $\beta = \overline{y} - \overline{\alpha x}$.
 	\\
 	Por fim, utilizando um processo econométrico vemos que a relação é forte, para se ter a ideia o \textbf{R} que é referente ao processo de correlação nos aponta um número de 0,70 (quanto mais próximo de 1 for, mais forte é a relação) e o \textbf{R}$^{2}$ é de 0,66. Ou seja, essa correlação é muito forte.

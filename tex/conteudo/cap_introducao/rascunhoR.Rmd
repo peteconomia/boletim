@@ -91,13 +91,17 @@ expec_anual <- rbcb::get_annual_market_expectations(
 )
 
 expec_anual %>% 
-	filter(reference_year == 2020, date >= "2020-01-01") %>% 
+	filter(
+	  reference_year == 2020, 
+	  date >= "2020-01-01" & date <= "2020-12-31"
+	) %>% 
 	ggplot(aes(date, median, colour = indic)) +
 	geom_line() +
 	scale_x_date(
-		breaks = scales::breaks_width("1 month"),
-		labels = scales::date_format("%b"),
-		limits = as.Date(c("2020-01-01", "2020-12-01"))
+		breaks = scales::breaks_width("21 days"),
+		labels = scales::date_format("%e\n%b"),
+		expand = c(0, 5)
+		#limits = as.Date(c("2020-01-01", "2020-12-31"))
 	) +
 	scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
 ```

@@ -43,7 +43,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 
-% Caminhos para cada capítulo 
+% Caminhos para cada capítulo
 \graphicspath{
 	{conteudo/cap_introducao/}
 	{conteudo/cap_contaspublicas/}
@@ -64,7 +64,7 @@
 \setlength\parindent{10pt} % Tamanho da indentação do paragrafo
 \setlength{\columnsep}{15pt} % Espaço entre as colunas
 \setstretch{1} % Altura da linha
-\setcounter{tocdepth}{1} % Table of contents depth, imprime apenas chapter e section
+\setcounter{tocdepth}{0} % Table of contents depth, imprime apenas chapter e section
 
 % Figures Caption Config
 \captionsetup{
@@ -74,18 +74,20 @@
 	font={normalsize,color=primarycolor},
 	labelfont={color=primarycolor},
 	labelsep=space,
-	skip=3pt
+	skip=0pt
 }
 \renewcommand{\thesubfigure}{.\arabic{subfigure}}
 \DeclareCaptionLabelFormat{opening}{Figura~\thechapter.\arabic{figure}.\arabic{subfigure}}
 \captionsetup[subfigure]{
 	labelformat=opening,
 	font={normalsize,color=primarycolor},
-	labelsep=space
+	labelsep=space,
+	skip=2pt
 }
 \setkeys{Gin}{width=\linewidth} % \includegraphics por padrão terá comprimento igual a \linewidth
 % Box Config
 \newtcolorbox[auto counter,number within=chapter]{smbox}[2][]{
+	%float=p,
 	colback=boxbackground,
 	colframe=boxbackground,
 	arc=0mm,
@@ -109,7 +111,8 @@
 }
 
 \newcommand{\notes}[1]{
-	\scriptsize{Nota: #1}\\
+  \vspace{5pt}
+	\scriptsize{Nota: #1}
 }
 
 \newcommand{\subcap}[1]{
@@ -120,8 +123,8 @@
 \hypersetup{
 	colorlinks=true,
 	linkbordercolor=white,
-	linkcolor=primarycolor,
-	urlcolor=primarycolor,
+	linkcolor=primarytext,
+	urlcolor=primarytext,
 	urlbordercolor=white, %links externos
 	citecolor=primarytext,
 	pdftitle={Boletim de Conjuntura 2020},
@@ -161,13 +164,13 @@
 	{\enspace---\contentspage}
 
 
-% Style Chapter, section and subsection 
+% Style Chapter, section and subsection
 \titleformat{\chapter}[display]
 	{\filright}
-	{\color{secondarytext}\MakeUppercase\chaptertitlename~\thechapter}
-	{15pt} % margem superior
-	{\fontsize{50pt}{60}\selectfont\color{primarycolor}#1}\titlespacing*{\chapter}
-	{0pt}{20pt}{70pt}  %controls vertical margins on title
+	{\scriptsize\color{secondarytext}\MakeUppercase\chaptertitlename~\thechapter}
+	{5pt} % margem superior
+	{\fontsize{50pt}{50pt}\selectfont\color{primarycolor}#1}\titlespacing*{\chapter}
+	{0pt}{0pt}{20pt}  %controls vertical margins on title
 
 \titleformat{\section}
 	{\large\filright\color{primarycolor}}

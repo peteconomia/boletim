@@ -2,7 +2,10 @@ MAIN_TEX=boletim.tex
 OUTPUT=boletim.pdf
 
 # build using pdflatex - pdftex - engine
-create:
+prev:
+	latexmk -pdf ${MAIN_TEX}
+
+build:
 	latexmk -pdf ${MAIN_TEX}
 	@make clean
 

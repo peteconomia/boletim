@@ -9,6 +9,8 @@ library(knitr)
 library(scales)
 library(petgg)
 library(extrafont)
+library(knitr)
+library(kableExtra)
 
 petgg::set_theme(base_family = "EB Garamond")
 
@@ -56,5 +58,9 @@ bind_rows(
 	geom_line() +
 	scale_y_continuous(labels = function(n) n/B) +
 	scale_x_datetime(labels = date_format("%Y"), date_breaks = "1 year")
+```
+
+```{r}
+
 ```
 

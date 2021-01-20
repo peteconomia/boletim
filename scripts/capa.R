@@ -10,15 +10,15 @@ config <- theme(
   axis.title = element_blank(),
   axis.text = element_blank(),
   axis.ticks = element_blank(),
-  panel.grid.major = element_blank(), 
+  panel.grid.major = element_blank(),
   panel.grid.minor = element_blank()
 )
 
 # read_municipality é uma função do pacote geobr
-all_muni_to <- read_municipality(code_muni = "TO", year= 2010)
+all_muni_to <- geobr::read_municipality(code_muni = "TO", year= 2010)
 
 ggplot() +
   geom_sf(data=all_muni_to, fill="#0B6AA5", color="#00609D", size=.3, show.legend = FALSE) +
   theme_minimal() +
   config +
-  ggsave('../tex/logos/bg.pdf', height = 20, units = "cm") # salva como pdf
+  ggsave('../tex/logos/bg.pdf', height = 20, units = "cm", dpi= 30, useDingbats = TRUE) # salva como pdf

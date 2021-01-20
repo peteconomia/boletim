@@ -1,19 +1,21 @@
 # Boletim de Conjuntura Econômica <img src='docs/figs/icon.png' align="right" width="150" />
 
-O Boletim de Conjuntura Econômica do Tocatins é uma publicação semestral do Programa de Educação Tutorial (PET) do curso de Ciências Econômicas da Universidade Federal do Tocantins (UFT).
-
-* [Documentação](/docs)
-* [Boletim Tex](/tex)
-* [Scripts/Código](/scripts)
+O Boletim de Conjuntura Econômica do Tocantins é uma publicação semestral do Programa de Educação Tutorial (PET) do curso de Ciências Econômicas da Universidade Federal do Tocantins (UFT).
 
 ## :tada: Lançamentos
 
-| Versão          | :calendar: Data de publicação | :floppy_disk: |
-| :-------------- | :---------------------------: | :-----------: |
-| 2020, v. 9 nº 1 |          XX/XX/2021           | [Download]()  |
+| :bookmark: Versão |                         :calendar: Data de publicação                         |                                 :floppy_disk:                                 |
+| :---------------- | :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
+| 2020, v. 9 nº 1   | <img alt="Badge em breve" src="https://img.shields.io/badge/-EM%20BREVE-red"> | <img alt="Badge em breve" src="https://img.shields.io/badge/-EM%20BREVE-red"> |
 
-Para versões anterior a 2020 veja o [histórico de lançamento](https://github.com/peteconomia/boletim_hist)
+[:point_right: Mais versões](../../releases)
 
-## :grey_question: Dúvidas
+Versões anterior a 2020 estão dispoível em [histórico de lançamento](https://github.com/peteconomia/boletim_hist)
+
+## :books: Documentação
+
+Para mais detalhe sobre a elaboração do boletim veja a [documentação](/docs)
+
+## :grey_question: Contribuindo
 
 Comentários, recomendações ou dúvidas podem ser submetidas abrindo uma [issue](../../issues) ou pelo email [peteconomia@uft.edu.br](mailto:peteconomia@uft.edu.br)

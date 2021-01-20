@@ -1,7 +1,5 @@
 ---
 documentclass: report
-classoption:
-  - twocolumn
 output: latex_fragment
 ---
 ```{r setup, include = FALSE, message = FALSE, warning = FALSE}
@@ -13,6 +11,7 @@ library(scales)
 library(formattable)
 library(extrafont)
 library(petgg)
+library(siconfiR)
 
 petgg::set_theme(base_family = "EB Garamond")
 
@@ -29,8 +28,8 @@ knitr::opts_chunk$set(
 # Utils
 source("ipca.R")
 
-# Converte dataid para uma string. Exemplo: 20201 -> 1B/2020
-dateB <- function(x) {paste0(substr(x, 5, 5), "B", "/", substr(x, 1, 4))}
+# Converte dataid para uma string. Exemplo: 20201 -> 1B\n2020
+dateB <- function(x) {paste0(substr(x, 5, 5), "B", "\n", substr(x, 1, 4))}
 
 # Calcula o nível preços acumulado. Exemplo ipca("2020-06) -> 1.0026
 ipca_file <- readRDS("IPCA.rds")
@@ -47,12 +46,25 @@ dateStr <- function(x) {
 
 # converte dataid para uma string no formato AAAA-MM, sendo MM o último mês do quadrimestre
 dateQ <- function(x) {
-  quadris <- c("Abr", "Ago", "Dez")
-  paste0(quadris[as.numeric(substring(as.character(x), 5, 5))], "/", substring(as.character(x), 1, 4))
+  quadris <- c("abr", "ago", "dez")
+  paste0(
+    quadris[as.numeric(substring(as.character(x), 5, 5))],
+    "\n",
+    substring(as.character(x), 1, 4)
+  )
 }
 
-# Coloca os valores no formato da moeda brasileira
-curBR <- function(x, to = 99) {substring(formattable::currency(x, symbol = "R$", digits = 2L, big.mark = ".", decimal.mark = ","), 1, to+2)}
+# Coloca valores no formato da moeda brasileira
+curBR <- function(x, to = 4, s = T) {
+  formattable::currency(
+    x,
+    symbol = "R$",
+    digits = 2L,
+    big.mark = ifelse(s, ",", "."),
+    decimal.mark = ifelse(s, ".", ",")
+  ) %>%
+  substring(., 1, to + ifelse(s, 2, 99))
+}
 ```
 
 ```{r}
@@ -74,27 +86,29 @@ curBR <- function(x, to = 99) {substring(formattable::currency(x, symbol = "R$",
 ```
 
 ```{r}
+# dataid é necessário para usar lag(), o formato é AAAAB, AAAA é o ano e B o bimestre
+# data no formato AAAA-MM, MM é o último mês do bimestre
 rreo_norte <- read_rds("rreo_norte_2018_2020.rds") %>%
   mutate(
-    dataid = as.numeric(paste0(exercicio, periodo)), # dataid é necessário para usar lag(), o formato é AAAAB, AAAA é o ano e B o bimestre
-    data = dateStr(dataid), # data no formato AAAA-MM, MM é o último mês do bimestre
+    dataid = paste0(exercicio, periodo) %>% as.numeric(),
+    data = dateStr(dataid),
   ) %>%
   select(dataid, data, uf, anexo, coluna, cod_conta, conta, valor)
 
-#rreo_norte %>% group_by(exercicio, periodo) %>% summarise()
-
-rgf_norte <- read_rds("rgf_norte_2018_2020.rds") %>% 
+rgf_norte <- read_rds("rgf_norte_2018_2020.rds") %>%
   mutate(
-    dataid = as.numeric(paste0(exercicio, periodo)),
+    dataid = paste0(exercicio, periodo) %>% as.numeric(),
     data = dateQ(dataid)
-  ) %>% 
+  ) %>%
   select(dataid, data, uf, anexo, coluna, cod_conta, conta, valor)
 ```
 
-# Contas Pública Estadual
+# Contas Públicas Estadual
 
 ```{r}
-receita_despesa_primaria_TO <- rreo_norte %>% 
+# Receita e despesa primária do Estado. 
+# Resultado primário obtidos até cada bimestre
+rdp <- rreo_norte %>%
   filter(
     anexo == "RREO-Anexo 06",
     uf == "TO",
@@ -104,59 +118,38 @@ receita_despesa_primaria_TO <- rreo_norte %>%
       "RREO6DespesasPrimariasCorrentes"
     )
   ) %>%
-  select(dataid, data, cod_conta, valor) %>% 
-  pivot_wider(names_from = cod_conta, values_from = valor) %>% 
-  rowwise() %>% 
+  select(dataid, data, cod_conta, valor) %>%
+  pivot_wider(names_from = cod_conta, values_from = valor) %>%
+  rowwise() %>%
   ungroup() %>% # para usar lag()
   mutate(
     rec_real = ReceitasPrimariasCorrentes / ipca(data) * ipca(current_price),
     des_real = RREO6DespesasPrimariasCorrentes / ipca(data) * ipca(current_price),
     resul_real = rec_real - des_real,
     rec_var = rec_real - lag(rec_real, order_by = data),
-    des_var = des_real - lag(des_real, order_by = data),
-    rec_tx = rec_var / lag(rec_real, order_by = data) * 100,
-    des_tx = des_var / lag(des_real, order_by = data) * 100
+    des_var = des_real - lag(des_real, order_by = data)
   )
-
-# resultado primario ate agosto de 2019
-# resul_primario_to_2019 <- (receita_despesa_primaria_TO %>% filter(data == "2019-08"))$resul_real %>% curBR(., 3)
-# resul_primario_to_2020 <- (receita_despesa_primaria_TO %>% filter(data == "2020-08"))$resul_real %>% curBR(., 1)
-
-#
-despesa_primaria_sub_TO <- rreo_norte %>% 
-  filter(
-    uf == "TO", 
-    dataid %in% c(20181:20184,20191:20194,20201:20204), 
-    anexo== "RREO-Anexo 06", 
-    coluna == "DESPESAS PAGAS (a)", # até o bimestre
-    cod_conta %in% c("RREO6PessoalEEncargosSociais", "RREO6OutrasDespesasCorrentes")
-  ) %>% 
-  rowwise() %>% 
-  mutate(valor_real = valor / ipca(data) * ipca(current_price)) %>% 
-  ungroup() %>% 
-  mutate(tx_real = (valor_real / lag(valor_real, order_by = dataid, n = 8L))-1) %>% 
-  select(dataid, conta, valor_real, tx_real)
-
 ```
 
-As contas do Estado até agosto de 2020 está em melhor situação quando comparado ao mesmo período de 2019, até agosto de 2019 o resultado primário, diferença entre receita e despesa primário não financeira, foi de cerda de R$622 milhões, em 2020 o resultado foi de pouco mais de R$1 bilhão de reais. O resultado primário representa o esforço fiscal do governo para diminuição do estoque da dívida, basicamente se o governo apresenta um resultado primário negativo, isto é, um déficit primário, ele necessita financiar seu gastos elevando a dívida, o inverso, quando se apresenta superávit primário há um esforço no sentido de diminuir dívida. A Figura xx apresenta variação da receita e despesa primária do Tocantins até o bimestre em relação ao mesmo período do ano passado.
+O resultado primário do Estado no acumulado até o quarto bimestre de 2020 foi de cerca de R\$ 1,08 bilhões, valor 73% maior que o resultado primário acumulado no mesmo período de 2019, quando foi pouco mais de R\$ 622 milhões. No primeiro bimestre de 2020 a receita primária foi 30\% maior quando comparado com o primeiro bimestre de 2019. O resultado primário representa o esforço fiscal do governo para diminuir o estoque da dívida. A figura \ref{fig:var_receita_despesa_primaria} apresenta variação da receita e despesa primária acumulada até o bimestre em relação ao mesmo período do ano passado.
 
-Em todos os bimestre de 2020, a despesa primária cresceu a uma taxa maior que a receita primária, exceto para o quarto bimestre, o que não se traduz em elevação da dívida, mas se a tendência persistir, i.e, uma taxa de crescimento da despesa acima da receita, irá gerar desequilíbrio e elevação da dívida. Observa-se que embora a despesa cresca à uma taixa mais elevada, ela vem caindo desde o primeiro bimestre, onde cresceu mais de 30% quando comparado ao primeiro bimestre de 2019. No quarto bimestre de 2020 a receita superou a despesa.
+No quarto bimestre a receita primária apresentou um crescimento de 10\% no acumulado até quarto bimestre, representando um desempenho melhor que 2019, quando a crescimento da receita primária foi de pouco menos de 10\%. As despesas primária cresceu somente 2,03\%, no mesmo período de 2019 cresceu 6,48\%. O baixo crescimento da despesas primária em 2020 contribuiu para um resultado primário elevado até o quarto bimestre de 2020.
 
-O crescimento da despesas primária nos primeiros bimestre de 2020, se deve em boa parte a um crescimento das despesas com pessoal e encargos sociais, essas se referem a gastos com pessoal ativo, inativo, pensionistas entre outros. No primeiro bimestre de 2020, essa conta cresceu 37,89% em relação ao mesmo período do ano passado. No acumulado até agosto o crescimento foi de apenas 0,76%.
+Observando as despesas por categoria no acumulado até o quarto bimestre houve aumento nos gastos com assistência social, que cresceram 132\% em relação ao quarto bimestre de 2019. Gastos da previdência social também apresentou crescimento na ordem de 16,25\%, seguido pelos gastos com saúde crescendo 12,85\% em relação a 2019.
 
+Gastos com administração, educação e segurança pública encolheu -6,85\%, -5,69\% e -12,69\% respectivamente.
 
-```{r var_receita_despesa_primaria, fig.cap="\\label{fig:var_rec_desp}Variação da receita e despesa primária acumulada", include=T}
-# variação de receita e despesas prim em relaçao a t-1
-receita_despesa_primaria_TO %>%
-  select(dataid, data, rec_real, des_real) %>% 
-  filter(dataid %in% c(20181:20184,20191:20194,20201:20204)) %>% 
+```{r var_receita_despesa_primaria, include=T}
+# Variação de receita e despesa primária acumulada por bimestre
+rdp %>%
+  select(dataid, data, rec_real, des_real) %>%
+  filter(dataid %in% c(20181:20184, 20191:20194, 20201:20204)) %>%
   mutate(
     rec_tx = (rec_real / lag(rec_real, n = 4L) -1),
     des_tx = (des_real / lag(des_real, n = 4L) -1)
-  ) %>% 
-  pivot_longer(rec_tx:des_tx) %>% 
-  drop_na() %>% 
+  ) %>%
+  pivot_longer(rec_tx:des_tx) %>%
+  drop_na() %>%
   ggplot(aes(factor(dateB(dataid)), value, fill = name)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(x = NULL, y = NULL) +
@@ -166,14 +159,15 @@ receita_despesa_primaria_TO %>%
 
 
 ```{r echo=F}
-despesa_funcao_TO <- rreo_norte %>% 
+# Despesa por categoria
+dcategoria <- rreo_norte %>%
   filter(
     uf == "TO",
     anexo == "RREO-Anexo 02",
     coluna == "DESPESAS LIQUIDADAS ATÉ O BIMESTRE (d)",
     cod_conta == "RREO2TotalDespesas", # não pega despesas intra
     conta %in% c(
-      "Judiciária", 
+      "Judiciária",
       "Administração",
       "Segurança Pública",
       "Assistência Social",
@@ -181,107 +175,133 @@ despesa_funcao_TO <- rreo_norte %>%
       "Saúde",
       "Educação"
     )
-  ) %>% 
-  select(dataid, data, conta:valor) %>% 
-  filter(dataid %in% c(20181:20184,20191:20194,20201:20204)) %>% 
-  rowwise() %>% 
+  ) %>%
+  select(dataid, data, conta:valor) %>%
+  filter(dataid %in% c(20181:20184,20191:20194,20201:20204)) %>%
+  rowwise() %>%
   mutate(
     valor_real = valor / ipca(data) * ipca(current_price)
-  ) %>% 
-  ungroup() %>% 
+  ) %>%
+  ungroup() %>%
   mutate(
     tx_real = (valor_real / lag(valor_real, order_by = dataid, n = 28L)) -1
   )
 ```
 
 
-```{r var_despesa_categoria, fig.cap="\\label{fig:var_desp_func}Variação da despesa por categoria", include=T}
-despesa_funcao_TO %>% 
-  drop_na() %>% 
+```{r var_despesa_categoria, include=T}
+dcategoria %>%
+  filter(dataid %in% c(20194, 20204)) %>% 
+  drop_na() %>%
   ggplot() +
-  geom_bar(aes((factor(dateB(dataid))), tx_real, fill = conta), stat = "identity", position = "dodge") +
+  geom_bar(
+    aes((factor(dateB(dataid))), tx_real, fill = conta), 
+    stat = "identity", 
+    position = "dodge",
+    gap = "m"
+  ) +
   labs(x = NULL, y = NULL) +
   scale_y_continuous(labels = scales::percent)
 ```
 
-A Figura xx mostra as despesas por função, despesas com judiciário e previdência social tiveram um crescimento real no acumulado até agosto quando comparado ao mesmo período de 2019, os gastos com judiciário cresceram cerda de 18% e com previdência social aproximadamente 16%. Os gastos com assistência social cresceram substancialmente, mas tiveram pouco impacto na despesa, até o quarto bimestre o governo gastou R$49 milhões.
+As despesas com pessoal em relação a receita corrente líquida \acrshort{rcl}, figura \ref{fig:desp_pessoal_rcl}, mostra parcela da \acrshort{rcl} destinada ao pagamento de despesas com pessoal no acumulado do quarto bimestre de cada ano. Até agosto as despesas com pessoal em relação a \acrshort{rcl} diminui pelo segundo ano seguido. No segundo quadrimestre de 2015 essa relação estava em 51,5\%, acima do limite máximo de 49\% para o executivo estabelecido na \acrshort{lrf}. Em 2016 ficou em 51,7\%, seguido por uma leve reducação em 2017, em 2018 as despesas em proporção a \acrshort{rcl} chegou em 55,3\%. De 2019 a 2020 a redução na relação foi de -11,74\%.
 
-Administração, Educação e Segurança Pública encolheram seus gastos no quarto bimestre de 2020, em 2019 educação e administração já apresentavam encolhimento em relação à 2018.
+A dívida consolidada líquida (\acrshort{dcl}) do Estado em relação a \acrshort{rcl} até agosto apresentou queda. Em agosto de 2020 a relação \acrshort{dcl}/\acrshort{rcl} ficou em 44,1\%, valor abaixo do limite definido pelo Senado Federal para os Estados, de duas vezes a receita corrente líquida. Entre 2017 e 2017 a \acrshort{dcl} em proporção à \acrshort{rcl} aumentou, saindo de 30\% para 52,3\% em 2019 -- figura \ref{fig:divida_rcl}.
 
-As despesas com pessoal em relação a receita corrente líquida, Figura XX, descreve o quanto da receita foi para despesas com pessoal no acumulado do ano. A Lei de Responsabilidade Fiscal impõe limites para gastos com pessoal, para o executivo estadual o limite máximo é de 49%. Caso o executivo ultrapasse 95% do limite prudencia ($95\%\cdot46.55\%=42.22\%$), fica vedado criação de cargos, reajustes, entre outros que caracterizem aumento da despesa. Até agosto de 2019, a relação despesa/receita ficou em 47,67%, abaixo do limite máximo, mas acima do limite prudencial. Para esse ano, o estado não ultrapassou o limite prudêncial, por uma pequena margem. Um recuperação na receita ao longo do último quatros meses sem alterar as despesas com pessoal pode deixar o estado abaixo do limite prudencial.
 
-```{r echo=F}
-# despesa total com pessoal em relação à Receita Corrente Líquida Ajustada até o 2o quadrimestre de 2020, apenas executivo
-despesa_pessoal_rcl_TO <- rgf_norte %>% 
-  filter(
-    uf == "TO",
-    dataid %in% c(20192, 20202),
-    anexo == "RGF-Anexo 06",
-    coluna == "% SOBRE A RCL AJUSTADA",
-    cod_conta == "DespesaTotalComPessoalDemonstrativoSimplificado"
+```{r desp_pessoal_rcl, echo=F}
+# Despesa total com pessoal em relação à Receita Corrente Líquida Ajustada até o 2o quadrimestre, apenas executivo
+# 2015 e 2015 a RCL não é ajustada
+#despesa_pessoal_rcl <- get_rgf(year = 2015:2020, period = 2, id = 17)
+
+despesa_pessoal_rcl <- readRDS("rgf_2015_2020_2q_to.rds")
+
+despesa_pessoal_rcl %>% 
+  mutate(
+    dataid = paste0(exercicio, periodo) %>% as.numeric(),
+    data = dateStr(dataid)
   ) %>% 
-  select(dataid, data, valor)
-```
-
-```{r include = F}
-# despesa_pessoal_rcl_TO %>% 
-#   ggplot() +
-#   geom_bar(aes(factor(data), valor), stat = "identity", position="dodge") +
-#   geom_hline(yintercept = 49, color = "red") +
-#   geom_hline(yintercept = 42.2255, color = "orange") + #limite prudencial LRF
-#   labs(x = NULL, y = NULL) +
-#   scale_y_continuous(labels = function(x) paste0(x,"%"))
-```
-
-
-```{r echo=F}
-divida_consolidada_liquida_TO <- rreo_norte %>% 
   filter(
-    uf == "TO",
-    anexo == "RREO-Anexo 06",
-    str_detect(coluna, "Até o Bimestre"),
+    anexo == "RGF-Anexo 06",
+    stringr::str_detect(coluna, "% SOBRE A RCL"),
+    cod_conta == "DespesaTotalComPessoalDemonstrativoSimplificado"
+  ) %>%
+  select(dataid, data, valor) %>% 
+  ggplot(aes(factor(dataid %>% dateQ()), valor, group = 1)) +
+  geom_line() +
+  scale_y_continuous(labels = function(x) paste0(x, "%"))
+```
+
+
+```{r divida_rcl, echo=F}
+# Dívida Consolidada Líquida até o 2o quadrimestre em relação à RC
+# 2020 a RCL é ajustada
+divida_consolidada_liquida <- despesa_pessoal_rcl %>% 
+  filter(
+    anexo == "RGF-Anexo 02",
+    coluna == "Até o 2º Quadrimestre",
     cod_conta == "DividaConsolidadaLiquida"
   )
+  
+receita_corrente_liquida <- despesa_pessoal_rcl %>% 
+  filter(
+    anexo == "RGF-Anexo 02",
+    coluna == "Até o 2º Quadrimestre",
+    cod_conta == "RGF2ReceitaCorrenteLiquida"
+  )
+  
+left_join(
+  divida_consolidada_liquida,
+  receita_corrente_liquida,
+  by = "exercicio"
+) %>% 
+  select(exercicio, periodo.x, valor.x, valor.y) %>% 
+  rename(dcl = valor.x, rcl = valor.y, periodo = periodo.x) %>% 
+  mutate(
+    dataid = paste0(exercicio, periodo) %>% as.numeric(),
+    divida_rcl = dcl / rcl
+  ) %>% 
+  ggplot(aes(dataid %>% dateQ() %>% factor(), divida_rcl, group = 1)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::percent)
 ```
 
 
 ```{r echo=F, include=FALSE}
 # Balanço Orçamentário - Anexo 01
 # DESPESAS EMPENHADAS ATÉ O BIMESTRE (f)
-bo <- rreo_norte %>%
-  filter(
-    dataid %in% c(20181:20204),
-    anexo == "RREO-Anexo 01",
-    coluna %in% c("No Bimestre (b)", "DESPESAS LIQUIDADAS NO BIMESTRE") 
-  ) %>%
-  select(!c(coluna,anexo))
+# bo <- rreo_norte %>%
+#   filter(
+#     dataid %in% c(20181:20204),
+#     anexo == "RREO-Anexo 01",
+#     coluna %in% c("No Bimestre (b)", "DESPESAS LIQUIDADAS NO BIMESTRE")
+#   ) %>%
+#   select(!c(coluna,anexo))
 ```
 
-## Capacidade de Pagamento do Estado
+O capacidade de pagamento (\acrshort{capag}) traz informações a cerca da situação fiscal do Estados e Munícipois. A nota é utlizada para Estados contrair empréstimos com garantia do Governo Federal. A nota atribuida a cada Estado (A, B ou C) ou Município é derivada de três indicadores: endividamento, poupança corrente e liquidez. Em 2020 apenas o Espírito Santo obteve nota A. O Tocantins ficou com nota C por três anos seguidos. Notas A e B permite que o Estado receba garantia da União para solicitar novos empréstimos.
 
-O cálculo da capacidade de pagamento (CAPAG) traz informações a cerca da situação fiscal do Estados e Munícipois. A nota é utlizada para Estados contrair empréstimos com garantia do Governo Federal. A nota atribuida a cada Estado ou Município é derivada de três indicadores: endividamento, poupança corrente e liquidez. Em 2020 apenas o Espírito Santo obteve nota A. O Tocantins ficou com nota C por três anos seguidos. Notas A e B permite que o Estado receba garantia da União para pedi novos empréstimos.
+Dos Estados da região norte, os que apresentaram pior nota foi Roraima e Tocantins. Rondônia aparece como o Estado com melhor evolução, Saiu de B para A entre 2019-2020, a queda no endividamento de 65,41% para 57,6% e a redução na relação obrigações financeiras/disponibilidade de caixa e a queda na sua liquidez para 19,1% garantiu nota A em todos os indicadores.
 
-Dos Estados da região, os que apresentaram pior nota foi Roraima e Tocantins. Rondônia aparece como o Estado com melhor evolução, melhorou sua nota de B para A entre 2019-2020, a queda no endividamento de 65,41% para 57,6% e a redução na relação obrigações financeiras/disponibilidade de caixa, diminuindo sua liquidez para 19,1% garantiu nota A em todos as categorias do CAPAG.
+O Tocantins apesar de manter a mesma nota, teve pioras em todos os indicadores: endividamento, poupança corrente e liquidez. O endividamento que representa a dívida consolidada bruta em relação a receita corrente líquida aumentou de 46,35% para 67,6%, a poupança corrente que corresponde a relação despesas correntes e receita correntes ajustadas também apresentou uma pequena piora, aumentou de 94,56% para 95,9%. Um índice de poupança corrente menor garante nota maior, pois melhor será a capacidade da receita corrente de financiar investimentos. O último indicador, liquidez, foi de 577,5\% em 2020, ante 539,40\% em 2019.
 
-O Tocantins apesar se manter a mesma nota, teve pioras em todos os indicadores: endividamento, poupança corrente e liquidez. O seu endividamento que é a dívida consolidada bruta em relação a receita corrente líquida aumentou de 46,35% para 67,6%, a poupança corrente que corresponde a relação despesas correntes e receita correntes ajustadas também apresentou uma pequena piora, de 94,56% para 95,9%. Quanto menor o índice de poupança corrente melhor, pois melhor será a capacidade da receita corrente de financiar investimentos. O último indicador é o de liquidez, para obter nota A, o Estado ou Município deve ter um índice menor que 100%, o que significa que sua disponibilidade em caixa é maior que suas obrigações financeiras. O Tocantins tem um índice de 577,5%, em 2019 era 539,40%.
+para obter nota A, o Estado ou Município deve ter um índice menor que 100%, o que significa que sua disponibilidade em caixa é maior que suas obrigações financeiras. O Tocantins tem um índice de 577,5%, em 2019 era 539,40%.
 
-De todos os indicadores do Estado, endividamento e poupança corrente estão em melhor situação, pois estão mais próximo do limite para receber uma melhor nota. Para conseguir uma nota A no índice de endividamento o Estado deve conservá-lo abaixo de 60%, atualmente está com 67,6%. No índice de poupança corrente, para garantir uma nota B o índice deve maior ou igual a 90% e menor que 95%. Para uma nota A, basta que seja menor que 90%, atualmente está em 95,9%, bem próximo de 95%.
-
-O índice de liquidez é uma situação mais delicada, ele tem maior peso na nota final, para que um Estado ou Município obtenha nota A no CAPAG. Para ter uma nota B é necessário obter A no índice de liquidez e nota acima de C na poupança, independente da nota do endividamento. Logo nota-se sua importância, pois se o Estado busca melhorar sua nota tem que pelo menos ter A de liquidez. O Tocantins tem 577,5% de liquidez, valor muito acima de 100%. O esforço logo deve ser maior nesse índice caso queira obter uma melhora, o caminho é melhorar a relação obrigações financeiras e disponibilidades de caixa bruta, ou diminuindo as obrigações em relação a disponibilidade, ou o inverso, aumentando a disponibilidade, isto é, ativos de alta liquidez, e diminuir as obrigações.
+De todos os indicadores do Estado, endividamento e poupança corrente estão em melhor situação, pois estão mais próximo do limite para receber uma melhor nota. Para conseguir uma nota A no índice de endividamento o Estado deve conservá-lo abaixo de 60%, atualmente está com 67,6%. No índice de poupança corrente, para garantir uma nota B o índice deve maior ou igual a 90% e menor que 95%. Para uma nota A, basta que seja menor que 90%, atualmente está em 95,9%, bem próximo de 95%. O índice de liquidez é uma situação mais delicada para o Estado, ele tem maior peso na nota final. Para obter uma nota B é necessário obter A no índice de liquidez e nota acima de C (B ou A) na poupança, independente da nota do endividamento.
 
 ```{r echo = F, include=T}
 
 capag_2019 <- readxl::read_excel(
-  "planilhas/Tabelas_Boletim_Financas_2019.xlsx", 
+  "planilhas/Tabelas_Boletim_Financas_2019.xlsx",
   sheet = "Tabela 19",
   skip = 1,
   col_types = "guess"
-) %>% select(1:8) %>% 
+) %>% select(1:8) %>%
 	mutate(ano = 2019)
 
 capag_2020 <- readxl::read_excel(
-  "planilhas/Tabelas_Boletim_Financas_2020.xlsx", 
-  sheet = "Tabela_25", 
+  "planilhas/Tabelas_Boletim_Financas_2020.xlsx",
+  sheet = "Tabela_25",
   skip = 1,
   col_types = "guess"
 ) %>%

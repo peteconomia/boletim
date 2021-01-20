@@ -1,4 +1,6 @@
 .editorconfig
+**/utils/
+
 # R FILES
 
 ## History files

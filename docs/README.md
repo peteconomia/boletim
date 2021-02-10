@@ -103,20 +103,11 @@ Os dados da balança comercial são extraídos diretamente do COMEX STAT(platafo
 
    - Variáveis categóricas: seguem a mesma recomendação para título do gráfico
 
-   - Datas:
+### Comandos LaTeX
 
-      - Ano: Ano completo
+- `\source{}` para colocar a fonte do gráfico ou tabela
+- `\notes{}` para colocar notas no gráfico ou tabela
+- `\abbr{}` ou `\acrshort{}` para usar uma sigla
+  - A lista de siglas estão no arquivo [`siglas.tex`](../tex/conteudo/siglas.tex)
 
-         > `2020`
-
-      - Trimestre: indicado pela letra `T`, separado por `/` e seguido pelo ano completo, mesmo que os dados estejam dentro de um ano
-
-         > `1T/2020`
-
-      - Bimestre: indicado pela letra  `B`, separado por `/` e seguido pelo ano completo, mesmo que os dados estejam dentro de um ano
-
-         > `1B/2020`
-
-      - Mês: indicado pela três primeiras letras do mês (sendo a primeira maíuscula), separado por `/` e seguido pelo ano completo, mesmo que os dados estejam dentro de um ano
-
-         >`Ago/2020`
+- `\trimestres` ou `\bimestres` para printar as abreviações dos trimestres ou bimestres. Utilize dentro de `\notes{}`

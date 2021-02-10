@@ -1,6 +1,6 @@
 # :books: Documentação
 
-## Planejamento Boletim 2020
+## Planejamento
 
 - [ ] Reformulação do Boletim de conjuntura na parte estética, dados, informações e apresentação
 - [ ] Criação de um banco de Dados para deixar o Boletim o mais atualizado possível.
@@ -19,16 +19,16 @@
 - [ ] Realizar divulgações do Boletim de conjuntura no periodo trimestral.
 - [ ] Procurar fontes de dados compativeis ao Estado.
 
-## Frequência dos Dados
+## :game_die: Dados
 
-|   Tema      | Frequência  |  Fonte   |
-| ----------- | ----------- | -------- |
+| Tema                    | Frequência                | Fonte                    |
+| ----------------------- | ------------------------- | ------------------------ |
 | Fiscais/Contas Públicas | Bimestral e Quadrimestral | Siconfi/Tesouro Nacional |
-| Emprego | Trimestral e Mensal | CAGED, RAIS |
-| Social | Trimestal e Anual | PNAD/IBGE |
-| Agricultura | Mensal | SIDRA/IBGE |
-| Balança Comercial | Trimestral e Mensal | FIETO, MDIC |
-| PIB | Trimestral | IBGE |
+| Emprego                 | Trimestral e Mensal       | CAGED, RAIS              |
+| Social                  | Trimestal e Anual         | PNAD/IBGE                |
+| Agricultura             | Mensal                    | SIDRA/IBGE               |
+| Balança Comercial       | Trimestral e Mensal       | FIETO, MDIC              |
+| PIB                     | Trimestral                | IBGE                     |
 
 
 ### Dados Fiscais/Contas Públicas

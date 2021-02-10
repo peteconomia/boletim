@@ -11,7 +11,6 @@ build:
 
 basic:
 	pdflatex ${MAIN_TEX}
-	@make clean
 
 clean:
 	rm -f *~ *.aux *.log *.dvi *.ps *.bbl *.blg *.out *.snm *.toc *.nav *.lof *.fls *.xdv *.fdb_latexmk .log __latexindent_temp.tex

@@ -15,7 +15,7 @@
 		\label{fig:pib_demanda}
 		\includegraphics{fig/pib_demanda.pdf}
 		\source{\acrshort{ibge}}
-		\notes{1T: 1º trimestre, 2T: 2º trimestre, 3T: 3º trimestre}
+		\notes{\trimestres[1-3]}
 	\end{subfigure}
 	\begin{subfigure}{\linewidth}
 		\caption{Variação trimestral do PIB pelo lado da oferta}
@@ -23,7 +23,7 @@
 		\label{fig:pib_oferta}
 		\includegraphics{fig/pib_oferta.pdf}
 		\source{\acrshort{ibge}}
-		\notes{1T: 1º trimestre, 2T: 2º trimestre, 3T: 3º trimestre}
+		\notes{\trimestres[1-3]}
 	\end{subfigure}
 \end{figure}
 \par As expectativas de crescimento para a economia brasileira situavam-se em torno de 2,3\% ainda no início do ano como mostra a \ref{fig:expectativa_pib}. As taxas esperadas para indústria e serviços seguiam próximas ao valor esperado para o PIB. Já para o setor agropecuário a expectativa de crescimento era um pouco mais otimista, com uma variação esperada por volta de 3\%. Durante praticamento todo primeiro trimestre as expectativas mantiveram-se estáveis até o início da pandemia em meados de março.
@@ -38,10 +38,9 @@
 %\par No quarto trimestre as expectativas do PIB total apresentou um leve crescimento, as últimas projeções de 2020 apontam contração de -4,36\%. Já a mediana das expectativas do PIB da industria mostrou uma leve recuperação nos útimos três meses, finalizando o ano com -3,9\%. Serviçõs também exibiu uma tímida recuperação, finalizando com -4,8\%. O setor agropecuário, menos afetado, ao longo de todo o ano teve expectativa de crescimento acima de 1,5\%, teve reduções ao longo de 2020, mas finalizou o ano com projeção de crescimento de 2,32\%.
 \par Um ponto a ser colocado é que os dados oficias do PIB de 2020 para estados ainda não foram divulgados pelo IBGE, o que não nos permite fazer uma análise mais profunda sobre o desempenho da economia tocantinense no período . Assim, a análise dos dados da Pesquisa Mensal do Comércio (PMC) pode ser útil para se ter uma noção de como a economia do estado performou ao longo do ano. Para isso apresenta-se na figura \ref{fig:pmc} os dados de variação mensal do volume de vendas do comércio para o Brasil e para o Tocantins.
 
- \begin{smbox}[label={labelbox},nameref={Pesquisa Mensal do Comércio(PMC)}]{Pesquisa Mensal do Comércio (PMC)}
-	A PMC produz indicadores que permitem acompanhar o comportamento conjuntural do comércio varejista no país, investigando a receita bruta de revenda nas empresas formalmente constituídas, com 20 ou mais pessoas ocupadas, e cuja atividade principal é o comércio varejista.
- \end{smbox}
-
+\begin{smbox}[label={labelbox},nameref={Pesquisa Mensal do Comércio(PMC)}]{Pesquisa Mensal do Comércio (PMC)}
+A PMC produz indicadores que permitem acompanhar o comportamento conjuntural do comércio varejista no país, investigando a receita bruta de revenda nas empresas formalmente constituídas, com 20 ou mais pessoas ocupadas, e cuja atividade principal é o comércio varejista.
+\end{smbox}
 
 \par Os meses de março e abril foram os meses de maior contração do volume de vendas, tando para o Brasil quanto para o Tocantins. Por outro lado, os meses seguintes de maio e junho, foram os de maior aumento, mostrando uma boa recuperação com relação às quedas anteriores. Já a partir do segundo semestre há um descolamento entre a performance do Brasil e do Tocantins, com o volume de vendas tendo leves altas no país e quedas no estado.
 \par Quanto a dinâmica do comércio varejista ao longo do ano de 2020 é importante ressaltar que durante a maior parte do ano foi distribuído o Auxílio Emergencial, que proporcionou um ganho de renda nunca antes visto por uma série de camadas sociais ao longo de todo o país. Certamente o benefício teve um forte impacto no setor, fazendo com que enormes quedas nas vendas que eram esperadas devido a perca de renda da população fossem de certa forma minimizadas.
@@ -50,11 +49,17 @@
 %\par O comércio varejista tem uma relação evidente com o setor de serviços, entretanto, não sofreu com altas variações como o setor de serviços. Em março de 2019, o setor vinha de uma queda semelhante ao de serviços, mas, a partir desse momento obteve variações positivas até março do atual ano. A queda na variação do comércio varejista foi amenizada, mesmo no contexto da Covid-19 pelos estímulos que a economia recebeu para lidar com a atual pandemia, o que pode se justificar essa queda mais suavizada do que o setor de serviços.
 \begin{figure}[!h]
 	\begin{subfigure}{\linewidth}
-		\caption{Variação Mensal do Volume de Vendas do Comércio}
+		\caption{Variação mensal do volume de vendas no comércio varejista}
 		\label{fig:pmc}
-		\subcap{Com ajuste sazonal}
-		\includegraphics{fig/pmc_volume.pdf}
-		\source{IBGE}
+		\subcap{Variação acumulada no ano (base: igual período do ano anterior)}
+		\includegraphics{fig/pmc_ibge-1.pdf}
+		\source{\acrshort{ibge}}
+	\end{subfigure}
+	\begin{subfigure}{\linewidth}
+		\caption{Variação mensal do volume de serviços}
+		\label{fig:pms}
+		\subcap{Variação acumulada no ano (base: igual período do ano anterior)}
+		\includegraphics{fig/pms_ibge-1.pdf}
+		\source{\acrshort{ibge}}
 	\end{subfigure}
 \end{figure}
-

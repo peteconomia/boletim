@@ -79,7 +79,7 @@ vol_vendas %>%
 ```
 
 ```{r pms_ibge}
-# Pesquisa Mensal de Serviçoes, https://sidra.ibge.gov.br/pesquisa/pmc/tabelas
+# Pesquisa Mensal de Serviçoes, https://sidra.ibge.gov.br/pesquisa/pms/tabelas
 ## Tabela 6442
 pms_br <- get_sidra(
 		x = 6442,

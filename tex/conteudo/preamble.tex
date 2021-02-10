@@ -22,7 +22,7 @@
 \usepackage{datetime} % Para compilar no PC do Lucas
 \usepackage{kvsetkeys} % Para compilar no PC do Lucas
 \usepackage{lipsum} % generate paragraph
-
+\usepackage{xstring}
 \usepackage[acronym,toc]{glossaries}
 \makenoidxglossaries
 \IfFileExists{conteudo/siglas.tex}{\input{conteudo/siglas.tex}}{\input{../siglas.tex}}
@@ -85,39 +85,6 @@
 	skip=2pt
 }
 \setkeys{Gin}{width=\linewidth} % \includegraphics por padrão terá comprimento igual a \linewidth
-% Box Config
-\newtcolorbox[auto counter,number within=chapter]{smbox}[2][]{
-	%float=p,
-	colback=boxbackground,
-	colframe=boxbackground,
-	arc=0mm,
-	valign=center,
-	top=10pt,
-	left=10pt,
-	right=10pt,
-	bottom=10pt,
-	toptitle=20pt,
-	bottomtitle=0pt,
-	width=\linewidth,
-	fonttitle=\color{primarycolor},
-	title=Quadro~\thetcbcounter~#2,#1
-}
-\newenvironment{bbox}[1]
-	{\begin{table*}\begin{smbox}{#1}\begin{multicols}{2}}
-	{\end{multicols}\end{smbox}\end{table*}}
-
-\newcommand{\source}[1]{
-	\scriptsize{Fonte: #1}\\
-}
-
-\newcommand{\notes}[1]{
-	{\scriptsize{Nota: #1}}
-}
-
-\newcommand{\subcap}[1]{
-	{\scriptsize \color{primarycolor}#1\newline\newline}
-}
-
 % Links Config
 \hypersetup{
 	colorlinks=true,
@@ -186,3 +153,72 @@
 	{}
 	{0pt}
 	{#1}
+% New Commands
+
+% Box Config
+\newtcolorbox[auto counter,number within=chapter]{smbox}[2][]{
+	%float=p,
+	colback=boxbackground,
+	colframe=boxbackground,
+	arc=0mm,
+	valign=center,
+	top=10pt,
+	left=10pt,
+	right=10pt,
+	bottom=10pt,
+	toptitle=20pt,
+	bottomtitle=0pt,
+	width=\linewidth,
+	fonttitle=\color{primarycolor},
+	title=Quadro~\thetcbcounter~#2,#1
+}
+\newenvironment{bbox}[1]
+	{\begin{table*}\begin{smbox}{#1}\begin{multicols}{2}}
+	{\end{multicols}\end{smbox}\end{table*}}
+
+\newcommand{\source}[1]{
+	\scriptsize{Fonte: #1}\\
+}
+
+\newcommand{\notes}[1]{
+	{\scriptsize{Nota: #1}}
+}
+
+\newcommand{\subcap}[1]{
+	{\scriptsize \color{primarycolor}#1\newline\newline}
+}
+
+\newcommand{\abbr}[1]{
+	\acrshort{#1}
+}
+
+\newcommand{\trimestres}[1][1-4]{
+	\IfEqCase{#1}{%
+        {1-4}{1T: 1º trimestre, 2T: 2º trimestre, 3T: 3º trimestre, 4T: 4º trimestre}%
+		{1-3}{1T: 1º trimestre, 2T: 2º trimestre, 3T: 3º trimestre}%
+		{1-2}{1T: 1º trimestre, 2T: 2º trimestre}
+		{2-3}{2T: 2º trimestre, 3T: 3º trimestre}
+		{2-4}{2T: 2º trimestre, 3T: 3º trimestre, 4T: 4º trimestre}
+		{3-4}{3T: 3º trimestre, 4T: 4º trimestre}
+		{1}{1T: 1º trimestre}
+		{2}{2T: 2º trimestre}
+		{3}{3T: 3º trimestre}
+		{4}{4T: 4º trimestre}
+	}[]
+}
+\newcommand{\bimestres}[1][1-4]{
+	\IfEqCase{#1}{%
+        {1-4}{1B: 1º bimestre, 2B: 2º bimestre, 3B: 3º bimestre, 4B: 4º bimestre}%
+		{1-3}{1B: 1º bimestre, 2B: 2º bimestre, 3B: 3º bimestre}%
+		{1-2}{1B: 1º bimestre, 2B: 2º bimestre}
+		{2-3}{2B: 2º bimestre, 3B: 3º bimestre}
+		{2-4}{2B: 2º bimestre, 4B: 3º bimestre, 4B: 4º bimestre}
+		{3-4}{3B: 3º bimestre, 4B: 4º bimestre}
+		{1}{1B: 1º bimestre}
+		{2}{2B: 2º bimestre}
+		{3}{3B: 3º bimestre}
+		{4}{4B: 4º bimestre}
+		{5}{5B: 5º bimestre}
+		{6}{6B: 6º bimestre}
+    }[]
+}

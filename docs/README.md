@@ -78,8 +78,6 @@ Os dados da balança comercial são extraídos diretamente do COMEX STAT(platafo
 - Dados desconhecidos/nulos: indicado por `...`
 - O hífen (`-`) entre dois valores, como 2019-2020, indica um intervalo incluindo o primeiro e último valor
 - O sinal de mais (`+`) no final de um valor, como 65+, indica valores maiores e igual a ele
-- A notação `1T/2020` indica o primeiro trimestre do ano
-- A notação `1B/2020` indica o primeiro bimestre do ano
 
 ### Gráficas
 

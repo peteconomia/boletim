@@ -62,6 +62,7 @@
 
 % Text Layout
 \setlength\parindent{10pt} % Tamanho da indentação do paragrafo
+\parskip = 1pt
 \setlength{\columnsep}{15pt} % Espaço entre as colunas
 \setstretch{1} % Altura da linha
 \setcounter{tocdepth}{0} % Table of contents depth, imprime apenas chapter e section
@@ -176,21 +177,15 @@
 	{\begin{table*}\begin{smbox}{#1}\begin{multicols}{2}}
 	{\end{multicols}\end{smbox}\end{table*}}
 
-\newcommand{\source}[1]{
-	\scriptsize{Fonte: #1}\\
-}
+\newcommand{\source}[1]{\scriptsize{Fonte: #1}\\}
 
-\newcommand{\notes}[1]{
-	{\scriptsize{Nota: #1}}
-}
+\newcommand{\notes}[1]{{\scriptsize{Nota:#1}}}
 
 \newcommand{\subcap}[1]{
 	{\scriptsize \color{primarycolor}#1\newline\newline}
 }
 
-\newcommand{\abbr}[1]{
-	\acrshort{#1}
-}
+\newcommand{\abbr}[1]{\acrshort{#1}}
 
 \newcommand{\trimestres}[1][1-4]{
 	\IfEqCase{#1}{%

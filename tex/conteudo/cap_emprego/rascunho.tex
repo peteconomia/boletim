@@ -5,7 +5,7 @@
 \par Também usa-se os dados da \acrshort{pnadc} (Pesquisa Nacional por Amostra de Domicílios) para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores. Utilizando esses conjuntos de dados será iniciado uma analise da situação do mercado de trabalho no estado do Tocantins, começando  o objetivo de se estudar o primeiro semestre de 2020 e fazendo comparativos com o primeiro semestre de 2019.
 
 \begin{smbox}[label={labelbox},nameref={Empregos}]{Origem dos dados}
-	O CAGED (Cadastro Geral de Empregados e Desempregados) tem um inicio da série em 1992 para o Brasil em geral, agora para os estados tem de inicio por volta de 1996, sempre feito pelo Ministério do Trabalho. Porém, um problema nacional é a nossa mudança de metodologias que ocorrem em decorrer desse período. O \acrshort{caged} e divulgado todos os meses, por voltado dos dias 02 até o dia 10 do mês vigente.
+	O \abbr{caged} tem um inicio da série em 1992 para o Brasil em geral, agora para os estados tem de inicio por volta de 1996, sempre feito pelo Ministério do Trabalho. Porém, um problema nacional é a nossa mudança de metodologias que ocorrem em decorrer desse período. O \acrshort{caged} e divulgado todos os meses, por voltado dos dias 02 até o dia 10 do mês vigente.
 \end{smbox}
 
 \par Analisando os dados do saldo de emprego até o segundo trimestre. É de se visualizar o impacto da COVID-19 nos meses que o isolamento social teve uma maior latência.
@@ -41,7 +41,7 @@
 \par Já nos desligamentos, a faixa etária que sofre mais com as demissões são trabalhadores da faixa etária de 14 até 34 anos, similar aos admitidos. O valor total das demissões nessa faixa etária é de 11.375, número inferior ao de admitidos, gerando um saldo positivo de 1.558 vagas. Já no componente do gênero, os homens apresentaram as maiores demissões, com 11.043 e um saldo positivo de 174 postos de trabalho. As mulheres, entretanto conseguiram manter seus empregos e tiveram um saldo maior, com 507 vagas. Já no quesito formação acadêmica, é bem similar aos admitidos, na qual pessoas com ensino médio completo foram os maiores contratados, neste caso, as demissões foram superiores, ocorreu uma perda de postos de trabalhos de 21.228 vagas e um saldo negativo de -1.070 para quem tem ensino médio completo.
 
 
-\begin{table}
+\begin{table}[!h]
 
 	\caption{\label{tab:idadesEgeneros}Perfil dos Admitidos e Demitidos no CAGED}
 	\subcap{Dados acumulados do primeiro semestre de 2020.}
@@ -139,13 +139,6 @@
 
 \par Fazendo uma comparação com a taxa de desemprego, é apresentado a noção de que a taxa se eleva e gera um aumento nos pedidos de seguro desemprego, uma demonstração clara de como a taxa é crucial para a avaliação macroeconômica. É realizado uma regressão na Figura \ref{fig:regressao} para definir o quão importante é a taxa de desemprego em relação ao seguro desemprego, para o mercado de trabalho.
 
-\begin{figure}[h]
-	\caption{Relação taxa de desemprego x pedidos seguro desemprego}
-	\subcap{No primeiro semestre de 2020.}
-	\includegraphics[width=\linewidth]{fig/reg_emprego-2.pdf}
-	\source{Ministério do Trabalho}
-	\label{fig:regressao}
-\end{figure}
 \begin{smbox}[label={labelbox},nameref={Desigualdade por gênero}]{Metódos econométricos}
 	Usando uma técnica para provar a correlação da taxa de seguro desemprego e pedidos de seguro desemprego. Essa técnica é a regressão linear simples, quando existe apenas uma variável resposta e uma variável explicativa, por isso chama-se de regressão linear simples. A formula é determinada por $y = \alpha + \beta x$ e $\beta = \overline{y} - \overline{\alpha x}$.
 	\\
@@ -171,6 +164,13 @@
 		\includegraphics{fig/rend_medio-1.pdf}
 		\source{\acrshort{ibge}}
 		\notes{\trimestres}
+	\end{subfigure}
+	\begin{subfigure}{\linewidth}
+		\caption{Relação taxa de desemprego x pedidos seguro desemprego}
+		\subcap{No primeiro semestre de 2020.}
+		\includegraphics[width=\linewidth]{fig/reg_emprego-2.pdf}
+		\source{Ministério do Trabalho}
+		\label{fig:regressao}
 	\end{subfigure}
 \end{figure}
 

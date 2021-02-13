@@ -105,6 +105,7 @@ Os dados da balança comercial são extraídos diretamente do COMEX STAT(platafo
 
 - `\source{}` para colocar a fonte do gráfico ou tabela
 - `\notes{}` para colocar notas no gráfico ou tabela
+- `\footnote{}` para notas de rodapé
 - `\abbr{}` ou `\acrshort{}` para usar uma sigla
   - A lista de siglas estão no arquivo [`siglas.tex`](../tex/conteudo/siglas.tex)
 

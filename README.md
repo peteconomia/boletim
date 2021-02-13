@@ -10,7 +10,7 @@ O Boletim de Conjuntura Econômica do Tocantins é uma publicação semestral do
 
 [:point_right: Mais versões](../../releases)
 
-Versões anterior a 2020 estão dispoível em [histórico de lançamento](https://github.com/peteconomia/boletim_hist)
+Versões anteriores a 2020 estão disponíveis em [histórico de lançamento](https://github.com/peteconomia/boletim_hist)
 
 ## :books: Documentação
 

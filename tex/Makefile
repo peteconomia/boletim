@@ -2,21 +2,21 @@ MAIN_TEX=boletim.tex
 OUTPUT=boletim.pdf
 
 # build using pdflatex - pdftex - engine
-prev:
-	latexmk -pdf ${MAIN_TEX}
-
 build:
 	latexmk -pdf ${MAIN_TEX}
+
+publish:
 	@make clean
+	@make buildcaps
+	latexmk -pdf ${MAIN_TEX}
 
 basic:
 	pdflatex ${MAIN_TEX}
 
-caps:
+buildcaps:
 	for i in conteudo/**/main.tex; do \
 		latexmk -pdf -cd $$i; \
 	done
-
 
 clean:
 	rm -f *~ *.aux *.log *.dvi *.ps *.bbl *.blg *.out *.snm *.toc *.nav *.lof *.fls *.xdv *.fdb_latexmk .log __latexindent_temp.tex

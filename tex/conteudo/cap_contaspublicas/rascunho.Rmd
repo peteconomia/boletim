@@ -311,7 +311,7 @@ Endividamento e poupança corrente estão em melhor condição, pois estão mais
 
 <!-- Dos Estados da região norte, os que apresentaram pior nota foi Roraima e Tocantins. Rondônia aparece como o Estado com melhor evolução, Saiu de B para A entre 2019-2020, a queda no endividamento de 65,41% para 57,6% e a redução na relação obrigações financeiras/disponibilidade de caixa e a queda na sua liquidez para 19,1% garantiu nota A em todos os indicadores. -->
 
-Dentre os estados da região norte, Tocantins e Roraima foram os que apresentaram pior desempenho, conforme disposto na Tabela \ref{tab:capag_uf}. Rondônia aparece com a melhor perfomance, saiu da nota B para A entre 2019--2020. A redução no endividamento e na liquidez garantiu nota A em todos os indicadores.
+Dentre os estados da região Norte, Tocantins e Roraima foram os que apresentaram pior desempenho, conforme disposto na Tabela \ref{tab:capag_uf}. Rondônia aparece com a melhor perfomance, saiu da nota B para A entre 2019--2020. A redução no endividamento e na liquidez garantiu nota A em todos os indicadores.
 
 <!--O Tocantins apesar de manter a mesma nota, teve pioras em todos os indicadores: endividamento, poupança corrente e liquidez. O endividamento que representa a dívida consolidada bruta em relação a receita corrente líquida aumentou de 46,35% para 67,6%, a poupança corrente que corresponde a relação despesas correntes e receita correntes ajustadas também apresentou uma pequena piora, aumentou de 94,56% para 95,9%. Um índice de poupança corrente menor garante nota maior, pois melhor será a capacidade da receita corrente de financiar investimentos. O último indicador, liquidez, foi de 577,5\% em 2020, ante 539,40\% em 2019.-->
 

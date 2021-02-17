@@ -5,11 +5,6 @@ OUTPUT=boletim.pdf
 build:
 	latexmk -pdf ${MAIN_TEX}
 
-publish:
-	@make clean
-	@make buildcaps
-	latexmk -pdf ${MAIN_TEX}
-
 basic:
 	pdflatex ${MAIN_TEX}
 
@@ -23,3 +18,5 @@ clean:
 
 cleanall: clean
 	rm ${OUTPUT}
+
+publish: clean buildcaps build

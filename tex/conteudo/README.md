@@ -1,22 +1,19 @@
-# Conteúdo do Boletim
+# Conteúdo
 
-Conteúdo de cada capítulo e alguns arquivos básicos do boletim.
+Cada capítulo é uma pasta, genericamente nomeada da seguinte forma: `cap_temadocapitulo`
 
-Cada capítulo é uma pasta, genericamente nomeada da seguinte forma: `cap_nomedocapitulo`
+* [`cap_introducao`](./cap_introducao): Panorama Econômico
+* [`cap_social`](./cap_social): Indicadores Sociais
+* [`cap_balancacomercial`](./cap_balancacomercial): Comércio Exterior
+* [`cap_contaspulicas`](./cap_contaspublicas): Contas Públicas Estadual
+* [`cap_agricultura`](./cap_agricultura): Agronegócio
 
-* [`cap_introducao`](./cap_introducao): Introdução do Boletim
-* [`cap_social`](./cap_social): Capítulo sobre Dados Socioeconômico
-* [`cap_emprego`](./cap_emprego): Capítulo sobre Empregos no Estado
-* [`cap_balancacomercial`](./cap_balancacomercial): Capítulo sobre a Balança Comercial do Estado
-* [`cap_contaspulicas`](./cap_contaspublicas): Capítulo sobre as Contas Públicas do Estado
-* [`cap_agricultura`](./cap_agricultura): Capítulo sobre Agricultura do Estado
+## Arquivos básicos:
 
-## Arquivos básicos do Boletim
-
-* `preamble.tex`
-* `capa.tex`
-* `contracapa.tex`
-* `editorial.tex`
-* `equipe.tex`
-* `bibliography.bib`
-* `fim.tex`
+* `preamble.tex`: configurações
+* `capa.tex`: capa
+* `contracapa.tex`: contracapa (página em branco)
+* `siglas.tex`: lista de siglas
+* `ficha.tex`: ficha técnina
+* `apresentacao.tex`: apresentação
+* `fim.tex`: última página

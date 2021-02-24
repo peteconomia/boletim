@@ -19,4 +19,4 @@ clean:
 cleanall: clean
 	rm ${OUTPUT}
 
-publish: clean buildcaps build
+publish: clean build

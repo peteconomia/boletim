@@ -1,3 +1,9 @@
+# Boletim
+tex/boletim.pdf
+# PDF Caps
+tex/conteudo/**/main.pdf
+
+# Utils files
 .editorconfig
 **/utils/
 
@@ -63,7 +69,6 @@ __latexindent_temp.tex
 *-converted-to.*
 *.ps
 *.eps
-# *.pdf
 
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):

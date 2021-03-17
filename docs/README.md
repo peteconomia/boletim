@@ -19,7 +19,7 @@
 - [ ] Realizar divulgações do Boletim de conjuntura no periodo trimestral.
 - [ ] Procurar fontes de dados compativeis ao Estado.
 
-## :game_die: Dados
+## Dados
 
 | Tema                    | Frequência                | Fonte                    |
 | ----------------------- | ------------------------- | ------------------------ |
@@ -51,7 +51,7 @@ Publicações do Ministério do Trabalho e IBGE:
 
 Apresentação dos principais indicadores sociais do estado do Tocantins, quais sejam, Taxa de Pobreza, Taxa de Extrema Pobreza e Índice de Gini. Os dados são divulgados pelo IBGE a partir de dados da PNAD Contínua e são disponibilizados a partir da divulgação do documento Síntese dos Indicadores Sociais.
 
-[Síntese dos Indicadores Sociais](https://www.ibge.gov.br/estatisticas/sociais/protecao-social/9221-sintese-de-indicadores-sociais.html?=&t=o-que-e)
+* [Síntese dos Indicadores Sociais](https://www.ibge.gov.br/estatisticas/sociais/protecao-social/9221-sintese-de-indicadores-sociais.html?=&t=o-que-e)
 
 ### Agricultura
 Os dados da agricultura são extraidos do IBGE, pelo SIDRA (Sistema IBGE de Recuperação Automática), que possuem a frequência variada, mas, frequentemente mensal. Nela, temos os dados da produção agricola, rendimento médio, plantio por hectáres, abates de bovinos, suinos, frangos, produção de leite e produção de ovos.
@@ -69,44 +69,36 @@ Os dados da balança comercial são extraídos diretamente do COMEX STAT(platafo
 
 * [Tocantins](http://comexstat.mdic.gov.br/pt/comex-vis)
 
-### PIB
-
 ## Convenções
 
 ### Estatísticas
 
-- Dados desconhecidos/nulos: indicado por `...`
-- O hífen (`-`) entre dois valores, como 2019-2020, indica um intervalo incluindo o primeiro e último valor
-- O sinal de mais (`+`) no final de um valor, como 65+, indica valores maiores e igual a ele
+* Dados desconhecidos/nulos: indicado por `...`
+* O hífen (`-`) entre dois valores, como 2019-2020, indica um intervalo incluindo o primeiro e último valor
+* O sinal de mais (`+`) no final de um valor, como 65+, indica valores maiores e igual a ele
 
 ### Gráficas
 
-- Título autoexplicativo
+A padronização dos gráficos é feita pelo pacote [petgg](https://github.com/peteconomia/petgg)
 
-- Não é necessário título para os eixos, exceto para gráficos de dispersão
+* Título autoexplicativo
 
-- Mesma paleta de cores
+* Não é necessário título para os eixos, exceto para gráficos de dispersão
 
-- Fonte do título, eixos e legenda é a mesma do texto
+* Fonte do título, eixos e legenda é a mesma do texto
 
-- Tamanho da fonte dos eixos e legendas são iguais
+* Tamanho da fonte dos eixos e legendas são iguais
 
-- Posição da legenda é abaixo do gráfico
+* Posição da legenda é abaixo do gráfico
 
-- Título do gráfico inicia com letra maiúscula, a partir da primeira palavra inicia com letra minúscula (exceto para substantivos próprios). Mesma recomendação para tabelas
-
-   > Figura X.X Variação da receita e despesa do Tocatins em 2020
-
-- Valores dos Eixos
-
-   - Variáveis categóricas: seguem a mesma recomendação para título do gráfico
+* Título do gráfico inicia com letra maiúscula, a partir da primeira palavra inicia com letra minúscula (exceto para substantivos próprios). Mesma recomendação para tabelas
 
 ### Comandos LaTeX
 
-- `\source{}` para colocar a fonte do gráfico ou tabela
-- `\notes{}` para colocar notas no gráfico ou tabela
-- `\footnote{}` para notas de rodapé
-- `\abbr{}` ou `\acrshort{}` para usar uma sigla
-  - A lista de siglas estão no arquivo [`siglas.tex`](../tex/conteudo/siglas.tex)
+* `\source{}` para colocar a fonte do gráfico ou tabela
+* `\notes{}` para colocar notas no gráfico ou tabela
+* `\footnote{}` para notas de rodapé
+* `\abbr{}` ou `\acrshort{}` para usar uma sigla
+  * A lista de siglas estão no arquivo [`siglas.tex`](../tex/conteudo/siglas.tex)
 
-- `\trimestres` ou `\bimestres` para printar as abreviações dos trimestres ou bimestres. Utilize dentro de `\notes{}`
+* `\trimestres` ou `\bimestres` para printar as abreviações dos trimestres ou bimestres. Utilize dentro de `\notes{}`

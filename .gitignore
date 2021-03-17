@@ -7,6 +7,8 @@ tex/conteudo/**/main.pdf
 .editorconfig
 **/utils/
 
+.vscode/
+
 # R FILES
 
 ## History files

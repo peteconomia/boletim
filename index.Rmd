@@ -27,6 +27,6 @@ fullversion: true
 documentclass: report
 output:
   bookdown::pdf_book:
-    keep_tex: true
     template: template/template.tex
+    pandoc_args: "--lua-filter=filter/boletim.lua"
 ---

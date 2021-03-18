@@ -95,9 +95,9 @@
 	urlcolor=primarytext,
 	urlbordercolor=white, %links externos
 	citecolor=primarytext,
-	pdftitle={$title$ $year$, v. $volume$ nº $number$},
+	pdftitle={$if(fullversion)$$title$ $year$, v. $volume$ nº $number$$endif$},
 	pdfauthor={PET - Ciências Econômicas, Universidade Federal do Tocantins},
-	pdfsubject={volume $volume$, número $number$, $tag$},
+	pdfsubject={$if(fullversion)$volume $volume$, número $number$, $tag$$endif$},
 	pdfcreator={LaTeX},
 	pdfproducer={PET - Ciências Econômicas},
 	pdfkeywords={Tocantins, Economia, boletim},

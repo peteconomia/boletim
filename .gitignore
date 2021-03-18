@@ -4,6 +4,9 @@ boletim/
 _utils/
 .vscode/
 
+*/main.pdf
+*/main.tex
+
 # R FILES
 ## History files
 *.Rhistory
@@ -44,7 +47,7 @@ _utils/
 *.fot
 *.cb
 *.cb2
-.*.lb
+*.lb
 *.snm
 *.nav
 *.fdb_latexmk
@@ -75,11 +78,9 @@ __latexindent_temp.tex
 *-blx.bib
 *.run.xml
 
-# Arquivos Word
 *.doc
 *.docx
 *.~lock.bc.xlsx#
-# Outros
 *.zip
 *.rar
 *.7z

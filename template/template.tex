@@ -1,8 +1,8 @@
 \documentclass[twocolumn, a4paper, 10pt]{report}
-\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry} % Margens
-\usepackage[lining]{ebgaramond} % Fonte Garamond
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage[lining]{ebgaramond}
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc} % latex >= 2018 not require inputenc package
+\usepackage[utf8]{inputenc}
 \usepackage[portuguese]{babel}
 \usepackage{xcolor}
 \usepackage{graphicx}
@@ -11,22 +11,17 @@
 \usepackage{tikz}
 \usepackage{multicol}
 \usepackage{float}
-%\usepackage{fontspec} % fontspec not work with pdflatex engine
 \usepackage{fancyhdr}
 \usepackage{titletoc}
 \usepackage[explicit]{titlesec}
-\usepackage{setspace} % Altura da linha
-\usepackage{tcolorbox} % Para Box
-\usepackage{pagecolor} % altera cor da página usada na capa
+\usepackage{setspace}
+\usepackage{tcolorbox}
+\usepackage{pagecolor}
 \usepackage{hyperref}
-\usepackage{datetime} % Para compilar no PC do Lucas
-\usepackage{kvsetkeys} % Para compilar no PC do Lucas
+\usepackage{datetime} % PC do Lucas
+\usepackage{kvsetkeys} % PC do Lucas
 \usepackage{lipsum} % generate paragraph
 \usepackage{xstring}
-
-\usepackage[acronym,toc]{glossaries}
-\makenoidxglossaries
-\IfFileExists{tex/abbreviations.tex}{\input{tex/abbreviations.tex}}{\input{../tex/abbreviations.tex}}
 
 % Required by KableExtra R package
 %\usepackage{xcolor}
@@ -44,15 +39,9 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 
-% Caminhos para cada capítulo
-% \graphicspath{
-% 	{conteudo/cap_introducao/}
-% 	{conteudo/cap_contaspublicas/}
-% 	{conteudo/cap_social/}
-% 	{conteudo/cap_emprego/}
-% 	{conteudo/cap_balancacomercial/}
-% 	{conteudo/cap_agricultura/}
-% }
+\usepackage[acronym,toc]{glossaries}
+\makenoidxglossaries
+\IfFileExists{tex/abbreviations.tex}{\input{tex/abbreviations.tex}}{\input{../tex/abbreviations.tex}}
 
 % Cores
 \definecolor{primarycolor}{RGB}{0, 96, 157}
@@ -155,7 +144,10 @@
 	{}
 	{0pt}
 	{#1}
-% New Commands
+
+% Pandoc output require
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 % Box Config
 \newtcolorbox[auto counter,number within=chapter]{smbox}[2][]{
@@ -174,9 +166,6 @@
 	fonttitle=\color{primarycolor},
 	title=Quadro~\thetcbcounter~#2,#1
 }
-\newenvironment{bbox}[1]
-	{\begin{table*}\begin{smbox}{#1}\begin{multicols}{2}}
-	{\end{multicols}\end{smbox}\end{table*}}
 
 \newcommand{\source}[1]{\scriptsize{Fonte: #1}\\}
 
@@ -218,9 +207,6 @@
 		{6}{6B: 6º bimestre}
     }[]
 }
-
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \begin{document}
     $if(fullversion)$

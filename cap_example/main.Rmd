@@ -2,9 +2,50 @@
 documentclass: report
 output:
   pdf_document:
+    keep_tex: true
     template: ../template/template.tex
     pandoc_args: "--lua-filter=../filter/boletim.lua"
 ---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(petgg)
+
+petgg::set_theme(base_family = "EB Garamond")
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  eval = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  dev = "cairo_pdf"
+)
+knitr::knit_hooks$set(
+  plot = function(x, options) {
+    paste(
+      if (options$wrapfig == "open" && !is.null(options$wrapfig)) {
+        "\\Begin{wrapfig}"
+      },
+      "\\Begin{fig}",
+      "\\caption{", options$fig.cap, "}",
+      "\\label{fig:", options$label, "}",
+      "\\subcap{", options$fig.subcap, "}",
+      "\\includegraphics{", x, "}",
+      if (!is.null(options$fig.source)) {
+        paste0("\n\\source{", options$fig.source, "}")
+      },
+      if (!is.null(options$fig.notes)) {
+        paste0("\\notes{", options$fig.notes, "}")
+      },
+      "\\End{fig}",
+      if (options$wrapfig == "close" && !is.null(options$wrapfig)) {
+        "\\End{wrapfig}"
+      },
+      sep = ""
+    )
+  }
+)
+```
 
 # Título
 
@@ -33,3 +74,10 @@ Subsection [@subsec:subsection]
 \end{equation}
 
 See equation [@eq:solve]
+
+## Figures
+
+```{r label, fig.cap = "Titulo"}
+ggplot(mpg) +
+    geom_point(aes(x = displ, y = hwy, color = class))
+```

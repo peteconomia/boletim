@@ -1,0 +1,36 @@
+---
+documentclass: report
+output:
+  pdf_document:
+    template: ../template/template.tex
+---
+
+```{r setup, include = FALSE, message = FALSE, warning = FALSE}
+library(ggplot2)
+library(petgg)
+
+petgg::set_theme(base_family = "EB Garamond")
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  eval = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  dev = "cairo_pdf"
+)
+```
+
+# Título
+
+Duis ullamco cupidatat et sint dolor aliqua. Amet ad labore sunt esse in ad id nisi officia culpa. Proident fugiat laborum nisi laborum officia tempor excepteur ut veniam enim deserunt.
+
+Sint magna fugiat in quis cillum magna aute ea labore irure culpa. Consectetur officia in ex reprehenderit irure ullamco ad non. Laborum fugiat occaecat dolor tempor anim aliqua et do cupidatat sit veniam est dolor laborum. Quis irure pariatur adipisicing irure in aliquip labore minim commodo proident excepteur eu pariatur est.
+
+Laboris adipisicing fugiat consequat occaecat aliqua ut eu consequat ut. Lorem occaecat esse eu minim occaecat ex cillum laborum cupidatat excepteur ad. Tempor do duis minim occaecat.
+
+Eiusmod ipsum sit aliquip fugiat in enim id minim cupidatat reprehenderit cupidatat. Velit reprehenderit deserunt nostrud pariatur ut sit. Et in deserunt reprehenderit eiusmod et aute.
+
+```{r}
+ggplot(diamonds) +
+    geom_bar(aes(x = cut, fill = clarity), position = "dodge")
+```

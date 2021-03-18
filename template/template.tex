@@ -26,8 +26,7 @@
 
 \usepackage[acronym,toc]{glossaries}
 \makenoidxglossaries
-\input{tex/abbreviations.tex}
-% \IfFileExists{conteudo/siglas.tex}{\input{conteudo/siglas.tex}}{\input{../siglas.tex}}
+\IfFileExists{tex/abbreviations.tex}{\input{tex/abbreviations.tex}}{\input{../tex/abbreviations.tex}}
 
 % Required by KableExtra R package
 %\usepackage{xcolor}
@@ -256,7 +255,7 @@
 
     %% Contracapa
     \newpage\null\thispagestyle{empty}\newpage\clearpage
-    
+
     %% Ficha
 
     \begin{tcolorbox}[colback=boxbackground, colframe=boxbackground, arc=0mm, top=15pt]
@@ -266,7 +265,7 @@
         \begin{itemize}
         \item{Coordenação:} $coordinator$
         $if(co)$\item{Consultor:} $co$ $endif$
-        
+
         $for(team)$
         \item{$team.theme$:} $team.students$
         $endfor$
@@ -283,7 +282,7 @@
         \par{\bf Direitos de Reprodução:}
         É permitida a reprodução do conteúdo desse documento, desde que mencionada a fonte: Boletim de Conjuntura Econômica do Tocantins, Palmas v. $volume$ nº $number$ $month$. $year$ p. $pages$.
     \end{tcolorbox}
-    
+
     \vspace{\fill}
     \begin{center}
         \includegraphics[width=3.5cm]{images/corecon.png}
@@ -302,7 +301,7 @@
     \printnoidxglossary[toctitle=Siglas, title=Siglas, type=\acronymtype, nonumberlist]\thispagestyle{empty}
 
     $endif$
-    
+
     $body$
 
     $if(fullversion)$

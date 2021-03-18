@@ -1,16 +1,10 @@
-# Boletim
-tex/boletim.pdf
-# PDF Caps
-tex/conteudo/**/main.pdf
-
-# Utils files
-.editorconfig
-**/utils/
-
+_bookdown_files/
+output/
+boletim/
+_utils/
 .vscode/
 
 # R FILES
-
 ## History files
 *.Rhistory
 *.Rapp.history

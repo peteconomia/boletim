@@ -2,7 +2,6 @@
 documentclass: report
 output:
   pdf_document:
-    keep_tex: true
     template: ../template/template.tex
     pandoc_args: "--lua-filter=../filter/boletim.lua"
 ---
@@ -10,74 +9,53 @@ output:
 ```{r setup, include=FALSE}
 library(ggplot2)
 library(petgg)
+library(petknitr)
 
 petgg::set_theme(base_family = "EB Garamond")
-
-knitr::opts_chunk$set(
-  echo = FALSE,
-  eval = TRUE,
-  message = FALSE,
-  warning = FALSE,
-  dev = "cairo_pdf"
-)
-knitr::knit_hooks$set(
-  plot = function(x, options) {
-    paste(
-      if (options$wrapfig == "open" && !is.null(options$wrapfig)) {
-        "\\Begin{wrapfig}"
-      },
-      "\\Begin{fig}",
-      "\\caption{", options$fig.cap, "}",
-      "\\label{fig:", options$label, "}",
-      "\\subcap{", options$fig.subcap, "}",
-      "\\includegraphics{", x, "}",
-      if (!is.null(options$fig.source)) {
-        paste0("\n\\source{", options$fig.source, "}")
-      },
-      if (!is.null(options$fig.notes)) {
-        paste0("\\notes{", options$fig.notes, "}")
-      },
-      "\\End{fig}",
-      if (options$wrapfig == "close" && !is.null(options$wrapfig)) {
-        "\\End{wrapfig}"
-      },
-      sep = ""
-    )
-  }
-)
+petknitr::setup()
 ```
 
 # Título
 
-[@abbr:pmc]
+Cillum consequat velit ut sunt laborum Lorem in. Laboris ex aute in consectetur. Adipisicing enim laborum deserunt est est minim ullamco commodo commodo ut fugiat amet fugiat. Culpa anim nostrud id ullamco qui eiusmod. Quis do deserunt elit voluptate ullamco voluptate. Magna nostrud aute ullamco elit et.
+
+Excepteur fugiat est sunt aliqua amet et quis velit. Enim laboris sit ad anim occaecat do ad sit nostrud aliquip pariatur. Do eiusmod et magna aute irure fugiat dolor adipisicing dolor. In enim ea elit eu nulla culpa adipisicing irure ad.
+
+Dolor cillum aliquip culpa in cillum officia nulla laborum voluptate eiusmod. Occaecat dolore velit sit consectetur proident ut adipisicing voluptate dolore enim. Reprehenderit veniam consequat ea est et.
+
+Minim nisi consequat est ad velit pariatur anim enim ea ullamco nisi eu amet. Laborum reprehenderit adipisicing aliqua consequat quis deserunt. Amet ut fugiat excepteur sint sunt elit est aliqua ullamco eiusmod eu officia tempor. Nostrud sunt incididunt eiusmod dolor ea aliquip eu consequat id non fugiat cupidatat. Aliquip laboris eiusmod veniam irure aliqua tempor sit aliquip mollit velit commodo elit. Deserunt dolore dolore esse dolore ad irure fugiat aute exercitation Lorem nulla cillum ea.
+
+Consequat amet nostrud officia ea exercitation exercitation consectetur. Nostrud culpa nisi consectetur nulla. Mollit quis culpa commodo deserunt est exercitation aute aute est in sit. Esse sunt irure ipsum est consectetur eiusmod. Tempor nisi velit incididunt irure dolore esse cupidatat duis duis labore sint amet esse sunt. Esse cupidatat commodo eiusmod est ut eiusmod id nostrud id magna deserunt proident.
 
 ::: {.smbox data-latex="[label={ex_box}]{Cálculo do PIB e as suas óticas}"}
 Duis ullamco cupidatat et sint dolor aliqua. [@abbr:pib] Amet ad labore sunt esse in ad id nisi officia culpa. Proident fugiat laborum nisi laborum officia tempor excepteur ut veniam enim deserunt.
 :::
 
-Quadro [@box:ex_box]
+Veja o Quadro [@box:ex_box]
 
+Fugiat culpa fugiat labore fugiat labore ut irure amet ex non commodo enim. Ea magna sunt ullamco ullamco deserunt excepteur aliqua et ullamco et aliquip excepteur nostrud exercitation. Est cillum nostrud enim elit in eiusmod dolore ut nisi laboris velit. Eu sint cupidatat amet cillum ex ut.
 
-## Section {#subtitulo}
+Ex exercitation voluptate quis ullamco mollit qui aliquip proident sit. Aliquip exercitation adipisicing dolore proident officia laboris. Ad ullamco adipisicing consequat ad cupidatat eu magna excepteur irure. Dolor ut qui enim magna.
 
-Section [@sec:subtitulo]
-
-### Subsection {#subsection}
-
-Subsection [@subsec:subsection]
-
-## Equations
-
-\begin{equation}
-  \label{eq:solve}
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-\end{equation}
-
-See equation [@eq:solve]
-
-## Figures
-
-```{r label, fig.cap = "Titulo"}
+```{r label, fig.cap = "Titulo", fig.subcap="Taxa Trimestral", wrap = "open"}
 ggplot(mpg) +
     geom_point(aes(x = displ, y = hwy, color = class))
 ```
+
+```{r diamonds, fig.cap = "Diamonds", fig.subcap="Clarity by cut"}
+ggplot(diamonds) +
+    geom_bar(aes(x = cut, fill = clarity), position = "dodge")
+```
+
+```{r dist_diamongs, fig.cap = "Dist Diamonds", fig.subcap="Depth by cut", wrap = "close"}
+ggplot(diamonds, aes(depth, color = cut)) +
+    geom_density()
+```
+
+Aute eiusmod in proident in ut anim ipsum duis aute ea sint. Quis exercitation sint dolore non est consequat laboris. Duis proident sunt quis minim aliqua. Ut enim nostrud proident sint elit elit eiusmod officia. Sint duis consequat tempor eiusmod ea pariatur labore laboris non veniam commodo cupidatat.
+
+Pariatur aliquip laborum anim et tempor non laboris tempor eiusmod nisi Lorem deserunt dolor. Labore aute velit nostrud et do ad dolore commodo. Nostrud proident veniam consectetur ullamco dolore dolor consequat qui reprehenderit ullamco elit sunt officia mollit.
+
+Dolore deserunt reprehenderit tempor occaecat ea deserunt consectetur officia in qui quis eiusmod nisi veniam. Nulla fugiat sint ullamco amet in labore. Magna velit veniam enim sint ut officia aliqua consectetur ullamco incididunt qui duis cupidatat irure. Elit magna nostrud non Lorem veniam sunt commodo adipisicing in veniam id culpa. Culpa nulla aute ea ex cillum excepteur voluptate eiusmod Lorem eu excepteur.
+
+Minim labore elit dolore do aliqua est aliquip Lorem non quis in Lorem. Enim nulla occaecat duis magna ad cillum voluptate consectetur irure ullamco non occaecat id laborum. Ex mollit irure proident et ipsum eiusmod ullamco laborum incididunt aliquip duis. Anim officia minim Lorem mollit esse anim fugiat consectetur nostrud. Nostrud et magna ut enim pariatur ea aliqua adipisicing do ad.

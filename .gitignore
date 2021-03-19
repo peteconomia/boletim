@@ -6,7 +6,8 @@ _utils/
 
 */main.pdf
 */main.tex
-*/main_files
+*/main_files/
+*/_cache/
 
 # R FILES
 ## History files

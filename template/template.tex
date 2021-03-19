@@ -156,7 +156,7 @@
 	colframe=boxbackground,
 	arc=0mm,
 	valign=center,
-	top=10pt,
+	top=0pt,
 	left=10pt,
 	right=10pt,
 	bottom=10pt,
@@ -171,9 +171,7 @@
 
 \newcommand{\notes}[1]{{\scriptsize{Nota:#1}}}
 
-\newcommand{\subcap}[1]{
-	{\scriptsize \color{primarycolor}#1\newline\newline}
-}
+\newcommand{\subcap}[1]{{\scriptsize\color{primarycolor}#1\newline}}
 
 \newcommand{\abbr}[1]{\acrshort{#1}}
 
@@ -207,6 +205,17 @@
 		{6}{6B: 6º bimestre}
     }[]
 }
+
+\let\Begin\begin
+\let\End\end
+
+\newenvironment{wrapfig}
+	{\begin{figure}[H]}
+	{\end{figure}}
+
+\newenvironment{fig}
+	{\begin{subfigure}{\linewidth}}
+	{\end{subfigure}}
 
 \begin{document}
     $if(fullversion)$

@@ -1,23 +1,50 @@
-# :books: Documentação
+# Documentação
 
-## Planejamento
+O Boletim de Conjuntura é escrito em RMarkdown, uma extensão do markdown para construir relatórios dinâmicos.
 
-- [ ] Reformulação do Boletim de conjuntura na parte estética, dados, informações e apresentação
-- [ ] Criação de um banco de Dados para deixar o Boletim o mais atualizado possível.
-- [ ] Apresentação de dados estaduais apresentando o setor privado, público, financeiro e social.
-- [ ] Criação de uma introdução do Boletim com dados nacionais sobre inflação, PIB, renda, moeda, etc.
-- [ ] Criação de uma plataforma para a divulgação do Boletim
-- [ ] Levantamento de dados em âmbito trimestral.
-- [ ] Criação de um boletim referente aos meses de Janeiro a Março, para padronização
-- [ ] Promover alterações na seção do PIB, deixando mais prático e de fácil leitura
-- [ ] Colocar dados sobre cadeias produtivas, produtos que o Estado trabalha, balança comercial(Valores, quantidades, públicos alvos, etc).
-- [ ] Utilizar o corpo docente para formulação do boletim, propondo correções e orientações de setores avaliados
-- [ ] Abordar indicadores fiscais estaduais previsto pela LRF.
-- [ ] Propor a entrega do Boletim em Outubro, respeitando os dados trimestrais.
-- [ ] Melhorar qualidade dos textos, tornando o boletim didático para não economistas
-- [ ] Propor uma metodologia para as pesquisas do Boletim
-- [ ] Realizar divulgações do Boletim de conjuntura no periodo trimestral.
-- [ ] Procurar fontes de dados compativeis ao Estado.
+[RMarkdown](rmarkdown.md)
+
+## Compilando o PDF
+
+### Dependências
+
+- [Pandoc](https://pandoc.org/installing.html)
+- MikTex ou TeXLive
+
+  - Windows: [miktex.org](https://miktex.org/)
+  - Linux flavors: TeXLive
+
+Um conjunto básico de pacotes R é necessário para compilar o pdf:
+
+```r
+install.packages(c("bookdown", "tinytex", "rmarkdown"))
+```
+
+Além desses é necessário instalar os pacote usando em cada capítulo. Veja o arquivo `main.Rmd` dentro de cada pasta `cap_`. Em geral os pacotes bases são:
+
+- tidyverse
+- [petknitr](https://github.com/peteconomia/petknitr)
+- [petgg](https://github.com/peteconomia/petgg)
+- [sidrar](https://cran.r-project.org/web/packages/sidrar/index.html)
+- [ipeadatar](https://cran.r-project.org/web/packages/ipeadatar/index.html)
+- [siconfir](https://github.com/pedrocastroo/siconfir)
+- PNADcIBGE
+- ecoseries
+- kableExtra
+- scales
+- survey
+- convey
+- [archive](https://github.com/jimhester/archive)
+
+Execute o arquivo `build.R` ou pelo `R` console:
+```r
+bookdown::render_book("index.Rmd", output_format = "bookdown::pdf_book")
+```
+
+ou terminal:
+```
+make pdf
+```
 
 ## Dados
 

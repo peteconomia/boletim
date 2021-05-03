@@ -81,8 +81,8 @@ ipeadatar::ipeadata("PNADC_TXDES_UF") %>%
 # Pedidos Seguro desemprego trimestral
 
 tibble(
-	value = c(9833, 9833, 8832, 8784, 9642, 9324, 9155, 8182, 8785, 10642),
-	trimestre = seq(as.Date("2018-01-01"), as.Date("2020-06-01"), by = "quarter")
+	value = c(9833, 9833, 8832, 8784, 9642, 9324, 9155, 8182, 8785, 10642, 7535, 8072),
+	trimestre = seq(as.Date("2018-01-01"), as.Date("2020-12-01"), by = "quarter")
 ) %>% 
 	ggplot(aes(trimestre, value)) +
 	geom_line() +
@@ -122,7 +122,7 @@ ipeadatar::ipeadata("PNADC_TXPARTFT_UF") %>%
 ```{r rend_medio}
 # Rendimento médio real - trab. principal - habitual - mensal
 # Trimestral
-ipeadatar::ipeadata("PNADC_RENDREALPRINCHAB_UF", language = "br") %>% 
+ipeadatar::ipeadata("PNADC_RENDREALPRINCEFET_UF", language = "br") %>% 
 	filter(tcode %in% c(0,1,17)) %>% 
 	select(date, value, uname) %>% 
 	mutate(uname = case_when(
@@ -153,8 +153,8 @@ ipeadatar::ipeadata("PNADC_RENDREALPRINCHAB_UF", language = "br") %>%
 	scale_y_continuous(labels = function(x) x/m)
 ```
 ```{r reg_emprego}
-Dados <- data.frame(taxaDesemprego = c(11,11.3,9.8,10.4,12.3,11.4,10.5,9.1,11.2,12.5),
-                        Pedidos_SeguroDesemprego = c(9833,9833,8832,8784,9642,9324,9155,8182,8785,10642))
+Dados <- data.frame(taxaDesemprego = c(11,11.3,9.8,10.4,12.3,11.4,10.5,9.1,11.2,12.5,12.2,11.6),
+                        Pedidos_SeguroDesemprego = c(9833,9833,8832,8784,9642,9324,9155,8182,8785,10642,7535, 8072))
     
 
     

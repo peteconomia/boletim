@@ -31,12 +31,12 @@ B <- 1000000000
 # Saldo de Empregos Norte e Tocantins
 
 tibble(
-	`Região Norte` = c(2764,10419,-6370,-30747,-11146,6093,16015,22483,20640, 20658),
-	Tocantins = c(199,1482,-86,-2850,-1251,1240,1810,2096,1790,1504),
-	mes = c("jan","fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out")
+	`Região Norte` = c(2992,10913,-6623,-31590,-11238,6382,16203,23304,21840, 21150, 14806, -9390),
+	Tocantins = c(221,1492,-126,-2882,-1292,1213,1774,2136,2028,1385,1062,220),
+	mes = c("jan","fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
 ) %>% 
 	pivot_longer(!mes, names_to = "local", values_to = "saldo") %>% 
-	ggplot(aes(factor(mes, levels = c("jan","fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out")), saldo, fill = local)) +
+	ggplot(aes(factor(mes, levels = c("jan","fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")), saldo, fill = local)) +
 	geom_bar(stat = "identity", position = "dodge") +
 	scale_y_continuous(labels = function(n) n/m)
 ```
@@ -44,7 +44,7 @@ tibble(
 ```{r saldo_setor_to}
 # Saldo por Setores no Tocantins
 tibble(
-	Saldo = c(277,109,961,-1950,-660), 
+	Saldo = c(542,495,2979,1543,1442), 
 	Setores = c("Agricultura","Indústrias", "Construção", "Comércio", "Serviços")
 ) %>% 
 	ggplot(aes(Setores, Saldo)) +
@@ -176,14 +176,14 @@ Dados <- data.frame(taxaDesemprego = c(11,11.3,9.8,10.4,12.3,11.4,10.5,9.1,11.2,
 
 caged_idade <- tibble(
   carac = c("14-34", "35-65", "65+"),
-  Admitidos = c(12933, 5270, 21),
-  Demitidos = c(11375, 5677, 59),
+  Admitidos = c(48048, 19009, 89),
+  Demitidos = c(40740, 17446, 190),
   Saldo = Admitidos - Demitidos
 )
 caged_sexo <- tibble(
   carac = c("Homem", "Mulher"),
-  Admitidos = c(11043, 6243),
-  Demitidos = c(10869, 5736),
+  Admitidos = c(46634, 20513),
+  Demitidos = c(40358, 19518),
   Saldo = Admitidos - Demitidos
 )
 bind_rows(caged_idade, caged_sexo) %>% 

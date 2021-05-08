@@ -20,7 +20,7 @@ Um conjunto básico de pacotes R é necessário para compilar o pdf:
 install.packages(c("bookdown", "tinytex", "rmarkdown"))
 ```
 
-Além desses é necessário instalar os pacote usando em cada capítulo. Veja o arquivo `main.Rmd` dentro de cada pasta `cap_`. Em geral os pacotes bases são:
+Além desses é necessário instalar os pacotes usado em cada capítulo. Veja o arquivo `main.Rmd` dentro de cada pasta `cap_*`. Em geral os pacotes bases são:
 
 - tidyverse
 - [petknitr](https://github.com/peteconomia/petknitr)
@@ -35,6 +35,7 @@ Além desses é necessário instalar os pacote usando em cada capítulo. Veja o 
 - survey
 - convey
 - [archive](https://github.com/jimhester/archive)
+- zoo
 
 Execute o arquivo `build.R` ou pelo `R` console:
 ```r

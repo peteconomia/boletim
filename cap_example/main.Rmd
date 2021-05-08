@@ -3,8 +3,8 @@ documentclass: report
 output:
   pdf_document:
     keep_tex: true
-    template: ../template/template.tex
-    pandoc_args: "--lua-filter=../filter/boletim.lua"
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
 
 ```{r setup, include=FALSE}
@@ -29,17 +29,17 @@ Minim nisi consequat est ad velit pariatur anim enim ea ullamco nisi eu amet. La
 
 Consequat amet nostrud officia ea exercitation exercitation consectetur. Nostrud culpa nisi consectetur nulla. Mollit quis culpa commodo deserunt est exercitation aute aute est in sit. Esse sunt irure ipsum est consectetur eiusmod. Tempor nisi velit incididunt irure dolore esse cupidatat duis duis labore sint amet esse sunt. Esse cupidatat commodo eiusmod est ut eiusmod id nostrud id magna deserunt proident.
 
-::: {.smbox data-latex="[label={ex_box}]{Cálculo do PIB e as suas óticas}"}
-Duis ullamco cupidatat et sint dolor aliqua. [@abbr:pib] Amet ad labore sunt esse in ad id nisi officia culpa. Proident fugiat laborum nisi laborum officia tempor excepteur ut veniam enim deserunt.
+::: {.smbox data-latex="[label={box:ex_box}]{Cálculo do PIB e as suas óticas}"}
+Duis ullamco cupidatat et sint dolor aliqua. [abbr: @pib] Amet ad labore sunt esse in ad id nisi officia culpa. Proident fugiat laborum nisi laborum officia tempor excepteur ut veniam enim deserunt.
 :::
 
-Veja o Quadro [@box:ex_box]
+Veja o Quadro [box: @ex_box]
 
 Fugiat culpa fugiat labore fugiat labore ut irure amet ex non commodo enim. Ea magna sunt ullamco ullamco deserunt excepteur aliqua et ullamco et aliquip excepteur nostrud exercitation. Est cillum nostrud enim elit in eiusmod dolore ut nisi laboris velit. Eu sint cupidatat amet cillum ex ut.
 
 Ex exercitation voluptate quis ullamco mollit qui aliquip proident sit. Aliquip exercitation adipisicing dolore proident officia laboris. Ad ullamco adipisicing consequat ad cupidatat eu magna excepteur irure. Dolor ut qui enim magna.
 
-```{r label, fig.cap = "Titulo", fig.subcap="Taxa Trimestral", fig.source = "IBGE", wrap = "open"}
+```{r label, fig.cap = "Titulo", fig.subcap="Taxa Trimestral", fig.notes="1B: 1º bimestre, 2B: 2º bimestre", fig.source = "IBGE", wrap = "open"}
 ggplot(mpg) +
     geom_point(aes(x = displ, y = hwy, color = class))
 ```
@@ -54,11 +54,11 @@ ggplot(diamonds, aes(depth, color = cut)) +
     geom_density()
 ```
 
-Conforme Figura [@fig:label], [@fig:diamonds] e [@fig:dist_diamongs]
+Conforme Figura [fig: @label], [fig: @diamonds] e [fig: @dist_diamongs]
 
 Aute eiusmod in proident in ut anim ipsum duis aute ea sint. Quis exercitation sint dolore non est consequat laboris. Duis proident sunt quis minim aliqua. Ut enim nostrud proident sint elit elit eiusmod officia. Sint duis consequat tempor eiusmod ea pariatur labore laboris non veniam commodo cupidatat.
 
-A Tabela [@tab:eco]
+A Tabela [tab: @eco]
 
 ```{r eco}
 economics %>% 
@@ -70,4 +70,3 @@ economics %>%
   ) %>% 
   kable_styling(full_width = T)
 ```
-

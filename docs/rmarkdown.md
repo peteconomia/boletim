@@ -19,12 +19,12 @@
 | Subseções | `[@subsec:key]` | `\ref{subsec:key}` |
 
 ### Figuras
-```r
+`````r
 ```{r label, fig.cap = "Titulo", fig.subcap = "Subtítulo", fig.source = "IBGE", fig.notes = "O estado de São Paulo teve nota suspensa"}
 ggplot(mpg) +
     geom_point(aes(x = displ, y = hwy, color = class))
 ```
-```
+`````
 
 Chunck opções:
 
@@ -39,7 +39,7 @@ Para referenciar a figura: `[@fig:label]`
 
 ### Tabelas
 
-```r
+`````r
 ```{r eco}
 economics %>% 
   head() %>% 
@@ -50,7 +50,8 @@ economics %>%
   ) %>% 
   kable_styling(full_width = T)
 ```
-```
+`````
+
 Para referenciar a tabela: `[@tab:eco]`
 
 ### Quadros

@@ -2,16 +2,18 @@
 documentclass: report
 output:
   pdf_document:
+    keep_tex: true
     template: ../template/template.tex
     pandoc_args: "--lua-filter=../filter/boletim.lua"
 ---
 
 ```{r setup, include=FALSE}
-library(ggplot2)
+library(tidyverse)
+library(kableExtra)
 library(petgg)
 library(petknitr)
 
-petgg::set_theme(base_family = "EB Garamond")
+petgg::set_theme()
 petknitr::setup()
 ```
 
@@ -37,25 +39,35 @@ Fugiat culpa fugiat labore fugiat labore ut irure amet ex non commodo enim. Ea m
 
 Ex exercitation voluptate quis ullamco mollit qui aliquip proident sit. Aliquip exercitation adipisicing dolore proident officia laboris. Ad ullamco adipisicing consequat ad cupidatat eu magna excepteur irure. Dolor ut qui enim magna.
 
-```{r label, fig.cap = "Titulo", fig.subcap="Taxa Trimestral", wrap = "open"}
+```{r label, fig.cap = "Titulo", fig.subcap="Taxa Trimestral", fig.source = "IBGE", wrap = "open"}
 ggplot(mpg) +
     geom_point(aes(x = displ, y = hwy, color = class))
 ```
 
-```{r diamonds, fig.cap = "Diamonds", fig.subcap="Clarity by cut"}
+```{r diamonds, fig.cap = "Diamonds", fig.subcap="Clarity by cut", fig.source = "IBGE"}
 ggplot(diamonds) +
     geom_bar(aes(x = cut, fill = clarity), position = "dodge")
 ```
 
-```{r dist_diamongs, fig.cap = "Dist Diamonds", fig.subcap="Depth by cut", wrap = "close"}
+```{r dist_diamongs, fig.cap = "Dist Diamonds", fig.subcap="Depth by cut", fig.source = "IBGE", wrap = "close"}
 ggplot(diamonds, aes(depth, color = cut)) +
     geom_density()
 ```
 
+Conforme Figura [@fig:label], [@fig:diamonds] e [@fig:dist_diamongs]
+
 Aute eiusmod in proident in ut anim ipsum duis aute ea sint. Quis exercitation sint dolore non est consequat laboris. Duis proident sunt quis minim aliqua. Ut enim nostrud proident sint elit elit eiusmod officia. Sint duis consequat tempor eiusmod ea pariatur labore laboris non veniam commodo cupidatat.
 
-Pariatur aliquip laborum anim et tempor non laboris tempor eiusmod nisi Lorem deserunt dolor. Labore aute velit nostrud et do ad dolore commodo. Nostrud proident veniam consectetur ullamco dolore dolor consequat qui reprehenderit ullamco elit sunt officia mollit.
+A Tabela [@tab:eco]
 
-Dolore deserunt reprehenderit tempor occaecat ea deserunt consectetur officia in qui quis eiusmod nisi veniam. Nulla fugiat sint ullamco amet in labore. Magna velit veniam enim sint ut officia aliqua consectetur ullamco incididunt qui duis cupidatat irure. Elit magna nostrud non Lorem veniam sunt commodo adipisicing in veniam id culpa. Culpa nulla aute ea ex cillum excepteur voluptate eiusmod Lorem eu excepteur.
+```{r eco}
+economics %>% 
+  head() %>% 
+  select(pce:unemploy) %>% 
+  kableExtra::kbl(
+    caption = "Exemplo de Tabela", 
+    booktabs = TRUE
+  ) %>% 
+  kable_styling(full_width = T)
+```
 
-Minim labore elit dolore do aliqua est aliquip Lorem non quis in Lorem. Enim nulla occaecat duis magna ad cillum voluptate consectetur irure ullamco non occaecat id laborum. Ex mollit irure proident et ipsum eiusmod ullamco laborum incididunt aliquip duis. Anim officia minim Lorem mollit esse anim fugiat consectetur nostrud. Nostrud et magna ut enim pariatur ea aliqua adipisicing do ad.

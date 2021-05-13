@@ -202,7 +202,7 @@ bind_rows(caged_idade, caged_sexo) %>%
 	pack_rows("Sexo", 4, 5)
 ```
 
-```{r}
+```{r taxa_desemprego}
 df <- get_sidra(
   x = 4092,
   geo = "State",

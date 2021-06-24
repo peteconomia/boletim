@@ -2,8 +2,8 @@
 documentclass: report
 output:
   pdf_document:
-    template: ../template/template.tex
-    pandoc_args: "--lua-filter=../filter/boletim.lua"
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
 
 ```{r setup, include=F, message=F, warning=F}
@@ -28,6 +28,14 @@ m <- 1000
 M <- 1000000
 B <- 1000000000
 ```
+
+# Mercado de Trabalho
+
+O mercado de trabalho bla bla bla.
+
+## Saldo de empregos
+
+[fig:\@saldo]
 
 ```{r saldo, fig.cap= "Saldo de Empregos", fig.subcap="Saldo Anual",fig.source = "CAGED", wrap = "open"}
 
@@ -155,6 +163,7 @@ ipeadatar::ipeadata("PNADC_RENDREALPRINCEFET_UF", language = "br") %>%
 	) +
 	scale_y_continuous(labels = function(x) x/m)
 ```
+
 ```{r reg_emprego}
 Dados <- data.frame(taxaDesemprego = c(11,11.3,9.8,10.4,12.3,11.4,10.5,9.1,11.2,12.5,12.2,11.6),
                         Pedidos_SeguroDesemprego = c(9833,9833,8832,8784,9642,9324,9155,8182,8785,10642,7535, 8072))
@@ -236,7 +245,8 @@ df %>%
     )
 df
 ```
-```{r} 
+
+```{r}
 
 # Rendimentos - Tocantins
 rendi <- get_sidra(
@@ -297,3 +307,35 @@ ggplot() + geom_line(rendimento_to, mapping = aes(tri, valor, colour = "Tocantin
 
 
 ```
+
+```{r}
+
+pop_ocupada <- get_sidra(
+  x = 4092,
+  header = T,
+  geo = "State",
+  period = "201901-202004"
+) %>% janitor::clean_names()
+
+pop_ocupada_to <- pop_ocupada %>% 
+  filter(unidade_da_federacao == "Tocantins",
+         condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao %in% c("Força de trabalho", "Total"),
+         unidade_de_medida == "Mil pessoas") %>% 
+  select(trimestre_codigo, condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao, valor) %>% 
+  pivot_wider(names_from = condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao,
+              values_from = valor) %>% 
+  rowwise() %>% 
+  mutate(pop_ocu = `Força de trabalho` / `Total` * 100,
+         quarter = trimestre_codigo %>% 
+           stringr::str_replace("(?<=\\d{4})\\d", "Q"),
+         tri = zoo::as.yearqtr(quarter) %>% as.Date()) %>% 
+  ggplot(aes(tri, pop_ocu)) + 
+  geom_line() + 
+  scale_x_date(
+    breaks = scales::breaks_width("3 month", offset = -30),
+labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
+  )
+pop_ocupada_to
+```
+
+\`\`\`

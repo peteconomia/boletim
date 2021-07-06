@@ -39,13 +39,15 @@ produtos <- c(39432, 39441, 39442, 39443, 39456, 39467)
 # Série histórica da estimativa anual da área plantada, área colhida, produção e rendimento médio dos produtos das lavouras
 prod <- get_sidra(x = 6588,
 									variable = 35,
-									period = sapply(1:9, function(n) paste0("20200",n)),
+									period =  "202012",
 									header = TRUE,
+									geo = "State",
+									geo.filter = list("State" = 17),
 									format = 4)
 
 prod %>%
 	filter(
-		`Mês (Código)` == "202009",
+		`Mês (Código)` == "202012",
 		`Produto das lavouras (Código)` %in% produtos
 	) %>%
 	transmute(
@@ -66,7 +68,7 @@ prod %>%
 ```{r rendim_medio}
 rend_medio <- get_sidra(x = 6588,
 											 variable = 36,
-											 period = "202009",
+											 period = "202012",
 											 geo = "State",
 											 geo.filter = list("State" = 17),
 											 header = TRUE,
@@ -92,7 +94,7 @@ rend_medio %>%
 # Área Plantada
 area_plan <- get_sidra(x = 6588,
 											 variable = 216,
-											 period = "202009",
+											 period = "202012",
 											 geo = "State",
 											 geo.filter = list("State" = 17),
 											 header = TRUE,
@@ -156,7 +158,7 @@ area_plan %>%
 # Unidade em Cabeças
 abate_bovino <- get_sidra(
 		x = 1092,
-		period = c("201903" ,"201904", "202001", "202002"),
+		period = c("202001", "202002", "202003", "202004"),
 		geo = "State",
 		geo.filter = list("State" = 17),
 		header = TRUE,
@@ -176,7 +178,7 @@ abate_bovino <- get_sidra(
 	
 # Unidade em cabeças
 abate_frango <- get_sidra(x = 1094,
-		period = c("201903", "201904", "202001", "202002"),
+		period = c("202001", "202002", "202003", "202004"),
 		geo = "State",
 		geo.filter = list("State" = 17),
 		header = TRUE,
@@ -195,7 +197,7 @@ bind_rows(
 	select(`Trimestre (Código)`, tipo, Valor) %>% 
 	drop_na() %>% 
 	mutate(tri = triForm(`Trimestre (Código)`)) %>% 
-	ggplot(aes(factor(tri, levels = c("3T\n2019", "4T\n2019", "1T\n2020", "2T\n2020")), Valor, fill = tipo)) +
+	ggplot(aes(factor(tri, levels = c("1T\n2020", "2T\n2020", "3T\n2020", "4T\n2020")), Valor, fill = tipo)) +
 	geom_bar(stat = "identity", position = "dodge") +
 	scale_y_continuous(labels = function(n) n/m)
 ```

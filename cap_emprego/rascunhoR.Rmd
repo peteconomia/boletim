@@ -31,11 +31,11 @@ B <- 1000000000
 
 # Mercado de Trabalho
 
-O mercado de trabalho bla bla bla.
+Os empregos são indicadores para a atividade econômica de um país. Por isso, o governo federal realiza inúmeras pesquisas sobre os empregos formais e informais. O Cadastro Geral de Empregados e Desempregados (CAGED) reúne inúmeras informações sobre os empregos formais, entre admissões, desligamentos, salários, funções, cargos, etc. Também usa-se os dados da Pesquisa Nacional por Amostra de Domicílios PNAD-C para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores. Também usa-se os dados da Pesquisa Nacional por Amostra de Domicílios PNAD-C para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores.
 
 ## Saldo de empregos
 
-A Figura [fig:@saldo]
+A Figura [fig: @saldo]
 
 ```{r saldo, fig.cap= "Saldo de Empregos", fig.subcap="Saldo Anual", fig.source = "CAGED", wrap = "open"}
 

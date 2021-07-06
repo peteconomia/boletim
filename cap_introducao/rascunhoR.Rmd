@@ -37,7 +37,7 @@ B <- 1000000000
 pmc_br <- get_sidra(
 		x = 3416,
 		geo = "Brazil",
-		period = "201901-202008",
+		period = "202001-202012",
 		header = T
 	) %>%
 	as_tibble() %>%
@@ -49,7 +49,7 @@ pmc_uf <- get_sidra(
 		x = 3416,
 		geo = "State",
 		geo.filter = list("State" = c(13, 15, 17)),
-		period = "201901-202008",
+		period = "202001-202012",
 		header = T
 	) %>%
 	as_tibble() %>%
@@ -84,7 +84,7 @@ vol_vendas %>%
 pms_br <- get_sidra(
 		x = 6442,
 		geo = "Brazil",
-		period = "201901-202008",
+		period = "202001-202012",
 		header = T
 	) %>%
 	as_tibble() %>%
@@ -96,7 +96,7 @@ pms_uf <- get_sidra(
 		x = 6442,
 		geo = "State",
 		geo.filter = list("State" = c(13, 15, 17)),
-		period = "201901-202008",
+		period = "202001-202012",
 		header = T
 	) %>%
 	as_tibble() %>%

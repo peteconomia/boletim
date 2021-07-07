@@ -40,8 +40,9 @@ B <- 1000000000
 triForm <- function(x) paste0(substr(x, 6, 6),"T\n",substr(x, 1, 4))
 ```
 
-#Agricultura#
+## Agricultura
 
+A agricultura é importante para o Brasil, é um setor que cresce de forma exponencial e alavanca a economia de inúmeros estados da federação. O agronegócio representou 21,4% do PIB nacional em 2019, demonstrando o quão providencial para o país. Já para o Tocantins, sua participação está abaixo da média nacional, com menos de 15% do PIB estadual. Conforme a A Figura [fig: @producao]
 
 ```{r producao, fig.cap= "Produção Tocantins", fig.subcap="12 meses", fig.source = "IBGE", wrap = "open"}
 # Produção - Tocantins 2020
@@ -128,6 +129,7 @@ area_plan %>%
 	geom_bar(aes(x = produto, y = total), stat = "identity") +
 	scale_y_continuous(labels = function(n) n/m)
 ```
+
 ```{r prod_leite}
 # tibble(
 # 	litros=c(33189, 32958, 29721, 36369, 37273),
@@ -137,7 +139,6 @@ area_plan %>%
 # 	geom_bar(aes(factor(trimestre, levels = trimestre), litros), stat = "identity") +
 # 	scale_y_continuous(labels = function(n) n/m)
 ```
-
 
 ```{r abate_total}
 # Abate de animais - Tocantins
@@ -164,7 +165,6 @@ area_plan %>%
 # 	) +
 # 	scale_y_continuous(labels = function(n) n/m)
 ```
-
 
 ```{r abates, fig.cap= "Abate de animais", fig.subcap="Saldo Anual", fig.source = "CAGED", wrap = "open"}
 # Abate de frangos, bovinos, vacas por trimestre
@@ -214,6 +214,7 @@ bind_rows(
 	geom_bar(stat = "identity", position = "dodge") +
 	scale_y_continuous(labels = function(n) n/m)
 ```
+
 ```{r galinha_poedeiras}
 
 # prod_galinhas <- get_sidra(
@@ -255,4 +256,3 @@ bind_rows(
 # 		stat = "identity"
 # 	)
 ```
-

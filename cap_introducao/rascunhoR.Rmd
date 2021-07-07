@@ -1,5 +1,9 @@
 ---
-output: latex_fragment
+documentclass: report
+output:
+  pdf_document:
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
 
 ```{r setup, include=F, message=F, warning=F}
@@ -30,7 +34,11 @@ M <- 1000000
 B <- 1000000000
 ```
 
-```{r pmc_ibge}
+
+
+
+
+```{r pmc_ibge, fig.cap= "Pesquisa Mensal de Comércio", fig.subcap="Saldo Anual", fig.source = "IBGE", wrap = "open"}
 # Pesquisa Mensal de Comércio, https://sidra.ibge.gov.br/pesquisa/pmc/tabelas
 ## Tabela 3416 - Índices de volume e de receita nominal de vendas no comércio varejista, por tipos de índice (2014 = 100)
 
@@ -78,7 +86,7 @@ vol_vendas %>%
 	scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
 ```
 
-```{r pms_ibge}
+```{r pms_ibge,  fig.cap= "Pesquisa Mensal de Serviços", fig.subcap="Saldo Anual", fig.source = "IBGE", wrap = "open"}
 # Pesquisa Mensal de Serviçoes, https://sidra.ibge.gov.br/pesquisa/pms/tabelas
 ## Tabela 6442
 pms_br <- get_sidra(
@@ -125,7 +133,7 @@ vol_services %>%
 	scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
 ```
 
-```{r pib_expec}
+```{r pib_expec,  fig.cap= "Expectativa de crescimento anual do PIB Nacional", fig.subcap="Saldo Anual", fig.source = "SIDRA", wrap = "open"}
 # Expectativa de crescimento anual do PIB Nacional
 expec_anual <- rbcb::get_annual_market_expectations(
 	indic = c("PIB Agropecuária", "PIB Industrial", "PIB Serviços", "PIB Total")

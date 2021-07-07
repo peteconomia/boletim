@@ -1,17 +1,27 @@
 ---
-output: latex_fragment
+documentclass: report
+output:
+  pdf_document:
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
 
 ```{r setup, include=F, message=F, warning=F}
 library(tidyverse)
-library(sidrar)
-library(rmarkdown)
 library(knitr)
 library(scales)
+library(zoo)
+library(ipeadatar)
 library(petgg)
 library(extrafont)
+library(kableExtra)
+library(sidrar)
+library(lubridate)
+library(petknitr)
+library(rmarkdown)
 
 petgg::set_theme(base_family = "EB Garamond")
+
 
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -30,7 +40,10 @@ B <- 1000000000
 triForm <- function(x) paste0(substr(x, 6, 6),"T\n",substr(x, 1, 4))
 ```
 
-```{r producao, include=T}
+#Agricultura#
+
+
+```{r producao, fig.cap= "Produção Tocantins", fig.subcap="12 meses", fig.source = "IBGE", wrap = "open"}
 # Produção - Tocantins 2020
 
 # Os produtos são Arroz, milho 1 safra, milho 2 safra, soja, cana de açucar e mandioca
@@ -65,7 +78,7 @@ prod %>%
 
 ```
 
-```{r rendim_medio}
+```{r rendim_medio, fig.cap= "Rendimento médio", fig.subcap="Saldo Anual", fig.source = "IBGE", wrap = "open"}
 rend_medio <- get_sidra(x = 6588,
 											 variable = 36,
 											 period = "202012",
@@ -90,7 +103,7 @@ rend_medio %>%
 	scale_y_continuous(labels = function(n) n/m)
 ```
 
-```{r area_plantada}
+```{r area_plantada, fig.cap= "Área Plantada", fig.subcap="Saldo Anual", fig.source = "IBGE", wrap = "open"}
 # Área Plantada
 area_plan <- get_sidra(x = 6588,
 											 variable = 216,
@@ -153,7 +166,7 @@ area_plan %>%
 ```
 
 
-```{r abates}
+```{r abates, fig.cap= "Abate de animais", fig.subcap="Saldo Anual", fig.source = "CAGED", wrap = "open"}
 # Abate de frangos, bovinos, vacas por trimestre
 # Unidade em Cabeças
 abate_bovino <- get_sidra(

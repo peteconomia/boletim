@@ -17,7 +17,7 @@ petgg::set_theme()
 petknitr::setup()
 ```
 
-# Título
+# Exemplo 
 
 Cillum consequat velit ut sunt laborum Lorem in. Laboris ex aute in consectetur. Adipisicing enim laborum deserunt est est minim ullamco commodo commodo ut fugiat amet fugiat. Culpa anim nostrud id ullamco qui eiusmod. Quis do deserunt elit voluptate ullamco voluptate. Magna nostrud aute ullamco elit et.
 

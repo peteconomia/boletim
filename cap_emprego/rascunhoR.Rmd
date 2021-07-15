@@ -32,6 +32,7 @@ B <- 1000000000
 # Mercado de Trabalho
 
 Os empregos são indicadores para a atividade econômica de um país. Por isso, o governo federal realiza inúmeras pesquisas sobre os empregos formais e informais. O Cadastro Geral de Empregados e Desempregados (CAGED) reúne inúmeras informações sobre os empregos formais, entre admissões, desligamentos, salários, funções, cargos, etc. Também usa-se os dados da Pesquisa Nacional por Amostra de Domicílios PNAD-C para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores. Também usa-se os dados da Pesquisa Nacional por Amostra de Domicílios PNAD-C para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores.a
+INDICADORES SOBRE EMPREGO 
 
 Mercado
 

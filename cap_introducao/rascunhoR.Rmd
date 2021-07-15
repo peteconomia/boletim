@@ -35,7 +35,7 @@ As expectativas de crescimento para a economia brasileira situavam-se em torno d
 
 No primeiro trimestre de 2020, o PIB brasileiro encolheu 1,5% de acordo com dados oficiais do IBGE. Cabe destacar que a pandemia teve início apenas no fim desse período, o que pode indicar que já havia uma perda de dinamismo da atividade econômica antes mesmo da chegada do vírus, dada a magnitude da contração observada. O segundo trimestre foi o de maior contração, com uma queda de 9,7%, muito em função dos maiores esforços de isolamento social feitos nesse período.
 
-No terceiro trimestre, houve um crescimento de 7,7%, que apesar de alto, não foi suficiente para repor as perdas do início do ano. Já no quarto trimestre, houve um crescimento de 3,2%. O crescimento no ano vigente foi negativo -4,4, apresentando uma queda no PIB, os estimulos fiscais e monetários amenizavam as expectativas que foram apresentados na Figura [fig:@pib_expec]
+No terceiro trimestre, houve um crescimento de 7,7%, que apesar de alto, não foi suficiente para repor as perdas do início do ano. Já no quarto trimestre, houve um crescimento de 3,2%. O crescimento no ano vigente foi negativo -4,4, apresentando uma queda no PIB, os estimulos fiscais e monetários amenizavam as expectativas que foram apresentados na Figura [fig: @pib_expec]
 
 ```{r pmc_ibge, fig.cap= "Pesquisa Mensal de Comércio", fig.subcap="Saldo Anual", fig.source = "IBGE", wrap = "open"}
 # Pesquisa Mensal de Comércio, https://sidra.ibge.gov.br/pesquisa/pmc/tabelas
@@ -85,7 +85,7 @@ vol_vendas %>%
 	scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
 ```
 
-```{r pms_ibge,  fig.cap= "Pesquisa Mensal de Serviços", fig.subcap="Saldo Anual", fig.source = "IBGE", wrap = "open"}
+```{r pms_ibge,  fig.cap= "Pesquisa Mensal de Serviços", fig.subcap="Saldo Anual", fig.source = "IBGE"}
 # Pesquisa Mensal de Serviçoes, https://sidra.ibge.gov.br/pesquisa/pms/tabelas
 ## Tabela 6442
 pms_br <- get_sidra(
@@ -132,7 +132,7 @@ vol_services %>%
 	scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
 ```
 
-```{r pib_expec,  fig.cap= "Expectativa de crescimento anual do PIB Nacional", fig.subcap="Saldo Anual", fig.source = "SIDRA", wrap = "open"}
+```{r pib_expec,  fig.cap= "Expectativa de crescimento anual do PIB Nacional", fig.subcap="Saldo Anual", fig.source = "SIDRA", wrap = "close"}
 # Expectativa de crescimento anual do PIB Nacional
 expec_anual <- rbcb::get_annual_market_expectations(
 	indic = c("PIB Agropecuária", "PIB Industrial", "PIB Serviços", "PIB Total")
@@ -155,7 +155,7 @@ expec_anual %>%
 
 ```
 
-```{r PIB, fig.cap= "PIB", fig.subcap="Com ajuste sazonal", fig.source = "IBGE", wrap = "open"}
+```{r PIB, fig.cap= "PIB", fig.subcap="Com ajuste sazonal", fig.source = "IBGE"}
 
 library(devtools)
 library(tidyverse)
@@ -265,7 +265,7 @@ graf_da
 
 ```
 
-```{r Variação trimestral do PIB - Oferta, fig.cap= "Variação trimestral do PIB pelo lado da oferta", fig.subcap="Com ajuste sazonal", fig.source = "IBGE", wrap = "open"}
+```{r Variação trimestral do PIB - Oferta, fig.cap= "Variação trimestral do PIB pelo lado da oferta", fig.subcap="Com ajuste sazonal", fig.source = "IBGE", wrap = "close"}
 
 #Separando dados da Oferta
 oferta <- pib %>% 

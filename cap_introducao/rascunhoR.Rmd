@@ -35,7 +35,9 @@ As expectativas de crescimento para a economia brasileira situavam-se em torno d
 
 No primeiro trimestre de 2020, o PIB brasileiro encolheu 1,5% de acordo com dados oficiais do IBGE. Cabe destacar que a pandemia teve início apenas no fim desse período, o que pode indicar que já havia uma perda de dinamismo da atividade econômica antes mesmo da chegada do vírus, dada a magnitude da contração observada. O segundo trimestre foi o de maior contração, com uma queda de 9,7%, muito em função dos maiores esforços de isolamento social feitos nesse período.
 
-No terceiro trimestre, houve um crescimento de 7,7%, que apesar de alto, não foi suficiente para repor as perdas do início do ano. Já no quarto trimestre, houve um crescimento de 3,2%. O crescimento no ano vigente foi negativo -4,4, apresentando uma queda no PIB, os estimulos fiscais e monetários amenizavam as expectativas que foram apresentados na Figura [fig: @pib_expec]
+No terceiro trimestre, houve um crescimento de 7,7%, que apesar de alto, não foi suficiente para repor as perdas do início do ano. Já no quarto trimestre, houve um crescimento de 3,2%. O crescimento no ano vigente foi negativo -4,4, apresentando uma queda no PIB, os estimulos fiscais e monetários amenizavam as expectativas que foram apresentados na Figura [fig: @pib_expec].
+
+12345789fsihsaiuhfisa
 
 ```{r pmc_ibge, fig.cap= "Pesquisa Mensal de Comércio", fig.subcap="Saldo Anual", fig.source = "IBGE", wrap = "open"}
 # Pesquisa Mensal de Comércio, https://sidra.ibge.gov.br/pesquisa/pmc/tabelas

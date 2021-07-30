@@ -187,7 +187,7 @@ Dados <- data.frame(taxaDesemprego = c(11,11.3,9.8,10.4,12.3,11.4,10.5,9.1,11.2,
 
 ```
 
-```{r}
+```{r, fig.source = "CAGED"}
 # Tabelas
 
 caged_idade <- tibble(
@@ -202,7 +202,13 @@ caged_sexo <- tibble(
   Demitidos = c(40358, 19518),
   Saldo = Admitidos - Demitidos
 )
-bind_rows(caged_idade, caged_sexo) %>%
+caged_instru <- tibble(
+  carac = c("A", "F.C", "M.I.C", "M.C", "S.C", "P.G"),
+  Admitidos = c(219,3621,4745,45486,4457,316),
+  Demitidos = c(237, 3343, 4456, 39888, 3984, 319),
+  Saldo = Admitidos - Demitidos
+)
+bind_rows(caged_idade, caged_sexo, caged_instru) %>%
 	kableExtra::kbl(
 		caption = "XXX",
 		align = "lrrr",
@@ -212,7 +218,7 @@ bind_rows(caged_idade, caged_sexo) %>%
 	) %>%
 	kable_styling(full_width = T) %>%
 	pack_rows("Idade", 1, 3) %>%
-	pack_rows("Sexo", 4, 5)
+	pack_rows("Sexo", 4, 5) 
 ```
 
 ```{r taxa_desemprego, fig.cap= "XXX", fig.subcap="XXXX", fig.source = "YYYY", wrap = "open"}

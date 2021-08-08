@@ -1,9 +1,316 @@
-\input{../preamble}
+\documentclass[twocolumn, a4paper, 10pt]{report}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage[lining]{ebgaramond}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titletoc}
+\usepackage[explicit]{titlesec}
+\usepackage{setspace}
+\usepackage{tcolorbox}
+\usepackage{pagecolor}
+\usepackage{hyperref}
+\usepackage{datetime}
+\usepackage{kvsetkeys}
+\usepackage{lipsum} % generate paragraph
+\usepackage{xstring}
 
-\title{Contas}
-\author{}
-\date{\today}
+% Required by KableExtra R package
+%\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+%\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+
+\usepackage[acronym,toc]{glossaries}
+\makenoidxglossaries
+\IfFileExists{tex/abbreviations.tex}{\input{tex/abbreviations.tex}}{\input{../tex/abbreviations.tex}}
+
+% Cores
+\definecolor{primarycolor}{RGB}{0, 96, 157}
+\definecolor{secondarycolor}{RGB}{34, 192, 221}
+\definecolor{boxbackground}{RGB}{225, 233, 246}
+\definecolor{primarytext}{RGB}{0, 0, 0}
+\definecolor{secondarytext}{RGB}{180, 180, 180}
+
+% Text Layout
+\setlength\parindent{10pt} % Tamanho da indentação do paragrafo
+\parskip = 1pt
+\setlength{\columnsep}{15pt} % Espaço entre as colunas
+\setstretch{1} % Altura da linha
+\setcounter{tocdepth}{0} % Table of contents depth, imprime apenas chapter e section
+
+% Figures Caption Config
+\captionsetup{
+	format=plain,
+	justification=raggedright,
+	singlelinecheck=false,
+	font={normalsize,color=primarycolor},
+	labelfont={color=primarycolor},
+	labelsep=space,
+	skip=0pt
+}
+\renewcommand{\thesubfigure}{.\arabic{subfigure}}
+\DeclareCaptionLabelFormat{opening}{Figura~\thechapter.\arabic{figure}.\arabic{subfigure}}
+\captionsetup[subfigure]{
+	labelformat=opening,
+	font={normalsize,color=primarycolor},
+	labelsep=space,
+	skip=2pt
+}
+\setkeys{Gin}{width=\linewidth} % \includegraphics por padrão terá comprimento igual a \linewidth
+% Links Config
+\hypersetup{
+	colorlinks=true,
+	linkbordercolor=white,
+	linkcolor=primarytext,
+	urlcolor=primarytext,
+	urlbordercolor=white, %links externos
+	citecolor=primarytext,
+	pdftitle={},
+	pdfauthor={PET - Ciências Econômicas, Universidade Federal do Tocantins},
+	pdfsubject={},
+	pdfcreator={LaTeX},
+	pdfproducer={PET - Ciências Econômicas},
+	pdfkeywords={Tocantins, Economia, boletim},
+	bookmarks=true
+}
+
+% Numeração da Pagina
+% Clear the header and footer
+\fancyhf{} % clear all
+\fancyhead{}
+\fancyfoot{}
+\fancypagestyle{plain}{
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+	\fancyfoot[RE,RO]{\footnotesize\textcolor{secondarytext}{\leftmark}\quad\thepage}
+}
+\pagestyle{plain}
+
+% Table Of Contents Style
+\titlecontents{chapter}[70pt]
+	{\LARGE\color{primarycolor}\bigskip}
+	{\thecontentslabel.~}
+	{}
+	{\enspace---\enspace\contentspage}
+
+\titlecontents{section}[100pt]
+	{\large\color{primarycolor}\bigskip}
+	{}
+	{}
+	{\enspace---\contentspage}
+
+\titlecontents{subsection}[130pt]
+	{\normalsize\color{primarycolor}\bigskip}
+	{}
+	{}
+	{\enspace---\contentspage}
+
+
+% Style Chapter, section and subsection
+\titleformat{\chapter}[display]
+	{\filright}
+	{\scriptsize\color{secondarytext}\MakeUppercase\chaptertitlename~\thechapter}
+	{5pt} % margem superior
+	{\fontsize{50pt}{50pt}\selectfont\color{primarycolor}#1}\titlespacing*{\chapter}
+	{0pt}{0pt}{20pt}  %controls vertical margins on title
+
+\titleformat{\section}
+	{\large\filright\color{primarycolor}}
+	{}
+	{0pt}
+	{#1}
+
+\titleformat{\subsection}
+	{\large\filright\color{primarycolor}}
+	{}
+	{0pt}
+	{#1}
+
+% Pandoc output require
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Box Config
+\newtcolorbox[auto counter,number within=chapter]{smbox}[2][]{
+	%float=p,
+	colback=boxbackground,
+	colframe=boxbackground,
+	arc=0mm,
+	valign=center,
+	top=0pt,
+	left=10pt,
+	right=10pt,
+	bottom=10pt,
+	toptitle=20pt,
+	bottomtitle=0pt,
+	width=\linewidth,
+	fonttitle=\color{primarycolor},
+	title=Quadro~\thetcbcounter~#2,#1
+}
+
+\newcommand{\source}[1]{\scriptsize{Fonte: #1}\\}
+
+\newcommand{\notes}[1]{{\scriptsize{Nota:#1}}}
+
+\newcommand{\subcap}[1]{{\scriptsize\color{primarycolor}#1\newline}}
+
+\newcommand{\abbr}[1]{\acrshort{#1}}
+
+\newcommand{\trimestres}[1][1-4]{
+	\IfEqCase{#1}{%
+        {1-4}{1T: 1º trimestre, 2T: 2º trimestre, 3T: 3º trimestre, 4T: 4º trimestre}%
+		{1-3}{1T: 1º trimestre, 2T: 2º trimestre, 3T: 3º trimestre}%
+		{1-2}{1T: 1º trimestre, 2T: 2º trimestre}
+		{2-3}{2T: 2º trimestre, 3T: 3º trimestre}
+		{2-4}{2T: 2º trimestre, 3T: 3º trimestre, 4T: 4º trimestre}
+		{3-4}{3T: 3º trimestre, 4T: 4º trimestre}
+		{1}{1T: 1º trimestre}
+		{2}{2T: 2º trimestre}
+		{3}{3T: 3º trimestre}
+		{4}{4T: 4º trimestre}
+	}[]
+}
+\newcommand{\bimestres}[1][1-4]{
+	\IfEqCase{#1}{%
+        {1-4}{1B: 1º bimestre, 2B: 2º bimestre, 3B: 3º bimestre, 4B: 4º bimestre}%
+		{1-3}{1B: 1º bimestre, 2B: 2º bimestre, 3B: 3º bimestre}%
+		{1-2}{1B: 1º bimestre, 2B: 2º bimestre}
+		{2-3}{2B: 2º bimestre, 3B: 3º bimestre}
+		{2-4}{2B: 2º bimestre, 4B: 3º bimestre, 4B: 4º bimestre}
+		{3-4}{3B: 3º bimestre, 4B: 4º bimestre}
+		{1}{1B: 1º bimestre}
+		{2}{2B: 2º bimestre}
+		{3}{3B: 3º bimestre}
+		{4}{4B: 4º bimestre}
+		{5}{5B: 5º bimestre}
+		{6}{6B: 6º bimestre}
+    }[]
+}
 
 \begin{document}
-\input{rascunho}
-\end{document}
+    
+    \hypertarget{contas-puxfablicas-estadual}{%
+    \chapter{Contas Públicas
+    Estadual}\label{contas-puxfablicas-estadual}}
+
+    O resultado primário do estado em 2020 foi de cerca de R\$ 1,45
+    bilhões, valor 18,8\% maior que o resultado primário de 2019, quando
+    foi pouco mais de R\$ 1,22 bilhões. Veja o Quadro {[}box:
+    @resultado\_primario{]} para mais detalhes sobre o resultado
+    primário.
+
+    \begin{figure}[!h]
+    \begin{subfigure}{\linewidth}
+    \caption{Variação da receita e despesa primária\label{fig:variacao_receita_despesa_primaria}}
+    \subcap{Variação por bimestre}
+    \includegraphics{main_files/figure-latex/variacao_receita_despesa_primaria-1.pdf}
+    \source{\abbr{siconfi}}
+    \end{subfigure}
+    \end{figure}
+
+    As receitas primárias cresceu \% no quinto bimestre de 2020, como
+    mostra a Figura. As despesas primárias cresceu 2,03\%. No quarto
+    bimestre de 2019 as receitas tinham crescido 9,55\% e as despesas
+    6,48\%. Comparando o crescimento das despesas primárias no quarto
+    bimestre de 2020 a taxa de crescimento foi menor que em 2019. O
+    baixo crescimento da despesas contribuiu para um superávit primário
+    de pouco mais de R\$ 1,08 bilhões até o quarto bimestre de 2020.
+
+    A Figura exibe as despesas por categorias. Destaque para as despesas
+    com assistência social, que cresceu cerca de 133\% no quarto
+    bimestre de 2020. Previdência social, saúde e judiciário cresceu
+    16,2\%, 12,9\% e 18,8\% respectivamente. Por outro lado,
+    administração, segurança pública e educação recuaram.\\
+
+    \begin{smbox}[label={box:resultado_primario}]{O que é o resultado primário}
+    O resultado primário é um dos principais indicadores das contas
+    públicas, representa o esforço fiscal para diminuir o estoque da
+    dívida. Ele é resultado da diferença entre as receitas e despesas
+    (excluindo as receitas e despesas com juros). O superávit primário
+    ou resultado primário positivo ocorre quandos as receitas primárias
+    é maior que as despesas primárias. Indica a economia do governo para
+    pagamento da dívida. O inverso, quando despesas primárias excedem as
+    receitas primárias há déficit primário ou resultado primário
+    negativo, incorrendo em aumento da dívida.
+
+    \end{smbox}
+
+    Despesas com pessoal em relação a receita corrente líquida
+    (\textbackslash abbr\{rcl\}), conforme Figura
+    \textbackslash ref\{fig:desp\_pessoal\_rcl\}, encontra-se em 42,1\%
+    em agosto de 2020, valor abaixo do limite máximo de 49\%
+    estabelecido na Lei de Responsabilidade Fiscal
+    (\textbackslash abbr\{lrf\}) para o poder Executivo
+    \textbackslash footnote\{A \textbackslash abbr\{rcl\}, de acordo com
+    a \textbackslash abbr\{lrf\}, deve ser apurada somando-se as
+    receitas arrecadadas no mês em referência e nos onze anteriores. No
+    entanto, pelo fato dessa publicação cobrir dados até cerca do
+    primero semestre optou-se pela utilização da
+    \textbackslash abbr\{rcl\} acumulada até o respectivo bimestre\}. Em
+    agosto de 2015 a \textbackslash abbr\{rcl\} destinada ao pagamento
+    de pessoal correspondia a 51,5\%, valor acima do limite máximo. O
+    comprometimento da \textbackslash abbr\{rcl\} ao pagamento de
+    pessoal extrapolou o limite em 2015, 2016, 2017 e 2018.
+
+    A dívida consolidada líquida (\textbackslash abbr\{dcl\}) do estado
+    em proporção a \textbackslash abbr\{rcl\} até agosto apresentou
+    queda. Em agosto de 2020 essa indicador ficou em 44,1\%, valor
+    abaixo do limite definido pelo Senado Federal para os estados, de
+    duas vezes a \textbackslash abbr\{rcl\}. Entre 2017 e 2018 a
+    \textbackslash abbr\{dcl\} em proporção à \textbackslash abbr\{rcl\}
+    aumentou, saindo de 30\textbackslash\% para 52,3\% em 2019, conforme
+    Figura \textbackslash ref\{fig:divida\_rcl\}.
+
+    O indicador da capacidade de pagamento
+    (\textbackslash abbr\{capag\}) do estado traz informações a cerca da
+    situação fiscal dos estados e municípios. O índice é composto por
+    três componentes: endividamento, poupança corrente e liquidez.
+    Estados e municípios recebem uma nota final, A, B, C ou D.
+
+    O Tocantins ficou com nota C em 2019 e 2020. Mesmo mantendo a mesma
+    nota entre 2019--2020, apresentou pioras em todos os indicadores. O
+    envididamento do estado que representa a \textbackslash abbr\{dcl\}
+    em proporção à \textbackslash abbr\{rcl\} saltou de 46,35\% para
+    67,6\%. A poupança corrente que corresponde despesas corrente e
+    receitas correntes ajustadas (\textbackslash abbr\{rca\}) também
+    mostrou uma leve piora, saindo de 94,56\% para 95,9\%. A liquidez do
+    estado cresceu de 539,4\% para 577,5\% em 2020.
+
+    Endividamento e poupança corrente estão em melhor condição, pois
+    estão mais próximo do limite para receber uma melhor nota. Para
+    obter uma nota A no índice de endividamento o estado deve
+    conservá-lo abaixo de 60\%, atualmente está em 67,6\%. A poupança
+    corrente recebeu nota C em 2020 conforme Tabela
+    \textbackslash ref\{tab:capag\_uf\}. Uma elevação na nota da
+    poupança corrente para B requer uma relação despesas correntes e
+    \textbackslash abbr\{rca\} menor que 95\%, em 2020 ficou em 95,85\%.
+    A liquidez do estado encontra-se em situação mais delicada, em 2020
+    fechou em 577,5\%, valor quase cinco vezes acima do limite para
+    tirar nota A.
+
+    Dentre os estados da região Norte, Tocantins e Roraima foram os que
+    apresentaram pior desempenho, conforme disposto na Tabela
+    \textbackslash ref\{tab:capag\_uf\}. Rondônia aparece com a melhor
+    perfomance, saiu da nota B para A entre 2019--2020. A redução no
+    endividamento e na liquidez garantiu nota A em todos os indicadores.
+
+    \end{document}

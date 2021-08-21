@@ -1,0 +1,128 @@
+---
+documentclass: report
+output:
+  pdf_document:
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
+---
+
+```{r setup, include=F, message=F, warning=F}
+library(tidyverse)
+library(scales)
+library(petgg)
+library(petknitr)
+library(kableExtra)
+
+petgg::set_theme(base_family = "EB Garamond")
+petknitr::setup()
+
+m <- 1000000
+b <- 1000000000
+```
+
+# Comércio Exterior
+
+A balança comercial define a diferença entre o registro de exportação de bens e serviços, adquiridos e vendidos de um país e a transação de compra de importação. Portanto, se o valor total das exportações for maior que o valor total das importações, o saldo é considerado positivo e também podemos chamá-lo de superávit comercial. Por outro lado, se as importações forem maiores que as exportações, haverá déficit ou saldo negativo. A balança comercial não considera a quantidade de produtos que entram ou saem de um país, mas sim os recursos gerados pela transação, o comportamento acompanha a balança comercial do Brasil e o Tocantins apresenta um saldo superavitário.
+
+No ano de 2020, o estado do Tocantins atingiu um valor de US$1,37 bilhão em exportações, valor correspondente à uma variação de 23,2% em relação ao ano de 2019, levando o estado a atingir o 17º lugar no país entre os maiores exportadores.
+
+```{r produtos_expo, fig.cap = "Principais produtos exportados", fig.subcap = "Em milhões de US$", fig.source = "\\acrshort{comex}", wrap = TRUE}
+# Produtos exportados
+readxl::read_excel("bc_2020.xlsx", sheet = "produtos_export") %>%
+  ggplot(aes(data, valor, fill = produto)) +
+  geom_bar(stat = "identity", position = "dodge", gap = "s") +
+  scale_y_continuous(labels = function(x) x / m)
+```
+
+Já os valores de produtos importados pelo estado neste mesmo período foi de US$254 milhões, o que representa uma variação 51,5% em relação ao a 2019, deixando o Tocantins na 22º posição no ranking nacional de importações por estados.
+
+Historicamente o Tocantins apresenta sempre um saldo superavitário em sua balança comercial, onde o menor valor dos últimos 10 anos foi uma expressiva marca de de US$ 104 milhões ainda em 2010. Em 2020, o saldo tocantinense atingiu seu maior recorde em todos os tempos, ao atingir um valor superavitário de US$ 1,11 bilhão.
+
+Soja representa 64% do valor total de produtos exportados em 2020, a um valor US$872 milhões. De 2016 a 2018, a soja vinha apresentando constante aumento no valor e quantidade exportad, mas a série foi interrompida por uma queda de de 22,4% em 2019 em comparação a 2018. Em 2020 o valor voltou a subir, chegando a ser 12,9% maior do que no ano anterior.
+
+Carne bovina (fresca/congelada ou refrigerada) correspondeu a 24% do total exportado no ano de 2020, atingindo o valor de US$ 325 milhões, o que significa crescimento de 83,3% em relação a 2019, onde o valor foi US$ 177 milhões. O histórico salto dos valores atingidos em 2020 podem significar uma nova fase para o futuro da carne bovina produzida no Tocantins ao se reafirmar como uma possível potência na produção e exportação deste produto no país.
+
+Milho foi responsável por 8,8% das exportações estaduais em 2020, gerando um valor de US$ 121 milhões. Esse valor significa um crescimento de 54% em relação ao valor total exportado no anterior, onde se recuperou da queda sofrida em 2018. O aumento das exportações do milho pelo segundo ano consecutivo devolve a confiança no produto como uma das principais fontes de dinheiro da balança comercial tocantinense.
+
+Demais produtos (indústria de transformação) obtiveram uma participação de 1,1% nos valores exportados no estado, ao valor de US$ 14,4 milhões, 27,8% a menos do que o valor no mesmo período do ano anterior. Tais números não foram novidade para o setor, que vem demonstrando constante queda desde 2016 onde o valor exportado chegou a atingir US$ 44 milhões. A única exceção ocorreu no ano de 2019 onde o valor foi 3,6% em relação ao de 2018. Estes dados demonstram que o foco das exportações tocantinenses ainda são, e cada vez mais se reafirmam nos produtos agrícolas, que estão em constantes crescentes, ao contrário dos produzido na indústria de transformação.
+
+Matérias brutas de animais teve uma participação de 1% no total da exportação estadual, a um valor de US$ 13,7 milhões, valor este 8% menor do que o arrecadado em 2019, ano onde houve o pico da exportação de matérias brutas de animais, atingindo US$ 14,9 milhões. Apesar da ligeira queda ocorrida este ano, o produto se mostra bastante estável na parte das exportações, com interessantes aumentos em relação a anos anteriores, se colocando como uma nova potência nas fontes de renda do estado.
+
+Óleos combustíveis de petróleo ou de minerais betuminosos (exceto óleos brutos) após dois anos de quedas consecutivas nas importações desses óleos, em 2020, o produto apre
+sentou um elevado crescimento de 981,9% em relação ao ano de 2019. Esse aumento significa o total de US$ 105 milhões, o maior montante já gasto pelo estado em sua importação.
+
+Adubos ou fertilizantes químicos (exceto fertilizantes brutos) foi em 2020 responsável por 21% dos valores importados pelo Tocantins. Após os dois anos anteriores mostrarem queda no valor total importado, o produto voltou a obter aumento em suas vendas para o estado, obtendo o total de US$ 53,2 milhões em 2020.
+
+Produtos residuais de petróleo e materiais relacionados foi um dos produtos com maior crescimento nas importações em relação ao ano anterior Em 2020, o aumento de sua compra correspondeu cerca de US$ 25 milhões e sendo 1551,3% maior do que em 2019.
+
+```{r produtos_import, fig.cap = "Principais produtos importados", fig.subcap = "Em milhões de US$", fig.source = "\\acrshort{comex}", wrap = TRUE}
+# Produtos importados
+readxl::read_excel("bc_2020.xlsx", sheet = "produtos_import") %>%
+  ggplot(aes(data, valor, fill = produto)) +
+  geom_bar(stat = "identity", position = "dodge", gap = "s") +
+  scale_y_continuous(labels = function(x) x / m) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+```
+
+Os demais produtos da indústria de transformação apresentou, pelo terceiro ano seguido, queda no montante final de importações para o Tocantins, sendo em 2020, um decréscimo de 40% em comparação com 2019. O valor total gasto na compra desses produtos foi de US$ 12 milhões.
+
+As lentes e itens ópticos voltaram a apresentar aumento nas suas importações para o Tocantins após queda em 2019, onde quebrou uma série histórica de três anos consecutivos de crescimento. Em 2020, o valor total gasto em suas importações correspondeu a US$ 10,3 milhões, e houve uma queda de 46,4% em relação ao total importado em 2019.
+
+```{r total, fig.cap = "Balança Comercial do estado", fig.subcap = "Em bilhões de USD", fig.source = "\\acrshort{comex}", wrap = TRUE}
+# Saldo, Exportação e Importaçao 2009--2019
+c("export", "import", "saldo") %>%
+  purrr::map(
+    ~readxl::read_excel("bc_2020.xlsx", sheet = .x) %>%
+    dplyr::mutate(conta = .x)
+  ) %>%
+  purrr::map_dfr(~tidyr::unnest(.)) %>%
+  dplyr::mutate(
+    data = lubridate::ymd(paste0(data, "0101")),
+    conta = dplyr::case_when(
+      conta == "export" ~ "Exportação",
+      conta == "import" ~ "Importação",
+      conta == "saldo" ~ "Saldo"
+    )
+  ) %>%
+  ggplot(aes(x = data, y = valor, color = conta)) +
+  geom_line() +
+  scale_y_continuous(labels = function(n) n / b) +
+  scale_x_date(labels = date_format("%Y"), date_breaks = "1 year")
+```
+
+O Tocantins mantém relações comerciais com mais de 100 países ao redor do planeta, estabelecendo negócios em todos os continentes, seja com países potências na economia mundial, ou até mesmo com países de menor expressão no cenário econômico global. Essa diversidade de parceiros comerciais do estado é de extrema importância para que a expansão de suas divisas possa continuar trazendo benefícios para a economia tocantinense.
+
+Na Tabela [tab:@import_export] podemos ver o quão influente a China é nas exportações dos produtos tocantinenses, sendo responsável por 57% do valor total exportado em 2020. Este é um dos quesitos em que a balança comercial do Tocantins se assemelha a brasileira, que também tem os chineses como seu maior parceiro de exportações. A diversidade de países com relações comerciais com o Tocantins é visível na tabela, pois além da China, grande compradora dos grãos e carnes produzidos no estado, encontra-se também países como Espanha, representando 5,7% do total exportado, Hong Kong com 3,66%, Egito sendo 3,4% e Tailândia com 3,03%.
+
+```{r}
+dplyr::bind_cols(
+  tribble(
+    ~x, ~y,
+    "China", 57,
+    "Espanha", 5.7,
+    "Hong Kong", 3.7,
+    "Egito", 3.4,
+    "Tailândia", 3
+  ),
+  tribble(
+    ~x, ~y,
+    "EUA", 48,
+    "China", 17,
+    "Rússia", 11,
+    "Argentina", 7.3,
+    "Uruguai", 2.7
+  )
+) %>%
+  kbl(
+    booktabs = TRUE,
+    col.names = c("", "Exportação", "", "Importação"),
+    caption = "Origem das Exmportações e Importações",
+    label = "import_export",
+    centering = FALSE
+  ) %>%
+  footnote(
+    general = "COMEXSTAT",
+    general_title = "Fonte:",
+    footnote_as_chunk = TRUE
+  )
+```

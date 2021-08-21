@@ -82,7 +82,7 @@ __latexindent_temp.tex
 
 *.doc
 *.docx
-*.~lock.bc.xlsx#
+*xlsx#
 *.zip
 *.rar
 *.7z

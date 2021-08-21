@@ -1,17 +1,28 @@
 ---
-output: latex_fragment
+documentclass: report
+output:
+  pdf_document:
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
 
 ```{r setup, include=F, message=F, warning=F}
 library(tidyverse)
-library(sidrar)
-library(rmarkdown)
 library(knitr)
 library(scales)
+library(zoo)
+library(ipeadatar)
 library(petgg)
 library(extrafont)
+library(kableExtra)
+library(sidrar)
+library(lubridate)
+library(petknitr)
+library(rmarkdown)
+
 
 petgg::set_theme(base_family = "EB Garamond")
+
 
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -30,7 +41,23 @@ B <- 1000000000
 triForm <- function(x) paste0(substr(x, 6, 6),"T\n",substr(x, 1, 4))
 ```
 
-```{r producao, include=T}
+## Agricultura
+
+A agricultura é importante para o Brasil, é um setor que cresce de forma exponencial e alavanca a economia de inúmeros estados da federação. O agronegócio representou 21,4% do PIB nacional em 2019, demonstrando o quão providencial para o país. Já para o Tocantins, sua participação está abaixo da média nacional, com menos de 15% do PIB estadual. Conforme a A Figura [fig: @producao]
+
+O agronegócio é um setor de grande relevância para o Brasil que cresce de forma exponencial e alavanca a economia de alguns estados da federação. Além disso, corresponde a 26,6% do PIB nacional em 2020, demonstrando a sua importância para o país. Já no Tocantins, o agronegócio teve destaque no ano de 2020 com um crescimento de 120%. Nesta seção do Boletim apresenta-se os seguintes dados da agricultura: área de produção, colheita, produção de cereais e oleaginosas e o seu rendimento médio. Em seguida, analisa-se os dados de produção de leite, ovos, aves e o abate de animais.
+
+O estado do Tocantins utilizou 1.542.876 hectares do seu território para a produção agrícola no segundo semestre de 2020. Dentre os cincos principais produtos plantados no estado, conforme a Figura [fig: @producao], destaca-se a soja e a cana-de-açúcar com as maiores proporções, responsáveis por 38.20% e 36.08% do total produzido. O milho ocupa a terceira posição entre os produtos mais cultivados no estado, com 12.04%. A produção de arroz e mandioca também ganham destaque ao representar um montante de 8.72% e 2.95%, respectivamente, fechando assim o ranking dos cincos produtos com os melhores desempenhos na agricultura tocantinense.
+
+Dentre os cinco principais produtos cultivados na agricultura tocantinense, o rendimento médio demonstrado na Figura [fig: @rendim_medio], mostra como as características próprias de cada um deles tem resultado determinante no cálculo da área que deve ser plantada, visando a quantidade em que será colhida. O cálculo é feito pela divisão entre quilogramas colhidos pela área plantada, ou seja, quanto maior o valor do rendimento médio, menor é a área necessária para sua colheita. Os dados mostram que o maior rendimento médio entre estes produtos é da cana-de-açúcar, chegando a 73.1%. O segundo produto é a mandioca, com um rendimento médio de 14.7%, seguido pelo milho, ao total de 7.3%, arroz, com 5% e por último, a soja, com um rendimento médio de 2.9%, ou seja, necessitando de uma vasta área plantada para colher sua quantidade desejada.
+
+Baseando-se no primeiro semestre tem-se os dados das áreas plantadas e colhidas, apresentado na Figura [fig: @area_plantada] e consequentemente, os cereais e oleaginosas que mais usam o espaço tocantinense para a produção. No segundo semestre de 2020, o Tocantins utilizou-se de 1.542.876 hectares para plantação. A maior área é utilizada para o plantio de soja que usufruiu de 981.101 hectares para a produção, totalizando 63.6% da área, em seguida vem o milho que utiliza 13.4% do território. O arroz corresponde 8.3%, em seguida cana com 2.5% e mandioca com 1%.
+
+O estado tocantinense é conhecido pela sua produção agropecuária e seus derivados. A fabricação de leite em solo tocantinense no ano de 2020 foi de aproximadamente 130.689 mil litros, sendo que no segundo semestre o número de produção foi de 59.718 mil litros havendo assim uma queda comparado ao primeiro semestre.Já a produção de ovos foi de 36.479 ovos, sendo 20.540 ovos no segundo semestre podendo destacar que houve aumento relacionado ao primeiro semestre.
+
+Já o setor de abate de animais apresenta resultados significativos para a economia estadual devido aos impactos da pandemia. Analisando esse setor, a Figura [fig: @abates] apresenta dados a partir do primeiro trimestre de 2020. O primeiro trimestre apresenta números altos e logo em seguida há uma queda, o segundo trimestre, decorrente do efeito da pandemia e do isolamento social. No terceiro trimestre ainda há uma constância em relação aos efeitos da pandemia que se estende até o quarto trimestre.Os resultados foram ruins e desconexos com a série histórica, como resultado da pandemia houve uma piora no que se diz respeito ao abate de animais no segundo semestre de 2020.
+
+```{r producao, fig.cap= "Produção Tocantins", fig.subcap="12 meses", fig.source = "IBGE", wrap = "open"}
 # Produção - Tocantins 2020
 
 # Os produtos são Arroz, milho 1 safra, milho 2 safra, soja, cana de açucar e mandioca
@@ -39,13 +66,15 @@ produtos <- c(39432, 39441, 39442, 39443, 39456, 39467)
 # Série histórica da estimativa anual da área plantada, área colhida, produção e rendimento médio dos produtos das lavouras
 prod <- get_sidra(x = 6588,
 									variable = 35,
-									period = sapply(1:9, function(n) paste0("20200",n)),
+									period =  "202012",
 									header = TRUE,
+									geo = "State",
+									geo.filter = list("State" = 17),
 									format = 4)
 
 prod %>%
 	filter(
-		`Mês (Código)` == "202009",
+		`Mês (Código)` == "202012",
 		`Produto das lavouras (Código)` %in% produtos
 	) %>%
 	transmute(
@@ -63,10 +92,10 @@ prod %>%
 
 ```
 
-```{r rendim_medio}
+```{r rendim_medio, fig.cap= "Rendimento médio", fig.subcap="Saldo Anual", fig.source = "IBGE"}
 rend_medio <- get_sidra(x = 6588,
 											 variable = 36,
-											 period = "202009",
+											 period = "202012",
 											 geo = "State",
 											 geo.filter = list("State" = 17),
 											 header = TRUE,
@@ -88,11 +117,11 @@ rend_medio %>%
 	scale_y_continuous(labels = function(n) n/m)
 ```
 
-```{r area_plantada}
+```{r area_plantada, fig.cap= "Área Plantada", fig.subcap="Saldo Anual", fig.source = "IBGE", wrap = "close"}
 # Área Plantada
 area_plan <- get_sidra(x = 6588,
 											 variable = 216,
-											 period = "202009",
+											 period = "202012",
 											 geo = "State",
 											 geo.filter = list("State" = 17),
 											 header = TRUE,
@@ -113,6 +142,7 @@ area_plan %>%
 	geom_bar(aes(x = produto, y = total), stat = "identity") +
 	scale_y_continuous(labels = function(n) n/m)
 ```
+
 ```{r prod_leite}
 # tibble(
 # 	litros=c(33189, 32958, 29721, 36369, 37273),
@@ -122,7 +152,6 @@ area_plan %>%
 # 	geom_bar(aes(factor(trimestre, levels = trimestre), litros), stat = "identity") +
 # 	scale_y_continuous(labels = function(n) n/m)
 ```
-
 
 ```{r abate_total}
 # Abate de animais - Tocantins
@@ -150,13 +179,12 @@ area_plan %>%
 # 	scale_y_continuous(labels = function(n) n/m)
 ```
 
-
-```{r abates}
+```{r abates, fig.cap= "Abate de animais", fig.subcap="Saldo Anual", fig.source = "CAGED", wrap = "open"}
 # Abate de frangos, bovinos, vacas por trimestre
 # Unidade em Cabeças
 abate_bovino <- get_sidra(
 		x = 1092,
-		period = c("201903" ,"201904", "202001", "202002"),
+		period = c("202001", "202002", "202003", "202004"),
 		geo = "State",
 		geo.filter = list("State" = 17),
 		header = TRUE,
@@ -176,7 +204,7 @@ abate_bovino <- get_sidra(
 	
 # Unidade em cabeças
 abate_frango <- get_sidra(x = 1094,
-		period = c("201903", "201904", "202001", "202002"),
+		period = c("202001", "202002", "202003", "202004"),
 		geo = "State",
 		geo.filter = list("State" = 17),
 		header = TRUE,
@@ -195,10 +223,11 @@ bind_rows(
 	select(`Trimestre (Código)`, tipo, Valor) %>% 
 	drop_na() %>% 
 	mutate(tri = triForm(`Trimestre (Código)`)) %>% 
-	ggplot(aes(factor(tri, levels = c("3T\n2019", "4T\n2019", "1T\n2020", "2T\n2020")), Valor, fill = tipo)) +
+	ggplot(aes(factor(tri, levels = c("1T\n2020", "2T\n2020", "3T\n2020", "4T\n2020")), Valor, fill = tipo)) +
 	geom_bar(stat = "identity", position = "dodge") +
 	scale_y_continuous(labels = function(n) n/m)
 ```
+
 ```{r galinha_poedeiras}
 
 # prod_galinhas <- get_sidra(
@@ -240,4 +269,3 @@ bind_rows(
 # 		stat = "identity"
 # 	)
 ```
-

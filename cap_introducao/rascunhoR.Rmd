@@ -1,5 +1,9 @@
 ---
-output: latex_fragment
+documentclass: report
+output:
+  pdf_document:
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
 
 ```{r setup, include=F, message=F, warning=F}
@@ -13,31 +17,34 @@ library(petgg)
 library(extrafont)
 library(kableExtra)
 library(janitor)
+library(petknitr)
 
 petgg::set_theme(base_family = "EB Garamond")
 
-knitr::opts_chunk$set(
-	echo = FALSE,
-	eval = TRUE,
-	fig.path = "fig/",
-	message = FALSE,
-	warning = FALSE,
-	dev = "cairo_pdf",
-	dpi = 300
-)
+petknitr::setup()
 m <- 1000
 M <- 1000000
 B <- 1000000000
 ```
 
-```{r pmc_ibge}
+# Panorama Econômico
+
+A eclosão da pandemia do coronavírus tem se mostrado o maior choque enfrentado pela economia brasileira em anos recentes, tanto pelo lado da demanda com a contração do consumo das famílias e dos investimentos, quanto pelo lado da oferta, com a interrupção de diversas atividades produtivas e falência de empresas. A fragilidade fiscal do Estado brasileiro e as altas taxas de desemprego observadas desde a recessão de 2015/2016 ajudam a compor um cenário bastante desafiador para a economia nacional, em especial para o estado do Tocantins.
+
+As expectativas de crescimento para a economia brasileira situavam-se em torno de 2,3% ainda no início do ano como mostra a Figura [fig: @pib_expec]. As taxas esperadas para a indústria e o setor de serviços seguiam próximas ao valor esperado para o PIB. Já para o setor agropecuário, a expectativa de crescimento era um pouco mais otimista, com uma variação esperada por volta de 3%. Durante o primeiro trimestre, as expectativas mantiveram-se estáveis até o início da pandemia em meados de março, apresentando tendência de redução a partir da propagação da covid-19. Em abril, as projeções de crescimento esperavam uma queda do PIB para o ano de 2020, tornando-se cada vez mais pessimistas nos meses subsequentes. O período de maior pessimismo foi no meio do ano, onde se esperava uma contração maior que 6%.
+
+No primeiro trimestre de 2020, o PIB brasileiro encolheu 1,5% de acordo com dados oficiais do IBGE. Cabe destacar que a pandemia teve início apenas no fim desse período, o que pode indicar que já havia uma perda de dinamismo da atividade econômica antes mesmo da chegada do vírus, dada a magnitude da contração observada. O segundo trimestre foi o de maior contração, com uma queda de 9,7%, muito em função dos maiores esforços de isolamento social feitos nesse período.
+
+No terceiro trimestre, houve um crescimento de 7,7%, que apesar de alto, não foi suficiente para repor as perdas do início do ano. Já no quarto trimestre, houve um crescimento de 3,2%. O crescimento no ano vigente foi negativo -4,4, apresentando uma queda no PIB, os estimulos fiscais e monetários amenizavam as expectativas que foram apresentados na Figura [fig: @pib_expec].
+
+```{r pmc_ibge, fig.cap= "Pesquisa Mensal de Comércio", fig.subcap="Saldo Anual", fig.source = "IBGE", wrap = "open"}
 # Pesquisa Mensal de Comércio, https://sidra.ibge.gov.br/pesquisa/pmc/tabelas
 ## Tabela 3416 - Índices de volume e de receita nominal de vendas no comércio varejista, por tipos de índice (2014 = 100)
 
 pmc_br <- get_sidra(
 		x = 3416,
 		geo = "Brazil",
-		period = "201901-202008",
+		period = "202001-202012",
 		header = T
 	) %>%
 	as_tibble() %>%
@@ -49,7 +56,7 @@ pmc_uf <- get_sidra(
 		x = 3416,
 		geo = "State",
 		geo.filter = list("State" = c(13, 15, 17)),
-		period = "201901-202008",
+		period = "202001-202012",
 		header = T
 	) %>%
 	as_tibble() %>%
@@ -78,13 +85,13 @@ vol_vendas %>%
 	scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
 ```
 
-```{r pms_ibge}
+```{r pms_ibge,  fig.cap= "Pesquisa Mensal de Serviços", fig.subcap="Saldo Anual", fig.source = "IBGE"}
 # Pesquisa Mensal de Serviçoes, https://sidra.ibge.gov.br/pesquisa/pms/tabelas
 ## Tabela 6442
 pms_br <- get_sidra(
 		x = 6442,
 		geo = "Brazil",
-		period = "201901-202008",
+		period = "202001-202012",
 		header = T
 	) %>%
 	as_tibble() %>%
@@ -96,7 +103,7 @@ pms_uf <- get_sidra(
 		x = 6442,
 		geo = "State",
 		geo.filter = list("State" = c(13, 15, 17)),
-		period = "201901-202008",
+		period = "202001-202012",
 		header = T
 	) %>%
 	as_tibble() %>%
@@ -125,7 +132,7 @@ vol_services %>%
 	scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
 ```
 
-```{r pib_expec}
+```{r pib_expec,  fig.cap= "Expectativa de crescimento anual do PIB Nacional", fig.subcap="Saldo Anual", fig.source = "SIDRA", wrap = "close"}
 # Expectativa de crescimento anual do PIB Nacional
 expec_anual <- rbcb::get_annual_market_expectations(
 	indic = c("PIB Agropecuária", "PIB Industrial", "PIB Serviços", "PIB Total")
@@ -145,4 +152,162 @@ expec_anual %>%
 		#limits = as.Date(c("2020-01-01", "2020-12-31"))
 	) +
 	scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
+
+```
+
+```{r PIB, fig.cap= "PIB", fig.subcap="Com ajuste sazonal", fig.source = "IBGE"}
+
+library(devtools)
+library(tidyverse)
+library(sidrar)
+library(RColorBrewer)
+library(petgg)
+library(scales)
+
+my_colors <- RColorBrewer::brewer.pal(8, "Blues")
+
+#Importando dados de pib (taxa acumulada de quatro trimestres 
+#e em rela??o ao trimestre anterior)
+
+pib <- get_sidra(5932, 
+                 variable = 6562, 
+                 period = c("201902-202004"), 
+                 geo = "Brazil",
+                 classific = 'c11255', 
+                 header = TRUE, 
+                 format = 1, 
+                 digits = "default")
+
+
+
+pib <- rename(pib,
+              Trimestre = `Trimestre (Código)`,
+              Setores_e_subsetores = `Setores e subsetores (Código)`,
+              Variável = `Variável (Código)`)
+
+
+
+```
+
+```{r Variação trimestral do PIB - demanda, fig.cap= "Variação trimestral do PIB pelo lado da demanda", fig.subcap="Com ajuste sazonal", fig.source = "IBGE", wrap = "open"}
+
+library(devtools)
+library(tidyverse)
+library(sidrar)
+library(RColorBrewer)
+library(petgg)
+library(scales)
+
+# Cores
+
+my_colors <- RColorBrewer::brewer.pal(8, "Blues")
+
+# PIB - Demanda
+
+pib_an <- get_sidra(5932, variable = 6564, 
+                      period = c("202001-202004"), 
+                      geo = "Brazil",
+                      classific = 'c11255', 
+                      header = TRUE,
+                      format = 1, 
+                      digits = "default")
+# Rename
+
+pib_an <- rename(pib_an,
+              Trimestre = `Trimestre (Código)` ,
+              Setores_e_subsetores = `Setores e subsetores (Código)`,
+              Variavel = `Variável (Código)`)
+
+#Separando dados da DA
+da <- pib %>% 
+  filter(Trimestre == '202001'
+         |Trimestre == '202002'
+         |Trimestre == '202003'
+         |Trimestre == '202004')
+da <- da %>%
+  filter(Setores_e_subsetores == '93404' 
+         |Setores_e_subsetores == '93405'
+         | Setores_e_subsetores == '93406' 
+         | Setores_e_subsetores == '93407' 
+         | Setores_e_subsetores == '93408')
+
+new_da <- da %>% 
+  group_by(Setores_e_subsetores)
+
+da_an <- pib_an %>% 
+  filter(Trimestre == '202001'
+         |Trimestre == '202002'
+         |Trimestre == '202003'
+         |Trimestre == '202004')
+da_an <- da_an %>%
+  filter(Setores_e_subsetores == '93404' 
+         |Setores_e_subsetores== '93405'
+         | Setores_e_subsetores == '93406' 
+         | Setores_e_subsetores == '93407' 
+         | Setores_e_subsetores== '93408')
+
+new_da_an <- da_an %>% 
+  group_by(Setores_e_subsetores)
+
+#Gráfico DA
+
+graf_da <- ggplot(new_da, aes(x=Setores_e_subsetores, y = Valor, fill = Trimestre))+
+  geom_bar(stat="identity", position = "dodge")+
+  scale_x_discrete(labels=c("93404" = "Consumo\ndas famílias","93405" = "Consumo\ndo governo", 
+                            "93406" = "Investimentos", "93407" = "Exportações", "93408" = "Importações"))+
+  #theme(axis.text.y=element_blank())+ylab("")+ 
+  scale_fill_manual(labels = c("1T", "2T", "3T", "4T"), 
+                    values =  petgg::colors[1:4])+
+  geom_text(aes(label = paste(Valor),vjust = ifelse(Valor >= 0, -0.2, 1)), show.legend = F)
+graf_da
+
+
+
+```
+
+```{r Variação trimestral do PIB - Oferta, fig.cap= "Variação trimestral do PIB pelo lado da oferta", fig.subcap="Com ajuste sazonal", fig.source = "IBGE", wrap = "close"}
+
+#Separando dados da Oferta
+oferta <- pib %>% 
+  filter(Trimestre == '202001'
+         |Trimestre == '202002'
+         |Trimestre == '202003'
+         |Trimestre == '202004')
+
+oferta <- oferta %>% 
+  filter(Setores_e_subsetores == '90687' 
+         |Setores_e_subsetores == '90691'
+         | Setores_e_subsetores == '90696')
+
+new_oferta <- oferta %>% 
+  group_by(Setores_e_subsetores)
+
+oferta_an <- pib_an %>% 
+  filter(Trimestre == '202001'
+         |Trimestre == '202002'
+         |Trimestre == '202003'
+         |Trimestre == '202004')
+
+oferta_an <- oferta_an %>% 
+  filter(Setores_e_subsetores == '90687' 
+         |Setores_e_subsetores == '90691'
+         | Setores_e_subsetores == '90696')
+
+new_oferta_an <- oferta_an %>% 
+  group_by(Setores_e_subsetores)
+
+#Gráficos oferta
+graf_oferta <- ggplot(new_oferta, aes(x=Setores_e_subsetores, y = Valor, fill = Trimestre))+
+  geom_bar(stat="identity", position = "dodge")+
+  scale_y_continuous(labels = function(x) paste0(x,"%"))+
+  scale_x_discrete(labels=c("90687" = "Agropecuária","90691" = "Indústria", 
+                            "90696" = "Serviços"))+
+  scale_fill_manual(labels = c("1T/2020", "2T/2020", "3T/2020", "4T/2020"), 
+                    values = petgg::colors[1:4])+
+  geom_text(aes(label = paste(Valor),vjust = ifelse(Valor >= 0, -0.3, 1)),
+            position = position_dodge(width = 0.7),size=3.6, show.legend = FALSE)
+graf_oferta
+
+
+
 ```

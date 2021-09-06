@@ -35,7 +35,22 @@ As expectativas de crescimento para a economia brasileira situavam-se em torno d
 
 No primeiro trimestre de 2020, o PIB brasileiro encolheu 1,5% de acordo com dados oficiais do IBGE. Cabe destacar que a pandemia teve início apenas no fim desse período, o que pode indicar que já havia uma perda de dinamismo da atividade econômica antes mesmo da chegada do vírus, dada a magnitude da contração observada. O segundo trimestre foi o de maior contração, com uma queda de 9,7%, muito em função dos maiores esforços de isolamento social feitos nesse período.
 
-No terceiro trimestre, houve um crescimento de 7,7%, que apesar de alto, não foi suficiente para repor as perdas do início do ano. Já no quarto trimestre, houve um crescimento de 3,2%. O crescimento no ano vigente foi negativo -4,4, apresentando uma queda no PIB, os estimulos fiscais e monetários amenizavam as expectativas que foram apresentados na Figura [fig: @pib_expec].
+No terceiro trimestre, houve um crescimento de 7,7%, que apesar de alto, não foi suficiente para repor as perdas do início do ano. Já no quarto trimestre, houve um crescimento de 3,2%. O crescimento no ano vigente foi negativo -4,4, apresentando uma queda no PIB, os estimulos fiscais e monetários amenizavam as expectativas que foram apresentados na Figura [fig: @pib_expec]. Já pelo lado da demanda, é apresentado um desempenho conflituoso, no terceiro trimestre que é o período pós um forte lockdown, ocorre uma variação negativa nos agregados do PIB, o consumo das familias apresenta uma queda de -4,1%. O consumo do governo demonstra uma queda de -3,7%. Os investimentos demonstram uma retração de -4% e as exportações e importações, vão apresentando uma queda de -1,8% e -9% respectivamente. A Figura apresenta as relações por completo [fig:@pib_demanda].
+
+Já no quarto trimestre o desempenho economico continua ruim no contexto de uma pandemia, com uma variação negativa. O consumo das familias foi de -5,5% e assim, o consumo do governo apresentou uma queda consecutiva de -4,7%, os investimentos tiveram uma melhora em relação ao terceiro trimestre, continuando com uma variação negativa de -0,8%. Exportações e importações apresentaram as maiores quedas, nas quais -2,5% e -10%. Em que as exportações melhoraram nesse contexto, porém com uma piora das importações.
+
+Pelo lado da oferta, Figura [fig:@pib_oferta] apresenta o desempenho economico pelo lado da oferta. O primeiro agregado é a agropecuária que iniciou 2020 com um crescimento de 1,6% no primeiro trimestre, no segundo apresentou 1,9 e no terceiro, outro crescimento de 1,8% e por fim, no último trimestre, houve um efeito positivo de 2%. Assim, a Agricultura apresenta um desempenho superior ao restante da economia, mesmo numa situação pandêmica. Outro agregado da oferta, é a indústria, na qual o primeiro trimestre obteve um crescimento de 0,5%. Já no segundo trimestre inicia-se uma sequência de quedas, na qual o primeiro resultado do 2T é -3,2% e no terceiro e quatro trimestre de 2020 houve uma sequeência de quedas no valor de -3,5%, de forma consecutiva. E por fim, um dos principais agregados para a economia brasileira são os de serviços, em que tiveram os maiores impactos na economia. Iniciando o trimestre com um crescimento de 1%, já no contexto pandêmico houve uma sequeência de quedas nos valores de -1,9%, -3,5% e -4,5%. Assim, o desempenho pelo lado das firmas foram afetados pela pandemia e consequentemente, o isolamento social, como é o caso dos serviços e da indústria. Entretanto, a agricultura apresentou números positivos e assim, diminuindo o impacto negativo do PIB.
+
+Alternativamente, a análise dos dados da Pesquisa Mensal do Comércio (PMC) pode fornecer uma noção de como a economia do estado performou ao longo do ano. A Figura [fig:@pmc_ibge] apresenta os dados de variação mensal do volume de vendas do comércio para o Brasil e para o Tocantins. O período inicial do ano apresentava bons indices para a PMC, na qual, os estados da região Norte e o Brasil desempenhava de forma regular. Entretanto, com o avanço da pandemia é visível os choques que sofreram, em que o período mais critico da pandemia, a queda foi similar e brusca para as regiões e para o país. Fazendo um recorte para a região Norte, em que o pior resultado se encontra para o mês de Maio, no qual a pandemia e o isolamento social torna-se essenciais para o controle da doença. Amazonas apresenta um desempenho de -3,6%, enquanto o Pará tem um resultado de -3,6% e o Tocantins por fim, -0,1%, o melhor resultado entre os três estados. O estado tocantinense apresenta resultados melhores que os vizinhos do Norte e do Brasil em geral, em que apresentou uma queda de -4,0%.
+
+A recuperação ocorre quando as medidas de isolamento sofrem de um relaxamento, assim, na segunda metade do ano é visível uma forte recuperação nas vendas, na qual o principal destaque é o estado do Pará que apresentou uma recuperação ao ponto de chegar a 9,4% em Dezembro, uma recuperação iniciada em julho. O estado do Amazonas apresentou uma forte recuperação, em grau menor ao vizinho, mas apresentando um resultado positivo de 7,3% no mês de dezembro. O Tocantins apresentou um resultado pior, em que havia uma recuperação iniciada no mês de julho, apresentando 3,3% de crescimento nas vendas. Entretanto, o final do ano para o Tocantins demonstra resultados negativos, chegando a uma queda de -0,1% no mês de dezembro. Destoando dos vizinhos, já o Brasil inicia-se a sua recuperação no mês de outubro, apresentando um resultado positivo de 0,9% e chegando a dezembro, com um resultado de 1,2%.
+
+Já o setor de serviços, conforme a Figura [fig:@pms_ibge] apresenta um desempenho similar dos outros indicadores. Na qual, o inicio de 2020 apresentava um desempenho positivo, até o choque da pandemia no setor que conforme a Figura [fig:@pib_oferta] aportou, é de importância para as contas nacionais. A região Norte apresenta a queda da pesquisa, de forma similar, mas de latência diferente. O Amazonas apresentou uma queda continua, saindo dos 11,5% em janeiro para -2,2% em maio. O resultado negativo persiste até novembro, em que o desempenho é negativo nesse período. O mês de Dezembro apresenta uma melhora de 0,6%. Já o estado do Pará inicia o ano com um resultado de 1,6% e apresentado resulstados positivos até o mês de março. Entretanto, o desempenho torna-se negativo até o final do ano, em que apresenta um desempenho negativo, sendo julho o pior mês, com um resultado de -3,4. 
+
+Já o estado do Tocantins, inicia o ano com um resultado de 10,4% nos serviços, até apresentar seguintes quedas entre os meses de fevereiro e abril, em que os resultados tornam-se negativos, por causa da pandemia. Tocantins apresenta as maiores quedas no setor de serviços, em que os resultados são os piores da região Norte chegando a apresentar uma queda de -6,7 em Setembro e chegando a dezembro a um resultado negativo de -6,4%. Já o Brasil segue a mesma tendência, em que inicia-se o ano com um resultado positivo de 1,6% e termina o ano com um resultado negativo de -7,8%.
+
+
+
 
 ```{r pmc_ibge, fig.cap= "Pesquisa Mensal de Comércio", fig.subcap="Saldo Anual", fig.source = "IBGE", wrap = "open"}
 # Pesquisa Mensal de Comércio, https://sidra.ibge.gov.br/pesquisa/pmc/tabelas
@@ -189,7 +204,7 @@ pib <- rename(pib,
 
 ```
 
-```{r Variação trimestral do PIB - demanda, fig.cap= "Variação trimestral do PIB pelo lado da demanda", fig.subcap="Com ajuste sazonal", fig.source = "IBGE", wrap = "open"}
+```{r pib_demanda, fig.cap= "Variação trimestral do PIB pelo lado da demanda", fig.subcap="Com ajuste sazonal", fig.source = "IBGE", wrap = "open"}
 
 library(devtools)
 library(tidyverse)
@@ -265,7 +280,7 @@ graf_da
 
 ```
 
-```{r Variação trimestral do PIB - Oferta, fig.cap= "Variação trimestral do PIB pelo lado da oferta", fig.subcap="Com ajuste sazonal", fig.source = "IBGE", wrap = "close"}
+```{r pib_oferta, fig.cap= "Variação trimestral do PIB pelo lado da oferta", fig.subcap="Com ajuste sazonal", fig.source = "IBGE", wrap = "close"}
 
 #Separando dados da Oferta
 oferta <- pib %>% 

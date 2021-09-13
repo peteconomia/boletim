@@ -36,7 +36,7 @@ readxl::read_excel("bc_2020.xlsx", sheet = "produtos_export") %>%
 
 Já os valores de produtos importados pelo estado neste mesmo período foi de US$254 milhões, o que representa uma variação 51,5% em relação ao a 2019, deixando o Tocantins na 22º posição no ranking nacional de importações por estados.
 
-Historicamente o Tocantins apresenta sempre um saldo superavitário em sua balança comercial, onde o menor valor dos últimos 10 anos foi uma expressiva marca de de US$ 104 milhões ainda em 2010. Em 2020, o saldo tocantinense atingiu seu maior recorde em todos os tempos, ao atingir um valor superavitário de US$ 1,11 bilhão.
+Historicamente o Tocantins apresenta sempre um saldo superavitário em sua balança comercial, onde o menor valor dos últimos 10 anos foi uma expressiva marca de de US\$ 104 milhões ainda em 2010. Em 2020, o saldo tocantinense atingiu seu maior recorde em todos os tempos, ao atingir um valor superavitário de US\$ 1,11 bilhão.
 
 Soja representa 64% do valor total de produtos exportados em 2020, a um valor US$872 milhões. De 2016 a 2018, a soja vinha apresentando constante aumento no valor e quantidade exportad, mas a série foi interrompida por uma queda de de 22,4% em 2019 em comparação a 2018. Em 2020 o valor voltou a subir, chegando a ser 12,9% maior do que no ano anterior.
 

@@ -24,9 +24,6 @@ library(petknitr)
 library(meedr)
 petgg::set_theme(base_family = "EB Garamond")
 petknitr::setup(cache = TRUE)
-m <- 1000
-M <- 1000000
-B <- 1000000000
 ```
 
 # Panorama Econômico
@@ -73,11 +70,11 @@ contas_nacionais %>%
   filter(
     variavel == "Taxa trimestre contra trimestre imediatamente anterior",
     setores_e_subsetores %in% c(
-     "Despesa de consumo das famílias",
-     "Despesa de consumo da administração pública",
-     "Formação bruta de capital fixo",
-     "Exportação de bens e serviços",
-     "Importação de bens e serviços (-)"
+      "Despesa de consumo das famílias",
+      "Despesa de consumo da administração pública",
+      "Formação bruta de capital fixo",
+      "Exportação de bens e serviços",
+      "Importação de bens e serviços (-)"
     )
   ) %>%
   select(trimestre_codigo, valor, setores_e_subsetores) %>%

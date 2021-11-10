@@ -1,0 +1,24 @@
+---
+documentclass: report
+output:
+  pdf_document:
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
+---
+
+```{r setup, include=F, message=F, warning=F}
+library(tidyverse)
+library(sidrar)
+library(petgg)
+library(petknitr)
+petgg::set_theme(base_family = "EB Garamond")
+petknitr::setup()
+```
+
+# Indicadores Sociais
+
+Em relação a desigualdade de renda, percebe que houve uma leve alta no índice de Gini no
+estado ao longo dos anos apresentados, principalmente, entre os anos de 2019 e 2020 pode-se
+observar que ele saiu de 0,546 como mostra a figura 3.1.3. Essa alta vem seguindo a
+tendência dos outros indicadores apresentados até então. Para o Brasil, houve um pequeno
+aumento enquanto que a região norte permanece constante.

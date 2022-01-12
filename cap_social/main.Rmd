@@ -72,15 +72,14 @@ tx_extrema_pobreza %>%
 
 ```{r, gini, fig.cap = "Índice de Gini", fig.subcap = "Coeciente de desigualdade", fig.source = "IBGE", wrap = "close"}
 tibble(
-  ano = seq(ymd("2012-01-01"), ymd("2019-01-01"), by = "1 year"),
-  Brasil = c(0.540,0.533,0.526,0.524,0.537,0.538,0.545,0.543),
-  Norte = c(0.544,0.541,0.518,0.525,0.523,0.530,0.551,0.537),
-  Tocantins = c(0.509,0.514,0.495,0.504,0.489,0.497,0.528,0.530)
+  ano = seq(ymd("2012-01-01"), ymd("2020-01-01"), by = "1 year"),
+  Brasil = c(0.540,0.533,0.526,0.524,0.537,0.538,0.545,0.543, 0.523712538791536),
+  Norte = c(0.544,0.541,0.518,0.525,0.523,0.530,0.551,0.537, 0.494932055292463),
+  Tocantins = c(0.509,0.514,0.495,0.504,0.489,0.497,0.528,0.530, 0.484933328090584)
 ) %>%
   ggplot(aes(ano)) +
   geom_line(aes(y = Brasil, colour = "Brasil")) +
   geom_line(aes(y = Norte, colour = "Norte")) +
   geom_line(aes(y = Tocantins, colour = "Tocantins")) +
-  scale_y_continuous(labels = scales::percent) +
   scale_x_date(breaks = scales::breaks_width("1 year"), date_labels = "%Y")
 ```

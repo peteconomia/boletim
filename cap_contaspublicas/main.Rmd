@@ -15,13 +15,14 @@ library(petknitr)
 library(siconfir)
 library(ipeadatar)
 library(lubridate)
+library(formattable)
 
 petgg::set_theme()
 petknitr::setup()
 ```
 
 ```{r, eval=FALSE, include=FALSE}
-# Downlaod dados
+# Download dados
 siconfir::get_budget(
   year = 2018:2020,
   period = 1:6,
@@ -47,7 +48,7 @@ date_bim <- function(exercicio, periodo) {
   bimest <- c("02", "04", "06", "08", "10", "12") # bimestres do ano
   bimestre <- paste0(exercicio, periodo)
   paste0(
-    substring(bimestre, 1, 4), 
+    substring(bimestre, 1, 4),
     bimest[as.numeric(substring(bimestre, 5, 5))],
     "01"
   ) %>%
@@ -80,8 +81,12 @@ receita_despesa_primaria <- rreo %>%
   select(data, cod_conta, valor) %>%
   pivot_wider(names_from = cod_conta, values_from = valor) %>%
   mutate(
-    receita_primaria_real = purrr::map2_dbl(ReceitasPrimariasCorrentes, data, ~ .x * ipca(.y, current_price)),
-    despesa_primaria_real = purrr::map2_dbl(RREO6DespesasPrimariasCorrentes, data, ~ .x * ipca(.y, current_price)),
+    receita_primaria_real = purrr::map2_dbl(
+      ReceitasPrimariasCorrentes, data, ~ .x * ipca(.y, current_price)
+    ),
+    despesa_primaria_real = purrr::map2_dbl(
+      RREO6DespesasPrimariasCorrentes, data, ~ .x * ipca(.y, current_price)
+    ),
     resultado_primario = receita_primaria_real - despesa_primaria_real,
     receita_var = receita_primaria_real - dplyr::lag(receita_primaria_real, order_by = data),
     despesa_var = despesa_primaria_real - dplyr::lag(despesa_primaria_real, order_by = data),
@@ -90,16 +95,23 @@ receita_despesa_primaria <- rreo %>%
   )
 ```
 
-O resultado primário do estado em 2020 foi de cerca de R\$ 1,45 bilhões, valor 18,8% maior que o resultado primário de 2019, quando foi pouco mais de R\$ 1,22 bilhões. Veja o Quadro [@box:resultado_primario] para mais detalhes sobre o resultado primário.
+```{r, include=FALSE}
+# Resultado primario de 2020
+receita_despesa_primaria %>%
+  filter(data == "2020-12-01") %>%
+  purrr::pluck("resultado_primario") -> resultado_primario_2020
+```
+
+O resultado primário do estado em 2020 foi de cerca de R\$ 1,47 bilhões, valor 18,8% maior que o resultado primário de 2019, quando foi pouco mais de R\$ 1,22 bilhões. Veja o Quadro [@box:resultado_primario] para mais detalhes sobre o resultado primário.
 
 ```{r variacao_receita_despesa_primaria, include=T, fig.cap="Variação da receita e despesa primária", fig.subcap="Variação por bimestre", fig.source="\\abbr{siconfi}", wrap = TRUE}
 # Variação de receita e despesa primária real por bimestre
-receita_despesa_primaria %>% 
-  filter(lubridate::month(data) >= 10 & lubridate::year(data) >= 2019) %>% 
-  select(data, receita_tx, despesa_tx) %>% 
-  pivot_longer(receita_tx:despesa_tx) %>% 
-  rowwise() %>% 
-  mutate(date_label = date_label_bimester(data)) %>% 
+receita_despesa_primaria %>%
+  filter(lubridate::month(data) >= 10 & lubridate::year(data) >= 2019) %>%
+  select(data, receita_tx, despesa_tx) %>%
+  pivot_longer(receita_tx:despesa_tx) %>%
+  rowwise() %>%
+  mutate(date_label = date_label_bimester(data)) %>%
   ggplot(aes(forcats::fct_reorder(date_label, data), value, fill = name)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_fill_discrete(labels = c("Despesa primária", "Receita primária")) +
@@ -112,10 +124,6 @@ A Figura exibe as despesas por categorias. Destaque para as despesas com assist�
 
 ::: {.smbox data-latex="[label={box:resultado_primario}]{O que é o resultado primário}"}
 O resultado primário é um dos principais indicadores das contas públicas, representa o esforço fiscal para diminuir o estoque da dívida. Ele é resultado da diferença entre as receitas e despesas (excluindo as receitas e despesas com juros). O superávit primário ou resultado primário positivo ocorre quandos as receitas primárias é maior que as despesas primárias. Indica a economia do governo para pagamento da dívida. O inverso, quando despesas primárias excedem as receitas primárias há déficit primário ou resultado primário negativo, incorrendo em aumento da dívida.
-
-```{r, include=T}
-print("Hello")
-```
 :::
 
 Despesas com pessoal em relação a receita corrente líquida (\\abbr{rcl}), conforme Figura \\ref{fig:desp_pessoal_rcl}, encontra-se em 42,1% em agosto de 2020, valor abaixo do limite máximo de 49% estabelecido na Lei de Responsabilidade Fiscal (\\abbr{lrf}) para o poder Executivo \\footnote{A \\abbr{rcl}, de acordo com a \\abbr{lrf}, deve ser apurada somando-se as receitas arrecadadas no mês em referência e nos onze anteriores. No entanto, pelo fato dessa publicação cobrir dados até cerca do primero semestre optou-se pela utilização da \\abbr{rcl} acumulada até o respectivo bimestre}. Em agosto de 2015 a \\abbr{rcl} destinada ao pagamento de pessoal correspondia a 51,5%, valor acima do limite máximo. O comprometimento da \\abbr{rcl} ao pagamento de pessoal extrapolou o limite em 2015, 2016, 2017 e 2018.

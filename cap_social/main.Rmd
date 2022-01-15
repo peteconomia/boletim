@@ -29,7 +29,7 @@ A taxa de extrema pobreza apresentou alta entre 2012 e 2019 no estado, saindo de
 
 Sobre desigualdade de renda, é possível perceber que houve uma leve alta do índice de Gini no estado ao longo dos anos apresentados, saindo de 0,509 para 0,530, como pode ser visto na Figura [fig:@gini]. Essa alta vem seguindo a tendência dos outros indicadores apresentados até então. Padrão semelhante ao observado para o Brasil e região Norte.
 
-Em relação a desigualdade de renda, percebe que houve uma leve alta no índice de Gini no estado ao longo dos anos apresentados, principalmente, entre os anos de 2019 e 2020 pode-se observar que ele saiu de 0,546 como mostra a Figura [fig:@gini]. Essa alta vem seguindo a tendência dos outros indicadores apresentados até então. Para o Brasil, houve um pequeno aumento enquanto que a região norte permanece constante.
+Em relação a desigualdade de renda, percebe-se que houve uma redução no índice de Gini no estado ao longo dos anos apresentados, principalmente, entre os anos de 2019 e 2020 pode-se observar, o Gini caiu de 0,543 para 0,523 como mostra a Figura [fig:@gini]. Diferente dos outros indicadores apresentados até então, esse mostra uma redução para a Região Norte, Tocantins e Brasil.
 
 Os resultados apresentados nessa seção são produto, como já mencionado, do baixo crescimento econômico dos últimos anos e as suas consequências no mercado de trabalho, com aumento da taxa de desemprego, precarização dos trabalhos e aumento do trabalho informal. A crise fiscal enfrentada pela União e pelo estado do Tocantins de certa forma também contribui para esse quadro, uma vez que gastos com serviços básicos para a população são muitas vezes limitados nesse tipo de contexto, perpetuando o cenário apresentado.
 

@@ -2,31 +2,30 @@
 title: Boletim de Conjuntura Econômica do Tocantins
 volume: 9
 number: 2
-year: 2020
-month: março
+year: 2021
+month: dezembro
 pages: 1--21
-tag: v1.0.0
+tag: v2.0.0
 coordinator: Prof. Dr. Nilton Marques de Oliveira
-co: Prof. Dr. Marcleiton Ribeiro Morais
 team:
   - theme: Panorama Econômico
     students: Lucas Strieder Azevedo, Felipe Ferreira de Sousa, Pedro Victor de Sá Castro, Gabrielle Dias Miranda Santos, Laralisse Carvalho de Oliveira, Lara Resende Castro, Tiago Martins Cirqueira
   - theme: Contas Públicas Estadual
-    students: Pedro Victor de Sá Castro, Aleksander Bovo Silva, Tiago Martins Cirqueira
+    students: Pedro Victor de Sá Castro, Augusto
   - theme: Indicadores Sociais
-    students: Lucas Strieder Azevedo, Maria Claudia Lemos Oliveira, Daniela Moreira Lopes, Filipe Bastos Romão
+    students: Isabel Cristina
   - theme: Mercado de Trabalho
-    students: Felipe Ferreira de Sousa, Amanda Vargas Lira, Gabrielle Dias Miranda Santos, Lara Resende Castro
+    students: Felipe Ferreira de Sousa, Amanda Vargas Lira, Gabrielle Dias Miranda Santos, Lara Resende Castro, Izadora Farias, Vanessa Lopes
   - theme: Comércio Exterior
-    students: Jean Lucas Machado,  Laralisse Carvalho de Oliveira, Heder Soares Azevedo Cordeiro Junior
+    students: Jean Lucas Machado, Laralisse Carvalho de Oliveira, Heder Soares Azevedo Cordeiro Junior
   - theme: Agronegócio
-    students: Felipe Ferreira de Sousa, Jean Lucas Machado, Micauane Oliveira Sousa, Emanuel Pedro Santiago
+    students: Izadora Farias, Felipe Ferreira de Sousa
 tel: (63) 3229--4915
 email: peteconomia@uft.edu.br
 fullversion: true
 documentclass: report
 output:
   bookdown::pdf_book:
-    template: template/template.tex
-    pandoc_args: "--lua-filter=filter/boletim.lua"
+    template: template/boletim.tex
+    pandoc_args: "--lua-filter=filter/crossref.lua"
 ---

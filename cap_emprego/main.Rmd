@@ -6,7 +6,7 @@ output:
     pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
 
-```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+```{r include=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(knitr)
 library(scales)

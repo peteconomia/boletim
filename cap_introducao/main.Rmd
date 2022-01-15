@@ -2,12 +2,11 @@
 documentclass: report
 output:
   pdf_document:
-    keep_tex: true
     template: ../template/boletim.tex
     pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
 
-```{r setup, include=F, message=F, warning=F}
+```{r include=F, message=F, warning=F}
 library(tidyverse)
 library(lubridate)
 library(scales)
@@ -23,7 +22,7 @@ library(petknitr)
 # library(rbcb)
 library(meedr)
 petgg::set_theme(base_family = "EB Garamond")
-petknitr::setup(cache = TRUE)
+petknitr::setup()
 ```
 
 # Panorama Econômico

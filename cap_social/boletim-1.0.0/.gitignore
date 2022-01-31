@@ -1,0 +1,89 @@
+# Boletim
+tex/boletim.pdf
+# PDF Caps
+tex/conteudo/**/main.pdf
+
+# Utils files
+.editorconfig
+**/utils/
+
+# R FILES
+
+## History files
+*.Rhistory
+*.Rapp.history
+
+## Session Data files
+*.RData
+
+## User-specific files
+.Ruserdata
+
+## RStudio files
+.Rproj.user/
+
+## knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+## Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+## R Environment Variables
+.Renviron
+
+# TEX FILES
+*.tex~
+
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.snm
+*.nav
+*.fdb_latexmk
+*.gz
+*.idx
+*.xdv
+*.xml
+*.ilg
+*.ind
+__latexindent_temp.tex
+*.acn
+*.glo
+*.glsdefs
+*.ist
+## Intermediate documents:
+*.dvi
+*.xdv
+*-converted-to.*
+*.ps
+*.eps
+
+
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Arquivos Word
+*.doc
+*.docx
+*.~lock.bc.xlsx#
+# Outros
+*.zip
+*.rar
+*.7z

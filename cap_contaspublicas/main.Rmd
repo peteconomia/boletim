@@ -19,9 +19,10 @@ library(formattable)
 
 petgg::set_theme()
 petknitr::setup()
+#knitr::opts_knit$set(root.dir = here::here())
 ```
 
-```{r, eval=FALSE, include=FALSE}
+```{r eval=FALSE, include=FALSE}
 # Download dados
 siconfir::get_budget(
   year = 2018:2020,
@@ -36,14 +37,16 @@ siconfir::get_fiscal(
 ) %>% readr::write_rds(file = "cap_contaspublicas/rgf_2018_2020_to.rds")
 ```
 
-```{r, include=FALSE}
+```{r include=FALSE}
 source("scripts/ipca.R")
 source("scripts/utils.R")
 
-# O Deflacionamento é feito colocando à preços de dezembro de 2018
+# O Deflacionamento é feito à preços de dezembro de 2018
 current_price <- "2020-12-01"
 
-# Converte o bimestre para formato de data. Exemplo: date_bim(2020, 1) -> "2020-02-01"
+#' Converte o bimestre para formato de data
+#' @param exercicio ano, um integer
+#' @param periodo bimestre do ano, um integer
 date_bim <- function(exercicio, periodo) {
   bimest <- c("02", "04", "06", "08", "10", "12") # bimestres do ano
   bimestre <- paste0(exercicio, periodo)
@@ -66,7 +69,7 @@ rgf <- readr::read_rds("cap_contaspublicas/rgf_2018_2020_to.rds") %>%
 
 # Contas Públicas Estadual
 
-```{r, include=FALSE}
+```{r include=FALSE}
 # Receita e despesa primária do Estado.
 # Resultado primário obtidos até cada bimestre
 receita_despesa_primaria <- rreo %>%
@@ -90,19 +93,19 @@ receita_despesa_primaria <- rreo %>%
     resultado_primario = receita_primaria_real - despesa_primaria_real,
     receita_var = receita_primaria_real - dplyr::lag(receita_primaria_real, order_by = data),
     despesa_var = despesa_primaria_real - dplyr::lag(despesa_primaria_real, order_by = data),
-    receita_tx = receita_primaria_real / dplyr::lag(receita_primaria_real, order_by = data) -1,
-    despesa_tx = despesa_primaria_real / dplyr::lag(despesa_primaria_real, order_by = data) -1
+    receita_tx = receita_primaria_real / dplyr::lag(receita_primaria_real, order_by = data) - 1,
+    despesa_tx = despesa_primaria_real / dplyr::lag(despesa_primaria_real, order_by = data) - 1
   )
 ```
 
-```{r, include=FALSE}
+```{r include=FALSE}
 # Resultado primario de 2020
-receita_despesa_primaria %>%
+resultado_primario_2020 <- receita_despesa_primaria %>%
   filter(data == "2020-12-01") %>%
-  purrr::pluck("resultado_primario") -> resultado_primario_2020
+  purrr::pluck("resultado_primario")
 ```
 
-O resultado primário do estado em 2020 foi de cerca de R\$ 1,47 bilhões, valor 18,8% maior que o resultado primário de 2019, quando foi pouco mais de R\$ 1,22 bilhões. Veja o Quadro [@box:resultado_primario] para mais detalhes sobre o resultado primário.
+O resultado primário do estado em 2020 foi de cerca de R$ 1,47 bilhões, valor 18,8% maior que o resultado primário de 2019, quando foi pouco mais de R$ 1,22 bilhões. Veja o Quadro [box:@resultadoprimario] para mais detalhes sobre o resultado primário.
 
 ```{r variacao_receita_despesa_primaria, include=T, fig.cap="Variação da receita e despesa primária", fig.subcap="Variação por bimestre", fig.source="\\abbr{siconfi}", wrap = TRUE}
 # Variação de receita e despesa primária real por bimestre
@@ -122,18 +125,20 @@ As receitas primárias cresceu % no quinto bimestre de 2020, como mostra a Figur
 
 A Figura exibe as despesas por categorias. Destaque para as despesas com assistência social, que cresceu cerca de 133% no quarto bimestre de 2020. Previdência social, saúde e judiciário cresceu 16,2%, 12,9% e 18,8% respectivamente. Por outro lado, administração, segurança pública e educação recuaram.
 
-::: {.smbox data-latex="[label={box:resultado_primario}]{O que é o resultado primário}"}
+::: {.smbox data-latex="[label={box:resultadoprimario}]{O que é o resultado primário}"}
 O resultado primário é um dos principais indicadores das contas públicas, representa o esforço fiscal para diminuir o estoque da dívida. Ele é resultado da diferença entre as receitas e despesas (excluindo as receitas e despesas com juros). O superávit primário ou resultado primário positivo ocorre quandos as receitas primárias é maior que as despesas primárias. Indica a economia do governo para pagamento da dívida. O inverso, quando despesas primárias excedem as receitas primárias há déficit primário ou resultado primário negativo, incorrendo em aumento da dívida.
 :::
 
-Despesas com pessoal em relação a receita corrente líquida (\\abbr{rcl}), conforme Figura \\ref{fig:desp_pessoal_rcl}, encontra-se em 42,1% em agosto de 2020, valor abaixo do limite máximo de 49% estabelecido na Lei de Responsabilidade Fiscal (\\abbr{lrf}) para o poder Executivo \\footnote{A \\abbr{rcl}, de acordo com a \\abbr{lrf}, deve ser apurada somando-se as receitas arrecadadas no mês em referência e nos onze anteriores. No entanto, pelo fato dessa publicação cobrir dados até cerca do primero semestre optou-se pela utilização da \\abbr{rcl} acumulada até o respectivo bimestre}. Em agosto de 2015 a \\abbr{rcl} destinada ao pagamento de pessoal correspondia a 51,5%, valor acima do limite máximo. O comprometimento da \\abbr{rcl} ao pagamento de pessoal extrapolou o limite em 2015, 2016, 2017 e 2018.
+Despesas com pessoal em relação a receita corrente líquida ([abbr:@rcl]), conforme Figura [fig:@desp_pessoal_rcl], encontra-se em 42,1% em agosto de 2020, valor abaixo do limite máximo de 49% estabelecido na Lei de Responsabilidade Fiscal ([abbr:@lrf]) para o poder Executivo [^notercl]. Em agosto de 2015 a [abbr:@rcl] destinada ao pagamento de pessoal correspondia a 51,5%, valor acima do limite máximo. O comprometimento da [abbr:@rcl] ao pagamento de pessoal extrapolou o limite em 2015, 2016, 2017 e 2018.
 
-A dívida consolidada líquida (\\abbr{dcl}) do estado em proporção a \\abbr{rcl} até agosto apresentou queda. Em agosto de 2020 essa indicador ficou em 44,1%, valor abaixo do limite definido pelo Senado Federal para os estados, de duas vezes a \\abbr{rcl}. Entre 2017 e 2018 a \\abbr{dcl} em proporção à \\abbr{rcl} aumentou, saindo de 30\\% para 52,3% em 2019, conforme Figura \\ref{fig:divida_rcl}.
+[^notercl]: A [abbr:@rcl], de acordo com a [abbr:@lrf], deve ser apurada somando-se as receitas arrecadadas no mês em referência e nos onze anteriores. No entanto, pelo fato dessa publicação cobrir dados até cerca do primero semestre optou-se pela utilização da [abbr:@rcl] acumulada até o respectivo bimestre
 
-O indicador da capacidade de pagamento (\\abbr{capag}) do estado traz informações a cerca da situação fiscal dos estados e municípios. O índice é composto por três componentes: endividamento, poupança corrente e liquidez. Estados e municípios recebem uma nota final, A, B, C ou D.
+A dívida consolidada líquida ([abbr:@dcl]) do estado em proporção a [abbr:@rcl] até agosto apresentou queda. Em agosto de 2020 essa indicador ficou em 44,1%, valor abaixo do limite definido pelo Senado Federal para os estados, de duas vezes a [abbr:@rcl]. Entre 2017 e 2018 a [abbr:@dcl] em proporção à [abbr:@rcl] aumentou, saindo de 30% para 52,3% em 2019, conforme Figura [fig:@divida_rcl].
 
-O Tocantins ficou com nota C em 2019 e 2020. Mesmo mantendo a mesma nota entre 2019--2020, apresentou pioras em todos os indicadores. O envididamento do estado que representa a \\abbr{dcl} em proporção à \\abbr{rcl} saltou de 46,35% para 67,6%. A poupança corrente que corresponde despesas corrente e receitas correntes ajustadas (\\abbr{rca}) também mostrou uma leve piora, saindo de 94,56% para 95,9%. A liquidez do estado cresceu de 539,4% para 577,5% em 2020.
+O indicador da capacidade de pagamento ([abbr:@capag]) do estado traz informações a cerca da situação fiscal dos estados e municípios. O índice é composto por três componentes: endividamento, poupança corrente e liquidez. Estados e municípios recebem uma nota final, A, B, C ou D.
 
-Endividamento e poupança corrente estão em melhor condição, pois estão mais próximo do limite para receber uma melhor nota. Para obter uma nota A no índice de endividamento o estado deve conservá-lo abaixo de 60%, atualmente está em 67,6%. A poupança corrente recebeu nota C em 2020 conforme Tabela \\ref{tab:capag_uf}. Uma elevação na nota da poupança corrente para B requer uma relação despesas correntes e \\abbr{rca} menor que 95%, em 2020 ficou em 95,85%. A liquidez do estado encontra-se em situação mais delicada, em 2020 fechou em 577,5%, valor quase cinco vezes acima do limite para tirar nota A.
+O Tocantins ficou com nota C em 2019 e 2020. Mesmo mantendo a mesma nota entre 2019--2020, apresentou pioras em todos os indicadores. O envididamento do estado que representa a [abbr:@dcl] em proporção à [abbr:@rcl] saltou de 46,35% para 67,6%. A poupança corrente que corresponde despesas corrente e receitas correntes ajustadas ([abbr:@rca]) também mostrou uma leve piora, saindo de 94,56% para 95,9%. A liquidez do estado cresceu de 539,4% para 577,5% em 2020.
 
-Dentre os estados da região Norte, Tocantins e Roraima foram os que apresentaram pior desempenho, conforme disposto na Tabela \\ref{tab:capag_uf}. Rondônia aparece com a melhor perfomance, saiu da nota B para A entre 2019--2020. A redução no endividamento e na liquidez garantiu nota A em todos os indicadores.
+Endividamento e poupança corrente estão em melhor condição, pois estão mais próximo do limite para receber uma melhor nota. Para obter uma nota A no índice de endividamento o estado deve conservá-lo abaixo de 60%, atualmente está em 67,6%. A poupança corrente recebeu nota C em 2020 conforme Tabela [tab:@capag_uf]. Uma elevação na nota da poupança corrente para B requer uma relação despesas correntes e [abbr:@rca] menor que 95%, em 2020 ficou em 95,85%. A liquidez do estado encontra-se em situação mais delicada, em 2020 fechou em 577,5%, valor quase cinco vezes acima do limite para tirar nota A.
+
+Dentre os estados da região Norte, Tocantins e Roraima foram os que apresentaram pior desempenho, conforme disposto na Tabela [tab:@capag_uf]. Rondônia aparece com a melhor perfomance, saiu da nota B para A entre 2019--2020. A redução no endividamento e na liquidez garantiu nota A em todos os indicadores.

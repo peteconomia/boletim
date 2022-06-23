@@ -3,4 +3,6 @@ new_session: false
 output_dir: "output"
 book_filename: "boletim"
 rmd_files: ["index.Rmd", "abstract.Rmd"]
-rmd_subdir: [ "cap_introducao", "cap_social", "cap_emprego", "cap_balancacomercial", "cap_agricultura" ]
+rmd_subdir: [
+  "cap_example"
+]

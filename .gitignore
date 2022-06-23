@@ -8,6 +8,8 @@ _utils/
 */main.tex
 */main_files/
 */_cache/
+*/*/figure-latex/
+*/*.pdf
 
 cache_bcb/
 

@@ -20,32 +20,28 @@ petknitr::setup()
 # Indicadores Sociais
 
 Para identificar os níveis de pobreza de uma população, é primordial a classificação de aspectos para um padrão de vida digno e satisfatório, como dieta balanceada, vestimentas adequadas, acesso a serviços de saúde e educação, ambiente sadio, etc.
+A Figura [fig:@pobreza] apresenta a evolução da taxa pobreza para região Norte, Tocantins e Brasil. Em uma análise dos anos de 2014 à 2020, observa-se que 2016 foi o ano em que a taxa de pobreza estava mais alta para as 3 regiões apresentadas. Apesar do contexto, a taxa de pobreza do Tocantins apresentou uma queda de 33,2% em 2014 para 30,2% em 2020, o que em números absolutos representou uma saída de cerca de 45 mil pessoas dessa condição. O valor para a região Norte também apresenta queda significativa: de 2014 a 2019 vinha apresentando crescimento dessa taxa, e de 2019 para 2020 reduziu de 43,1% para 36,8%. Já se comparada à taxa brasileira, a taxa tocantinense ainda é maior, porém houve uma diminuição dessa diferença, uma vez que a taxa nacional não apresentou grandes quedas nos anos analisados. 
 
-A Figura [fig:@pobreza] apresenta a evolução da taxa pobreza para região Norte, Tocantins e Brasil. Apesar do contexto, a taxa de pobreza do Tocantins apresentou uma queda de 38,67% para 32,69%, o que em números absolutos representou uma saída de cerca de 45 mil pessoas dessa condição. Uma queda expressiva, ainda mais se comparada o valor para a região Norte, que permaneceu praticamente estável durante o período, levando a um aumento da diferença em relação ao Tocantins. Já se comparada à taxa brasileira, a taxa tocantinense ainda é maior, porém houve uma diminuição dessa diferença, uma vez que a taxa nacional não apresentou grandes quedas nos anos analisados. Cabe porém um destaque com relação aos dados relacionados ao ano de 2019. Neste ano, mesmo com uma queda da taxa brasileira de 25,28% para 24,71%, no estado do Tocantins houve um aumento da taxa saindo de 31,54% para 32,69%.
+Por outro lado, olhando com uma linha de pobreza menor, a dos extremamente pobres, os resultados não seguiram a mesma tendência, indicando um maior impacto do cenário apresentado para essa faixa. Apesar da taxa de pobreza seguir um padrão nesses anos analisados, sempre com as taxas do Norte maiores que as do Tocantins e as do Tocantins maiores que a do Brasil, não é isso que se observa na taxa de extrema pobreza. Aqui, o Tocantins apresenta em média taxas menores que a do Brasil, com o Norte ainda se sobressaindo das outras duas regiões.  Os resultados são apresentados na Figura [fig:@extrema_pobreza]. 
 
-Por outro lado, olhando com uma linha de pobreza menor, a dos extremamente pobres, os resultados não seguiram a mesma tendência, indicando um maior impacto do cenário apresentado para essa faixa. Os resultados são apresentados na Figura [fig:@extrema_pobreza].
+Nota-se que a taxa de extrema pobreza apresenta alta entre 2014 e 2019 na região Norte e no país, mas de 2019 para 2020 ocorre uma queda significativa nessa taxa. No norte do Brasil, a extrema pobreza passa de 11,9% para 8,47%, enquanto no Brasil essa taxa sai de 6,81% para 5,70%. Já o Tocantins teve um comportamento um pouco mais instável que as outras duas regiões analisadas: crescimento da taxa de 2014 a 2016, uma queda em 2017, e então um aumento significativo de 2017 para 2019, saindo de 5,39% para 8,34%. Ao fim, o Tocantins também apresenta uma queda em 2020, de 8,34% para 5,84%. 
 
-A taxa de extrema pobreza apresentou alta entre 2012 e 2019 no estado, saindo de 5,59% para 7,98%. Em termos absolutos de pessoas vivendo nessa condição, tem-se a mínima em 2014 onde a partir daí ocorre uma alta de 64,35%, um detalhe que em muitas vezes pode passar desapercebido olhando somente para a taxa que neste período saiu de 5,14% para 7,98%. O mesmo comportamento pode ser observado no indicador para o Brasil e com mais intensidade ainda para região Norte.
+Sobre desigualdade de renda, é possível perceber que houve uma alta e baixas do índice de Gini nas três regiões ao longo de 2014 a 2017. Porém, em 2018 houve um aumento significativo, principalmente no Tocantins, saindo de 0,495 para 0,529, como pode ser visto na Figura [fig:@gini]. Essa alta vem seguindo a tendência dos outros indicadores apresentados até então, e nesse ano apresenta a maior taxa para as três regiões observadas. Assim como segue o padrão dos outros gráficos, uma queda considerável ocorreu do ano de 2019 para 2020, apresentando as menores taxas para as três regiões observadas. Porém, devido a pandemia do COVID-19, o índice de GINI cresceu de forma expressiva de 2020 para 2021, apresentando um crescimento do grau de concentração de renda das famílias.
 
-Sobre desigualdade de renda, é possível perceber que houve uma leve alta do índice de Gini no estado ao longo dos anos apresentados, saindo de 0,509 para 0,530, como pode ser visto na Figura [fig:@gini]. Essa alta vem seguindo a tendência dos outros indicadores apresentados até então. Padrão semelhante ao observado para o Brasil e região Norte.
-
-Em relação a desigualdade de renda, percebe-se que houve uma redução no índice de Gini no estado ao longo dos anos apresentados, principalmente, entre os anos de 2019 e 2020 pode-se observar, o Gini caiu de 0,543 para 0,523 como mostra a Figura [fig:@gini]. Diferente dos outros indicadores apresentados até então, esse mostra uma redução para a Região Norte, Tocantins e Brasil.
-
-Os resultados apresentados nessa seção são produto, como já mencionado, do baixo crescimento econômico dos últimos anos e as suas consequências no mercado de trabalho, com aumento da taxa de desemprego, precarização dos trabalhos e aumento do trabalho informal. A crise fiscal enfrentada pela União e pelo estado do Tocantins de certa forma também contribui para esse quadro, uma vez que gastos com serviços básicos para a população são muitas vezes limitados nesse tipo de contexto, perpetuando o cenário apresentado.
 
 ```{r}
 # linha US$5,50 PPC por dia
 tx_pobreza <- tibble(
-  ano = seq(ymd("2012-01-01"), ymd("2019-01-01"), by = "1 year"),
-  Norte = c(0.4251,0.4136,0.3827,0.4051,0.4370,0.4243,0.4127,0.4160),
-  Tocantins = c(0.3867,0.3651,0.3184,0.3370,0.3378,0.3218,0.3154,0.3269),
-  Brasil = c(0.2646,0.2489,0.2280,0.2370,0.2551,0.2600,0.2528,0.2471)
+  ano = seq(ymd("2014-01-01"), ymd("2020-01-01"), by = "1 year"),
+  Norte = c(0.3950,0.4280,0.4530,0.4370,0.4260,0.4310,0.3680),
+  Tocantins = c(0.3320,0.3500,0.3520,0.3350,0.3290,0.3420,0.3020),
+  Brasil = c(0.2380,0.2470,0.2680,0.2710,0.2640,0.2590,0.2410)
 )
 tx_extrema_pobreza <- tibble(
-  ano = seq(ymd("2012-01-01"), ymd("2019-01-01"), by = "1 year"),
-  Brasil = c(0.0576,0.0510,0.0449,0.0489,0.0584,0.0644,0.0652,0.0654),
-  Norte = c(0.0969,0.0834,0.0755,0.0904,0.0975,0.101,0.110,0.115),
-  Tocantins = c(0.0559,0.0624,0.0514,0.0552,0.0578,0.0529,0.0659,0.0798),
+  ano = seq(ymd("2014-01-01"), ymd("2020-01-01"), by = "1 year"),
+  Brasil = c(0.0468,0.0580,0.0612,0.0671,0.0680,0.0681,0.0570),
+  Norte = c(0.0786,0.0940,0.1018,0.1049,0.1143,0.1190,0.0847),
+  Tocantins = c(0.0539,0.0579,0.0603,0.0539,0.0679,0.0834,0.0584),
 )
 ```
 
@@ -72,10 +68,10 @@ tx_extrema_pobreza %>%
 
 ```{r, gini, fig.cap = "Índice de Gini", fig.subcap = "Coeciente de desigualdade", fig.source = "IBGE", wrap = "close"}
 tibble(
-  ano = seq(ymd("2012-01-01"), ymd("2020-01-01"), by = "1 year"),
-  Brasil = c(0.540,0.533,0.526,0.524,0.537,0.538,0.545,0.543, 0.523712538791536),
-  Norte = c(0.544,0.541,0.518,0.525,0.523,0.530,0.551,0.537, 0.494932055292463),
-  Tocantins = c(0.509,0.514,0.495,0.504,0.489,0.497,0.528,0.530, 0.484933328090584)
+  ano = seq(ymd("2014-01-01"), ymd("2021-01-01"), by = "1 year"),
+  Brasil = c(0.525,0.524,0.537,0.539,0.545,0.544,0.524,0.544),
+  Norte = c(0.517,0.524,0.523,0.529,0.551,0.537,0.495,0.528),
+  Tocantins = c(0.498,0.506,0.489,0.495,0.529,0.530,0.485,0.517)
 ) %>%
   ggplot(aes(ano)) +
   geom_line(aes(y = Brasil, colour = "Brasil")) +

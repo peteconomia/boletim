@@ -1,25 +1,25 @@
 ---
 title: Boletim de Conjuntura Econômica do Tocantins
-volume: 9
-number: 2
-year: 2021
+volume: 10
+number: 1
+year: 2022
 month: dezembro
-pages: 1--21
+pages: 1--17
 tag: v2.0.0
 coordinator: Prof. Dr. Nilton Marques de Oliveira
 team:
   - theme: Panorama Econômico
-    students: Lucas Strieder Azevedo, Felipe Ferreira de Sousa, Pedro Victor de Sá Castro, Gabrielle Dias Miranda Santos, Laralisse Carvalho de Oliveira, Lara Resende Castro, Tiago Martins Cirqueira
+    students: Lucas Ruan Araújo de Olivera, Vicenzo Teixeira Mensato
   - theme: Contas Públicas Estadual
-    students: Pedro Victor de Sá Castro, Augusto
+    students: Pedro Afonso Castro Gomes, Klannarrara Wanderffanny Xavier 
   - theme: Indicadores Sociais
-    students: Isabel Cristina
+    students: Giovana Francini Mazetto, Izadora Farias de Alencar, Klanarrara Wanderffany Xavier, Heder Soares Junior
   - theme: Mercado de Trabalho
-    students: Felipe Ferreira de Sousa, Amanda Vargas Lira, Gabrielle Dias Miranda Santos, Lara Resende Castro, Izadora Farias, Vanessa Lopes
-  - theme: Comércio Exterior
-    students: Jean Lucas Machado, Laralisse Carvalho de Oliveira, Heder Soares Azevedo Cordeiro Junior
+    students: Izadora Farias de Alencar, Lara Resende Castro 
+  - theme: Comércio Exterior  
+    students: Augusto Rother Durigon, Laralisse Carvalho de Oliveira, Pedro Afonso Castro Gomes
   - theme: Agronegócio
-    students: Izadora Farias, Felipe Ferreira de Sousa
+    students: Tiago Sousa Silva 
 tel: (63) 3229--4915
 email: peteconomia@uft.edu.br
 fullversion: true

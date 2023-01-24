@@ -30,20 +30,16 @@ B <- 1000000000
 
 Os empregos são indicadores para a atividade econômica de um país. Por isso, o governo federal realiza inúmeras pesquisas sobre os empregos formais e informais. O Cadastro Geral de Empregados e Desempregados (CAGED) reúne inúmeras informações sobre os empregos formais, entre admissões, desligamentos, salários, funções, cargos, etc. Também usa-se os dados da Pesquisa Nacional por Amostra de Domicílios PNAD-C para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores.
 
-Observando os dados do saldo de emprego até o segundo trimestre, analisamos o impacto da COVID-19 nos meses em que o isolamento social teve maior influência, gerando um saldo de emprego desfavorável. Ao analisarmos o Tocantins, nota-se que o impacto dos empregos foi significativo nos primeiros trimestres. No entanto, a partir da diminuição da rigidez do isolamento social ocorre uma recuperação destes empregos nos meses posteriores.
+Diante dos desafios e do cenário incerto por causa da pandemia do COVID-19 em 2020, o mercado de trabalho se transformou, havendo uma elevada taxa de desemprego neste ano. Entretanto, entramos em 2021 com uma melhora dos indicadores do mercado de trabalho. Observa-se que no primeiro trimestre de 2021, o saldo de desemprego manteve-se em terreno positivo, apesar das oscilações. Quando se compara a região norte com o Tocantins, concluímos que esta região teve um saldo mais elevado, mas no geral apresentaram resultados positivos, já em dezembro observa-se um saldo negativo, isso pode se dar pelas expectativas dos agentes econômicos em relação ao ano posterior. Dessa forma, a recomposição da força de trabalho se intensificou devido ao avanço da vacinação combinado à retomada mais forte da atividade econômica. 
 
-Quando comparamos a Região Norte com o Tocantins, é nítido que se tem movimentos similares na Figura [fig:@saldo]. Existe uma semelhança bem específica no período de impacto que os empregos sofreram, como os efeitos do isolamento social para conter a atual pandemia.
+Ao analisarmos os gráficos de saldo de emprego por setores, percebe-se que os setores estão desiguais, em relação às contratações e demissões, pois alguns lidaram melhor com os efeitos da COVID-19, como o setor de serviços e indústrias, e outros não conseguiram recuperar os postos de trabalho perdidos, apesar de ter ficado com um saldo positivo, como o setor de construção, agricultura e comércio. A economia tocantinense tem um perfil voltado para os serviços, comércio e agricultura, de acordo com a Figura [fig:@saldo_setor_to], mas o setor que se sobressaiu foi o de serviços, ficando próximo do de indústria. 
 
 
-Ao analisarmos os gráficos de saldo de emprego por setores, percebe-se que os setores estão desiguais, em relação às contratações e demissões, pois alguns lidaram melhores com os efeitos da COVID-19 e outros não conseguiram recuperar os postos de trabalho perdidos. A economia tocantinense tem um perfil voltado para os serviços, comércio e agricultura, de acordo com a Figura [fig:@saldo_setor_to]. Outros setores apresentaram resultados positivos, como o de construção.
-
-É necessário entender a formação dos admitidos e demitidos, como a faixa etária e o gênero. A Tabela [tab:@tabela-caged] apresenta esses dados e as suas variações. Indivíduos com faixa etária de 14 a 34 anos, tiveram mais postos de trabalho disponíveis, com um valor bruto de 48.048 contratações. Com uma predominância masculina nestas vagas, com um valor bruto de 46.634. Por fim, os admitidos tiveram uma formação maior no ensino médio completo, com 45.486 vagas no total.
-
-```{r saldo, fig.cap= "Saldo de empregos ao longo de 2020", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}", wrap = "open"}
+```{r saldo, fig.cap= "Saldo de empregos ao longo de 2021", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}", wrap = "open"}
 # Saldo de Empregos Norte e Tocantins
 tibble(
-  `Região Norte` = c(2992, 10913, -6623, -31590, -11238, 6382, 16203, 23304, 21840, 21150, 14806, -9390),
-  Tocantins = c(221, 1492, -126, -2882, -1292, 1213, 1774, 2136, 2028, 1385, 1062, 220),
+  `Região Norte` = c(8250, 13624, 9438, 9584, 18179, 24405, 24075, 22578, 17664, 9223, 17202, -14418),
+  Tocantins = c(1572, 2531, 1062, 1179, 1719, 1921, 1653, 1597, 1791, 1757, 1247, -1667),
   mes = c("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
 ) %>%
   pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
@@ -52,10 +48,10 @@ tibble(
   scale_y_continuous(labels = function(n) n / m)
 ```
 
-```{r saldo_setor_to, fig.cap = "Saldo por setores em 2020", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}"}
+```{r saldo_setor_to, fig.cap = "Saldo por setores em 2021", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}"}
 # Saldo por Setores no Tocantins
 tibble(
-  Saldo = c(542, 495, 2979, 1543, 1442),
+  Saldo = c(1473, 5890, 613, 2062, 6324),
   Setores = c("Agricultura", "Indústrias", "Construção", "Comércio", "Serviços")
 ) %>%
   ggplot(aes(Setores, Saldo)) +
@@ -63,29 +59,30 @@ tibble(
   scale_y_continuous(labels = function(n) n / m)
 ```
 
-```{r pedido_segudo_desem, fig.cap= "Pedidos de seguro desemprego", fig.subcap="Em Mil", fig.source = "\\acrshort{ibge}", wrap = "close"}
-# Pedidos Seguro desemprego trimestral
+```{r pedido_segudo_desem, fig.cap= "Pedidos de seguro desemprego em 2021", fig.subcap="Em Mil", fig.source = "\\acrshort{ibge}", wrap = "close"}
+# Pedidos Seguro desemprego mensal
 tibble(
-  value = c(9833, 9833, 8832, 8784, 9642, 9324, 9155, 8182, 8785, 10642, 7535, 8072),
-  trimestre = seq(as.Date("2018-01-01"), as.Date("2020-12-01"), by = "quarter")
+  value = c(9432, 9366, 11172, 10004, 9449, 9366, 9196, 9269, 8227, 8129, 8897, 8782),
+  mes = seq(as.Date("2021-01-01"), as.Date("2021-12-01"), by = "month")
 ) %>%
-  ggplot(aes(trimestre, value)) +
+  ggplot(aes(mes, value)) +
   geom_line() +
   scale_y_continuous(labels = function(x) x / m) +
   scale_x_date(
-    breaks = scales::breaks_width("90 day"),
-    labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
+    labels = date_format("%b\n%Y"), date_breaks = "1 month"
   )
 ```
 
-Em relação aos desligamentos, a faixa etária que sofre mais com as demissões são trabalhadores da faixa etária de 14 até 34 anos, similar aos admitidos. O valor total de demissões é de 40.740, número inferior aos de admitidos, gerando um saldo positivo de 7.308 vagas. Já em relação ao gênero, os homens apresentaram as maiores admissões, com 46.634 e um saldo positivo de 6.276 postos de trabalho.
+Um termômetro claro para o setor de empregos são os pedidos seguro- desemprego, uma política macroeconômica para gerar uma segurança branda para o trabalhador recém demitido. Num contexto mais claro, significa que se ocorre uma elevação dos pedidos de seguro desemprego, expressa que o mercado de trabalho não está em um bom funcionamento. O inverso é claro também, se a poucos pedidos é uma reação a um bom momento econômico. O que pode ser observado é o movimento similar da taxa de desemprego e os pedidos-seguro desemprego, quando os pedidos sofrem uma redução a partir de abril de 2021, e apresentando uma oscilação mínima de agosto, mas posteriormente permaneceu em queda, em termos mais gerais. No primeiro trimestre de 2021 é notado o alto movimento de solicitações desse benefício, o que condiz com a alta taxa de desemprego e o momento de crise econômica provocada pela COVID-19, neste momento os agentes ainda estavam retomando ao mercado, com uma certa insegurança. Fazendo uma comparação com a taxa de desemprego, é apresentada a noção de que a taxa se reduz e gera uma redução nos pedidos de seguro desemprego, uma demonstração clara de como a taxa é crucial para a avaliação macroeconômica. É realizado uma regressão na Figura [fig:@reg_emprego] para definir o quão importante é a taxa de desemprego em relação ao seguro desemprego, para o mercado de trabalho.
 
-Já para as mulheres, não foi favorável, tiveram um saldo menor, com 995 vagas. Já no quesito formação acadêmica, é bem similar aos admitidos, na qual pessoas com ensino médio completo foram os maiores contratados, neste caso, as demissões foram inferiores, ocorreu uma perda de postos de trabalhos de 39.888 vagas e um saldo positivo de 5.598 para quem tem ensino médio completo.
+O mercado de trabalho brasileiro vem apresentando trajetória de forte dinamismo, marcada por expressiva expansão da população ocupada, com efeito significativo sobre a redução do desemprego. O  crescimento da ocupação, entretanto, vem ocorrendo de modo mais intenso nos setores informais, refletindo, especialmente, retomada dos serviços mais beneficiados com o relaxamento das medidas de restrição social, e com a vacinação em massa, apresentado na figura [fig:@pop_ocupada] um salto do segundo trimestre de 2021 para o terceiro trimestre de 2021, saindo de 51% para um patamar de aproximadamente 54,7%
 
-```{r reg_emprego, fig.cap= "Relação seguro desemprego x taxa de desemprego", fig.subcap="Em 2020", fig.source = "\\acrshort{mte}", wrap = TRUE}
+A Figura [fig:@rendimentos] apresenta o rendimento médio mensal a partir da média das remunerações dos trabalhadores extraída da população ocupada por meio de trabalho principal. A renda média nominal tocantinense do terceiro trimestre de 2021 foi mais elevada quando comparada ao Brasil e à Região Norte. No entanto, em termos gerais, é observável pelo gráfico que a renda média do Brasil é superior à da região norte e do estado do Tocantins, o que pode ser atribuído por englobar regiões maiores em desenvolvimento produtivo, como o sul e sudeste. No entanto, em termos nominais a renda média estadual obtém uma vantagem em relação à região norte se comparada a nacional.
+
+```{r reg_emprego, fig.cap= "Relação seguro desemprego x taxa de desemprego", fig.subcap="Em 2021", fig.source = "\\acrshort{mte}", wrap = TRUE}
 reg_data <- tibble(
   taxa_desemprego = c(11, 11.3, 9.8, 10.4, 12.3, 11.4, 10.5, 9.1, 11.2, 12.5, 12.2, 11.6),
-  pedidos_seguro_desemprego = c(9833, 9833, 8832, 8784, 9642, 9324, 9155, 8182, 8785, 10642, 7535, 8072)
+  pedidos_seguro_desemprego = c(9432, 9366, 11172, 10004, 9449, 9366, 9196, 9269, 8227, 8129, 8897, 8782)
 )
 
 ggplot(reg_data, aes(x = taxa_desemprego, y = pedidos_seguro_desemprego)) +
@@ -95,47 +92,14 @@ ggplot(reg_data, aes(x = taxa_desemprego, y = pedidos_seguro_desemprego)) +
   theme_petgg(axis_title = T, base_family = "EB Garamond")
 ```
 
-```{r tabela-caged, fig.source = "\\acrshort{caged}"}
-caged_idade <- tibble(
-  carac = c("14-34", "35-65", "65+"),
-  Admitidos = c(48048, 19009, 89),
-  Demitidos = c(40740, 17446, 190),
-  Saldo = Admitidos - Demitidos
-)
-caged_sexo <- tibble(
-  carac = c("Homem", "Mulher"),
-  Admitidos = c(46634, 20513),
-  Demitidos = c(40358, 19518),
-  Saldo = Admitidos - Demitidos
-)
-caged_instru <- tibble(
-  carac = c("A", "F.C", "M.I.C", "M.C", "S.C", "P.G"),
-  Admitidos = c(219, 3621, 4745, 45486, 4457, 316),
-  Demitidos = c(237, 3343, 4456, 39888, 3984, 319),
-  Saldo = Admitidos - Demitidos
-)
-bind_rows(caged_idade, caged_sexo, caged_instru) %>%
-  kableExtra::kbl(
-    caption = "Perl dos Admitidos e Demitidos no CAGED",
-    align = "lrrr",
-    format.args = list(big.mark = ".", decimal.mark = ",", scientific = FALSE),
-    booktabs = T,
-    col.names = c("", "Admitidos", "Demitidos", "Saldo")
-  ) %>%
-  kable_styling(full_width = T) %>%
-  pack_rows("Idade", 1, 3) %>%
-  pack_rows("Sexo", 4, 5) %>%
-  pack_rows("Escolaridade", 6, 7)
-```
 
-A taxa de desemprego no Tocantins estava num movimento de queda a partir do primeiro trimestre de 2019, conforme a Figura [fig:@taxa_desemprego], porém, a partir do quarto trimestre de 2019 até o primeiro trimestre de 2020 ocorreu um movimento de elevação da taxa de desemprego. Um termômetro claro para o setor de empregos são os pedidos seguro- desemprego, uma política macroeconômica para gerar uma segurança branda para o trabalhador recém demitido. Num contexto mais claro, significa que se ocorre uma elevação dos pedidos de seguro desemprego, expressa que o mercado de trabalho não está em um bom funcionamento. O inverso é claro também, se a poucos pedidos é uma reação a um bom momento econômico. O que pode ser observado é o movimento similar da taxa de desemprego e os pedidos-seguro desemprego, quando os pedidos sofrem uma elevação considerável a partir do quarto trimestre de 2019. No primeiro semestre deste ano é notado o alto movimento de solicitações desse benefício, o que condiz com a alta taxa de desemprego e o momento de crise econômica provocada pela COVID-19. Fazendo uma comparação com a taxa de desemprego, é apresentada a noção de que a taxa se eleva e gera um aumento nos pedidos de seguro desemprego, uma demonstração clara de como a taxa é crucial para a avaliação macroeconômica. É realizado uma regressão na Figura [fig:@reg_emprego] para definir o quão importante é a taxa de desemprego em relação ao seguro desemprego, para o mercado de trabalho.
 
 ```{r taxa_desemprego, fig.cap= "Taxa de desemprego no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}", wrap = "open"}
 df <- get_sidra(
   x = 4092,
   geo = "State",
   header = T,
-  period = "201201-202004"
+  period = "202101-202104"
 ) %>% janitor::clean_names()
 
 df %>%
@@ -161,24 +125,23 @@ df %>%
   ggplot(aes(tri, taxa_des)) +
   geom_line() +
   scale_x_date(
-    breaks = scales::breaks_width("3 month", offset = -30),
-    labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y"),
-    limits = c(as.Date("2019-01-01"), as.Date("2020-10-01"))
+    breaks = scales::breaks_width("3 month", offset = -59),
+    labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
   )
 ```
 
-```{r pop_ocupada, fig.cap= "População ocupada no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}", wrap = "close"}
+```{r pop_ocupada, fig.cap= "População ocupada no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}"}
 sidrar::get_sidra(
   x = 4092,
   header = T,
   geo = "State",
-  period = "201901-202004"
+  period = "202101-202104"
 ) %>%
   janitor::clean_names() %>%
   filter(
     unidade_da_federacao == "Tocantins",
     condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao %in% c(
-      "Força de trabalho",
+      "Força de trabalho - ocupada",
       "Total"
     ),
     unidade_de_medida == "Mil pessoas"
@@ -190,35 +153,27 @@ sidrar::get_sidra(
   ) %>%
   rowwise() %>%
   mutate(
-    pop_ocu = `Força de trabalho` / `Total` * 100,
+    pop_ocu = `Força de trabalho - ocupada` / `Total` * 100,
     quarter = trimestre_codigo %>% stringr::str_replace("(?<=\\d{4})\\d", "Q"),
     tri = zoo::as.yearqtr(quarter) %>% as.Date()
   ) %>%
   ggplot(aes(tri, pop_ocu)) +
   geom_line() +
   scale_x_date(
-    breaks = scales::breaks_width("3 month", offset = -30),
+    breaks = scales::breaks_width("3 month", offset = -59),
     labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
   )
 ```
 
-Devido ao aumento da população ocupada a partir do segundo semestre de 2020 e também a volta do comércio, houve ainda uma diminuição na taxa de desemprego que fez com que consequentemente houvesse redução nos pedidos de seguro desemprego. Isso ocorreu graças ao crescimento dos setores do mercado que fazem com que a contratação de mão de obra aumente e consequentemente a redução do número de desempregados.
 
-A taxa de desemprego aumentou no primeiro semestre de 2020 motivado pelo começo da pandemia. Em consequência da pandemia do COVID-19, ainda no primeiro semestre, houve uma baixa no número da população ocupada. No segundo semestre de 2020 houve uma queda na taxa de desemprego, mas também é preciso lembrar que a população ocupada também aumentou e por isso diminuiu a taxa de desemprego.
 
-A Figura [fig:@pop_ocupada] faz uma demonstração da população economicamente ativa a qual se encontram trabalhando. A taxa de ocupação tocantinense, conforme a figura aponta que do primeiro trimestre de 2019 ao quarto trimestre de 2020 oscila dentro das faixas entre 54% a 59%, podendo se verificar uma queda constante do primeiro trimestre de 2019 ao terceiro de 2020, com uma leve estabilidade no quarto trimestre de 2019, no entanto a entre o terceiro trimestre de 2020 a quarto trimestre a situação de reverter para um aumento de cerca de 3% da população ocupada.
-
-A Figura [fig:@rendimentos] apresenta o rendimento médio mensal a partir da média das remunerações dos trabalhadores extraída da população ocupada por meio de trabalho principal. De forma geral, a renda média nominal tocantinense do primeiro trimestre de 2019 ao quarto trimestre de 2020 obteve um aumento equivalente a 6,2%, na região norte 10,86% e já no Brasil 10,02%.  Apesar de que na região norte houve um aumento na renda mais considerável que no Tocantins, a média de rendimento mensal em reais foi menor que a do estado.
-
-Os dados apontam que no primeiro trimestre de 2019 no Tocantins, na região norte e Brasil a renda média nominal do trabalho foram respectivamente, R$ 1.807,00; R$ 1.639,00 e R$ 2.216,00 enquanto no quarto trimestre de 2020 foram R$ 1.919,00; R$ 1.817,00 e R$ 2.438,00. É observável pelo gráfico que a renda média do Brasil é superior ao da região norte e o do estado do Tocantins, o que pode ser atribuído por englobar regiões maiores em desenvolvimento produtivo, como o sul e sudeste. No entanto, em termos nominais a renda média estadual obtém uma vantagem em relação à região norte se comparada a nacional.
-
-```{r rendimentos, fig.cap= "Rendimento médio mensal", fig.subcap="Em mil R$", fig.source = "\\acrshort{ibge}", wrap = TRUE}
+```{r rendimentos, fig.cap= "Rendimento médio mensal", fig.subcap="Em mil R$", fig.source = "\\acrshort{ibge}", wrap = "close"}
 # Rendimentos - Tocantins
 rendi <- get_sidra(
   x = 5439,
   geo = "State",
   header = T,
-  period = "201201-202004"
+  period = "202101-202104"
 ) %>% janitor::clean_names()
 
 rendimento_to <- rendi %>%
@@ -232,7 +187,7 @@ rendimento_to <- rendi %>%
 rendi_br <- get_sidra(
   x = 5439,
   header = T,
-  period = "201201-202004"
+  period = "202101-202104"
 ) %>% janitor::clean_names()
 
 rendimento_brasil <- rendi_br %>%
@@ -247,7 +202,7 @@ rendi_norte <- get_sidra(
   x = 5439,
   header = T,
   geo = "Region",
-  period = "201201-202004"
+  period = "202101-202104"
 ) %>% janitor::clean_names()
 
 rendimento_norte <- rendi_norte %>%
@@ -263,8 +218,8 @@ ggplot() +
   geom_line(rendimento_norte, mapping = aes(tri, valor, colour = "Região Norte")) +
   scale_color_manual(values = petgg::colors[1:3]) +
   scale_x_date(
-    breaks = scales::breaks_width("3 month", offset = -30),
+    breaks = scales::breaks_width("3 month", offset = -59),
     labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y"),
-    limits = c(as.Date("2019-01-01"), as.Date("2020-10-01"))
+    limits = c(as.Date("2021-01-01"), as.Date("2021-11-01"))
   )
 ```

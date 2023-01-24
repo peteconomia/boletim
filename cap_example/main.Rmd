@@ -18,6 +18,7 @@ petknitr::setup()
 ```
 
 # Título
+## Subtítulo
 
 Cillum consequat velit ut sunt laborum Lorem in. Laboris ex aute in consectetur. Adipisicing enim laborum deserunt est est minim ullamco commodo commodo ut fugiat amet fugiat. Culpa anim nostrud id ullamco qui eiusmod. Quis do deserunt elit voluptate ullamco voluptate. Magna nostrud aute ullamco elit et.
 
@@ -33,7 +34,10 @@ Consequat amet nostrud officia ea exercitation exercitation consectetur. Nostrud
 Duis ullamco cupidatat et sint dolor aliqua. [abbr: @pib] Amet ad labore sunt esse in ad id nisi officia culpa. Proident fugiat laborum nisi laborum officia tempor excepteur ut veniam enim deserunt.
 :::
 
+
 Veja o Quadro [box: @ex_box]
+
+
 
 Fugiat culpa fugiat labore fugiat labore ut irure amet ex non commodo enim. Ea magna sunt ullamco ullamco deserunt excepteur aliqua et ullamco et aliquip excepteur nostrud exercitation. Est cillum nostrud enim elit in eiusmod dolore ut nisi laboris velit. Eu sint cupidatat amet cillum ex ut.
 
@@ -55,6 +59,11 @@ ggplot(diamonds, aes(depth, color = cut)) +
 ```
 
 Conforme Figura [fig: @label], [fig: @diamonds] e [fig: @dist_diamongs]
+
+```{r aa, fig.cap = "Dist Diamonds", fig.subcap="Depth by cut", fig.source = "IBGE", wrap = TRUE}
+ggplot(diamonds, aes(depth, color = cut)) +
+    geom_density()
+```
 
 Aute eiusmod in proident in ut anim ipsum duis aute ea sint. Quis exercitation sint dolore non est consequat laboris. Duis proident sunt quis minim aliqua. Ut enim nostrud proident sint elit elit eiusmod officia. Sint duis consequat tempor eiusmod ea pariatur labore laboris non veniam commodo cupidatat.
 

@@ -27,135 +27,111 @@ petknitr::setup()
 
 # Panorama Econômico
 
-A eclosão da pandemia do coronavírus tem se mostrado o maior choque enfrentado pela economia brasileira em anos recentes, tanto pelo lado da demanda com a contração do consumo das famílias e dos investimentos, quanto pelo lado da oferta, com a interrupção de diversas atividades produtivas e falência de empresas. A fragilidade fiscal do Estado brasileiro e as altas taxas de desemprego observadas desde a recessão de 2015/2016 ajudam a compor um cenário bastante desafiador para a economia nacional, em especial para o estado do Tocantins.
+Segundo dados do IPEA (2022), a recuperação da atividade econômica dos efeitos da pandemia continua ocorrendo de forma heterogênea. Por um lado, serviços e comércio têm se beneficiado da melhora das condições sanitárias. Por outro, a indústria apresenta resultados negativos em parte devido aos mesmos choques de oferta que afetam a inflação, como escassez de matérias-primas e custos de energia. O mercado de trabalho vem dando sinais positivos e já registra a menor taxa de desocupação dessazonalizada desde maio de 2020, mas ainda apresenta indicadores gerais em níveis desfavoráveis. As condições gerais do mercado de crédito têm mostrado estabilidade e será importante monitorar os efeitos do aumento do Imposto sobre Operações Financeiras (IOF) nos próximos meses. O setor externo tem apresentado desempenho positivo, com aumento das exportações e diminuição do déficit em transações correntes. Enquanto isso, a taxa de câmbio se mantém desvalorizada e volátil.
 
-As expectativas de crescimento para a economia brasileira situavam-se em torno de 2,3% ainda no início do ano como mostra a Figura [fig:@pib_expec]. As taxas esperadas para a indústria e o setor de serviços seguiam próximas ao valor esperado para o PIB. Já para o setor agropecuário, a expectativa de crescimento era um pouco mais otimista, com uma variação esperada por volta de 3%. Durante o primeiro trimestre, as expectativas mantiveram-se estáveis até o início da pandemia em meados de março, apresentando tendência de redução a partir da propagação da covid-19. Em abril, as projeções de crescimento esperavam uma queda do PIB para o ano de 2020, tornando-se cada vez mais pessimistas nos meses subsequentes. O período de maior pessimismo foi no meio do ano, onde se esperava uma contração maior que 6%.
+O ano de 2021, ao mesmo tempo em que foi um tempo de continuidade da pandemia do coronavírus, foi um período de recuperação do cenário destrutivo que foi o ano anterior. A omissão e o atraso quanto a políticas que atenuassem os efeitos danosos desse incidente geraram um cenário desafiador para a gestão de 2022. 
 
-```{r pib_expec, fig.cap = "Expectativa de crescimento anual do PIB Nacional", fig.subcap="Média por setor", fig.source = "BCB", wrap = "open"}
-# Expectativa de crescimento anual do PIB Nacional
-expec_anual <- meedr::get_annual(
-  indicator = c("PIB Agropecuária", "PIB Indústria", "PIB Serviços", "PIB Total"),
-  first_date = "2020-01-01",
-)
+O ano de 2021 começou no mês de janeiro com um IPCA acumulado de 0,25%, como mostra a Tabela [tab:@inflacao], padrão que não se manteve e em fevereiro os preços ao consumidor amplo aumentaram em 0,86% em relação ao mês anterior, acumulando alta de 1,11%. O mês seguinte foi pior, apresentando elevação de preços de 0,93% e totalizando um acumulado de 2,05%. Já em abril, o índice do acumulado se elevou para 2,36%, expressão de uma baixa do processo inflacionário no mês. A progressão da inflação se acelera mais uma vez em maio com o índice igual a 3,22%. Em junho, a taxa de aumento nos preços sofre uma queda, e o índice registrado é de 3,77%. Já em julho, o índice sobe em um ponto percentual, alcançando o valor de 4,76%, aumento sensível em relação ao mês anterior. Em agosto do mesmo ano, o índice registrado é de 5,67%, enquanto o índice de setembro é de 6,90%, marcando um avanço da inflação. Em outubro, esse avanço atinge seu pico no ano, com o índice atingindo a marca de 8,24%. Em novembro, a situação toma níveis similares aos de fevereiro e março em termos do índice mensal, e o acumulado registrado é de 9,26%. O ano de 2021 foi fechado em dezembro com uma inflação acumulada de pouco mais de 10%, completando dois dígitos expressivos. 
 
-expec_anual %>%
-  filter(
-    reference_date == 2020,
-    date >= "2020-01-01" & date <= "2020-12-31"
-  ) %>%
-  ggplot(aes(date, mean, colour = indicator)) +
-  geom_line() +
-  scale_x_date(
-    breaks = scales::breaks_width("21 days"),
-    labels = scales::date_format("%e\n%b"),
-    expand = c(0, 5)
-    # limits = as.Date(c("2020-01-01", "2020-12-31"))
-  ) +
-  scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
-```
+Quanto ao PIB, na perspectiva da demanda, pode-se repartir a análise entre os setores de agropecuária, indústria, serviços e a participação dos impostos sobre os produtos num recorte trimestral completo, como mostra a Figura [fig:@PIB_demanda]. Os componentes dos impostos sobre produtos tiveram um crescimento de 0,5% no primeiro trimestre de 2021. Houve um aumento de 2,3% no segundo trimestre e de 0,8% no terceiro, terminando o ano com um crescimento positivo de 0,2% no quarto trimestre. Já o setor da agropecuária apresentou registros modestos ao longo dos quatro trimestres, com um crescimento de 0,6% no primeiro trimestre, não apresentando variação no segundo. No terceiro trimestre, o crescimento foi negativo no valor de -0,5%, terminando o ano no quarto semestre com uma variação próxima de 0%. Em relação à indústria, o primeiro trimestre registrou um crescimento positivo de 0,9%, e no segundo um crescimento novamente positivo de 3,0%. Já no terceiro trimestre, o crescimento registrado foi de 0,2%, alcançando um patamar negativo de -0,2% no quarto trimestre do ano. Por fim, o setor de serviços apresentou o crescimento mais expressivo: apesar de ter começado negativamente no primeiro trimestre, com uma variação de -0,6%, houve um salto para um crescimento de 7,0% no segundo trimestre, seguido por uma continuação decrescente do crescimento com um registro de variação positiva de 3,5% no terceiro trimestre e de 1,6% no quarto.
 
-```{r pib_demanda, fig.cap= "Variação trimestral do PIB pelo lado da demanda", fig.subcap="Taxa trimestre contra trimestre imediatamente anterior", fig.source = "IBGE"}
-contas_nacionais <- get_sidra(5932,
-  period = c("202001-202004"),
-  geo = "Brazil",
-  classific = "c11255",
-  header = TRUE,
-  digits = "default"
+Na Figura [fig:@PIB_evolucao], em relação ao trimestre anterior, observa-se que o primeiro trimestre de 2021 apresentou uma variação de 1,1% no PIB, um crescimento expressivo quando comparado com o crescimento negativo de -0,2% no segundo trimestre do ano. Já no terceiro trimestre, o país retoma o crescimento no valor baixo de 0,1%, finalizando o ano com uma retomada do crescimento no valor de 0,7%, consolidando uma lenta recuperação em relação ao período pandêmico do ano anterior. 
+
+```{r inflacao, fig.cap = "Índice Nacional de Preços ao Consumidor Amplo - IPCA", fig.subcap="Em porcentagem", fig.source = "IBGE", wrap = T}
+ipca <- get_sidra(
+  1737,
+  period = "202101-202112"
 ) %>%
-  as_tibble() %>%
-  janitor::clean_names()
+tibble::as_tibble() %>%
+filter(
+  Variável %in%
+  c(
+    "IPCA - Variação mensal",
+    "IPCA - Variação acumulada em 12 meses",
+    "IPCA - Variação acumulada no ano"
+    )
+  ) %>%
+  select(c(Mês, Variável, Valor))
 
-contas_nacionais %>%
-  filter(
-    variavel == "Taxa trimestre contra trimestre imediatamente anterior",
-    setores_e_subsetores %in% c(
-      "Despesa de consumo das famílias",
-      "Despesa de consumo da administração pública",
-      "Formação bruta de capital fixo",
-      "Exportação de bens e serviços",
-      "Importação de bens e serviços (-)"
-    )
+ipca %>%
+  tidyr::pivot_wider(names_from = Variável, values_from = Valor) %>%
+  mutate(`Mês` = stringr::str_remove(`Mês`, "\\s+\\d+$")) %>% 
+
+kableExtra::kbl(
+    caption = "Inflação Percentual \\label{tab:inflacao}",
+    align = "lrrr",
+    format.args = list(big.mark = ".", decimal.mark = ",", scientific = FALSE),
+    booktabs = T,
+    col.names = c("", "Mensal", "Acumulado no Ano", "Acumulado em 12 meses")
   ) %>%
-  select(trimestre_codigo, valor, setores_e_subsetores) %>%
-  mutate(
-    trimestre_codigo = stringr::str_match(trimestre_codigo, "\\d{1}$"),
-    valor = valor / 100,
-    setores_e_subsetores = case_when(
-      setores_e_subsetores == "Despesa de consumo das famílias" ~ "Consumo das famílias",
-      setores_e_subsetores == "Despesa de consumo da administração pública" ~ "Consumo do governo",
-      setores_e_subsetores == "Formação bruta de capital fixo" ~ "Investimentos",
-      setores_e_subsetores == "Exportação de bens e serviços" ~ "Exportações",
-      setores_e_subsetores == "Importação de bens e serviços (-)" ~ "Importações"
-    )
-  ) %>%
-  ggplot(aes(setores_e_subsetores, valor, fill = trimestre_codigo)) +
-  geom_bar(stat = "identity", position = "dodge", gap = "s") +
-  scale_y_continuous(labels = scales::percent)
+  kable_styling(full_width = T)
+  
 ```
 
-```{r pib_oferta, fig.cap = "Variação trimestral do PIB pelo lado da oferta", fig.subcap = "Taxa trimestre contra trimestre imediatamente anterior", fig.source = "IBGE", wrap = "close"}
-contas_nacionais %>%
-  filter(
-    variavel == "Taxa trimestre contra trimestre imediatamente anterior",
-    setores_e_subsetores %in% c(
-      "Agropecuária - total",
-      "Indústria - total",
-      "Serviços - total"
-    )
-  ) %>%
-  select(trimestre_codigo, valor, setores_e_subsetores) %>%
-  mutate(
-    trimestre_codigo = stringr::str_match(trimestre_codigo, "\\d{1}$"),
-    valor = valor / 100,
-    setores_e_subsetores = stringr::str_match(setores_e_subsetores, "\\w+")
-  ) %>%
-  ggplot(aes(setores_e_subsetores, valor, fill = trimestre_codigo)) +
-  geom_bar(stat = "identity", position = "dodge", gap = "s") +
-  scale_y_continuous(labels = scales::percent)
+
+Quanto à Pesquisa Mensal de Comércio (PMC), que permite ser avaliado o desempenho do comércio varejista, observam-se em geral resultados negativos. O estado do Amazonas começou o ano em janeiro com uma variação de -25,8% em relação ao mesmo mês do ano anterior, resultado muito discrepante em relação às outras unidades federativas escolhidas. A tendência de queda alta no estado do Amazonas em contraposição a uma leve queda no Brasil em geral se repete em fevereiro e março, enquanto Tocantins e Pará têm um diagnóstico que os contrapõe: todas as variações na receita nominal das vendas do comércio varejista no Tocantins são negativas de fevereiro a dezembro de forma expressiva, porém relativamente estável, enquanto o Pará apresenta crescimento positivo considerável e oscilante. A tendência do Brasil em geral no mesmo período é de crescimento a taxas decrescentes, terminando o ano com uma variação positiva de 1,1% em dezembro em relação ao mesmo mês no ano anterior.
+
+Os indicadores da Pesquisa Mensal de Serviços (PMS) também produzida pelo IBGE podem oferecer um panorama sob o qual é possível avaliar o desempenho da atividade econômica do setor de serviços nas unidades federativas selecionadas (Tocantins, Amazonas e Pará) e o Brasil. Enquanto o diagnóstico da PMC é negativo, o da PMS, por sua vez, é o oposto. Na Figura [fig:@pms_ibge], observa-se que os meses de janeiro e fevereiro significaram uma tendência de retração para todas as quatro unidades liderada pelo Brasil em geral e pelo Tocantins, que apresentou uma retração no valor de -7,7% em janeiro e excetuando-se o Amazonas, que apresentou um modesto crescimento de 3,8% em relação ao mesmo mês do ano anterior em fevereiro. Os meses seguintes foram marcados por uma retomada progressiva do crescimento também liderada pelo Tocantins, que apresentou os maiores índices positivos de março a dezembro entre as quatro unidades federativas analisadas. O crescimento se apresentou estável nesse período, excetuando-se a leve queda de -0,2% em março registrada no Brasil em geral. O ano termina com outubro, novembro e dezembro apresentando indicadores sensivelmente positivos para todas as unidades consideradas.
+
+```{r PIB_demanda, fig.cap = "PIB e componentes de demanda: evolução das taxas de crescimento (2021)", fig.subcap = "Em porcentagem", fig.source = "IBGE", wrap = T}
+tibble(
+  ano = seq(ymd("2021-01-01"), ymd("2021-12-31"), by = "3 month"),
+  Impostos_Sobre_Produtos = c(0.5,2.3,0.8,0.2),
+  Agropecuaria = c(0.6,0.0,-0.5,0.0),
+  Industria = c(0.9,3.0,0.2,-0.2),
+  Servicos = c(-0.6,7.0,3.5,1.6)
+) %>%
+  ggplot(aes(ano)) +
+  geom_line(aes(y = Impostos_Sobre_Produtos, colour = "Impostos Sobre Produtos")) +
+  geom_line(aes(y = Agropecuaria, colour = "Agropecuária")) +
+   geom_line(aes(y = Industria, colour = "Indústria")) +
+   geom_line(aes(y = Servicos, colour = "Serviços")) +
+  scale_x_date(
+    breaks = scales::breaks_width("3 month", offset = -30),
+    labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
+  )
 ```
 
-No primeiro trimestre de 2020, o PIB brasileiro encolheu 1,5% de acordo com dados oficiais do IBGE. Cabe destacar que a pandemia teve início apenas no fim desse período, o que pode indicar que já havia uma perda de dinamismo da atividade econômica antes mesmo da chegada do vírus, dada a magnitude da contração observada. O segundo trimestre foi o de maior contração, com uma queda de 9,7%, muito em função dos maiores esforços de isolamento social feitos nesse período.
+```{r PIB_evolucao, fig.cap = "PIB: Evolução das taxas de crescimento trimestral e dessazonalizado (2021) em comparação com 2020", fig.subcap = "Em porcentagem", fig.source = "IBGE", wrap = "open"}
+tibble(
+  ano = seq(ymd("2020-01-01"), ymd("2021-12-30"), by = "3 month"),
+  Variacao_contra_o_mesmo_trimestre_do_ano_anterior = c(-0.1,10.7,-3.7,-0.9,1.3,12.3,4.0,1.6),
+  Variacao_contra_o_trimestre_anterior = c(-2.4,-8.8,7.9,3.1,1.1,-0.2,0.1,0.7)
+) %>%
+  ggplot(aes(ano)) +
+  geom_line(aes(y = Variacao_contra_o_mesmo_trimestre_do_ano_anterior, colour = "Variação Contra o Mesmo Trimestre do Ano Anterior")) +
+  geom_line(aes(y = Variacao_contra_o_trimestre_anterior, colour = "Variação Contra o Trimestre Anterior")) +
+  scale_x_date(
+    breaks = scales::breaks_width("3 month", offset = -30),
+    labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
+  )
+```
 
-No terceiro trimestre, houve um crescimento de 7,7%, que apesar de alto, não foi suficiente para repor as perdas do início do ano. Já no quarto trimestre, houve um crescimento de 3,2%. O crescimento no ano vigente foi negativo -4,4, apresentando uma queda no PIB, os estimulos fiscais e monetários amenizavam as expectativas que foram apresentados na Figura [fig:@pib_expec]. Já pelo lado da demanda, é apresentado um desempenho conflituoso, no terceiro trimestre que é o período pós um forte lockdown, ocorre uma variação negativa nos agregados do PIB, o consumo das familias apresenta uma queda de -4,1%. O consumo do governo demonstra uma queda de -3,7%. Os investimentos demonstram uma retração de -4% e as exportações e importações, vão apresentando uma queda de -1,8% e -9% respectivamente. A Figura apresenta as relações por completo [fig:@pib_demanda].
 
-Já no quarto trimestre o desempenho economico continua ruim no contexto de uma pandemia, com uma variação negativa. O consumo das familias foi de -5,5% e assim, o consumo do governo apresentou uma queda consecutiva de -4,7%, os investimentos tiveram uma melhora em relação ao terceiro trimestre, continuando com uma variação negativa de -0,8%. Exportações e importações apresentaram as maiores quedas, nas quais -2,5% e -10%. Em que as exportações melhoraram nesse contexto, porém com uma piora das importações.
-
-Pelo lado da oferta, Figura [fig:@pib_oferta] apresenta o desempenho economico pelo lado da oferta. O primeiro agregado é a agropecuária que iniciou 2020 com um crescimento de 1,6% no primeiro trimestre, no segundo apresentou 1,9 e no terceiro, outro crescimento de 1,8% e por fim, no último trimestre, houve um efeito positivo de 2%. Assim, a Agricultura apresenta um desempenho superior ao restante da economia, mesmo numa situação pandêmica. Outro agregado da oferta, é a indústria, na qual o primeiro trimestre obteve um crescimento de 0,5%. Já no segundo trimestre inicia-se uma sequência de quedas, na qual o primeiro resultado do 2T é -3,2% e no terceiro e quatro trimestre de 2020 houve uma sequeência de quedas no valor de -3,5%, de forma consecutiva. E por fim, um dos principais agregados para a economia brasileira são os de serviços, em que tiveram os maiores impactos na economia. Iniciando o trimestre com um crescimento de 1%, já no contexto pandêmico houve uma sequeência de quedas nos valores de -1,9%, -3,5% e -4,5%. Assim, o desempenho pelo lado das firmas foram afetados pela pandemia e consequentemente, o isolamento social, como é o caso dos serviços e da indústria. Entretanto, a agricultura apresentou números positivos e assim, diminuindo o impacto negativo do PIB.
-
-Alternativamente, a análise dos dados da Pesquisa Mensal do Comércio (PMC) pode fornecer uma noção de como a economia do estado performou ao longo do ano. A Figura [fig:@pmc_ibge] apresenta os dados de variação mensal do volume de vendas do comércio para o Brasil e para o Tocantins. O período inicial do ano apresentava bons indices para a PMC, na qual, os estados da região Norte e o Brasil desempenhava de forma regular. Entretanto, com o avanço da pandemia é visível os choques que sofreram, em que o período mais critico da pandemia, a queda foi similar e brusca para as regiões e para o país. Fazendo um recorte para a região Norte, em que o pior resultado se encontra para o mês de Maio, no qual a pandemia e o isolamento social torna-se essenciais para o controle da doença. Amazonas apresenta um desempenho de -3,6%, enquanto o Pará tem um resultado de -3,6% e o Tocantins por fim, -0,1%, o melhor resultado entre os três estados. O estado tocantinense apresenta resultados melhores que os vizinhos do Norte e do Brasil em geral, em que apresentou uma queda de -4,0%.
-
-A recuperação ocorre quando as medidas de isolamento sofrem de um relaxamento, assim, na segunda metade do ano é visível uma forte recuperação nas vendas, na qual o principal destaque é o estado do Pará que apresentou uma recuperação ao ponto de chegar a 9,4% em Dezembro, uma recuperação iniciada em julho. O estado do Amazonas apresentou uma forte recuperação, em grau menor ao vizinho, mas apresentando um resultado positivo de 7,3% no mês de dezembro. O Tocantins apresentou um resultado pior, em que havia uma recuperação iniciada no mês de julho, apresentando 3,3% de crescimento nas vendas. Entretanto, o final do ano para o Tocantins demonstra resultados negativos, chegando a uma queda de -0,1% no mês de dezembro. Destoando dos vizinhos, já o Brasil inicia-se a sua recuperação no mês de outubro, apresentando um resultado positivo de 0,9% e chegando a dezembro, com um resultado de 1,2%.
-
-Já o setor de serviços, conforme a Figura [fig:@pms_ibge] apresenta um desempenho similar dos outros indicadores. Na qual, o inicio de 2020 apresentava um desempenho positivo, até o choque da pandemia no setor que conforme a Figura [fig:@pib_oferta] aportou, é de importância para as contas nacionais. A região Norte apresenta a queda da pesquisa, de forma similar, mas de latência diferente. O Amazonas apresentou uma queda continua, saindo dos 11,5% em janeiro para -2,2% em maio. O resultado negativo persiste até novembro, em que o desempenho é negativo nesse período. O mês de Dezembro apresenta uma melhora de 0,6%. Já o estado do Pará inicia o ano com um resultado de 1,6% e apresentado resulstados positivos até o mês de março. Entretanto, o desempenho torna-se negativo até o final do ano, em que apresenta um desempenho negativo, sendo julho o pior mês, com um resultado de -3,4.
-
-Já o estado do Tocantins, inicia o ano com um resultado de 10,4% nos serviços, até apresentar seguintes quedas entre os meses de fevereiro e abril, em que os resultados tornam-se negativos, por causa da pandemia. Tocantins apresenta as maiores quedas no setor de serviços, em que os resultados são os piores da região Norte chegando a apresentar uma queda de -6,7 em Setembro e chegando a dezembro a um resultado negativo de -6,4%. Já o Brasil segue a mesma tendência, em que inicia-se o ano com um resultado positivo de 1,6% e termina o ano com um resultado negativo de -7,8%.
-
-```{r pmc_ibge, fig.cap = "Volume de vendas no comércio varejista", fig.subcap = "Variação acumulada no ano (base: igual período do ano anterior)", fig.source = "IBGE", wrap = "open"}
+```{r pmc_ibge, fig.cap = "Volume de vendas no comércio varejista", fig.subcap = "Variação acumulada no ano (base: igual período do ano anterior)", fig.source = "IBGE"}
 # Pesquisa Mensal de Comércio, https://sidra.ibge.gov.br/pesquisa/pmc/tabelas
 ## Tabela 3416 - Índices de volume e de receita nominal de vendas no comércio varejista, por tipos de índice (2014 = 100)
 pmc_br <- get_sidra(
   x = 3416,
   geo = "Brazil",
-  period = "202001-202012",
+  period = "202101-202112",
   header = T
 ) %>%
   as_tibble() %>%
   clean_names() %>%
   select(mes_codigo, variavel, tipos_de_indice, valor) %>%
   mutate(geo = "Brasil")
-
 pmc_uf <- get_sidra(
   x = 3416,
   geo = "State",
   geo.filter = list("State" = c(13, 15, 17)),
-  period = "202001-202012",
+  period = "202101-202112",
   header = T
 ) %>%
   as_tibble() %>%
   clean_names() %>%
   mutate(geo = unidade_da_federacao) %>%
   select(mes_codigo, variavel, tipos_de_indice, valor, geo)
-
 vol_vendas <- bind_rows(pmc_br, pmc_uf) %>%
   filter(
     variavel == "Índice de volume de vendas no comércio varejista",
@@ -166,7 +142,6 @@ vol_vendas <- bind_rows(pmc_br, pmc_uf) %>%
     var = "Vendas no comércio varejista",
   ) %>%
   select(date, var, geo, valor)
-
 vol_vendas %>%
   ggplot(aes(date, valor, colour = geo)) +
   geom_line() +
@@ -177,33 +152,30 @@ vol_vendas %>%
   scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
 ```
 
-
 ```{r pms_ibge, fig.cap= "Índice de volume de serviços", fig.subcap="Variação acumulada no ano (base: igual período do ano anterior)", fig.source = "IBGE", wrap = "close"}
 # Pesquisa Mensal de Serviçoes, https://sidra.ibge.gov.br/pesquisa/pms/tabelas
 ## Tabela 6442
 pms_br <- get_sidra(
   x = 6442,
   geo = "Brazil",
-  period = "202001-202012",
+  period = "202101-202112",
   header = T
 ) %>%
   as_tibble() %>%
   clean_names() %>%
   select(mes_codigo, variavel, tipos_de_indice, valor) %>%
   mutate(geo = "Brasil")
-
 pms_uf <- get_sidra(
   x = 6442,
   geo = "State",
   geo.filter = list("State" = c(13, 15, 17)),
-  period = "202001-202012",
+  period = "202101-202112",
   header = T
 ) %>%
   as_tibble() %>%
   clean_names() %>%
   mutate(geo = unidade_da_federacao) %>%
   select(mes_codigo, variavel, tipos_de_indice, valor, geo)
-
 bind_rows(pms_br, pms_uf) %>%
   filter(
     variavel == "Índice de volume de serviços",

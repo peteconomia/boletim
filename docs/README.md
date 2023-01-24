@@ -6,6 +6,8 @@ O Boletim de Conjuntura é escrito em RMarkdown, uma extensão do markdown para 
 
 ## Compilando o PDF
 
+
+
 ### Dependências
 
 - [Pandoc](https://pandoc.org/installing.html)

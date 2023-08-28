@@ -1,0 +1,86 @@
+---
+documentclass: report
+output:
+  pdf_document:
+    keep_tex: true
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(scales)
+library(zoo)
+library(kableExtra)
+library(petgg)
+library(petknitr)
+library(siconfir)
+library(sidrar)
+library(ipeadatar)
+library(lubridate)
+library(formattable)
+
+m <- 1000
+M <- 1000000
+B <- 1000000000
+
+
+petgg::set_theme()
+petknitr::setup()
+#knitr::opts_knit$set(root.dir = here::here())
+
+
+```
+
+# Contas Públicas Estadual
+
+
+
+O resultado primário das contas públicas do estado do Tocantins até o sexto bimestre de 2021, de acordo com a Figura [fig:@resultado_primario] foi de 630 milhões de reais, valor menor que o do mesmo período do ano anterior, 780 milhões.  Veja o Quadro [box: @resultado_primario] para mais detalhes sobre o resultado primário. As receitas primárias cresceram 14% no sexto bimestre de 2021, como mostra a Figura [fig:@variacao_rcl]. As despesas primárias cresceram 10%. No sexto bimestre de 2020 as receitas tinham crescido 17% e as despesas 12,82%. Comparando o crescimento das despesas primárias no sexto bimestre de 2021, a taxa de crescimento foi menor que em 2020. O menor crescimento das despesas contribuiu para um superavit primário de pouco mais de R$ 630 milhões até o sexto bimestre de 2021. 
+
+
+::: {.smbox data-latex="[label={box:resultado_primario}]{O que é o resultado primário?}"}
+O resultado primário é um dos principais indicadores das contas públicas. Ele representa o esforço fiscal de um estado para diminuir o estoque da dívida. Ele é resultado da diferença entre as receitas e despesas (excluindo as receitas e despesas com juros). O superavit primário ou resultado primário positivo ocorre quando as receitas primárias são maiores que as despesas primárias. Indica a economia do governo para pagamento da dívida. O inverso, quando despesas primárias excedem as receitas primárias, há déficit primário ou resultado primário negativo, incorrendo em aumento da dívida.
+:::
+
+
+A Dívida Consolidada Liquida (DCL) do estado teve, em 2021, redução de 11% em relação a 31 de dezembro de 2020. A Dívida Consolidada Liquida de 2021 em relação ao ano de 2020 indica uma tendência de queda. Essa tendência pode ser observada na Figura [fig:@variacao_dcl].     
+
+```{r resultado_primario, fig.cap= "Resultado primário", fig.subcap="em relação a RCL", fig.source = "\\acrshort{rreo}", wrap = "open"}
+# Pedidos Seguro desemprego mensal
+tibble(
+  value = c(0.27,	0.24,	0.39,	0.64,	0.84,	0.78,	0.56,	0.47,	0.7,	0.79,	0.96,	0.63),
+  mes = seq(as.Date("2020-01-01"), as.Date("2021-12-01"), by = "2 month")
+) %>%
+  ggplot(aes(mes, value)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_date(
+    labels = date_format("%b\n%Y"), date_breaks = "2 month"
+  )
+```
+
+```{r variacao_rcl, fig.cap= "Variação das receitas e despesas", fig.subcap="em relação a RCL", fig.source = "\\acrshort{rreo}", wrap = "close"}
+# Saldo de Empregos Norte e Tocantins
+tibble(
+  `Receitas` = c(6,	17, 16, 14),
+  Despesas = c(12.08,	12.82, 5, 10),
+  mes = c("2020.3", "2020.6", "2021.3", "2021.6")
+) %>%
+  pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
+  ggplot(aes(factor(mes, levels = c("2020.3", "2020.6", "2021.3", "2021.6")), saldo, fill = local)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_y_continuous(labels = scales::label_comma())
+```
+
+```{r variacao_dcl, fig.cap= "Variação da Dívida Consolidada Liquida", fig.subcap="(DCL)", fig.source = "\\acrshort{rreo}", wrap = TRUE}
+# Saldo de Empregos Norte e Tocantins
+tibble(
+  `DCL` = c(5.5,	5.78,	5.88,	5.76,	5.83,	5.31,	5.51,	5.29,	5.13,	5.12,	5.07,	4.75),
+  mes = c("2020.1", "2020.2", "2020.3", "2020.4", "2020.5", "2020.6", "2021.1", "2021.2", "2021.3", "2021.4", "2021.5", "2021.6")
+) %>%
+  pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
+  ggplot(aes(factor(mes, levels = c("2020.1", "2020.2", "2020.3", "2020.4", "2020.5", "2020.6", "2021.1", "2021.2", "2021.3", "2021.4", "2021.5", "2021.6")), saldo, fill = local)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_y_continuous(labels = scales::label_comma())
+```

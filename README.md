@@ -6,9 +6,10 @@ O Boletim de Conjuntura Econômica do Tocantins é uma publicação semestral do
 
 | :bookmark: Versão | :calendar: Data de publicação |                           :floppy_disk:                           |
 | :---------------- | :---------------------------: | :---------------------------------------------------------------: |
+| 2021, v. 10 nº 1  |          16/12/2022           | [Download](../../releases/download/v2.0.0/boletim.pdf)            |
 | 2020, v. 9 nº 1   |          24/02/2021           | [Download](../../releases/download/v1.0.0/boletim_2020_v9_n1.pdf) |
 
-Versões anteriores a 2020 estão disponíveis em [histórico de lançamento](https://github.com/peteconomia/boletim-log)
+Versões anteriores a 2021 estão disponíveis em [histórico de lançamento](https://github.com/peteconomia/boletim-log)
 
 ## :books: Documentação
 

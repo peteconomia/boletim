@@ -1,16 +1,26 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Apresentação {.unnumbered}
 
 :::: {.center data-latex=""}
 ::: {.minipage data-latex="{.7\linewidth}"}
-Tempor dolor quis cupidatat eiusmod pariatur pariatur quis fugiat veniam excepteur. Anim culpa id veniam ex nostrud do aliqua. Laborum sit mollit eu dolore qui Lorem ex aliqua laboris nostrud laborum mollit aliqua qui. Enim consequat culpa amet sunt. Culpa consectetur ex elit est elit dolor culpa magna eu. Et ipsum aliquip nostrud commodo aliqua dolore mollit excepteur. Duis eiusmod in amet duis anim.
 
-In eu culpa esse sunt eu Lorem. Laborum ea labore dolore adipisicing quis irure in ipsum laborum anim nulla. Id et sit fugiat proident. Aute deserunt enim deserunt ipsum et magna minim adipisicing magna mollit ipsum labore. Tempor cillum culpa ea ea consectetur sint sunt qui fugiat duis laborum voluptate sint. Nulla in sint nulla excepteur occaecat. Laboris proident labore ut sint enim tempor fugiat non non.
+O Boletim de Conjuntura Econômica do Estado do Tocantins é uma das atividades do Grupo \abbr{pet} de Ciências Econômicas da [abbr:@uft] e tem como objetivo apresentar a evolução das principais variáveis macroeconômicas do estado. Esta edição tem um novo formato com dados trimestrais de 2021, estando a periodicidade das informações limitada à divulgação de dados pelas fontes oficiais e organizações. Este ano, mais uma vez contamos com a parceria do Conselho Regional de Economia ([abbr:@coreconto]). As informações contidas são destinadas a cidadãos, gestores públicos e empresários, sendo provenientes de fontes oficiais de organizações públicas.
 
-Amet occaecat sint eiusmod quis anim cupidatat do sunt irure tempor aute veniam magna fugiat. Velit elit tempor Lorem commodo est est. Cupidatat enim commodo irure dolor sint nisi cupidatat pariatur sint.
+Os textos e as análises apresentados têm caráter informativo. Os comentários não refletem obrigatoriamente os posicionamentos públicos do [abbr:@coreconto] ou da [abbr:@uft]. As análises podem ou não sofrer alterações, caso se confirmem, em função da revisão de dados pelas fontes no que concerne ao período da análise, a mudanças na conjuntura econômica e social decorrentes de atos governamentais e a forças exógenas, como, por exemplo, o caso da pandemia da COVID-19. O momento com a pandemia se tornou um desafio para as sociedades brasileira e mundial.
 
-Irure duis pariatur esse eiusmod dolor duis laborum eu enim. Do aliqua labore id ut reprehenderit aute ut eu laboris aliquip aliqua adipisicing sit. Proident laboris excepteur tempor qui voluptate.
+Neste número, o Boletim traz dados sobre o Produto Interno Bruto ([abbr:@pib]), contas públicas, taxa de pobreza, coeficiente de Gini, mercado de trabalho, comércio exterior e agricultura. O [abbr:@pib] corresponde à soma de toda a riqueza de uma nação num determinado período de tempo. Nesta edição, apresentamos o [abbr:@pib] pelo lado da demanda e da oferta. Pelo lado da demanda, ele é constituído pela soma do consumo das famílias, governo, investimentos e exportações líquidas; pelo lado da oferta, ele é constituído pela soma de tudo o que é produzido por todos os setores.
 
-Consequat laborum velit esse non anim quis nulla consequat eu. Consequat culpa ipsum officia adipisicing commodo consectetur officia velit elit. Reprehenderit qui adipisicing amet et occaecat eiusmod tempor aliquip dolor aliquip reprehenderit dolor nulla. Est nulla in exercitation laboris eiusmod Lorem mollit dolor ea cupidatat laboris Lorem. Proident voluptate aliqua esse id aute eu exercitation. Proident consequat non voluptate mollit reprehenderit elit amet ea aliqua. Ipsum Lorem enim irure amet eiusmod voluptate incididunt quis exercitation nostrud anim ut cupidatat ipsum.
+As contas públicas estaduais, compreendem as receitas e as despesas do governo. As receitas podem ser provenientes de tributos, transferências, contribuição e de outras fontes, e as despesas, de diferentes setores, como saúde, educação, pessoal, indústria, entre outros. Inclui-se também a capacidade de pagamento do estado, sua situação fiscal, que compreende endividamento, poupança corrente e liquidez. No campo social, temos a taxa de pobreza e o Índice de Gini. O coeficiente de Gini é uma medida utilizada para calcular a desigualdade na distribuição de renda. Varia entre zero e um: zero significa completa igualdade de renda e um, completa desigualdade. Por consequência, quanto mais próximo de um, maior é a concentração de renda.
+
+A variável Emprego corresponde ao número de pessoas ocupadas formalmente. Apresenta o perfil do empregado (idade, gênero, etnia, grau de instruções), o saldo de emprego do Tocantins e da Região Norte bem como os setores de contratação e demissão, seguro desemprego e rendimento médio. O tópico comércio exterior traz a evolução dos dados do saldo comercial em dólares de 2012 a 2021. Apresenta os principais produtos exportados e importados e os países com os quais o Tocantins tem relação comercial. A agricultura apresenta informações sobre soja, milho e arroz bem como informações sobre a pecuária, em especial, a bovinocultura.
+
+\
+Prof. Dr. Nilton Marques de Oliveira -- Tutor [abbr:@pet] Ciências Econômicas
+
 :::
 ::::
 

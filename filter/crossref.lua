@@ -16,7 +16,8 @@ local refs = {
   alg = {cmd = '\\ref{alg:%s}'},
   appendix = {cmd = '\\ref{appendix:%s}'},
   page = {cmd = '\\pageref{%s}'},
-  name = {cmd = '\\nameref{%s}'}
+  name = {cmd = '\\nameref{%s}'},
+  box = {cmd = "\\ref{box:%s}"}
 }
 
 

@@ -27,20 +27,20 @@ petknitr::setup()
 
 # Panorama Econômico
 
-Segundo dados do IPEA (2022), a recuperação da atividade econômica dos efeitos da pandemia continua ocorrendo de forma heterogênea. Por um lado, serviços e comércio têm se beneficiado da melhora das condições sanitárias. Por outro, a indústria apresenta resultados negativos em parte devido aos mesmos choques de oferta que afetam a inflação, como escassez de matérias-primas e custos de energia. O mercado de trabalho vem dando sinais positivos e já registra a menor taxa de desocupação dessazonalizada desde maio de 2020, mas ainda apresenta indicadores gerais em níveis desfavoráveis. As condições gerais do mercado de crédito têm mostrado estabilidade e será importante monitorar os efeitos do aumento do Imposto sobre Operações Financeiras (IOF) nos próximos meses. O setor externo tem apresentado desempenho positivo, com aumento das exportações e diminuição do déficit em transações correntes. Enquanto isso, a taxa de câmbio se mantém desvalorizada e volátil.
+Após dois anos de desaquecimento das atividades econômicas decorrentes dos impactos da pandemia da covid-19, a economia brasileira se recupera a passos lentos. A baixa das atividades econômicas se reflete em taxas de inflação mensal e acumulada baixas, uma queda geral nos volumes de vendas do comércio varejista e em taxas de crescimento modestas dos componentes do PIB pelo lado da demanda.
 
-O ano de 2021, ao mesmo tempo em que foi um tempo de continuidade da pandemia do coronavírus, foi um período de recuperação do cenário destrutivo que foi o ano anterior. A omissão e o atraso quanto a políticas que atenuassem os efeitos danosos desse incidente geraram um cenário desafiador para a gestão de 2022. 
+Nos pormenores, conforme dados do IBGE expostos na Tabela [tab:@inflacao], em todos os meses do ano de 2022 a inflação mensal foi menor do que 2% e, menor que 1% em todos, exceto  fevereiro, março e abril. A maior taxa mensal observada de aumento nos preços se deu no mês de abril, numa máxima anual de 1,62%. Além de uma inflação em geral distante de ser alarmante, os meses de julho, agosto e setembro apresentaram uma modesta deflação na economia brasileira, que voltou a se inflacionar levemente a partir de outubro. A inflação acumulada anual fechou em 5,79%, enquanto o decrescimento da inflação acumulada em 12 meses ao longo do ano de 2022 mostra que o padrão de inflação do ano foi menor do que o de 2021, que havia terminado o ano com uma inflação acumulada de 10,21%. 
 
-O ano de 2021 começou no mês de janeiro com um IPCA acumulado de 0,25%, como mostra a Tabela [tab:@inflacao], padrão que não se manteve e em fevereiro os preços ao consumidor amplo aumentaram em 0,86% em relação ao mês anterior, acumulando alta de 1,11%. O mês seguinte foi pior, apresentando elevação de preços de 0,93% e totalizando um acumulado de 2,05%. Já em abril, o índice do acumulado se elevou para 2,36%, expressão de uma baixa do processo inflacionário no mês. A progressão da inflação se acelera mais uma vez em maio com o índice igual a 3,22%. Em junho, a taxa de aumento nos preços sofre uma queda, e o índice registrado é de 3,77%. Já em julho, o índice sobe em um ponto percentual, alcançando o valor de 4,76%, aumento sensível em relação ao mês anterior. Em agosto do mesmo ano, o índice registrado é de 5,67%, enquanto o índice de setembro é de 6,90%, marcando um avanço da inflação. Em outubro, esse avanço atinge seu pico no ano, com o índice atingindo a marca de 8,24%. Em novembro, a situação toma níveis similares aos de fevereiro e março em termos do índice mensal, e o acumulado registrado é de 9,26%. O ano de 2021 foi fechado em dezembro com uma inflação acumulada de pouco mais de 10%, completando dois dígitos expressivos. 
+Quanto ao PIB pelo lado da demanda, analisando seus componentes de forma trimestral, pode-se observar uma tendência de crescimento trimestral de todos os seus componentes, excetuando-se o setor agropecuário, que fechou o ano com decréscimo de aproximadamente 3%, conforme se demonstra na Figura [fig:@PIB_demanda]. Todos os componentes iniciaram sua trajetória de crescimento trimestral do ano de 2022 no negativo, tendo como única exceção os impostos líquidos sobre produtos, componente com maior crescimento trimestral médio do ano analisado. As indústrias extrativas abriram o ano com queda, aprofundaram-se em decrescimento no segundo trimestre e iniciaram uma trajetória de recuperação a partir do terceiro trimestre, finalizando o ano com um crescimento leve de menos de 1,5%.  
 
-Quanto ao PIB, na perspectiva da demanda, pode-se repartir a análise entre os setores de agropecuária, indústria, serviços e a participação dos impostos sobre os produtos num recorte trimestral completo, como mostra a Figura [fig:@PIB_demanda]. Os componentes dos impostos sobre produtos tiveram um crescimento de 0,5% no primeiro trimestre de 2021. Houve um aumento de 2,3% no segundo trimestre e de 0,8% no terceiro, terminando o ano com um crescimento positivo de 0,2% no quarto trimestre. Já o setor da agropecuária apresentou registros modestos ao longo dos quatro trimestres, com um crescimento de 0,6% no primeiro trimestre, não apresentando variação no segundo. No terceiro trimestre, o crescimento foi negativo no valor de -0,5%, terminando o ano no quarto semestre com uma variação próxima de 0%. Em relação à indústria, o primeiro trimestre registrou um crescimento positivo de 0,9%, e no segundo um crescimento novamente positivo de 3,0%. Já no terceiro trimestre, o crescimento registrado foi de 0,2%, alcançando um patamar negativo de -0,2% no quarto trimestre do ano. Por fim, o setor de serviços apresentou o crescimento mais expressivo: apesar de ter começado negativamente no primeiro trimestre, com uma variação de -0,6%, houve um salto para um crescimento de 7,0% no segundo trimestre, seguido por uma continuação decrescente do crescimento com um registro de variação positiva de 3,5% no terceiro trimestre e de 1,6% no quarto.
+O volume de vendas do comércio varejista, obtido pela Pesquisa Mensal de Comércio (PMC) do IBGE e demonstrado na Figura [fig:@pmc_ibge], mostra resultados abaixo do desejado para o ano de 2022. Todos os estados analisados apresentaram queda no volume de vendas em relação ao mesmo período do ano anterior. A maior queda observada se deu no estado do Amazonas, que começou o ano com o maior índice e fechou o ano no quarto trimestre com o menor índice. O estado do Tocantins seguiu a tendência brasileira de queda do volume de vendas, porém a queda se deu a níveis menores do que o nacional.  
 
 Na Figura [fig:@PIB_evolucao], em relação ao trimestre anterior, observa-se que o primeiro trimestre de 2021 apresentou uma variação de 1,1% no PIB, um crescimento expressivo quando comparado com o crescimento negativo de -0,2% no segundo trimestre do ano. Já no terceiro trimestre, o país retoma o crescimento no valor baixo de 0,1%, finalizando o ano com uma retomada do crescimento no valor de 0,7%, consolidando uma lenta recuperação em relação ao período pandêmico do ano anterior. 
 
-```{r inflacao, fig.cap = "Índice Nacional de Preços ao Consumidor Amplo - IPCA", fig.subcap="Em porcentagem", fig.source = "IBGE", wrap = T}
+```{r inflacao, fig.cap = "Índice Nacional de Preços ao Consumidor Amplo - IPCA", fig.subcap="Em porcentagem", fig.source = "IBGE, 2022.", wrap = T}
 ipca <- get_sidra(
   1737,
-  period = "202101-202112"
+  period = "202201-202212"
 ) %>%
 tibble::as_tibble() %>%
 filter(
@@ -69,52 +69,60 @@ kableExtra::kbl(
 ```
 
 
-Quanto à Pesquisa Mensal de Comércio (PMC), que permite ser avaliado o desempenho do comércio varejista, observam-se em geral resultados negativos. O estado do Amazonas começou o ano em janeiro com uma variação de -25,8% em relação ao mesmo mês do ano anterior, resultado muito discrepante em relação às outras unidades federativas escolhidas. A tendência de queda alta no estado do Amazonas em contraposição a uma leve queda no Brasil em geral se repete em fevereiro e março, enquanto Tocantins e Pará têm um diagnóstico que os contrapõe: todas as variações na receita nominal das vendas do comércio varejista no Tocantins são negativas de fevereiro a dezembro de forma expressiva, porém relativamente estável, enquanto o Pará apresenta crescimento positivo considerável e oscilante. A tendência do Brasil em geral no mesmo período é de crescimento a taxas decrescentes, terminando o ano com uma variação positiva de 1,1% em dezembro em relação ao mesmo mês no ano anterior.
+Observando-se a Figura [fig:@pms_ibge], em que são demonstrados os resultados do Índice de volume de serviços da Pesquisa Mensal de Serviços (PMS) do IBGE, nota-se que, em comparação aos outros estados apresentados e ao país, o estado do Tocantins teve a maior trajetória de ascensão do setor de serviços no ano analisado, terminando o ano com um índice acima de 14%. Enquanto o Amazonas apresentou resultados acima do padrão nacional, o estado do Pará ficou abaixo da federação. 
 
-Os indicadores da Pesquisa Mensal de Serviços (PMS) também produzida pelo IBGE podem oferecer um panorama sob o qual é possível avaliar o desempenho da atividade econômica do setor de serviços nas unidades federativas selecionadas (Tocantins, Amazonas e Pará) e o Brasil. Enquanto o diagnóstico da PMC é negativo, o da PMS, por sua vez, é o oposto. Na Figura [fig:@pms_ibge], observa-se que os meses de janeiro e fevereiro significaram uma tendência de retração para todas as quatro unidades liderada pelo Brasil em geral e pelo Tocantins, que apresentou uma retração no valor de -7,7% em janeiro e excetuando-se o Amazonas, que apresentou um modesto crescimento de 3,8% em relação ao mesmo mês do ano anterior em fevereiro. Os meses seguintes foram marcados por uma retomada progressiva do crescimento também liderada pelo Tocantins, que apresentou os maiores índices positivos de março a dezembro entre as quatro unidades federativas analisadas. O crescimento se apresentou estável nesse período, excetuando-se a leve queda de -0,2% em março registrada no Brasil em geral. O ano termina com outubro, novembro e dezembro apresentando indicadores sensivelmente positivos para todas as unidades consideradas.
-
-```{r PIB_demanda, fig.cap = "PIB e componentes de demanda: evolução das taxas de crescimento (2021)", fig.subcap = "Em porcentagem", fig.source = "IBGE", wrap = T}
+```{r PIB_demanda, fig.cap = "PIB e componentes de demanda: evolução das taxas de crescimento (2022)", fig.subcap = "Em porcentagem", fig.source = "IBGE, 2022.", wrap = T}
 tibble(
-  ano = seq(ymd("2021-01-01"), ymd("2021-12-31"), by = "3 month"),
-  Impostos_Sobre_Produtos = c(0.5,2.3,0.8,0.2),
-  Agropecuaria = c(0.6,0.0,-0.5,0.0),
-  Industria = c(0.9,3.0,0.2,-0.2),
-  Servicos = c(-0.6,7.0,3.5,1.6)
+  ano = seq(ymd("2022-01-01"), ymd("2022-12-31"), by = "3 month"),
+  Agropecuaria = c(-5.2,-0.9,3.2,-2.9),
+  Industria = c(-1.2,2.1,2.8,2.6),
+  Industria_Extrativas = c(-2.0,-3.7,-2.6,1.4),
+  Industrias_de_Transformação = c(-4.7,0.5,1.7,1.0),
+  Impostos_liquidos_sobre_produtos = c(0.5,2.1,3.3,2.4)
+  
 ) %>%
   ggplot(aes(ano)) +
-  geom_line(aes(y = Impostos_Sobre_Produtos, colour = "Impostos Sobre Produtos")) +
+  geom_line(aes(y = Industria_Extrativas, colour = "Indústria Extrativas")) +
   geom_line(aes(y = Agropecuaria, colour = "Agropecuária")) +
    geom_line(aes(y = Industria, colour = "Indústria")) +
-   geom_line(aes(y = Servicos, colour = "Serviços")) +
+   geom_line(aes(y = Industrias_de_Transformação, colour = "Indústrias de Transformação")) +
+  geom_line(aes(y = Impostos_liquidos_sobre_produtos, colour = "Impostos liquídos sobre produtos")) +
+  
   scale_x_date(
     breaks = scales::breaks_width("3 month", offset = -30),
     labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
-  )
+  ) +
+  theme(legend.position = "bottom") +
+  guides(color = guide_legend(ncol = 2))
 ```
 
-```{r PIB_evolucao, fig.cap = "PIB: Evolução das taxas de crescimento trimestral e dessazonalizado (2021) em comparação com 2020", fig.subcap = "Em porcentagem", fig.source = "IBGE", wrap = "open"}
+```{r PIB_evolucao, fig.cap = "PIB: Evolução das taxas de crescimento trimestral (2022) em comparação com 2021", fig.subcap = "Em porcentagem", fig.source = "IBGE, 2022.", wrap = "open"}
 tibble(
-  ano = seq(ymd("2020-01-01"), ymd("2021-12-30"), by = "3 month"),
-  Variacao_contra_o_mesmo_trimestre_do_ano_anterior = c(-0.1,10.7,-3.7,-0.9,1.3,12.3,4.0,1.6),
-  Variacao_contra_o_trimestre_anterior = c(-2.4,-8.8,7.9,3.1,1.1,-0.2,0.1,0.7)
+  ano = seq(ymd("2021-01-01"), ymd("2022-12-30"), by = "3 month"),
+  Variacao_contra_o_mesmo_trimestre_do_ano_anterior = c(1.7,12.4,4.4,2.1,2.4,3.7,3.6,1.9),
+  Variacao_contra_o_trimestre_anterior = c(0.9,-0.2,0.4,1.1,0.9,1.0,0.4,0.1)
+  
 ) %>%
   ggplot(aes(ano)) +
-  geom_line(aes(y = Variacao_contra_o_mesmo_trimestre_do_ano_anterior, colour = "Variação Contra o Mesmo Trimestre do Ano Anterior")) +
-  geom_line(aes(y = Variacao_contra_o_trimestre_anterior, colour = "Variação Contra o Trimestre Anterior")) +
+  geom_line(aes(y = Variacao_contra_o_mesmo_trimestre_do_ano_anterior, colour = "Variação em volume em relação ao mesmo trimestre do ano anterior - %")) +
+  geom_line(aes(y = Variacao_contra_o_trimestre_anterior, colour = "Variação em volume em relação ao trimestre imediatamente anterior - %")) +
+  
   scale_x_date(
     breaks = scales::breaks_width("3 month", offset = -30),
     labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
-  )
+  ) +
+  theme(legend.position = "bottom") +
+  guides(color = guide_legend(nrow = 2))
 ```
 
 
-```{r pmc_ibge, fig.cap = "Volume de vendas no comércio varejista", fig.subcap = "Variação acumulada no ano (base: igual período do ano anterior)", fig.source = "IBGE"}
+```{r pmc_ibge, fig.cap = "Volume de vendas no comércio varejista", fig.subcap = "Variação acumulada no ano (base: igual período do ano anterior)", fig.source = "IBGE, 2022."}
 # Pesquisa Mensal de Comércio, https://sidra.ibge.gov.br/pesquisa/pmc/tabelas
-## Tabela 3416 - Índices de volume e de receita nominal de vendas no comércio varejista, por tipos de índice (2014 = 100)
+## Tabela 8881 - Índice e variação da receita nominal e do volume de vendas no comércio varejista ampliado (2022 = 100)
 pmc_br <- get_sidra(
-  x = 3416,
+  x = 8881,
   geo = "Brazil",
-  period = "202101-202112",
+  period = "202201-202212",
   header = T
 ) %>%
   as_tibble() %>%
@@ -122,10 +130,10 @@ pmc_br <- get_sidra(
   select(mes_codigo, variavel, tipos_de_indice, valor) %>%
   mutate(geo = "Brasil")
 pmc_uf <- get_sidra(
-  x = 3416,
+  x = 8881,
   geo = "State",
   geo.filter = list("State" = c(13, 15, 17)),
-  period = "202101-202112",
+  period = "202201-202212",
   header = T
 ) %>%
   as_tibble() %>%
@@ -134,8 +142,8 @@ pmc_uf <- get_sidra(
   select(mes_codigo, variavel, tipos_de_indice, valor, geo)
 vol_vendas <- bind_rows(pmc_br, pmc_uf) %>%
   filter(
-    variavel == "Índice de volume de vendas no comércio varejista",
-    tipos_de_indice == "Variação acumulada no ano (base: igual período do ano anterior)"
+    variavel == "PMC - Variação acumulada no ano (em relação ao mesmo período do ano anterior)",
+    tipos_de_indice == "Índice de receita nominal de vendas no comércio varejista ampliado"
   ) %>%
   mutate(
     date = paste0(mes_codigo, "01") %>% ymd(),
@@ -152,13 +160,13 @@ vol_vendas %>%
   scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
 ```
 
-```{r pms_ibge, fig.cap= "Índice de volume de serviços", fig.subcap="Variação acumulada no ano (base: igual período do ano anterior)", fig.source = "IBGE", wrap = "close"}
+```{r pms_ibge, fig.cap= "Índice de volume de serviços", fig.subcap="Variação acumulada no ano (base: igual período do ano anterior)", fig.source = "IBGE, 2022.", wrap = "close"}
 # Pesquisa Mensal de Serviçoes, https://sidra.ibge.gov.br/pesquisa/pms/tabelas
-## Tabela 6442
+## Tabela 5906
 pms_br <- get_sidra(
-  x = 6442,
+  x = 5906,
   geo = "Brazil",
-  period = "202101-202112",
+  period = "202201-202212",
   header = T
 ) %>%
   as_tibble() %>%
@@ -166,10 +174,10 @@ pms_br <- get_sidra(
   select(mes_codigo, variavel, tipos_de_indice, valor) %>%
   mutate(geo = "Brasil")
 pms_uf <- get_sidra(
-  x = 6442,
+  x = 5906,
   geo = "State",
   geo.filter = list("State" = c(13, 15, 17)),
-  period = "202101-202112",
+  period = "202201-202212",
   header = T
 ) %>%
   as_tibble() %>%
@@ -178,8 +186,8 @@ pms_uf <- get_sidra(
   select(mes_codigo, variavel, tipos_de_indice, valor, geo)
 bind_rows(pms_br, pms_uf) %>%
   filter(
-    variavel == "Índice de volume de serviços",
-    tipos_de_indice == "Variação acumulada no ano (base: igual período do ano anterior)"
+    variavel == "PMS - Variação acumulada no ano (em relação ao mesmo período do ano anterior)",
+    tipos_de_indice == "Índice de volume de serviços"
   ) %>%
   mutate(
     date = paste0(mes_codigo, "01") %>% ymd(),
@@ -191,5 +199,8 @@ bind_rows(pms_br, pms_uf) %>%
     breaks = scales::breaks_width("2 month"),
     labels = scales::date_format("%b\n%Y")
   ) +
-  scale_y_continuous(labels = scales::label_number(suffix = "%", accuracy = 1))
+  scale_y_continuous(
+    breaks = seq(-2, 18, 4),
+    labels = scales::label_number(suffix = "%", accuracy = 1)
+  )
 ```

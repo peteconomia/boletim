@@ -6,7 +6,7 @@ output:
     pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
 
-```{r setup, include=F, message=F, warning=F}
+```{r include=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(knitr)
 library(scales)
@@ -18,10 +18,8 @@ library(sidrar)
 library(lubridate)
 library(petknitr)
 
-petgg::set_theme(base_family = "EB Garamond")
-
 petknitr::setup()
-
+petgg::set_theme(base_family = "EB Garamond")
 
 m <- 1000
 M <- 1000000
@@ -30,117 +28,108 @@ B <- 1000000000
 
 # Mercado de Trabalho
 
-Os empregos são indicadores para a atividade econômica de um país. Por isso, o governo federal realiza inúmeras pesquisas sobre os empregos formais e informais. O Cadastro Geral de Empregados e Desempregados (CAGED) reúne inúmeras informações sobre os empregos formais, entre admissões, desligamentos, salários, funções, cargos, etc. Também usa-se os dados da Pesquisa Nacional por Amostra de Domicílios PNAD-C para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores. Também usa-se os dados da Pesquisa Nacional por Amostra de Domicílios PNAD-C para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores.Os empregos são indicadores para a atividade econômica de um país. Por isso, o governo federal realiza inúmeras pesquisas sobre os empregos formais e informais. O Cadastro Geral de Empregados e Desempregados (CAGED) reúne inúmeras informações sobre os empregos formais, entre admissões, desligamentos, salários, funções, cargos, etc. Também usa-se os dados da Pesquisa Nacional por Amostra de Domicílios PNAD-C para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores. Também usa-se os dados da Pesquisa Nacional por Amostra de Domicílios PNAD-C para calcular a taxa de desemprego, ocupação, renda média dos trabalhadores.
+Os empregos constituem indicadores essenciais para a avaliação da atividade econômica de um país. Nesse sentido, o governo federal conduz diversas pesquisas abrangendo tanto o emprego formal quanto o informal. O Cadastro Geral de Empregados e Desempregados (CAGED) consolida uma ampla gama de informações relacionadas aos empregos formais, abrangendo admissões, desligamentos, salários, funções, cargos, entre outros. Adicionalmente, são utilizados os dados da Pesquisa Nacional por Amostra de Domicílios (PNADC) para calcular indicadores como a taxa de desemprego, ocupação e renda média dos trabalhadores.
 
-## Saldo de empregos
+Fica evidente na Figura [fig:@saldo] que mesmo com um cenário de insegurança política em um ano eleitoral conturbado, há uma evolução na estrutura do mercado de trabalho de 2022 que se manteve similar à de 2021, demonstrando por sua vez uma recuperação dos níveis críticos de desestruturação econômica nacional e regional geradas pela pandemia do COVID-19. Observa-se que no primeiro trimestre de 2022, o saldo de desemprego manteve-se em terreno positivo. Destaca-se que mesmo o Tocantins não representando um grande volume comparativo ao total da região norte, existe uma clara similaridade em relação ao sentido de ambos os dados, nota-se que enquanto o Tocantins apresenta seu maior saldo anual mensal em agosto com 2328 postos de emprego, a região norte tem seu pico em junho com 22894 postos conquistados. Já em dezembro observa-se um saldo negativo, essa estrutura de sazonalidade é similar ao ano anterior, o Tocantins amargou um redução -2615 em seu saldo de postos de trabalho enquanto a região norte registrou -31568, parte dessa queda se dá principalmente pelas expectativas dos agentes econômicos em relação ao ano posterior.
 
-A Figura [fig: @saldo]
+O setor de serviços registrou o maior crescimento, destacando-se especialmente nas áreas de informação, comunicação e atividades financeiras, imobiliárias, profissionais e administrativas. O comércio, por sua vez, figurou como o segundo maior gerador de postos de trabalho, com o comércio varejista de mercadorias, em especial supermercados e artigos de vestuário, liderando as contratações. A indústria apresentou o terceiro maior crescimento no emprego no mês, evidenciando um saldo positivo, por último o setor de construção se destaca com uma perda total gerada de -573.  
 
-```{r saldo, fig.cap= "Saldo de Empregos", fig.subcap="Saldo Anual", fig.source = "Ministério do trabalho", wrap = "open"}
 
+```{r saldo, fig.cap= "Saldo de empregos ao longo de 2022", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}, 2022.", wrap = "open"}
 # Saldo de Empregos Norte e Tocantins
+# Dados diponíveis no BI do Novo CADEG https://app.powerbi.com/view?r=eyJrIjoiNWI5NWI0ODEtYmZiYy00Mjg3LTkzNWUtY2UyYjIwMDE1YWI2IiwidCI6IjNlYzkyOTY5LTVhNTEtNGYxOC04YWM5LWVmOThmYmFmYTk3OCJ9&pageName=ReportSectionb52b07ec3b5f3ac6c749
 
 tibble(
-	`Região Norte` = c(2992,10913,-6623,-31590,-11238,6382,16203,23304,21840, 21150, 14806, -9390),
-	Tocantins = c(221,1492,-126,-2882,-1292,1213,1774,2136,2028,1385,1062,220),
-	mes = c("jan","fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
+  `Região Norte` = c(4594, 15925, 8037, 12421, 16962, 22894, 18979, 20949, 19836, 7560, 2155, -31568),
+  Tocantins = c(1485, 2416, 410, 641, 1957, 1575, 2560, 2328, 2035, 1075, 766, -2615),
+  mes = c("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
 ) %>%
-	pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
-	ggplot(aes(factor(mes, levels = c("jan","fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")), saldo, fill = local)) +
-	geom_bar(stat = "identity", position = "dodge") +
-	scale_y_continuous(labels = function(n) n/m)
+  pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
+  ggplot(aes(factor(mes, levels = c("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")), saldo, fill = local)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_y_continuous(labels = function(n) n / m)
 ```
 
-```{r saldo_setor_to, fig.cap= "Saldo por setores", fig.subcap="XXXX", fig.source = "Ministério do trabalho"}
+```{r saldo_setor_to, fig.cap = "Saldo por setores em 2022", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}, 2022."}
 # Saldo por Setores no Tocantins
-tibble(
-	Saldo = c(542,495,2979,1543,1442),
-	Setores = c("Agricultura","Indústrias", "Construção", "Comércio", "Serviços")
-) %>%
-	ggplot(aes(Setores, Saldo)) +
-	geom_bar(stat = "identity") +
-	scale_y_continuous(labels = function(n) n/m)
-```
-
-```{r pedido_segudo_desem, fig.cap= "Pedidos seguro-desemprego", fig.subcap="XXXX", fig.source = "IBGE", wrap = "close"}
-# Pedidos Seguro desemprego trimestral
+# Dados diponíveis no BI do Novo CADEG https://app.powerbi.com/view?r=eyJrIjoiNWI5NWI0ODEtYmZiYy00Mjg3LTkzNWUtY2UyYjIwMDE1YWI2IiwidCI6IjNlYzkyOTY5LTVhNTEtNGYxOC04YWM5LWVmOThmYmFmYTk3OCJ9&pageName=ReportSectionb52b07ec3b5f3ac6c749
 
 tibble(
-	value = c(9833, 9833, 8832, 8784, 9642, 9324, 9155, 8182, 8785, 10642, 7535, 8072),
-	trimestre = seq(as.Date("2018-01-01"), as.Date("2020-12-01"), by = "quarter")
+  Saldo = c(2042, 1516, -573, 3981, 7667),
+  Setores = c("Agricultura", "Indústrias", "Construção", "Comércio", "Serviços")
 ) %>%
-	ggplot(aes(trimestre, value)) +
-	geom_line() +
-	scale_y_continuous(labels = function(x) x/m) +
-	scale_x_date(
-		breaks = scales::breaks_width("90 day"),
-		labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
-	)
+  ggplot(aes(Setores, Saldo)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = function(n) n / m)
 ```
 
-```{r reg_emprego, fig.cap= "Regressão seguro desemprego/taxa de desemprego", fig.subcap="XXXX", fig.source = "PNAD-C", wrap = TRUE}
-Dados <- data.frame(taxaDesemprego = c(11,11.3,9.8,10.4,12.3,11.4,10.5,9.1,11.2,12.5,12.2,11.6),
-                        Pedidos_SeguroDesemprego = c(9833,9833,8832,8784,9642,9324,9155,8182,8785,10642,7535, 8072))
+```{r pedido_segudo_desem, fig.cap= "Pedidos de seguro desemprego em 2022", fig.subcap="Em Mil", fig.source = "\\acrshort{ibge}, 2022.", wrap = "close"}
+# Pedidos Seguro desemprego mensal
+# Fonte: Séries históricas do seguro-desempro
+# Disponível em: http://pdet.mte.gov.br/component/content/article?id=1778
+# Tabela 3.1
 
-
-
-
-    #Modelo/Gráfico
-
-    modelo <- lm(data = Dados, formula = Pedidos_SeguroDesemprego~taxaDesemprego)
-
-    ggplot(Dados, aes(x = taxaDesemprego, y = Pedidos_SeguroDesemprego)) + geom_point() + geom_smooth(method = lm, se = FALSE) +
-      labs(x= "Taxa de desemprego", y= "Seguro Desemprego") + theme_petgg(axis_title = T, base_family = "EB Garamond")
-
+tibble(
+  value = c(8794, 7682, 10100, 9182, 9816, 9812, 9264, 10005, 8989, 9164, 8757, 8699),
+  mes = seq(as.Date("2022-01-01"), as.Date("2022-12-01"), by = "month")
+) %>%
+  ggplot(aes(mes, value)) +
+  geom_line() +
+  scale_y_continuous(labels = function(x) x / m) +
+  scale_x_date(
+    labels = date_format("%b\n%Y"), date_breaks = "1 month"
+  )
 ```
 
-```{r tabela, fig.source = "Ministério do trabalho"}
-# Tabelas
+Já os pedidos de seguro desemprego funcionam como um termômetro claro para evidenciar a estrutura do emprego nacional, uma medida macroeconômica destinada a proporcionar uma rede de segurança para trabalhadores recentemente demitidos. Em termos mais claros, o aumento nos pedidos de seguro-desemprego indica que o mercado de trabalho não está operando de forma otimizada. Da mesma forma, uma baixa incidência de pedidos reflete uma reação positiva a um período econômico favorável.
 
-caged_idade <- tibble(
-  carac = c("14-34", "35-65", "65+"),
-  Admitidos = c(48048, 19009, 89),
-  Demitidos = c(40740, 17446, 190),
-  Saldo = Admitidos - Demitidos
+O que pode ser observado comparativamente entre as  Figuras [fig:@pedido_segudo_desem] e   [fig:@taxa_desemprego] é um movimento semelhante entre a taxa de desemprego e os pedidos de seguro-desemprego. A partir de fevereiro de 2022, os pedidos sofrem uma redução, mas apresentam oscilações no decorrer do ano. Em relação ao ano anterior, o valor mínimo do seguro-desemprego aumentou. Ao comparar com a taxa de desemprego, percebe-se que a taxa se reduz, resultando em uma diminuição nos pedidos de seguro-desemprego. Isso demonstra claramente como a taxa é crucial para a avaliação de políticas macroeconômica. Vale destacar o comportamento dos pedidos de seguro desemprego seguiram uma estrutura diametralmente oposta do registrado no boletim de 2021, onde a economia tendeu a crescer a partir do segundo trimestre do ano.  
+
+É realizado uma regressão na Figura [fig:@reg_emprego] para definir o quão importante é a taxa de desemprego em relação ao seguro desemprego, para o mercado de trabalho, o gráfico leva em consideração dados trimestrais de 2020 a 2022.  
+
+O mercado de trabalho no Brasil tem apresentado uma trajetória de notável dinamismo, caracterizada por uma significativa expansão da população ocupada, o que teve um impacto expressivo na redução do desemprego. A Figura [fig:@pop_ocupada] ilustra que, no segundo trimestre, houve uma diminuição na taxa de desocupação, revertendo o aumento registrado no primeiro trimestre do ano. Esse movimento sugere uma recuperação do padrão sazonal desse indicador, um salto do primeiro trimestre de 2022 para o quarto trimestre de 2022, saindo de 50,8% para um patamar de aproximadamente 55,09%
+
+A Figura [fig:@rendimentos] apresenta o rendimento médio mensal, calculado a partir da média das remunerações dos trabalhadores extraída da população ocupada por meio de trabalho principal. A renda média nominal no Tocantins no terceiro trimestre de 2022 foi a segunda mais elevada se situando na faixa de R$ 2300 a 2500 evidenciando um claro aumento a partir do segundo trimestre, historicamente o estado se mantem abaixo da renda nacional e superior a renda média da região norte. O nível de ocupação no Tocantins manteve-se estável com esses resultados, não apresentando variação estatisticamente significativa. No entanto, de maneira geral, é observável pelo gráfico que a renda média no Brasil é superior à da região Norte e do estado do Tocantins, possivelmente devido ao fato de abranger regiões mais desenvolvidas em termos produtivos, como o Sul e Sudeste. 
+
+```{r reg_emprego, fig.cap= "Relação seguro desemprego x taxa de desocupação", fig.subcap="Variação Trimestral entre 2020 a 2022", fig.source = "\\acrshort{mte}", wrap = TRUE}
+#Fonte: Seguro desemprego
+#Séries históricas do seguro-desempro
+#Disponível em: http://pdet.mte.gov.br/component/content/article?id=1778
+#Tabela 3.1
+#Foi pego os dados mensais do seguro, realizado a média a cada 3 meses para chegar a um valor trimestral
+#Taxa de desocupação: Sidra Tabela 4092
+#(Distribuição percentual das pessoas de 14 anos ou mais de idade (%): 1 de 1 casas decimais)
+
+reg_data <- tibble(
+  taxa_desocupacao = c(6.8, 7.2, 7.0, 6.7, 10.5, 9.6, 6.6, 5.9, 5.7, 3.4, 3.5, 3.2),
+  pedidos_seguro_desemprego = c(13060, 13265, 14256, 10837, 9990, 9606, 8897, 8603, 8859, 9603, 9419, 8873)
 )
-caged_sexo <- tibble(
-  carac = c("Homem", "Mulher"),
-  Admitidos = c(46634, 20513),
-  Demitidos = c(40358, 19518),
-  Saldo = Admitidos - Demitidos
-)
-caged_instru <- tibble(
-  carac = c("A", "F.C", "M.I.C", "M.C", "S.C", "P.G"),
-  Admitidos = c(219,3621,4745,45486,4457,316),
-  Demitidos = c(237, 3343, 4456, 39888, 3984, 319),
-  Saldo = Admitidos - Demitidos
-)
-bind_rows(caged_idade, caged_sexo, caged_instru) %>%
-	kableExtra::kbl(
-		caption = "XXX",
-		align = "lrrr",
-		format.args = list(big.mark = ".", decimal.mark = ",", scientific = FALSE),
-		booktabs = T,
-		col.names = c("", "Admitidos", "Demitidos", "Saldo")
-	) %>%
-	kable_styling(full_width = T) %>%
-	pack_rows("Idade", 1, 3) %>%
-	pack_rows("Sexo", 4, 5) %>% 
-  pack_rows("Escolaridade", 6,7)
+
+ggplot(reg_data, aes(x = taxa_desocupacao, y = pedidos_seguro_desemprego)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  labs(x = "Taxa de desocupação", y = "Seguro Desemprego") +
+  theme_petgg(axis_title = T, base_family = "EB Garamond") +
+  scale_y_continuous(limits = c(8000, 15000), breaks = seq(8000, 15000, 2000))
 ```
 
-```{r taxa_desemprego, fig.cap= "taxa de desemprego", fig.subcap="XXXX", fig.source = "PNAD-C", wrap = "open"}
+
+
+```{r taxa_desemprego, fig.cap= "Taxa de desemprego no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}, 2022.", wrap = "open"}
 df <- get_sidra(
   x = 4092,
   geo = "State",
   header = T,
-  period = "201201-202004"
+  period = "202201-202204"
 ) %>% janitor::clean_names()
 
 df %>%
   filter(
     unidade_da_federacao == "Tocantins",
-    condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao %in% c("Força de trabalho - desocupada", "Força de trabalho"),
+    condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao %in% c(
+      "Força de trabalho - desocupada",
+      "Força de trabalho"
+    ),
     unidade_de_medida == "Mil pessoas"
   ) %>%
   select(trimestre_codigo, condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao, valor) %>%
@@ -150,107 +139,108 @@ df %>%
   ) %>%
   rowwise() %>%
   mutate(
-    taxa_des = `Força de trabalho - desocupada`/ `Força de trabalho` * 100,
+    taxa_des = `Força de trabalho - desocupada` / `Força de trabalho` * 100,
     quarter = trimestre_codigo %>% stringr::str_replace("(?<=\\d{4})\\d", "Q"),
     tri = zoo::as.yearqtr(quarter) %>% as.Date()
   ) %>%
   ggplot(aes(tri, taxa_des)) +
-    geom_line() +
-    scale_x_date(
-      breaks = scales::breaks_width("3 month", offset = -30),
-      labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y"),
-      limits = c(as.Date("2019-01-01"), as.Date("2020-10-01"))
-    )
+  geom_line() +
+  scale_x_date(
+    breaks = scales::breaks_width("3 month", offset = -59),
+    labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
+  )
 ```
 
-```{r rendimentos, fig.cap= "Rendimento médio mensal", fig.subcap="XXXX", fig.source = "PNAD-C"}
+```{r pop_ocupada, fig.cap= "População ocupada no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}, 2022."}
+sidrar::get_sidra(
+  x = 4092,
+  header = T,
+  geo = "State",
+  period = "202101-202104"
+) %>%
+  janitor::clean_names() %>%
+  filter(
+    unidade_da_federacao == "Tocantins",
+    condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao %in% c(
+      "Força de trabalho - ocupada",
+      "Total"
+    ),
+    unidade_de_medida == "Mil pessoas"
+  ) %>%
+  select(trimestre_codigo, condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao, valor) %>%
+  pivot_wider(
+    names_from = condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao,
+    values_from = valor
+  ) %>%
+  rowwise() %>%
+  mutate(
+    pop_ocu = `Força de trabalho - ocupada` / `Total` * 100,
+    quarter = trimestre_codigo %>% stringr::str_replace("(?<=\\d{4})\\d", "Q"),
+    tri = zoo::as.yearqtr(quarter) %>% as.Date()
+  ) %>%
+  ggplot(aes(tri, pop_ocu)) +
+  geom_line() +
+  scale_x_date(
+    breaks = scales::breaks_width("3 month", offset = -59),
+    labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
+  )
+```
 
+
+
+```{r rendimentos, fig.cap= "Rendimento médio mensal", fig.subcap="Em mil R$", fig.source = "\\acrshort{ibge}, 2022.", wrap = "close"}
 # Rendimentos - Tocantins
 rendi <- get_sidra(
   x = 5439,
   geo = "State",
   header = T,
-  period = "201201-202004"
+  period = "202201-202204"
 ) %>% janitor::clean_names()
 
 rendimento_to <- rendi %>%
-  filter(unidade_da_federacao == "Tocantins", posicao_na_ocupacao_no_trabalho_principal == "Total", unidade_de_medida == "Reais", variavel == "Rendimento médio real do trabalho principal, efetivamente recebido no mês de referência, pelas pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, com rendimento de trabalho") %>%
-  mutate(quarter = trimestre_codigo %>% stringr::str_replace("(?<=\\d{4})\\d", "Q"),
-    tri = zoo::as.yearqtr(quarter) %>% as.Date())
+  filter(unidade_da_federacao == "Tocantins", posicao_na_ocupacao_no_trabalho_principal == "Total", unidade_de_medida == "Reais", variavel == "Rendimento médio mensal real das pessoas de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente recebido no trabalho principal") %>%
+  mutate(
+    quarter = trimestre_codigo %>% stringr::str_replace("(?<=\\d{4})\\d", "Q"),
+    tri = zoo::as.yearqtr(quarter) %>% as.Date()
+  )
 
-
-
-
-#Rendimentos - Brasil
-
+# Rendimentos - Brasil
 rendi_br <- get_sidra(
   x = 5439,
   header = T,
-  period = "201201-202004"
+  period = "202201-202204"
 ) %>% janitor::clean_names()
 
 rendimento_brasil <- rendi_br %>%
-  filter(nivel_territorial == "Brasil", posicao_na_ocupacao_no_trabalho_principal == "Total", unidade_de_medida == "Reais", variavel == "Rendimento médio real do trabalho principal, efetivamente recebido no mês de referência, pelas pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, com rendimento de trabalho") %>%
-  mutate(quarter = trimestre_codigo %>% stringr::str_replace("(?<=\\d{4})\\d", "Q"),
-    tri = zoo::as.yearqtr(quarter) %>% as.Date())
-
+  filter(nivel_territorial == "Brasil", posicao_na_ocupacao_no_trabalho_principal == "Total", unidade_de_medida == "Reais", variavel == "Rendimento médio mensal real das pessoas de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente recebido no trabalho principal") %>%
+  mutate(
+    quarter = trimestre_codigo %>% stringr::str_replace("(?<=\\d{4})\\d", "Q"),
+    tri = zoo::as.yearqtr(quarter) %>% as.Date()
+  )
 
 # Rendimento - Norte
-
 rendi_norte <- get_sidra(
   x = 5439,
   header = T,
   geo = "Region",
-  period = "201201-202004"
+  period = "202201-202204"
 ) %>% janitor::clean_names()
 
 rendimento_norte <- rendi_norte %>%
-  filter(grande_regiao == "Norte", unidade_de_medida == "Reais", posicao_na_ocupacao_no_trabalho_principal == "Total", variavel == "Rendimento médio real do trabalho principal, efetivamente recebido no mês de referência, pelas pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, com rendimento de trabalho") %>%
-  mutate(quarter = trimestre_codigo %>% stringr::str_replace("(?<=\\d{4})\\d", "Q"),
-    tri = zoo::as.yearqtr(quarter) %>% as.Date())
-
-
-# Gráficos
-
-ggplot() + geom_line(rendimento_to, mapping = aes(tri, valor, colour = "Tocantins")) + geom_line(rendimento_brasil, mapping = aes(tri, valor, colour = "Brasil")) + geom_line(rendimento_norte, mapping = aes(tri, valor, colour = "Região Norte")) + scale_color_manual(values = petgg::colors[1:3]) +
-  scale_x_date(
-      breaks = scales::breaks_width("3 month", offset = -30),
-      labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y"),
-      limits = c(as.Date("2019-01-01"), as.Date("2020-10-01"))
-    )
-
-
-
-
-
-```
-
-```{r pop_ocupada, fig.cap= "População ocupada", fig.subcap="XXXX", fig.source = "PNAD-C", wrap = "close"}
-
-pop_ocupada <- get_sidra(
-  x = 4092,
-  header = T,
-  geo = "State",
-  period = "201901-202004"
-) %>% janitor::clean_names()
-
-pop_ocupada_to <- pop_ocupada %>%
-  filter(unidade_da_federacao == "Tocantins",
-         condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao %in% c("Força de trabalho", "Total"),
-         unidade_de_medida == "Mil pessoas") %>%
-  select(trimestre_codigo, condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao, valor) %>%
-  pivot_wider(names_from = condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao,
-              values_from = valor) %>%
-  rowwise() %>%
-  mutate(pop_ocu = `Força de trabalho` / `Total` * 100,
-         quarter = trimestre_codigo %>%
-           stringr::str_replace("(?<=\\d{4})\\d", "Q"),
-         tri = zoo::as.yearqtr(quarter) %>% as.Date()) %>%
-  ggplot(aes(tri, pop_ocu)) +
-  geom_line() +
-  scale_x_date(
-    breaks = scales::breaks_width("3 month", offset = -30),
-labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
+  filter(grande_regiao == "Norte", unidade_de_medida == "Reais", posicao_na_ocupacao_no_trabalho_principal == "Total", variavel == "Rendimento médio mensal real das pessoas de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente recebido no trabalho principal") %>%
+  mutate(
+    quarter = trimestre_codigo %>% stringr::str_replace("(?<=\\d{4})\\d", "Q"),
+    tri = zoo::as.yearqtr(quarter) %>% as.Date()
   )
-pop_ocupada_to
-```
+
+ggplot() +
+  geom_line(rendimento_to, mapping = aes(tri, valor, colour = "Tocantins")) +
+  geom_line(rendimento_brasil, mapping = aes(tri, valor, colour = "Brasil")) +
+  geom_line(rendimento_norte, mapping = aes(tri, valor, colour = "Região Norte")) +
+  scale_color_manual(values = petgg::colors[1:3]) +
+  scale_x_date(
+    breaks = scales::breaks_width("3 month", offset = -59),
+    labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y"),
+    limits = c(as.Date("2022-01-01"), as.Date("2022-11-01"))
+  )
+```   

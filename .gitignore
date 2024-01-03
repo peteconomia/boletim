@@ -16,6 +16,8 @@ boletim.Rmd
 cache_bcb/
 */cache_bcb/
 
+.DS_Store
+
 # R FILES
 ## History files
 *.Rhistory

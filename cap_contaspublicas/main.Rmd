@@ -2,7 +2,6 @@
 documentclass: report
 output:
   pdf_document:
-    keep_tex: true
     template: ../template/boletim.tex
     pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---

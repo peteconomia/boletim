@@ -11,7 +11,10 @@ _utils/
 */*/figure-latex/
 */*.pdf
 
+boletim.Rmd
+
 cache_bcb/
+*/cache_bcb/
 
 # R FILES
 ## History files

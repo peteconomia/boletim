@@ -2,7 +2,6 @@
 documentclass: report
 output:
   pdf_document:
-    keep_tex: true
     template: ../template/boletim.tex
     pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
@@ -36,7 +35,7 @@ petknitr::setup()
 
 
 
-O resultado primário das contas públicas do estado do Tocantins até o sexto bimestre de 2021, de acordo com a Figura [fig:@resultado_primario] foi de 630 milhões de reais, valor menor que o do mesmo período do ano anterior, 780 milhões.  Veja o Quadro [box: @resultado_primario] para mais detalhes sobre o resultado primário. As receitas primárias cresceram 14% no sexto bimestre de 2021, como mostra a Figura [fig:@variacao_rcl]. As despesas primárias cresceram 10%. No sexto bimestre de 2020 as receitas tinham crescido 17% e as despesas 12,82%. Comparando o crescimento das despesas primárias no sexto bimestre de 2021, a taxa de crescimento foi menor que em 2020. O menor crescimento das despesas contribuiu para um superavit primário de pouco mais de R$ 630 milhões até o sexto bimestre de 2021. 
+O resultado primário das contas públicas do estado do Tocantins até o sexto bimestre de 2022, de acordo com a Figura [fig:@resultado_primario] foi de 180 milhões de reais, valor consideravelmente menor que o do mesmo período do ano anterior, 630 milhões. Veja a Figura  [box: @resultado_primario] para mais detalhes sobre o resultado primário. As receitas primárias cresceram 24,1% no sexto bimestre de 2022, como mostra a Figura [fig:@variacao_rcl]. As despesas primárias cresceram 18%. No sexto bimestre de 2021 as receitas tinham crescido 14% e as despesas 9%. Comparando o crescimento das despesas primárias no sexto bimestre de 2022, a taxa de crescimento foi maior que 2021. Ainda que tenha sido registrado um aumento das despesas, a variação das receitas se mostrou maior, contribuindo para um superavit primário de pouco mais de R$ 180 milhões até o sexto bimestre de 2022. No terceiro bimestre de 2022, o resultado primário o seu ponto mais alto do ano. Após o terceiro bimestre o resultado primário permaneceu em queda, finalizando o ano de 2022, 71,43% inferior ao mesmo período de 2021.
 
 
 ::: {.smbox data-latex="[label={box:resultado_primario}]{O que é o resultado primário?}"}
@@ -44,13 +43,13 @@ O resultado primário é um dos principais indicadores das contas públicas. Ele
 :::
 
 
-A Dívida Consolidada Liquida (DCL) do estado teve, em 2021, redução de 11% em relação a 31 de dezembro de 2020. A Dívida Consolidada Liquida de 2021 em relação ao ano de 2020 indica uma tendência de queda. Essa tendência pode ser observada na Figura [fig:@variacao_dcl].     
+Dívida Consolidada Liquida (DCL) do estado teve, em 2022, redução de 20,21% em relação ao ano de 2020. A DCL que era de 4,75bi em 2021, passou a ser de 3,89bi em 2022. A Dívida Consolidada Liquida de 2022 em relação ao ano de 2021 indica uma tendência de queda. Essa tendência pode ser observada na Figura [fig:@variacao_dcl].     
 
 ```{r resultado_primario, fig.cap= "Resultado primário", fig.subcap="em relação a RCL", fig.source = "\\acrshort{rreo}", wrap = "open"}
 # Pedidos Seguro desemprego mensal
 tibble(
-  value = c(0.27,	0.24,	0.39,	0.64,	0.84,	0.78,	0.56,	0.47,	0.7,	0.79,	0.96,	0.63),
-  mes = seq(as.Date("2020-01-01"), as.Date("2021-12-01"), by = "2 month")
+  value = c(0.56,	0.47,	0.7,	0.79,	0.96,	0.63, 0.67, 0.72, 0.89, 0.76, 0.63, 0.18),
+  mes = seq(as.Date("2021-01-01"), as.Date("2022-12-01"), by = "2 month")
 ) %>%
   ggplot(aes(mes, value)) +
   geom_line() +
@@ -63,12 +62,12 @@ tibble(
 ```{r variacao_rcl, fig.cap= "Variação das receitas e despesas", fig.subcap="em relação a RCL", fig.source = "\\acrshort{rreo}", wrap = "close"}
 # Saldo de Empregos Norte e Tocantins
 tibble(
-  `Receitas` = c(6,	17, 16, 14),
-  Despesas = c(12.08,	12.82, 5, 10),
-  mes = c("2020.3", "2020.6", "2021.3", "2021.6")
+  `Receitas` = c(16, 14, 29.4, 24.1),
+  Despesas = c(3, 9, 21, 18),
+  mes = c("2021.3", "2021.6", "2022.3", "2022.6")
 ) %>%
   pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
-  ggplot(aes(factor(mes, levels = c("2020.3", "2020.6", "2021.3", "2021.6")), saldo, fill = local)) +
+  ggplot(aes(factor(mes, levels = c("2021.3", "2021.6", "2022.3", "2022.6")), saldo, fill = local)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_y_continuous(labels = scales::label_comma())
 ```
@@ -76,11 +75,12 @@ tibble(
 ```{r variacao_dcl, fig.cap= "Variação da Dívida Consolidada Liquida", fig.subcap="(DCL)", fig.source = "\\acrshort{rreo}", wrap = TRUE}
 # Saldo de Empregos Norte e Tocantins
 tibble(
-  `DCL` = c(5.5,	5.78,	5.88,	5.76,	5.83,	5.31,	5.51,	5.29,	5.13,	5.12,	5.07,	4.75),
-  mes = c("2020.1", "2020.2", "2020.3", "2020.4", "2020.5", "2020.6", "2021.1", "2021.2", "2021.3", "2021.4", "2021.5", "2021.6")
+  `DCL` = c(5.51,	5.29,	5.13,	5.12,	5.07,	4.75, 4.53, 4.32, 4.25, 4.19, 4.25, 3.79),
+  mes = c("2021.1", "2021.2", "2021.3", "2021.4", "2021.5", "2021.6", "2022.1", "2022.2", "2022.3", "2022.4", "2022.5", "2022.6")
 ) %>%
   pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
-  ggplot(aes(factor(mes, levels = c("2020.1", "2020.2", "2020.3", "2020.4", "2020.5", "2020.6", "2021.1", "2021.2", "2021.3", "2021.4", "2021.5", "2021.6")), saldo, fill = local)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  scale_y_continuous(labels = scales::label_comma())
+  ggplot(aes(factor(mes, levels = c("2021.1", "2021.2", "2021.3", "2021.4", "2021.5", "2021.6", "2022.1", "2022.2", "2022.3", "2022.4", "2022.5", "2022.6")), saldo, fill = local)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.7)) +
+  scale_y_continuous(labels = scales::label_comma(), breaks = seq(0, 6, 1)) + # Defina os breaks conforme necessário
+  theme(axis.text.y = element_text(margin = margin(r = 10))) # Ajuste a margem conforme necessário
 ```

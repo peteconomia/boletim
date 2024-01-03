@@ -5,13 +5,23 @@ _utils/
 .vscode/
 
 */main.pdf
+*/main.html
 */main.tex
 */main_files/
 */_cache/
 */*/figure-latex/
 */*.pdf
 
+boletim.Rmd
+abstract.html
+abstract.pdf
+index.pdf
+index.html
+
 cache_bcb/
+*/cache_bcb/
+
+.DS_Store
 
 # R FILES
 ## History files

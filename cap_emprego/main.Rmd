@@ -35,13 +35,13 @@ Fica evidente na Figura [fig:@saldo] que mesmo com um cenário de insegurança p
 O setor de serviços registrou o maior crescimento, destacando-se especialmente nas áreas de informação, comunicação e atividades financeiras, imobiliárias, profissionais e administrativas. O comércio, por sua vez, figurou como o segundo maior gerador de postos de trabalho, com o comércio varejista de mercadorias, em especial supermercados e artigos de vestuário, liderando as contratações. A indústria apresentou o terceiro maior crescimento no emprego no mês, evidenciando um saldo positivo, por último o setor de construção se destaca com uma perda total gerada de -573.  
 
 
-```{r saldo, fig.cap= "Saldo de empregos ao longo de 2022", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}, 2022.", wrap = "open"}
+```{r saldo, fig.cap= "Saldo de empregos ao longo de 2023", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}, 2023.", wrap = "open"}
 # Saldo de Empregos Norte e Tocantins
 # Dados diponíveis no BI do Novo CADEG https://app.powerbi.com/view?r=eyJrIjoiNWI5NWI0ODEtYmZiYy00Mjg3LTkzNWUtY2UyYjIwMDE1YWI2IiwidCI6IjNlYzkyOTY5LTVhNTEtNGYxOC04YWM5LWVmOThmYmFmYTk3OCJ9&pageName=ReportSectionb52b07ec3b5f3ac6c749
 
 tibble(
-  `Região Norte` = c(4594, 15925, 8037, 12421, 16962, 22894, 18979, 20949, 19836, 7560, 2155, -31568),
-  Tocantins = c(1485, 2416, 410, 641, 1957, 1575, 2560, 2328, 2035, 1075, 766, -2615),
+  `Região Norte` = c(-2051, 14233, 10377, 12496, 13275, 14728, 14796, 17849, 16092, 9699, 4303, -19341),
+  Tocantins = c(1186, 2015, 1839, 918, 1158, 1599, 1143, 2366, 1302, 1365, 424, -2079),
   mes = c("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
 ) %>%
   pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
@@ -50,12 +50,12 @@ tibble(
   scale_y_continuous(labels = function(n) n / m)
 ```
 
-```{r saldo_setor_to, fig.cap = "Saldo por setores em 2022", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}, 2022."}
+```{r saldo_setor_to, fig.cap = "Saldo por setores em 2023", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}, 2023."}
 # Saldo por Setores no Tocantins
 # Dados diponíveis no BI do Novo CADEG https://app.powerbi.com/view?r=eyJrIjoiNWI5NWI0ODEtYmZiYy00Mjg3LTkzNWUtY2UyYjIwMDE1YWI2IiwidCI6IjNlYzkyOTY5LTVhNTEtNGYxOC04YWM5LWVmOThmYmFmYTk3OCJ9&pageName=ReportSectionb52b07ec3b5f3ac6c749
 
 tibble(
-  Saldo = c(2042, 1516, -573, 3981, 7667),
+  Saldo = c(1442, 991, 501, 2923, 7379),
   Setores = c("Agricultura", "Indústrias", "Construção", "Comércio", "Serviços")
 ) %>%
   ggplot(aes(Setores, Saldo)) +
@@ -63,15 +63,15 @@ tibble(
   scale_y_continuous(labels = function(n) n / m)
 ```
 
-```{r pedido_segudo_desem, fig.cap= "Pedidos de seguro desemprego em 2022", fig.subcap="Em Mil", fig.source = "\\acrshort{ibge}, 2022.", wrap = "close"}
+```{r pedido_segudo_desem, fig.cap= "Pedidos de seguro desemprego em 2023", fig.subcap="Em Mil", fig.source = "\\acrshort{ibge}, 2023.", wrap = "close"}
 # Pedidos Seguro desemprego mensal
 # Fonte: Séries históricas do seguro-desempro
 # Disponível em: http://pdet.mte.gov.br/component/content/article?id=1778
 # Tabela 3.1
 
 tibble(
-  value = c(8794, 7682, 10100, 9182, 9816, 9812, 9264, 10005, 8989, 9164, 8757, 8699),
-  mes = seq(as.Date("2022-01-01"), as.Date("2022-12-01"), by = "month")
+  value = c(9265, 8510, 9609, 9003, 10226, 9438, 9561, 9481, 8741, 9470, 9190, 8982),
+  mes = seq(as.Date("2023-01-01"), as.Date("2023-12-01"), by = "month")
 ) %>%
   ggplot(aes(mes, value)) +
   geom_line() +
@@ -91,7 +91,7 @@ O mercado de trabalho no Brasil tem apresentado uma trajetória de notável dina
 
 A Figura [fig:@rendimentos] apresenta o rendimento médio mensal, calculado a partir da média das remunerações dos trabalhadores extraída da população ocupada por meio de trabalho principal. A renda média nominal no Tocantins no terceiro trimestre de 2022 foi a segunda mais elevada se situando na faixa de R$ 2300 a 2500 evidenciando um claro aumento a partir do segundo trimestre, historicamente o estado se mantem abaixo da renda nacional e superior a renda média da região norte. O nível de ocupação no Tocantins manteve-se estável com esses resultados, não apresentando variação estatisticamente significativa. No entanto, de maneira geral, é observável pelo gráfico que a renda média no Brasil é superior à da região Norte e do estado do Tocantins, possivelmente devido ao fato de abranger regiões mais desenvolvidas em termos produtivos, como o Sul e Sudeste. 
 
-```{r reg_emprego, fig.cap= "Relação seguro desemprego x taxa de desocupação", fig.subcap="Variação Trimestral entre 2020 a 2022", fig.source = "\\acrshort{mte}", wrap = TRUE}
+```{r reg_emprego, fig.cap= "Relação seguro desemprego x taxa de desocupação", fig.subcap="Variação Trimestral entre 2016 a 2023", fig.source = "\\acrshort{mte}", wrap = TRUE}
 #Fonte: Seguro desemprego
 #Séries históricas do seguro-desempro
 #Disponível em: http://pdet.mte.gov.br/component/content/article?id=1778
@@ -101,8 +101,8 @@ A Figura [fig:@rendimentos] apresenta o rendimento médio mensal, calculado a pa
 #(Distribuição percentual das pessoas de 14 anos ou mais de idade (%): 1 de 1 casas decimais)
 
 reg_data <- tibble(
-  taxa_desocupacao = c(6.8, 7.2, 7.0, 6.7, 10.5, 9.6, 6.6, 5.9, 5.7, 3.4, 3.5, 3.2),
-  pedidos_seguro_desemprego = c(13060, 13265, 14256, 10837, 9990, 9606, 8897, 8603, 8859, 9603, 9419, 8873)
+  taxa_desocupacao = c(6.6, 6.9, 6.5, 8, 7.6, 6.8, 6.8, 6.3, 6.6, 6.8, 5.9, 6.4, 7.5, 7, 6.4, 5.5, 6.8, 7.2, 7, 6.7, 10.5, 9.6, 6.6, 5.9, 5.7, 3.4, 3.5, 3.2, 4.4, 4.1, 3.3, 3.6),
+  pedidos_seguro_desemprego = c(14539, 14883, 14905, 13244, 15423, 14966, 13676, 12829, 13047, 14044, 13826, 13265, 12390, 13229, 13859, 13444, 13060, 13265, 14256, 10837, 9990, 9606, 8897, 8603, 8859, 9603, 9419, 8873, 9128, 9556, 9261, 9214)
 )
 
 ggplot(reg_data, aes(x = taxa_desocupacao, y = pedidos_seguro_desemprego)) +
@@ -115,12 +115,12 @@ ggplot(reg_data, aes(x = taxa_desocupacao, y = pedidos_seguro_desemprego)) +
 
 
 
-```{r taxa_desemprego, fig.cap= "Taxa de desemprego no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}, 2022.", wrap = "open"}
+```{r taxa_desemprego, fig.cap= "Taxa de desemprego no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}, 2023.", wrap = "open"}
 df <- get_sidra(
   x = 4092,
   geo = "State",
   header = T,
-  period = "202201-202204"
+  period = "202301-202304"
 ) %>% janitor::clean_names()
 
 df %>%
@@ -151,12 +151,12 @@ df %>%
   )
 ```
 
-```{r pop_ocupada, fig.cap= "População ocupada no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}, 2022."}
+```{r pop_ocupada, fig.cap= "População ocupada no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}, 2023."}
 sidrar::get_sidra(
   x = 4092,
   header = T,
   geo = "State",
-  period = "202101-202104"
+  period = "202301-202304"
 ) %>%
   janitor::clean_names() %>%
   filter(
@@ -188,13 +188,13 @@ sidrar::get_sidra(
 
 
 
-```{r rendimentos, fig.cap= "Rendimento médio mensal", fig.subcap="Em mil R$", fig.source = "\\acrshort{ibge}, 2022.", wrap = "close"}
+```{r rendimentos, fig.cap= "Rendimento médio mensal", fig.subcap="Em mil R$", fig.source = "\\acrshort{ibge}, 2023.", wrap = "close"}
 # Rendimentos - Tocantins
 rendi <- get_sidra(
   x = 5439,
   geo = "State",
   header = T,
-  period = "202201-202204"
+  period = "202301-202304"
 ) %>% janitor::clean_names()
 
 rendimento_to <- rendi %>%
@@ -208,7 +208,7 @@ rendimento_to <- rendi %>%
 rendi_br <- get_sidra(
   x = 5439,
   header = T,
-  period = "202201-202204"
+  period = "202301-202304"
 ) %>% janitor::clean_names()
 
 rendimento_brasil <- rendi_br %>%
@@ -223,7 +223,7 @@ rendi_norte <- get_sidra(
   x = 5439,
   header = T,
   geo = "Region",
-  period = "202201-202204"
+  period = "202301-202304"
 ) %>% janitor::clean_names()
 
 rendimento_norte <- rendi_norte %>%
@@ -241,6 +241,6 @@ ggplot() +
   scale_x_date(
     breaks = scales::breaks_width("3 month", offset = -59),
     labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y"),
-    limits = c(as.Date("2022-01-01"), as.Date("2022-11-01"))
+    limits = c(as.Date("2023-01-01"), as.Date("2023-11-01"))
   )
 ```   

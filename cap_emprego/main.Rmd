@@ -28,12 +28,13 @@ B <- 1000000000
 
 # Mercado de Trabalho
 
-Os empregos constituem indicadores essenciais para a avaliação da atividade econômica de um país. Nesse sentido, o governo federal conduz diversas pesquisas abrangendo tanto o emprego formal quanto o informal. O Cadastro Geral de Empregados e Desempregados (CAGED) consolida uma ampla gama de informações relacionadas aos empregos formais, abrangendo admissões, desligamentos, salários, funções, cargos, entre outros. Adicionalmente, são utilizados os dados da Pesquisa Nacional por Amostra de Domicílios (PNADC) para calcular indicadores como a taxa de desemprego, ocupação e renda média dos trabalhadores.
+Os indicadores de atividade econômica são ferramentas essenciais para avaliar a economia de um país. O governo federal realiza diversas pesquisas que abrangem tanto o emprego formal quanto o informal. O Cadastro Geral de Empregados e Desempregados (CAGED) reúne uma ampla gama de informações sobre empregos formais, incluindo admissões, desligamentos, salários, funções e cargos. Além disso, a Pesquisa Nacional por Amostra de Domicílios (PNADC) é utilizada para calcular indicadores como a taxa de desemprego, ocupação e renda média dos trabalhadores. Compreender a situação do emprego no país é fundamental para orientar a política econômica atual e futura.  
 
-Fica evidente na Figura [fig:@saldo] que mesmo com um cenário de insegurança política em um ano eleitoral conturbado, há uma evolução na estrutura do mercado de trabalho de 2022 que se manteve similar à de 2021, demonstrando por sua vez uma recuperação dos níveis críticos de desestruturação econômica nacional e regional geradas pela pandemia do COVID-19. Observa-se que no primeiro trimestre de 2022, o saldo de desemprego manteve-se em terreno positivo. Destaca-se que mesmo o Tocantins não representando um grande volume comparativo ao total da região norte, existe uma clara similaridade em relação ao sentido de ambos os dados, nota-se que enquanto o Tocantins apresenta seu maior saldo anual mensal em agosto com 2328 postos de emprego, a região norte tem seu pico em junho com 22894 postos conquistados. Já em dezembro observa-se um saldo negativo, essa estrutura de sazonalidade é similar ao ano anterior, o Tocantins amargou um redução -2615 em seu saldo de postos de trabalho enquanto a região norte registrou -31568, parte dessa queda se dá principalmente pelas expectativas dos agentes econômicos em relação ao ano posterior.
+A Figura [fig:@saldo] evidencia que a estrutura básica encontrada nos anos de 2021 e 2022 se mantém similar após o primeiro ano do novo governo em 2023. A queda sistemática do saldo de empregos em dezembro de 2022, em meio a um ano eleitoral conturbado, gerou um lento retorno aos patamares positivos em janeiro de 2023. Destaca-se a região Norte, que teve um saldo negativo de 2051 em janeiro, comparado a um saldo positivo de 4594 em 2022. Já o Tocantins se manteve próximo dos valores observados nesse período.  
 
-O setor de serviços registrou o maior crescimento, destacando-se especialmente nas áreas de informação, comunicação e atividades financeiras, imobiliárias, profissionais e administrativas. O comércio, por sua vez, figurou como o segundo maior gerador de postos de trabalho, com o comércio varejista de mercadorias, em especial supermercados e artigos de vestuário, liderando as contratações. A indústria apresentou o terceiro maior crescimento no emprego no mês, evidenciando um saldo positivo, por último o setor de construção se destaca com uma perda total gerada de -573.  
+De forma geral, ambos os estratos analisados registraram quedas no saldo total: o Tocantins teve uma queda de 9,5%, enquanto a região Norte evidenciou uma queda de 10,3% ao compara-se 2023 e 2022. Com exceção dos meses de janeiro e dezembro, observaram-se patamares positivos em todos os meses. O Tocantins manteve uma participação nos volumes percentuais de saldo da região Norte de aproximadamente 12%.  
 
+A Figura [fig:@saldo_setor_to] mostra os saldos de emprego por setores. Destaca-se o setor de construção, que, apesar de ter o menor patamar registrado, obteve um aumento de 187% em seu saldo de admitidos e desligados em comparação a 2022. O setor industrial registrou uma queda de 34% em relação ao ano anterior, enquanto a agricultura e o comércio tiveram quedas de 29% e 26%, respectivamente. Por fim, o comércio ainda preserva o status de maior participação no saldo de emprego, representando 55% do total, embora tenha registrado uma queda de 3,7% em comparação ao ano anterior.
 
 ```{r saldo, fig.cap= "Saldo de empregos ao longo de 2023", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}, 2023.", wrap = "open"}
 # Saldo de Empregos Norte e Tocantins
@@ -49,6 +50,7 @@ tibble(
   geom_bar(stat = "identity", position = "dodge") +
   scale_y_continuous(labels = function(n) n / m)
 ```
+
 
 ```{r saldo_setor_to, fig.cap = "Saldo por setores em 2023", fig.subcap="Em Mil", fig.source = "\\acrshort{caged}, 2023."}
 # Saldo por Setores no Tocantins
@@ -80,16 +82,15 @@ tibble(
     labels = date_format("%b\n%Y"), date_breaks = "1 month"
   )
 ```
+Os pedidos de seguro-desemprego atuam como um termômetro claro da estrutura do emprego nacional, servindo como uma medida macroeconômica ao proporcionar uma rede de segurança aos trabalhadores recém-demitidos. O aumento nos pedidos de seguro-desemprego indica que o mercado de trabalho não está funcionando de forma ideal. Na Figura [fig:@pedido_segudo_desem], são apresentadas as flutuações mensais nos pedidos de seguro-desemprego, com picos em janeiro, março, maio e outubro, indicando um maior número de demissões nesses períodos. De forma geral, não houve uma alteração percentual significativa no volume de parcelas do seguro-desemprego entre 2023 e 2022, sendo menor que 1%.  
 
-Já os pedidos de seguro desemprego funcionam como um termômetro claro para evidenciar a estrutura do emprego nacional, uma medida macroeconômica destinada a proporcionar uma rede de segurança para trabalhadores recentemente demitidos. Em termos mais claros, o aumento nos pedidos de seguro-desemprego indica que o mercado de trabalho não está operando de forma otimizada. Da mesma forma, uma baixa incidência de pedidos reflete uma reação positiva a um período econômico favorável.
+A taxa de desemprego, visualizada na Figura [fig:@taxa_desemprego], demonstra uma queda considerável do primeiro ao terceiro trimestre de 2023, indicando uma melhora nesse indicador de atividade econômica. No entanto, no quarto trimestre, houve um leve aumento, resultando em uma tendência oposta à observada nos trimestres anteriores. Comparando os dois gráficos, observa-se que os pedidos de seguro-desemprego e a taxa de desemprego mostraram uma relação inversa em muitos momentos. Porém, em alguns períodos, ambas as métricas apresentaram movimentos semelhantes, indicando uma correlação direta entre elas, especialmente quando houve estabilidade no mercado de trabalho. Vale destacar que, comparativamente a 2022, a taxa de desemprego apresentou patamares consideravelmente menores, passando de 9,21% para 6,25%. No entanto, o fechamento do último trimestre manteve patamares similares, fechando em 5,16% em 2022 e 5,72% em 2023
+ 
+Entre 2016 e 2023, a taxa de desocupação e o seguro-desemprego mantiveram uma relação estreita. Períodos de aumento na taxa de desocupação, como durante a pandemia de COVID-19, foram refletidos por picos nos pedidos de seguro-desemprego. A subsequente queda nas taxas indicou uma recuperação gradual do mercado de trabalho.  
 
-O que pode ser observado comparativamente entre as  Figuras [fig:@pedido_segudo_desem] e   [fig:@taxa_desemprego] é um movimento semelhante entre a taxa de desemprego e os pedidos de seguro-desemprego. A partir de fevereiro de 2022, os pedidos sofrem uma redução, mas apresentam oscilações no decorrer do ano. Em relação ao ano anterior, o valor mínimo do seguro-desemprego aumentou. Ao comparar com a taxa de desemprego, percebe-se que a taxa se reduz, resultando em uma diminuição nos pedidos de seguro-desemprego. Isso demonstra claramente como a taxa é crucial para a avaliação de políticas macroeconômica. Vale destacar o comportamento dos pedidos de seguro desemprego seguiram uma estrutura diametralmente oposta do registrado no boletim de 2021, onde a economia tendeu a crescer a partir do segundo trimestre do ano.  
+O mercado de trabalho no Tocantins apresenta uma dinâmica positiva, evidenciada pelos dados mais recentes do Novo CAGED em 2023. O estado se destaca na criação de oportunidades de trabalho na região Norte do Brasil. A expansão na população ocupada contribuiu significativamente para a redução do desemprego. A representação gráfica fornecida pela Figura [fig:@pop_ocupada] demonstra que a população ocupada variou pouco trimestralmente, mantendo-se estável em geral. Apesar das oscilações, a taxa de ocupação aumentou de 58,99% no primeiro trimestre para 59,35% no quarto trimestre.  
 
-É realizado uma regressão na Figura [fig:@reg_emprego] para definir o quão importante é a taxa de desemprego em relação ao seguro desemprego, para o mercado de trabalho, o gráfico leva em consideração dados trimestrais de 2020 a 2022.  
-
-O mercado de trabalho no Brasil tem apresentado uma trajetória de notável dinamismo, caracterizada por uma significativa expansão da população ocupada, o que teve um impacto expressivo na redução do desemprego. A Figura [fig:@pop_ocupada] ilustra que, no segundo trimestre, houve uma diminuição na taxa de desocupação, revertendo o aumento registrado no primeiro trimestre do ano. Esse movimento sugere uma recuperação do padrão sazonal desse indicador, um salto do primeiro trimestre de 2022 para o quarto trimestre de 2022, saindo de 50,8% para um patamar de aproximadamente 55,09%
-
-A Figura [fig:@rendimentos] apresenta o rendimento médio mensal, calculado a partir da média das remunerações dos trabalhadores extraída da população ocupada por meio de trabalho principal. A renda média nominal no Tocantins no terceiro trimestre de 2022 foi a segunda mais elevada se situando na faixa de R$ 2300 a 2500 evidenciando um claro aumento a partir do segundo trimestre, historicamente o estado se mantem abaixo da renda nacional e superior a renda média da região norte. O nível de ocupação no Tocantins manteve-se estável com esses resultados, não apresentando variação estatisticamente significativa. No entanto, de maneira geral, é observável pelo gráfico que a renda média no Brasil é superior à da região Norte e do estado do Tocantins, possivelmente devido ao fato de abranger regiões mais desenvolvidas em termos produtivos, como o Sul e Sudeste. 
+A Figura [fig:@rendimentos] apresenta o rendimento médio mensal, calculado a partir da média das remunerações dos trabalhadores extraída da população ocupada por meio de trabalho principal. Durante os quatro trimestres de 2023, a renda média nominal do Tocantins permaneceu consistentemente superior à da região Norte, alcançando seu ápice no último trimestre, situando-se na faixa de 2600 reais. Historicamente, o estado tem mantido rendimentos inferiores à média nacional, mas observou-se um aumento no seu nível de ocupação. No entanto, a média de renda no Brasil supera a da região Norte e do Tocantins. Esse cenário pode ser atribuído por exemplo às desigualdades regionais produtivas encontradas no país.  
 
 ```{r reg_emprego, fig.cap= "Relação seguro desemprego x taxa de desocupação", fig.subcap="Variação Trimestral entre 2016 a 2023", fig.source = "\\acrshort{mte}", wrap = TRUE}
 #Fonte: Seguro desemprego
@@ -112,9 +113,6 @@ ggplot(reg_data, aes(x = taxa_desocupacao, y = pedidos_seguro_desemprego)) +
   theme_petgg(axis_title = T, base_family = "EB Garamond") +
   scale_y_continuous(limits = c(8000, 15000), breaks = seq(8000, 15000, 2000))
 ```
-
-
-
 ```{r taxa_desemprego, fig.cap= "Taxa de desemprego no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}, 2023.", wrap = "open"}
 df <- get_sidra(
   x = 4092,
@@ -149,6 +147,33 @@ df %>%
     breaks = scales::breaks_width("3 month", offset = -59),
     labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
   )
+
+## Caso queira visualizar a taxa_des por trimestre
+# desemp_2023 <- df %>%
+#   filter(unidade_da_federacao == "Tocantins",
+#     condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao %in% c(
+#       "Força de trabalho - desocupada",
+#       "Força de trabalho"
+#     ),
+#     unidade_de_medida == "Mil pessoas"
+#   ) %>%
+#   select(unidade_da_federacao, trimestre_codigo, condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao, valor) %>%
+#   pivot_wider(
+#     names_from = condicao_em_relacao_a_forca_de_trabalho_e_condicao_de_ocupacao,
+#     values_from = valor
+#   ) %>%
+#   mutate(
+#     trimestre = substring(trimestre_codigo, 6, 7)  # Extrair trimestre do código do trimestre
+#   ) %>%
+#   group_by(unidade_da_federacao, trimestre) %>%
+#   summarize(
+#     taxa_des = sum(`Força de trabalho - desocupada`, na.rm = TRUE) / 
+#       sum(`Força de trabalho`, na.rm = TRUE) * 100  # Calcular taxa de desocupação
+#   ) %>%
+#   ungroup()
+# 
+# # Exibir o resultado
+# print(desemp_2023)
 ```
 
 ```{r pop_ocupada, fig.cap= "População ocupada no Tocantins", fig.subcap="Variaçao trimestral", fig.source = "\\acrshort{ibge}, 2023."}
@@ -185,9 +210,6 @@ sidrar::get_sidra(
     labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y")
   )
 ```
-
-
-
 ```{r rendimentos, fig.cap= "Rendimento médio mensal", fig.subcap="Em mil R$", fig.source = "\\acrshort{ibge}, 2023.", wrap = "close"}
 # Rendimentos - Tocantins
 rendi <- get_sidra(
@@ -243,4 +265,4 @@ ggplot() +
     labels = function(x) zoo::format.yearqtr(x, "%qT\n%Y"),
     limits = c(as.Date("2023-01-01"), as.Date("2023-11-01"))
   )
-```   
+```

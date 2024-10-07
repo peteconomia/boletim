@@ -34,7 +34,7 @@ De acordo com o Gráfico [fig:@total], no ano de 2022, as exportações do Tocan
 
 ```{r produtos_expo, fig.cap = "Principais produtos exportados", fig.subcap = "Em milhões de US$", fig.source = "\\acrshort{comex}", wrap = TRUE}
 # Produtos exportados
-read_xlsx("cap_balancacomercial/cap_balancacomercialbc_2022.xlsx", sheet = "produtos_export") %>%
+read_xlsx("cap_balancacomercial/cap_balancacomercialbc_2023.xlsx", sheet = "produtos_export") %>%
   ggplot(aes(data, valor, fill = produto)) +
   geom_bar(stat = "identity", position = "dodge", gap = "s") +
   scale_y_continuous(labels = function(x) x / m) +
@@ -54,7 +54,7 @@ O acumulado de importações de Adubos ou fertilizantes é um fator notável na 
 
 ```{r produtos_import, fig.cap = "Principais produtos importados", fig.subcap = "Em milhões de US$", fig.source = "\\acrshort{comex}", wrap = TRUE}
 # Produtos importados
-read_xlsx("cap_balancacomercial/cap_balancacomercialbc_2022.xlsx", sheet = "produtos_import")  %>%
+read_xlsx("cap_balancacomercial/cap_balancacomercialbc_2023.xlsx", sheet = "produtos_import")  %>%
   ggplot(aes(data, valor, fill = produto)) +
   geom_bar(stat = "identity", position = "dodge", gap = "s") +
   scale_y_continuous(labels = function(x) x / m) +
@@ -75,7 +75,7 @@ Nas importações tiveram destaque os óleos e combustíveis com um total de US$
 # Saldo, Exportação e Importaçao 2012--2022
 c("export", "import", "saldo") %>%
   purrr::map(
-    ~readxl::read_xlsx("cap_balancacomercial/cap_balancacomercialbc_2022.xlsx", sheet = .x) %>%
+    ~readxl::read_xlsx("cap_balancacomercial/cap_balancacomercialbc_2023.xlsx", sheet = .x) %>%
     dplyr::mutate(conta = .x)
   ) %>%
   purrr::map_dfr(~tidyr::unnest(.)) %>%

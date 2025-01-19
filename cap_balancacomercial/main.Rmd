@@ -1,0 +1,171 @@
+---
+documentclass: report
+output:
+  pdf_document:
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
+---
+
+```{r include=F, message=F, warning=F}
+library(tidyverse)
+library(scales)
+library(petgg)
+library(petknitr)
+library(kableExtra)
+library(readxl)
+
+
+petgg::set_theme(base_family = "EB Garamond")
+petknitr::setup()
+
+
+m <- 1000000
+b <- 1000000000
+```
+
+
+# Comércio Exterior
+
+A balança comercial é uma parte fundamental da balança de pagamentos de um país, refletindo a diferença entre o valor das exportações e importações de bens. Quando falamos sobre comércio exterior, a balança comercial é um indicador crucial que ajuda a entender a posição econômica de um país no mercado global. No comércio internacional, o saldo quando está positivo apresenta um Superavit Comercial, quando o valor das exportações excede o valor das importações. Este fator pode indicar que um país está se saindo bem no comércio entre outros países e pode contribuir para o crescimento econômico. 
+
+Por outro lado, quando o valor das importações supera o valor das exportações temos um déficit, ou seja, um saldo negativo. No contexto do Brasil, em especial ao estado do Tocantins, a sua balança comercial apresenta um superávit, o que significa que ela exporta mais do que importa dentro de sua área.
+
+De acordo com o gráfico [fig:@total], no ano de 2023, as exportações do Tocantins fecharam em aproximadamente US\$ 3,01 bilhões e as importações totalizaram em US\$ 271,9 Milhões no mesmo período. Diante desses resultados, as exportações do estado registraram uma queda de 2,4% em comparação ao ano anterior e as importações recuaram 69%, respectivamente. O saldo da Balança Comercial (exportações – importações) ficou em US$ 2,7 bilhões, mostrando desta forma, um crescimento de 24% em relação ao ano de 2022. A balança comercial apresenta os aspectos da comercialização de exportação e importação no estado do Tocantins. 
+
+Conforme a tabela [tab:@status], durante o decorrer desses últimos 5 anos o saldo comercial tem oscilado, mas sempre se mantendo com um saldo superavitário. Dentre os estados da região Norte do país, o Tocantins ficou na 14ª posição nas exportações e a 24ª posição nas importações. O estado também representou 0,95% das exportações e 0,1% das importações para o comércio exterior brasileiro. 
+
+```{r total, fig.cap = "Balança Comercial do estado", fig.subcap = "Em bilhões de USD", fig.source = "\\acrshort{comex}", wrap = TRUE}
+# Saldo, Exportação e Importaçao 2012--2022
+c("export", "import", "saldo") %>%
+  purrr::map(
+    ~readxl::read_xlsx("C:/Users/Lorenzo Costa/Desktop/Boletim 2024/cap_balancacomercial/_Boletim_dados_2023.xlsx.xlsx", sheet = .x) %>%
+    dplyr::mutate(conta = .x)
+  ) %>%
+  purrr::map_dfr(~tidyr::unnest(.)) %>%
+  dplyr::mutate(
+    data = lubridate::ymd(paste0(data, "0101")),
+    conta = dplyr::case_when(
+      conta == "export" ~ "Exportação",
+      conta == "import" ~ "Importação",
+      conta == "saldo" ~ "Saldo"
+    )
+  ) %>%
+  ggplot(aes(x = data, y = valor, color = conta)) +
+  geom_line() +
+  scale_y_continuous(labels = function(n) n / b) +
+  scale_x_date(labels = date_format("%Y"), date_breaks = "1 year")
+```
+
+Ao analisar o gráfico [fig:@produtos_expo] é notório observar que, a soja foi o produto mais exportado no ano 2023, atingindo US\$ 1,9 bilhões em sua comercialização, que resultou uma participação significante de 63% na balança comercial do Tocantins. Além disso, é relevante observar que este produto registrou um crescimento de 5,75% em volume exportado. Na segunda posição, o milho não moído correspondeu a uma participação de 15% no total exportado pelo estado em 2023, totalizando US\$ 448 milhões. Com isso, houve um aumento de 6,17% em relação ao ano anterior.   
+
+Com 13% de participação na balança comercial do estado, a carne bovina (fresca/congelada ou refrigerada) apresentou no mesmo ano de 2023 um total de U\$403 milhões. Em comparação ao ano de 2022, o produto sofreu uma queda relevante de aproximadamente 30% em detrimento da redução das transações com um dos seus principais parceiros comercial, a China.
+
+Os Farelos de soja e outros alimentos para animais são o terceiro item de maior vulto da pauta exportadora do estado. Ela apresenta, porém, somente 3,90\% da participação total, com o valor de US\$ 117 milhões para o ano de 2023, que veio de decréscimo do ano de 2022 em aproximadamente 34\%. Os demais produtos apresentaram uma participação de 1,6% na exportação, totalizando um valor de aproximadamente US$ 49,3 milhões, que surgiu por meio de um aumento em relação ao ano anterior de 74,7\%.
+
+```{r produtos_expo, fig.cap = "Principais produtos exportados", fig.subcap = "Em milhões de US$", fig.source = "\\acrshort{comex}", wrap = TRUE}
+# Produtos exportados
+read_xlsx("C:/Users/Lorenzo Costa/Desktop/Boletim 2024/cap_balancacomercial/_Boletim_dados_2023.xlsx.xlsx", sheet = "produtos_export") %>%
+  ggplot(aes(data, valor, fill = produto)) +
+  geom_bar(stat = "identity", position = "dodge", gap = "s") +
+  scale_y_continuous(labels = function(x) x / m) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+```
+
+No ano de 2023 as importações do estado tiveram uma queda bastante representativa comparado ao valor total de bens importados no ano anterior, já que o valor totalizado de 2022 foi de US\$ 881,3 milhões para o valor de US$ 271,9 Milhões em 2023, uma queda de 69%. Observando o gráfico [fig:@produtos_import] pode-se concluir essa diferença no tamanho das colunas em seus respectivos anos e itens. Os principais produtos que mais foram importados pelo Tocantins foram: óleos de petróleo, adubos ou fertilizantes químicos e produtos residuais de petróleo e materiais relacionados.
+
+O primeiro representou uma participação de 25% do total importado pelo estado, e alcançou o saldo de US\$ 68,6 milhões, valor inferior ao ano anterior, cuja variação para o ano de análise foi de 84,4\% negativa. Adubos ou fertilizantes químicos foram os itens com maior volume e valor, com uma participação de 27% e totalizando US\$ 73,0 milhões, esse valor é 70\% menor que o de 2022. Apesar da redução de sua quantidade, este item ainda compõe o número maior em participação em relação aos outros bens importados.
+
+Na terceira posição, ao analisar o gráfico [fig:@produtos_import], os produtos residuais de petróleo atingiram um valor de US\$ 46,5 milhões no ano de 2023, tendo uma redução de 48\% de seu valor importado em comparação à 2022, o que resultou em uma participação geral de 17% na balança comercial do estado. Os demais produtos, apresentaram uma participação 33% e totalizando um montante de US$ 90,1 milhões.
+
+Na quarta posição, têm-se Lentes e itens óticos na pauta de importação. Esse item apresenta um peso de 5,1\% de todas as compras do estado, e seu valor bruto é de US/$ 13,8 milhões, no qual passou por um decréscimo em comparação ao ano de 2022 de 19,3/%.
+
+```{r produtos_import, fig.cap = "Principais produtos importados", fig.subcap = "Em milhões de US$", fig.source = "\\acrshort{comex}", wrap = TRUE}
+# Produtos importados
+read_xlsx("C:/Users/Lorenzo Costa/Desktop/Boletim 2024/cap_balancacomercial/_Boletim_dados_2023.xlsx.xlsx", sheet = "produtos_import")  %>%
+  ggplot(aes(data, valor, fill = produto)) +
+  geom_bar(stat = "identity", position = "dodge", gap = "s") +
+  scale_y_continuous(labels = function(x) x / m) +
+  guides(fill = guide_legend(nrow = 3, byrow = TRUE))
+```
+
+A Tabela [tab:@origem] apresenta os principais parceiros comerciais do Tocantins e seus principais blocos econômicos que exportaram e importaram no ano de 2023, e, quando o assunto é exportação, o Tocantins desempenha um papel relevante comparado ao pouco tempo que o estado tem de existência, e mesmo sendo relativamente pequeno, ostenta números significativos para a sua região. 
+
+Como observado anteriormente, o ano de 2023 apresentou uma variação de 2,4% de queda das exportações em relação ao ano de 2022, atingindo o valor bruto de US\$3,01 bilhões em dólares. Dessa quantia, o Tocantins comercializou seus produtos com 90 países, entre eles a China, seu principal parceiro, que teve participação de 61% no total das exportações, aumentando em 9% em comparação ao ano de 2022. 
+
+A diversidade de países com relações comerciais com o Tocantins é visível na mesma tabela, pois além da China, grande compradora dos grãos e carnes produzidos no estado, encontra-se também países como Espanha, representando 8% do total exportado, mas que também atestou uma queda de 4,32% em relação ao ano anterior, e Arábia Saudita com 3,1%, que não cresceu de forma tão expressiva ao se comparar com o ano passado (cerca de 0,36%).
+
+Nas importações, a Rússia se destacou ficando em 1º lugar, com 32,14% de representatividade, Óleos de petróleo de minerais betuminosos e adubos fertilizantes estão entre os produtos mais importados pelo estado. Outros países com o que o Tocantins mantém dependente nas importações são a própria China, com 15% de participação, seguida pela Bélgica com 14%, Estônia com 6,5% e EUA com 5,9%.
+
+
+```{r origem}
+dplyr::bind_cols(
+  tribble(
+    ~x, ~y,
+    "China", 61,
+    "Espanha", 8,
+    "Arábia Saudita", 3.1,
+    "Turquia", 2.20,
+    "Tailândia", 2.1
+  ),
+  tribble(
+    ~x, ~y,
+    "Rússia", 32,
+    "China", 15,
+    "Bélgica", 14,
+    "Estônia", 6.5,
+    "EUA", 5.9
+  )
+) %>%
+  kbl(
+    booktabs = TRUE,
+    col.names = c("País", "Exportação", "País", "Importação"),
+    caption = "Origem das Exportações e Importações em percentual \\label{tab:import_export}",
+    # label = "import_export",
+    centering = FALSE
+  ) %>%
+  footnote(
+    general = "COMEXSTAT",
+    general_title = "Fonte:",
+    footnote_as_chunk = TRUE
+  )
+```
+
+```{r status}
+dplyr::bind_cols(
+  tribble(
+    ~x, ~y,
+    "Exportações", 3014.7,
+    "Importações", 271.9,
+    "Corrente", 3286.6,
+    "Saldo", 2742.8
+  ),
+  tribble(
+    ~x, ~y,
+    "Exportações (%)", 0.9,
+    "Rank Exportações", 14,
+    "Importações (%)", 0.1,
+    "Rank Importações", 24
+  ) ) %>%
+  kbl(
+    booktabs = TRUE,
+    col.names = c("", "US$ Milhões", "Participação", ""),
+    caption = "Status Geral do Tocantins em 2023",
+    # label = "import_export",
+    centering = FALSE
+  ) %>%
+  footnote(
+    general = "COMEXSTAT",
+    general_title = "Fonte:",
+    footnote_as_chunk = TRUE
+  )
+```
+
+
+
+
+
+
+
+
+
+

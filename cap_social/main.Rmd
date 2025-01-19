@@ -1,0 +1,80 @@
+---
+documentclass: report
+output:
+  pdf_document:
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
+---
+
+```{r include=F, message=F, warning=F}
+library(tidyverse)
+library(lubridate)
+library(sidrar)
+library(scales)
+library(petgg)
+library(petknitr)
+petgg::set_theme(base_family = "EB Garamond")
+petknitr::setup()
+```
+
+# Indicadores Sociais
+
+
+No cenário socioeconômico atual, os indicadores sociais são fundamentais para avaliar o bem-estar da população, especialmente em relação à pobreza, extrema pobreza, desigualdade de renda e aos programas sociais como o 'Programa Bolsa Família' e o 'Auxílio Brasil'. Estes dados fornecem uma visão importante sobre a distribuição de recursos nas regiões Norte, Tocantins e Brasil. A Figura [fig:@pobreza] apresenta a evolução da taxa de pobreza em 2022, com PPC de US$ 24,1 para o Brasil e US$ 36,9 para a região Norte, mostrando uma redução em relação a 2021. De 2016 a 2021, o Tocantins teve uma média de US$ 33,26 PPC, com uma queda de 22,91% em 2022, para US$ 25,9. O maior valor foi em 2016 (US$ 35,2), com redução até 2020, seguida de aumento em 2021, devido à pandemia.
+
+Quanto à extrema pobreza (rendimento inferior a US$ 1,90 PPC), as taxas aumentaram significativamente em 2021 nas três regiões analisadas. O Tocantins teve um aumento de 47,05%, a região Norte subiu 24,13% e o Brasil aumentou 24,13% nas taxas de extrema pobreza. No entanto, em 2022, as taxas diminuíram de forma expressiva: Tocantins (-31,94%), região Norte (-40,80%) e Brasil (-38,09%). Esse declínio está relacionado ao aumento de beneficiários do 'Programa Bolsa Família' e 'Auxílio Brasil', que tiveram um impacto direto na redução da pobreza extrema.
+
+Entre 2021 e 2023, o número de beneficiários desses programas aumentou progressivamente. A região Norte teve uma queda de 0,96% em 2022, mas um aumento de 20,98% em 2023. O Tocantins, que teve o maior número de beneficiários em 2014 (521.360), passou por uma queda gradual até 2020, mas voltou a crescer, encerrando 2023 com 481.307 beneficiários. Esse aumento no número de beneficiários reflete a importância das políticas sociais para mitigar a pobreza nas regiões mais vulneráveis.
+
+O Índice de Gini, que mede a desigualdade de renda, também variou entre 2014 e 2023. Em 2018, o índice subiu, especialmente no Tocantins, de 0,495 para 0,529, conforme a Figura [fig:@gini]. De 2019 a 2020, houve uma queda significativa nas três regiões analisadas, mas a pandemia aumentou o índice de Gini em 2021, refletindo maior concentração de renda. Entre 2021 e 2023, o índice começou a reduzir, com estabilidade nos índices para o Brasil em 2022 e 2023. Isso mostra que, apesar da maior desigualdade durante a pandemia, as políticas de transferência de renda contribuíram para a diminuição da desigualdade nos anos seguintes.
+
+
+```{r pobreza, fig.cap = "Taxa de pobreza", fig.subcap = "Linha de US$5,50 PPC. Variação Percentual", fig.source = "IBGE", wrap = "open"}
+
+# linha US$5,50 PPC por dia
+tx_pobreza <- tibble(
+  ano = seq(ymd("2014-01-01"), ymd("2022-01-01"), by = "1 year"),
+  Norte = c(0.3950,0.4280,0.4530,0.4370,0.4260,0.4310,0.3680,0.449,0.369),
+  Tocantins = c(0.3320,0.3500,0.3520,0.3350,0.3290,0.3420,0.3020,0.336,0.259),
+  Brasil = c(0.2380,0.2470,0.2680,0.2710,0.2640,0.2590,0.2410,0.294,0.241)
+)
+tx_extrema_pobreza <- tibble(
+  ano = seq(ymd("2014-01-01"), ymd("2022-01-01"), by = "1 year"),
+  Brasil = c(0.0468,0.0580,0.0612,0.0671,0.0680,0.0681,0.0570,0.084,0.052),
+  Norte = c(0.0786,0.0940,0.1018,0.1049,0.1143,0.1190,0.0847,0.1248,0.074),
+  Tocantins = c(0.0539,0.0579,0.0603,0.0539,0.0679,0.0834,0.0584,0.0722,0.049),
+)
+
+tx_pobreza %>%
+  ggplot(aes(ano)) +
+  geom_line(aes(y = Brasil, colour = "Brasil")) +
+  geom_line(aes(y = Norte, colour = "Norte")) +
+  geom_line(aes(y = Tocantins, colour = "Tocantins")) +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_date(breaks = scales::breaks_width("1 year"), date_labels = "%Y")
+```
+
+```{r, extrema_pobreza, fig.cap = "Taxa de extrema pobreza", fig.subcap = "Linha de US$1,90 PPC. Variação Percentual", fig.source = "IBGE"}
+tx_extrema_pobreza %>%
+  ggplot(aes(ano)) +
+  geom_line(aes(y = Brasil, colour = "Brasil")) +
+  geom_line(aes(y = Norte, colour = "Norte")) +
+  geom_line(aes(y = Tocantins, colour = "Tocantins")) +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_date(breaks = scales::breaks_width("1 year"), date_labels = "%Y")
+```
+
+```{r, gini, fig.cap = "Índice de Gini", fig.subcap = "Coeciente de desigualdade. Variação Percentual", fig.source = "IBGE", wrap = "close"}
+tibble(
+  ano = seq(ymd("2014-01-01"), ymd("2023-01-01"), by = "1 year"),
+  Brasil = c(0.525,0.524,0.537,0.539,0.545,0.544,0.524,0.544,0.518,0.518),
+  Norte = c(0.517,0.524,0.523,0.529,0.551,0.537,0.495,0.528,0.509,0.5),
+  Tocantins = c(0.498,0.506,0.489,0.495,0.529,0.530,0.485,0.517,0.507,0.477)
+) %>%
+  ggplot(aes(ano)) +
+  geom_line(aes(y = Brasil, colour = "Brasil")) +
+  geom_line(aes(y = Norte, colour = "Norte")) +
+  geom_line(aes(y = Tocantins, colour = "Tocantins")) +
+  scale_x_date(breaks = scales::breaks_width("1 year"), date_labels = "%Y")
+```
+

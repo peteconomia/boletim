@@ -1,0 +1,311 @@
+\documentclass[twocolumn, a4paper, 10pt]{report}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage[lining]{ebgaramond}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titletoc}
+\usepackage[explicit]{titlesec}
+\usepackage{setspace}
+\usepackage{tcolorbox}
+\usepackage{pagecolor}
+\usepackage{hyperref}
+\usepackage{datetime}
+\usepackage{kvsetkeys}
+\usepackage{lipsum} % generate paragraph
+\usepackage{xstring}
+
+% Required by KableExtra R package
+%\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+%\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+
+\usepackage[acronym,toc]{glossaries}
+\makenoidxglossaries
+\IfFileExists{tex/abbreviations.tex}{\input{tex/abbreviations.tex}}{\input{../tex/abbreviations.tex}}
+
+% Cores
+\definecolor{primarycolor}{RGB}{0, 96, 157}
+\definecolor{secondarycolor}{RGB}{34, 192, 221}
+\definecolor{boxbackground}{RGB}{225, 233, 246}
+\definecolor{primarytext}{RGB}{0, 0, 0}
+\definecolor{secondarytext}{RGB}{180, 180, 180}
+
+% Text Layout
+\setlength\parindent{10pt} % Tamanho da indentação do paragrafo
+\parskip = 1pt
+\setlength{\columnsep}{15pt} % Espaço entre as colunas
+\setstretch{1} % Altura da linha
+\setcounter{tocdepth}{0} % Table of contents depth, imprime apenas chapter e section
+
+% Figures Caption Config
+\captionsetup{
+	format=plain,
+	justification=raggedright,
+	singlelinecheck=false,
+	font={normalsize,color=primarycolor},
+	labelfont={color=primarycolor},
+	labelsep=space,
+	skip=0pt
+}
+\renewcommand{\thesubfigure}{.\arabic{subfigure}}
+\DeclareCaptionLabelFormat{opening}{Figura~\thechapter.\arabic{figure}.\arabic{subfigure}}
+\captionsetup[subfigure]{
+	labelformat=opening,
+	font={normalsize,color=primarycolor},
+	labelsep=space,
+	skip=2pt
+}
+\setkeys{Gin}{width=\linewidth} % \includegraphics por padrão terá comprimento igual a \linewidth
+% Links Config
+\hypersetup{
+	colorlinks=true,
+	linkbordercolor=white,
+	linkcolor=primarytext,
+	urlcolor=primarytext,
+	urlbordercolor=white, %links externos
+	citecolor=primarytext,
+	pdftitle={$if(fullversion)$$title$ $year$, v. $volume$ nº $number$$endif$},
+	pdfauthor={PET - Ciências Econômicas, Universidade Federal do Tocantins},
+	pdfsubject={$if(fullversion)$volume $volume$, número $number$, $tag$$endif$},
+	pdfcreator={LaTeX},
+	pdfproducer={PET - Ciências Econômicas},
+	pdfkeywords={Tocantins, Economia, boletim},
+	bookmarks=true
+}
+
+% Numeração da Pagina
+% Clear the header and footer
+\fancyhf{} % clear all
+\fancyhead{}
+\fancyfoot{}
+\fancypagestyle{plain}{
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+	\fancyfoot[RE,RO]{\footnotesize\textcolor{secondarytext}{\leftmark}\quad\thepage}
+}
+\pagestyle{plain}
+
+% Table Of Contents Style
+\titlecontents{chapter}[70pt]
+	{\LARGE\color{primarycolor}\bigskip}
+	{\thecontentslabel.~}
+	{}
+	{\enspace---\enspace\contentspage}
+
+\titlecontents{section}[100pt]
+	{\large\color{primarycolor}\bigskip}
+	{}
+	{}
+	{\enspace---\contentspage}
+
+\titlecontents{subsection}[130pt]
+	{\normalsize\color{primarycolor}\bigskip}
+	{}
+	{}
+	{\enspace---\contentspage}
+
+
+% Style Chapter, section and subsection
+\titleformat{\chapter}[display]
+	{\filright}
+	{\scriptsize\color{secondarytext}\MakeUppercase\chaptertitlename~\thechapter}
+	{5pt} % margem superior
+	{\fontsize{50pt}{50pt}\selectfont\color{primarycolor}#1}\titlespacing*{\chapter}
+	{0pt}{0pt}{20pt}  %controls vertical margins on title
+
+\titleformat{\section}
+	{\large\filright\color{primarycolor}}
+	{}
+	{0pt}
+	{#1}
+
+\titleformat{\subsection}
+	{\large\filright\color{primarycolor}}
+	{}
+	{0pt}
+	{#1}
+
+% Pandoc output require
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Box Config
+\newtcolorbox[auto counter,number within=chapter]{smbox}[2][]{
+	%float=p,
+	colback=boxbackground,
+	colframe=boxbackground,
+	arc=0mm,
+	valign=center,
+	top=0pt,
+	left=10pt,
+	right=10pt,
+	bottom=10pt,
+	toptitle=20pt,
+	bottomtitle=0pt,
+	width=\linewidth,
+	fonttitle=\color{primarycolor},
+	title=Quadro~\thetcbcounter~#2,#1
+}
+
+\newcommand{\source}[1]{\scriptsize{Fonte: #1}\\}
+
+\newcommand{\notes}[1]{{\scriptsize{Nota:#1}}}
+
+\newcommand{\subcap}[1]{{\scriptsize\color{primarycolor}#1\newline}}
+
+\newcommand{\abbr}[1]{\acrshort{#1}}
+
+\newcommand{\trimestres}[1][1-4]{
+	\IfEqCase{#1}{%
+        {1-4}{1T: 1º trimestre, 2T: 2º trimestre, 3T: 3º trimestre, 4T: 4º trimestre}%
+		{1-3}{1T: 1º trimestre, 2T: 2º trimestre, 3T: 3º trimestre}%
+		{1-2}{1T: 1º trimestre, 2T: 2º trimestre}
+		{2-3}{2T: 2º trimestre, 3T: 3º trimestre}
+		{2-4}{2T: 2º trimestre, 3T: 3º trimestre, 4T: 4º trimestre}
+		{3-4}{3T: 3º trimestre, 4T: 4º trimestre}
+		{1}{1T: 1º trimestre}
+		{2}{2T: 2º trimestre}
+		{3}{3T: 3º trimestre}
+		{4}{4T: 4º trimestre}
+	}[]
+}
+\newcommand{\bimestres}[1][1-4]{
+	\IfEqCase{#1}{%
+        {1-4}{1B: 1º bimestre, 2B: 2º bimestre, 3B: 3º bimestre, 4B: 4º bimestre}%
+		{1-3}{1B: 1º bimestre, 2B: 2º bimestre, 3B: 3º bimestre}%
+		{1-2}{1B: 1º bimestre, 2B: 2º bimestre}
+		{2-3}{2B: 2º bimestre, 3B: 3º bimestre}
+		{2-4}{2B: 2º bimestre, 4B: 3º bimestre, 4B: 4º bimestre}
+		{3-4}{3B: 3º bimestre, 4B: 4º bimestre}
+		{1}{1B: 1º bimestre}
+		{2}{2B: 2º bimestre}
+		{3}{3B: 3º bimestre}
+		{4}{4B: 4º bimestre}
+		{5}{5B: 5º bimestre}
+		{6}{6B: 6º bimestre}
+    }[]
+}
+
+\begin{document}
+    $if(fullversion)$
+    \onecolumn
+    \pagenumbering{gobble}
+    \newpagecolor{primarycolor}
+    \begin{titlepage}
+        \begin{flushleft}
+            \color{white}
+            \fontsize{50}{50}
+            \selectfont
+            Boletim de
+            \\ Conjuntura
+            \\ Econômica
+        \end{flushleft}
+        \begin{tikzpicture}[overlay, scale=1]
+            \node[anchor=center] at (8.5,-8){\includegraphics{images/bg.pdf}};
+        \end{tikzpicture}
+        \vspace{\fill}
+        \begin{flushleft}
+            \color{white}
+            {\Large Volume $volume$ \\[5pt] Número $number$}
+            \\[1cm]
+            \fontsize{50}{50}\selectfont
+            $year$
+            \hfill
+            \includegraphics[width=1.6cm]{images/pet.png}
+            \includegraphics[width=1.8cm]{images/uft.png}
+            \includegraphics[width=3.5cm]{images/corecon.png}
+        \end{flushleft}
+        \end{titlepage}
+    \newpagecolor{white}
+
+    %% Contracapa
+    \newpage\null\thispagestyle{empty}\newpage\clearpage
+
+    %% Ficha
+
+    \begin{tcolorbox}[colback=boxbackground, colframe=boxbackground, arc=0mm, top=15pt]
+        Boletim de Conjuntura Econômica do Tocantins é um trabalho realizado pelo Programa de Educação Tutorial (\abbr{pet}) do curso de Ciências Econômicas da Universidade Federal do Tocantins (\abbr{uft}).
+        \\
+        \par{\bf Equipe:}
+        \begin{itemize}
+        \item{Coordenação:} $coordinator$
+        $if(co)$\item{Consultor:} $co$ $endif$
+
+        $for(team)$
+        \item{$team.theme$:} $team.students$
+        $endfor$
+        \end{itemize}
+        \par{\bf Dados e Elaboração:}
+            Este boletim é de acesso livre, seu arquivo em pdf bem como todos os demais arquivos usados na sua elaboração estão disponíveis em um repositório público no endereço \href{https://github.com/peteconomia/boletim}{https://github.com/peteconomia/boletim}.
+        \\
+        \par{\bf Informações de Contato:}
+        \begin{itemize}
+            \item{Telefone:} $tel$
+            \item{Email:} $email$
+            \item{Local:} Universidade Federal do Tocantins (UFT), Palmas, Bloco II, Sala 22. 109 Norte Av. NS-15, ALCNO-14. Plano Diretor Norte. CEP: 77001--090.
+        \end{itemize}
+        \par{\bf Direitos de Reprodução:}
+        É permitida a reprodução do conteúdo desse documento, desde que mencionada a fonte: Boletim de Conjuntura Econômica do Tocantins, Palmas v. $volume$ nº $number$ $month$. $year$ p. $pages$.
+    \end{tcolorbox}
+
+    \vspace{\fill}
+    \begin{center}
+        \includegraphics[width=3.5cm]{images/corecon.png}
+    \end{center}
+
+    % TOC
+    \clearpage
+    {\hypersetup{linkcolor=primarycolor}
+	    \tableofcontents\thispagestyle{empty}
+    }
+    \clearpage
+
+    \pagenumbering{roman}
+
+    % Abbreviations
+    \printnoidxglossary[toctitle=Siglas, title=Siglas, type=\acronymtype, nonumberlist]\thispagestyle{empty}
+
+    $endif$
+
+    $body$
+
+    $if(fullversion)$
+        \clearpage
+        \newpagecolor{primarycolor}
+        \color{white}
+        \onecolumn
+        \pagestyle{empty} % Hide page number
+        \vspace*{\fill}
+        \centering
+        \normalsize{PET -- Ciências Econômicas}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1.6cm]{images/pet.png}
+            \hspace{5pt}
+            \includegraphics[width=1.8cm]{images/uft.png}
+            \hspace{5pt}
+            \includegraphics[width=3.5cm]{images/corecon.png}
+        \end{figure}
+        \normalsize{Universidade Federal do Tocantins}
+    $endif$
+\end{document}

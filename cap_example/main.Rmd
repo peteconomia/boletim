@@ -1,0 +1,81 @@
+---
+documentclass: report
+output:
+  pdf_document:
+    keep_tex: true
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(petgg)
+library(petknitr)
+
+petgg::set_theme()
+petknitr::setup()
+```
+
+# Título
+## Subtítulo
+
+Cillum consequat velit ut sunt laborum Lorem in. Laboris ex aute in consectetur. Adipisicing enim laborum deserunt est est minim ullamco commodo commodo ut fugiat amet fugiat. Culpa anim nostrud id ullamco qui eiusmod. Quis do deserunt elit voluptate ullamco voluptate. Magna nostrud aute ullamco elit et.
+
+Excepteur fugiat est sunt aliqua amet et quis velit. Enim laboris sit ad anim occaecat do ad sit nostrud aliquip pariatur. Do eiusmod et magna aute irure fugiat dolor adipisicing dolor. In enim ea elit eu nulla culpa adipisicing irure ad.
+
+Dolor cillum aliquip culpa in cillum officia nulla laborum voluptate eiusmod. Occaecat dolore velit sit consectetur proident ut adipisicing voluptate dolore enim. Reprehenderit veniam consequat ea est et.
+
+Minim nisi consequat est ad velit pariatur anim enim ea ullamco nisi eu amet. Laborum reprehenderit adipisicing aliqua consequat quis deserunt. Amet ut fugiat excepteur sint sunt elit est aliqua ullamco eiusmod eu officia tempor. Nostrud sunt incididunt eiusmod dolor ea aliquip eu consequat id non fugiat cupidatat. Aliquip laboris eiusmod veniam irure aliqua tempor sit aliquip mollit velit commodo elit. Deserunt dolore dolore esse dolore ad irure fugiat aute exercitation Lorem nulla cillum ea.
+
+Consequat amet nostrud officia ea exercitation exercitation consectetur. Nostrud culpa nisi consectetur nulla. Mollit quis culpa commodo deserunt est exercitation aute aute est in sit. Esse sunt irure ipsum est consectetur eiusmod. Tempor nisi velit incididunt irure dolore esse cupidatat duis duis labore sint amet esse sunt. Esse cupidatat commodo eiusmod est ut eiusmod id nostrud id magna deserunt proident.
+
+::: {.smbox data-latex="[label={box:ex_box}]{Cálculo do PIB e as suas óticas}"}
+Duis ullamco cupidatat et sint dolor aliqua. [abbr: @pib] Amet ad labore sunt esse in ad id nisi officia culpa. Proident fugiat laborum nisi laborum officia tempor excepteur ut veniam enim deserunt.
+:::
+
+
+Veja o Quadro [box: @ex_box]
+
+
+
+Fugiat culpa fugiat labore fugiat labore ut irure amet ex non commodo enim. Ea magna sunt ullamco ullamco deserunt excepteur aliqua et ullamco et aliquip excepteur nostrud exercitation. Est cillum nostrud enim elit in eiusmod dolore ut nisi laboris velit. Eu sint cupidatat amet cillum ex ut.
+
+Ex exercitation voluptate quis ullamco mollit qui aliquip proident sit. Aliquip exercitation adipisicing dolore proident officia laboris. Ad ullamco adipisicing consequat ad cupidatat eu magna excepteur irure. Dolor ut qui enim magna.
+
+```{r label, fig.cap = "Titulo", fig.subcap="Taxa Trimestral", fig.notes="1B: 1º bimestre, 2B: 2º bimestre", fig.source = "IBGE", wrap = "open"}
+ggplot(mpg) +
+    geom_point(aes(x = displ, y = hwy, color = class))
+```
+
+```{r diamonds, fig.cap = "Diamonds", fig.subcap="Clarity by cut", fig.source = "IBGE"}
+ggplot(diamonds) +
+    geom_bar(aes(x = cut, fill = clarity), position = "dodge")
+```
+
+```{r dist_diamongs, fig.cap = "Dist Diamonds", fig.subcap="Depth by cut", fig.source = "IBGE", wrap = "close"}
+ggplot(diamonds, aes(depth, color = cut)) +
+    geom_density()
+```
+
+Conforme Figura [fig: @label], [fig: @diamonds] e [fig: @dist_diamongs]
+
+```{r aa, fig.cap = "Dist Diamonds", fig.subcap="Depth by cut", fig.source = "IBGE", wrap = TRUE}
+ggplot(diamonds, aes(depth, color = cut)) +
+    geom_density()
+```
+
+Aute eiusmod in proident in ut anim ipsum duis aute ea sint. Quis exercitation sint dolore non est consequat laboris. Duis proident sunt quis minim aliqua. Ut enim nostrud proident sint elit elit eiusmod officia. Sint duis consequat tempor eiusmod ea pariatur labore laboris non veniam commodo cupidatat.
+
+A Tabela [tab: @eco]
+
+```{r eco}
+economics %>% 
+  head() %>% 
+  select(pce:unemploy) %>% 
+  kableExtra::kbl(
+    caption = "Exemplo de Tabela", 
+    booktabs = TRUE
+  ) %>% 
+  kable_styling(full_width = T)
+```

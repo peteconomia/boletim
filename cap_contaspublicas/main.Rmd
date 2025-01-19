@@ -1,0 +1,86 @@
+---
+documentclass: report
+output:
+  pdf_document:
+    template: ../template/boletim.tex
+    pandoc_args: "--lua-filter=../filter/crossref.lua"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(scales)
+library(zoo)
+library(kableExtra)
+library(petgg)
+library(petknitr)
+library(siconfir)
+library(sidrar)
+library(ipeadatar)
+library(lubridate)
+library(formattable)
+
+m <- 1000
+M <- 1000000
+B <- 1000000000
+
+
+petgg::set_theme()
+petknitr::setup()
+#knitr::opts_knit$set(root.dir = here::here())
+
+
+```
+
+# Contas Públicas Estadual
+
+
+
+O resultado primário das contas públicas do estado do Tocantins até o sexto bimestre de 2023, de acordo com a Figura [fig:@resultado_primario], foi de 2,83 Bilhões de reais, valor consideravelmente maior que o do mesmo período do ano anterior, que foi de 180 milhões. Veja o quadro [box:@resultado_primario] para mais detalhes sobre o resultado primário. As receitas primárias cresceram 14% no sexto bimestre de 2023, como mostra a Figura [fig:@variacao_rcl]. As despesas primárias cresceram 12%.  No sexto bimestre de 2023, as receitas haviam crescido 14% e as despesas, 12%. Comparando o crescimento das despesas primárias no sexto bimestre de 2023, a taxa de crescimento foi maior que em 2022. Ainda que tenha sido registrado um aumento das despesas, a variação das receitas se mostrou maior, contribuindo para um superávit primário de pouco mais de R$ 2,84 bilhões até o sexto bimestre de 2023. No sexto bimestre de 2023, o resultado primário alcançou seu ponto mais alto do ano. Durante o ano, o resultado primário permaneceu em crescimento, finalizando o ano de 2023 com um valor 71,43% superior ao mesmo período de 2022.
+
+
+::: {.smbox data-latex="[label={box:resultado_primario}]{O que é o resultado primário?}"}
+O resultado primário é um dos principais indicadores das contas públicas. Ele representa o esforço fiscal de um estado para diminuir o estoque da dívida. Ele é resultado da diferença entre as receitas e despesas (excluindo as receitas e despesas com juros). O superavit primário ou resultado primário positivo ocorre quando as receitas primárias são maiores que as despesas primárias. Indica a economia do governo para pagamento da dívida. O inverso, quando despesas primárias excedem as receitas primárias, há déficit primário ou resultado primário negativo, incorrendo em aumento da dívida.
+:::
+
+
+A Dívida Consolidada Líquida (DCL) do estado teve, em 2023, uma redução de 10% em relação ao ano de 2020. A DCL, que era de 3,98 bilhões em 2022, passou a ser de 3,42 bilhões em 2023. A Dívida Consolidada Líquida de 2023 em relação ao ano de 2022 indica uma tendência de queda. Essa tendência pode ser observada na [fig:@variacao_dcl].    
+
+```{r resultado_primario, fig.cap= "Resultado primário", fig.subcap="em relação a RCL", fig.source = "\\acrshort{rreo}", wrap = "open"}
+
+tibble(
+  value = c(1998446917.16, 3782010769.38, 5858825998.03, 7681690758.68, 9524355600.92, 12105998306.71, 2292764841.18, 4158459255.98, 6268978426.53, 8184459601.9, 10336129448.67, 13094049260.01),
+  mes = seq(as.Date("2022-01-01"), as.Date("2023-12-01"), by = "2 month")
+) %>%
+  ggplot(aes(mes, value)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::label_number(scale = 1e-9, suffix = "B")) +
+  scale_x_date(
+    labels = scales::date_format("%b\n%Y"), date_breaks = "2 month"
+  )
+```
+
+```{r variacao_rcl, fig.cap= "Valores das receitas e despesas", fig.subcap="em relação a RCL", fig.source = "\\acrshort{rreo}", wrap = "close"}
+
+tibble(
+  `Receitas` = c(2253291773.36, 4388433508.01, 6814046439.43, 8984775182.28, 11212070775.2, 14719968426.72),
+  Despesas = c(1397545227.87, 3204011712.14, 5240425327.39, 7277032668.48, 9188072852.05, 12032981430.31),
+  mes = c("1B", "2B", "3B", "4B", "5B", "6B")
+) %>%
+  pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
+  ggplot(aes(factor(mes, levels = c("1B", "2B", "3B", "4B", "5B", "6B")), saldo, fill = local)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_y_continuous(labels = scales::label_comma())
+```
+
+```{r variacao_dcl, fig.cap= "Variação da Dívida Consolidada Liquida", fig.subcap="(DCL)", fig.source = "\\acrshort{rreo}", wrap = TRUE}
+
+tibble(
+  `DCL` = c(834551212.4, 1076512600.57, 1248918809.99, 1318941176.79, 1168106332.2, 455470321.24,823096329.49,	798657631.56,	1358096148.77,	1203542216.5,	1318941176.79, 362422100.6),
+  mes = c("22.1", "22.2", "22.3", "22.4", "22.5", "22.6", "23.1", "23.2", "23.3", "23.4", "23.5", "23.6")
+) %>%
+  pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
+  ggplot(aes(factor(mes, levels = c("22.1", "22.2", "22.3", "22.4", "22.5", "22.6", "23.1", "23.2", "23.3", "23.4", "23.5", "23.6")), saldo, fill = local)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  scale_y_continuous(labels = scales::label_comma()) + # Defina os breaks conforme necessário
+  theme(axis.text.y = element_text(margin = margin(r = 10))) # Ajuste a margem conforme necessário
+```

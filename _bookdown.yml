@@ -1,7 +1,0 @@
-delete_merged_file: true
-new_session: false
-output_dir: "output"
-book_filename: "boletim"
-rmd_files: ["index.Rmd", "abstract.Rmd"]
-rmd_subdir: [
-  "cap_introducao", "cap_social", "cap_agricultura", "cap_balancacomercial", "cap_contaspublicas", "cap_emprego"]

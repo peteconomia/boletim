@@ -8,6 +8,7 @@ O Boletim de Conjuntura Econômica do Tocantins é uma publicação semestral do
 
 | :bookmark: Versão | :calendar: Data de publicação |                           :floppy_disk:                           |
 | :---------------- | :---------------------------: | :---------------------------------------------------------------: |
+| 2024, v. 13 nº 1  |          24/11/2025           | [Download](https://github.com/user-attachments/files/18468996/boletim_v12_n1.pdf)|   
 | 2023, v. 12 nº 1  |          19/01/2025           | [Download](https://github.com/user-attachments/files/18468996/boletim_v12_n1.pdf)|   
 | 2022, v. 11 nº 1  |          03/01/2024           | [Download](../../releases/download/v3.0.0/boletim_v11_n1.pdf)     |
 | 2021, v. 10 nº 1  |          16/12/2022           | [Download](../../releases/download/v2.0.0/boletim.pdf)            |

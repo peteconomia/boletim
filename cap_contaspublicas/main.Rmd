@@ -6,7 +6,7 @@ output:
     pandoc_args: "--lua-filter=../filter/crossref.lua"
 ---
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 library(tidyverse)
 library(scales)
 library(zoo)
@@ -35,52 +35,51 @@ petknitr::setup()
 
 
 
-O resultado primário das contas públicas do estado do Tocantins até o sexto bimestre de 2022, de acordo com a Figura [fig:@resultado_primario] foi de 180 milhões de reais, valor consideravelmente menor que o do mesmo período do ano anterior, 630 milhões. Veja a Figura  [box: @resultado_primario] para mais detalhes sobre o resultado primário. As receitas primárias cresceram 24,1% no sexto bimestre de 2022, como mostra a Figura [fig:@variacao_rcl]. As despesas primárias cresceram 18%. No sexto bimestre de 2021 as receitas tinham crescido 14% e as despesas 9%. Comparando o crescimento das despesas primárias no sexto bimestre de 2022, a taxa de crescimento foi maior que 2021. Ainda que tenha sido registrado um aumento das despesas, a variação das receitas se mostrou maior, contribuindo para um superavit primário de pouco mais de R$ 180 milhões até o sexto bimestre de 2022. No terceiro bimestre de 2022, o resultado primário o seu ponto mais alto do ano. Após o terceiro bimestre o resultado primário permaneceu em queda, finalizando o ano de 2022, 71,43% inferior ao mesmo período de 2021.
+O resultado primário das contas públicas do estado do Tocantins até o sexto bimestre de 2024, de acordo com a [fig:@resultado_primario] , foi de 2,04 Bilhões de reais, valor consideravelmente menor que o do mesmo período do ano anterior, que foi de 2,83 bilhões. Veja o quadro  [box:@resultado_primario] para mais detalhes sobre o resultado primário. As receitas primárias cresceram 8% no sexto bimestre de 2024, como mostra a [fig:@variacao_rcl]. As despesas primárias cresceram 14%. No sexto bimestre de 2023, as receitas haviam crescido 14% e as despesas, 12%. Comparando o crescimento das despesas primárias no sexto bimestre de 2024, a taxa de crescimento foi maior que em 2023. Ainda que tenha sido registrado um aumento das despesas, a variação das receitas se mostrou maior, contribuindo para um superávit primário de pouco mais de R$ 1,1 bilhão até o sexto bimestre de 2024. No sexto bimestre de 2024, o resultado primário alcançou seu ponto mais alto do ano. Durante o ano, o resultado primário permaneceu em crescimento, finalizando o ano de 2024 com um valor 47,61% inferiro ao mesmo período de 2023.
 
 
 ::: {.smbox data-latex="[label={box:resultado_primario}]{O que é o resultado primário?}"}
 O resultado primário é um dos principais indicadores das contas públicas. Ele representa o esforço fiscal de um estado para diminuir o estoque da dívida. Ele é resultado da diferença entre as receitas e despesas (excluindo as receitas e despesas com juros). O superavit primário ou resultado primário positivo ocorre quando as receitas primárias são maiores que as despesas primárias. Indica a economia do governo para pagamento da dívida. O inverso, quando despesas primárias excedem as receitas primárias, há déficit primário ou resultado primário negativo, incorrendo em aumento da dívida.
 :::
 
-
-Dívida Consolidada Liquida (DCL) do estado teve, em 2022, redução de 20,21% em relação ao ano de 2020. A DCL que era de 4,75bi em 2021, passou a ser de 3,89bi em 2022. A Dívida Consolidada Liquida de 2022 em relação ao ano de 2021 indica uma tendência de queda. Essa tendência pode ser observada na Figura [fig:@variacao_dcl].     
+A Dívida Consolidada Líquida (DCL) do estado teve, em 2024, uma redução de 18% em relação ao ano de 2023. A DCL, que era de 3,42 bilhões em 2023, passou a ser de 4,02 bilhões em 2024. A Dívida Consolidada Líquida de 2024 em relação ao ano de 2023 indica uma tendência de aumento, que pode ser pode ser observada no gráfico [fig:@variacao_dcl].   
 
 ```{r resultado_primario, fig.cap= "Resultado primário", fig.subcap="em relação a RCL", fig.source = "\\acrshort{rreo}", wrap = "open"}
-# Pedidos Seguro desemprego mensal
+
 tibble(
-  value = c(0.56,	0.47,	0.7,	0.79,	0.96,	0.63, 0.67, 0.72, 0.89, 0.76, 0.63, 0.18),
-  mes = seq(as.Date("2021-01-01"), as.Date("2022-12-01"), by = "2 month")
+  value = c(806809595.39, 715676858.68, 644922697.12, 421803438.22, 360816820.72, 24169970.13, 922463610.75, 691720098.13, 236779021, 236779021, 41086214.01, -85502796.19),
+  mes = seq(as.Date("2023-01-01"), as.Date("2024-12-01"), by = "2 month")
 ) %>%
   ggplot(aes(mes, value)) +
   geom_line() +
-  scale_y_continuous(labels = scales::percent) +
+  scale_y_continuous(labels = scales::label_number(scale = 1e-6, suffix = "M")) +
   scale_x_date(
-    labels = date_format("%b\n%Y"), date_breaks = "2 month"
+    labels = scales::date_format("%b\n%Y"), date_breaks = "2 month"
   )
 ```
 
-```{r variacao_rcl, fig.cap= "Variação das receitas e despesas", fig.subcap="em relação a RCL", fig.source = "\\acrshort{rreo}", wrap = "close"}
-# Saldo de Empregos Norte e Tocantins
+```{r variacao_rcl, fig.cap= "Valores das receitas e despesas", fig.subcap="em relação a RCL", fig.source = "\\acrshort{rreo}", wrap = "close"}
+
 tibble(
-  `Receitas` = c(16, 14, 29.4, 24.1),
-  Despesas = c(3, 9, 21, 18),
-  mes = c("2021.3", "2021.6", "2022.3", "2022.6")
+  `Receitas` = c(2477861531.66, 5403416410.48, 8155788532.96, 10900848863.78, 13576322227.65, 16949292583.62),
+  Despesas = c(1634847805.38, 4342564766.2, 7042251847.59, 9681002415.8, 12325410998.95, 15936071910.19),
+  mes = c("1B", "2B", "3B", "4B", "5B", "6B")
 ) %>%
   pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
-  ggplot(aes(factor(mes, levels = c("2021.3", "2021.6", "2022.3", "2022.6")), saldo, fill = local)) +
+  ggplot(aes(factor(mes, levels = c("1B", "2B", "3B", "4B", "5B", "6B")), saldo, fill = local)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_y_continuous(labels = scales::label_comma())
 ```
 
 ```{r variacao_dcl, fig.cap= "Variação da Dívida Consolidada Liquida", fig.subcap="(DCL)", fig.source = "\\acrshort{rreo}", wrap = TRUE}
-# Saldo de Empregos Norte e Tocantins
+
 tibble(
-  `DCL` = c(5.51,	5.29,	5.13,	5.12,	5.07,	4.75, 4.53, 4.32, 4.25, 4.19, 4.25, 3.79),
-  mes = c("2021.1", "2021.2", "2021.3", "2021.4", "2021.5", "2021.6", "2022.1", "2022.2", "2022.3", "2022.4", "2022.5", "2022.6")
+  `DCL` = c(3787677270.74, 3667591324.63, 3758797193.32, 3715244825.61, 3747279882.69, 3418462965.62, 3988254902.46, 3879262073.49,	3916786108.65,	3818139733.38, 3747995637.08, 4022615519.84),
+  mes = c("23.1", "23.2", "23.3", "23.4", "23.5", "23.6", "24.1", "24.2", "24.3", "24.4", "24.5", "24.6")
 ) %>%
   pivot_longer(!mes, names_to = "local", values_to = "saldo") %>%
-  ggplot(aes(factor(mes, levels = c("2021.1", "2021.2", "2021.3", "2021.4", "2021.5", "2021.6", "2022.1", "2022.2", "2022.3", "2022.4", "2022.5", "2022.6")), saldo, fill = local)) +
-  geom_bar(stat = "identity", position = position_dodge(width = 0.7)) +
-  scale_y_continuous(labels = scales::label_comma(), breaks = seq(0, 6, 1)) + # Defina os breaks conforme necessário
+  ggplot(aes(factor(mes, levels = c("23.1", "23.2", "23.3", "23.4", "23.5", "23.6", "24.1", "24.2", "24.3", "24.4", "24.5", "24.6")), saldo, fill = local)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  scale_y_continuous(labels = scales::label_comma()) + # Defina os breaks conforme necessário
   theme(axis.text.y = element_text(margin = margin(r = 10))) # Ajuste a margem conforme necessário
 ```

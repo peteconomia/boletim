@@ -19,34 +19,31 @@ petknitr::setup()
 
 # Indicadores Sociais
 
-No cenário socioeconômico atual, os indicadores sociais desempenham um papel essencial na avaliação do bem-estar da população. Neste contexto, dados que abrangem a incidência de pobreza e extrema pobreza, juntamente com o Índice de Gini, fornecem insights cruciais sobre a distribuição de renda e a desigualdade social. Esses tópicos serão analisados nessa sessão.
-A Figura [fig:@pobreza] apresenta a evolução da taxa pobreza para as regiões Norte, Tocantins e Brasil, a uma linha de U$5,50 PPC. Em uma análise dos anos de 2014 à 2021, observa-se que houve aumento significativo da taxa até 2016 para as três regiões analisadas, apresentando alguns comportamentos de queda a partir de 2017, mas voltando a crescer em 2021. O ano 2020 apresentou as menores taxas de pobreza quando comparado a partir de 2014, para as três regiões analisadas. Em contrapartida, em 2021 essas taxas voltam a crescer de forma significativa, e o Brasil apresenta a maior taxa de pobreza desde 2014 (29,4%). Já no Norte do país como um todo e no estado do Tocantins, em 2021 apresentaram as segundas maiores taxas do período, atrás apenas de 2016. 
 
-Por outro lado, olhando para uma linha de U$1,90 PPC relativa a extrema pobreza, os resultados não seguem a mesma tendência, indicando um impacto ainda maior no cenário. Seguindo a taxa de pobreza, a extrema pobreza também aumentou consideravelmente em 2021 nas três regiões analisadas. Os índices de pobreza no Brasil, de acordo com o Ipea, vinham em uma tendência de alta até 2020, ano em que os valores transferidos pelo Auxílio Emergencial conseguiram anular o choque da covid-19 e até reduziram as taxas de pobreza. Porém, o estudo afirma que a redução das transferências em 2021 foi muito maior do que quaisquer melhoras no mercado de trabalho, e a pobreza voltou a subir, dando seu maior salto anual desde 1990.
-[fig:@extrema_pobreza]. 
+No cenário socioeconômico atual, os indicadores sociais desempenham um papel essencial na avaliação do bem-estar da população. Desta maneira, a análise descritiva apresentada está estruturada em indicadores que oferecem uma visão abrangente do progresso, baseados em renda, pobreza, desigualdade e dinâmicas do mercado de trabalho. Deste modo, foram utilizadas como fontes primárias de dados a Pesquisa Nacional por Amostra de Domicílios Contínua (PNADC) do Instituto Brasileiro de Geografia e Estatística (IBGE), e do VISDATA3 do Ministério da Cidadania.
 
-O índice de GINI é uma medida de desigualdade em uma distribuição, geralmente utilizada para medir a desigualdade de renda em uma sociedade. Varia de 0 a 1, onde 0 representa total igualdade (todos têm a mesma renda) e 1 representa total desigualdade (uma única pessoa tem toda a renda). 
+Os dados utilizados mostram um histórico positivo para o estado no período pós-pandemia, mostrando uma redução da pobreza e desigualdade. É possível observar na figura [fig:@pobreza] a evolução da taxa de pobreza, esta que é definida através do rendimento domiciliar per capita inferior a US$ 6,85 por dia (em PPC), apresentando evidente queda. Em 2021 ocorreu um pico de 42,8%, fase de crise sanitária, recuando para 28,6% em 2023, o menor patamar da série histórica iniciada em 2016. O mesmo movimento ocorre para a extrema pobreza, que que considera a linha de US$ 2,15 PPC, a taxa cai de 7,6% para 4,6% no período de 2021 a 2023. A redução da pobreza ocorre de forma conjunta à ampliação dos programas de transferência de renda no Brasil. Com a transição do Programa Bolsa Família para o Auxílio Brasil, é possível notar um aumento progressivo de 2020 a 2023, no estado do Tocantins o número de beneficiários saltou de 406.955 pessoas em 2020 para 481.307 em 2023, um aumento de 18,27%.
 
-Em relação à desigualdade de renda, o índice de Gini nas três regiões variou de 2014 a 2017. No entanto, em 2018, houve um aumento significativo, especialmente no Tocantins, indo de 0,495 para 0,529, conforme a [fig:@gini].Os gráficos mostram uma queda considerável de 2019 para 2020, atingindo as menores taxas nas três regiões. No entanto, devido à pandemia do COVID-19, o índice de GINI cresceu consideravelmente de 2020 para 2021, indicando maior concentração de renda nas famílias. Segundo a carta de conjuntura do IPEA, o índice de Gini continuou a diminuir até o primeiro trimestre de 2022, após o pico de desigualdade causado pela pandemia. Isso pode ser atribuído ao aumento do Auxílio Brasil, especialmente em um ano eleitoral, com a proporção de domicílios beneficiários subindo de 8,6% em 2021 para 16,9% um ano depois.
+Além da redução na pobreza, o estado também reduz o índice de desigualdade. O Índice de Gini, indicador que varia de 0 a 1, onde 0 representa total igualdade (todos têm a mesma renda) e 1 representa total desigualdade (uma única pessoa tem toda a renda), apresenta um histórico de quedas ao longo da série. Em 2018, houve um aumento significativo, especialmente no Tocantins, passando de 0,495 para 0,529, um aumento de aproximadamente 6,86%, conforme o gráfico [fig:@gini]. Entretanto, o índice recua do pico de 0,529 em 2018 para 0,477 em 2023, resultado que é significativo devido seu patamar consideravelmente menor que a média da Região Norte (0,517) e a média nacional (0,530), que se manteve estável ao final da série. O aumento desse índice registrado, durante a pandemia da covid-19, e em seguida uma queda e logo uma estabilização dessa taxa, pode estar relacionado com o aumento significativo de beneficiários dos programas de transferência de renda entre os anos de 2020 e 2023, como apresentado anteriormente.
 
 
-```{r}
-# linha US$5,50 PPC por dia
+
+```{r pobreza, fig.cap = "Taxa de pobreza", fig.subcap = "Linha de US$6,85 PPC. Variação Percentual", fig.source = "IBGE", wrap = "open"}
+
+# linha US$6,85 PPC 2017 por dia
 tx_pobreza <- tibble(
-  ano = seq(ymd("2014-01-01"), ymd("2021-01-01"), by = "1 year"),
-  Norte = c(0.3950,0.4280,0.4530,0.4370,0.4260,0.4310,0.3680,0.449),
-  Tocantins = c(0.3320,0.3500,0.3520,0.3350,0.3290,0.3420,0.3020,0.331),
-  Brasil = c(0.2380,0.2470,0.2680,0.2710,0.2640,0.2590,0.2410,0.294)
+  ano = seq(ymd("2016-01-01"), ymd("2023-01-01"), by = "1 year"),
+  Norte = c(0.57,0.515,0.503,0.516,0.453,0.534,0.462,0.385),
+  Tocantins = c(0.434,0.422,0.413,0.437,0.382,0.428,0.34,0.286),
+  Brasil = c(0.337,0.337,0.333,0.325,0.31,0.367,0.316,0.274)
 )
 tx_extrema_pobreza <- tibble(
-  ano = seq(ymd("2014-01-01"), ymd("2021-01-01"), by = "1 year"),
-  Brasil = c(0.0468,0.0580,0.0612,0.0671,0.0680,0.0681,0.0570,0.084),
-  Norte = c(0.0786,0.0940,0.1018,0.1049,0.1143,0.1190,0.0847,0.1248),
-  Tocantins = c(0.0539,0.0579,0.0603,0.0539,0.0679,0.0834,0.0584,0.0722),
+  ano = seq(ymd("2016-01-01"), ymd("2023-01-01"), by = "1 year"),
+  Brasil = c(0.067,0.074,0.073,0.06,0.09,0.0681,0.0590,0.044),
+  Norte = c(0.119,0.116,0.123,0.13,0.091,0.139,0.08,0.06),
+  Tocantins = c(0.075,0.058,0.08,0.089,0.059,0.076,0.049,0.042),
 )
-```
 
-```{r, pobreza, fig.cap = "Taxa de pobreza", fig.subcap = "Linha de US$5,50 PPC", fig.source = "IBGE", wrap = "open"}
 tx_pobreza %>%
   ggplot(aes(ano)) +
   geom_line(aes(y = Brasil, colour = "Brasil")) +
@@ -56,8 +53,7 @@ tx_pobreza %>%
   scale_x_date(breaks = scales::breaks_width("1 year"), date_labels = "%Y")
 ```
 
-
-```{r, extrema_pobreza, fig.cap = "Taxa de extrema pobreza", fig.subcap = "Linha de US$1,90 PPC", fig.source = "IBGE"}
+```{r, extrema_pobreza, fig.cap = "Taxa de extrema pobreza", fig.subcap = "Linha de US$2,15 PPC. Variação Percentual", fig.source = "IBGE"}
 tx_extrema_pobreza %>%
   ggplot(aes(ano)) +
   geom_line(aes(y = Brasil, colour = "Brasil")) +
@@ -67,12 +63,12 @@ tx_extrema_pobreza %>%
   scale_x_date(breaks = scales::breaks_width("1 year"), date_labels = "%Y")
 ```
 
-```{r, gini, fig.cap = "Índice de Gini", fig.subcap = "Coeciente de desigualdade", fig.source = "IBGE", wrap = "close"}
+```{r, gini, fig.cap = "Índice de Gini", fig.subcap = "Coeciente de desigualdade. Variação Percentual", fig.source = "IBGE", wrap = "close"}
 tibble(
-  ano = seq(ymd("2014-01-01"), ymd("2022-01-01"), by = "1 year"),
-  Brasil = c(0.525,0.524,0.537,0.539,0.545,0.544,0.524,0.544,0.518),
-  Norte = c(0.517,0.524,0.523,0.529,0.551,0.537,0.495,0.528,0.509),
-  Tocantins = c(0.498,0.506,0.489,0.495,0.529,0.530,0.485,0.517,0.507)
+  ano = seq(ymd("2016-01-01"), ymd("2024-01-01"), by = "1 year"),
+  Brasil = c(0.537,0.539,0.545,0.544,0.524,0.544,0.518,0.518,0.506),
+  Norte = c(0.523,0.529,0.551,0.537,0.495,0.528,0.509,0.5,0.489),
+  Tocantins = c(0.489,0.495,0.529,0.53,0.485,0.514,0.507,0.477,0.477)
 ) %>%
   ggplot(aes(ano)) +
   geom_line(aes(y = Brasil, colour = "Brasil")) +
@@ -80,3 +76,4 @@ tibble(
   geom_line(aes(y = Tocantins, colour = "Tocantins")) +
   scale_x_date(breaks = scales::breaks_width("1 year"), date_labels = "%Y")
 ```
+

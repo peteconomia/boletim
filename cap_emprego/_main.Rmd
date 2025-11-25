@@ -86,7 +86,7 @@ Os requerimentos do seguro-desemprego funcionam como um termômetro claro da est
 
 A Figura [fig:@taxa_desemprego] (taxa de desemprego no Tocantins) indica tendência de queda ao observar a transição do primeiro trimestre ao quarto trimestre de 2023, consolidando cerca de 5,8% em 2023. Já no ano de 2024, o quarto trimestre apresenta um valor superior ao primeiro trimestre de 2024, porém, houve decréscimo da taxa no segundo trimestre em relação ao primeiro de 1,8 pontos percentuais (pp), uma redução considerável. Contudo, o valor subiu 0,8 pp no semestre seguinte e manteve-se o mesmo valor no terceiro trimestre.
  
-Entre 2016 a 2024, a [fig:@reg_emprego] (relação entre seguro-desemprego × taxa de desocupação) evidencia forte correlação entre a taxa de desocupação e a procura pelo benefício, ou seja, apresentaram relação estreita: picos de desemprego (por exemplo, durante a COVID-19) coincidiram com aumentos nos requerimentos, enquanto a queda desses índices sinaliza recuperação gradual do mercado.
+Entre 2016 a 2024, a [fig:@reg_empreg] (relação entre seguro-desemprego × taxa de desocupação) evidencia forte correlação entre a taxa de desocupação e a procura pelo benefício, ou seja, apresentaram relação estreita: picos de desemprego (por exemplo, durante a COVID-19) coincidiram com aumentos nos requerimentos, enquanto a queda desses índices sinaliza recuperação gradual do mercado.
 
 ```{r reg_emprego, fig.cap= "Relação seguro desemprego x taxa de desocupação", fig.subcap="Variação Trimestral entre 2016 a 2024", fig.source = "\\acrshort{mte}", wrap = TRUE}
 #Fonte: Seguro desemprego
@@ -267,3 +267,6 @@ ggplot() +
     limits = c(as.Date("2024-01-01"), as.Date("2024-12-01"))
   )
 ```
+
+<!--chapter:end:main.Rmd-->
+

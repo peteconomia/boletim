@@ -26,56 +26,19 @@ b <- 1000000000
 
 # Comércio Exterior
 
-A balança comercial registra as transações de importação, que envolvem a compra ou recebimento de bens de outros países, e as exportações, que se referem à venda ou envio de serviços para o exterior. O saldo comercial é considerado positivo quando o valor das exportações supera o das importações, resultando em um superávit. Por outro lado, quando o valor das importações é maior do que o das exportações, ocorre um déficit. A balança comercial não leva em consideração apenas a quantidade de produtos que entram ou saem de um país, mas sim os recursos gerados por essas transações. No contexto do Brasil, a balança comercial do Tocantins, por exemplo, apresenta um superávit, o que significa que a região exporta mais do que importa, resultando em um saldo positivo em sua balança comercial.
+A balança comercial é uma parte fundamental da balança de pagamentos de um país, refletindo a diferença entre o valor das exportações e importações de bens. Quando falamos sobre comércio exterior, a balança comercial é um indicador crucial que ajuda a entender a posição econômica de um país no mercado global. No comércio internacional, o saldo quando está positivo apresenta um Superavit Comercial, quando o valor das exportações excede o valor das importações. Este fator pode indicar que um país está se saindo bem no comércio entre outros países e pode contribuir para o crescimento econômico. 
 
+Por outro lado, quando o valor das importações supera o valor das exportações temos um déficit, ou seja, um saldo negativo. No contexto do Brasil, em especial ao estado do Tocantins, a sua balança comercial apresenta um superávit, o que significa que ela exporta mais do que importa dentro de sua área.
 
-De acordo com o Gráfico [fig:@total], no ano de 2022, as exportações do Tocantins fecharam em aproximadamente US$ 3,1 bilhões e as importações totalizaram US$ 881,3 milhões. Diante desses desempenhos, as exportações e importações tiveram um aumento de 67% e 44%, respectivamente. o saldo da Balança Comercial (exportações menos importações) ficou em US$ 2,2 bilhões, representando um crescimento de 79% em comparação com o ano de 2021. A balança comercial apresenta os aspectos da comercialização de exportação e importação no estado do Tocantins. Durante o decorrer desses últimos 5 anos o saldo comercial tem oscilado, mas sempre se mantendo com um saldo superavitário. Dentre os estados brasileiros, o Tocantins ocupou a 14ª posição nas exportações e o 19º lugar nas importações no período em análise. O Tocantins representou 0,9% das exportações e 0,3% das importações do país
+O Comex Stat é o sistema oficial para extração das estatísticas do comércio exterior brasileiro de bens. De acordo com o mesmo e representado pela [fig:@total], no ano de 2024, as exportações do Tocantins fecharam em aproximadamente US\$ 2,50 bilhões e as importações totalizaram em US\$ 125 Milhões no mesmo período. Diante desses resultados, as exportações do estado registraram uma queda de 17% em comparação ao ano anterior e as importações recuaram 53%, respectivamente. O saldo da Balança Comercial (exportações – importações) ficou em US$ 2,3 bilhões, mostrando desta forma, uma redução de 13,2% em relação ao ano de 2023. 
 
-
-```{r produtos_expo, fig.cap = "Principais produtos exportados", fig.subcap = "Em milhões de US$", fig.source = "\\acrshort{comex}", wrap = TRUE}
-# Produtos exportados
-read_xlsx("cap_balancacomercial/cap_balancacomercialbc_2022.xlsx", sheet = "produtos_export") %>%
-  ggplot(aes(data, valor, fill = produto)) +
-  geom_bar(stat = "identity", position = "dodge", gap = "s") +
-  scale_y_continuous(labels = function(x) x / m) +
-  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
-```
-
-Carne bovina fresca, congelada ou refrigerada desempenhou um papel notável no ano de 2022, representando 19% do total das exportações do estado, atingindo um valor de US$ 573 milhões segundo o gráfico 4.1.1. Além disso, é relevante observar que esse setor registrou um aumento considerável de 58,3% em comparação com anos anteriores.
-
-\
-Matérias brutas de animais teve uma participação de 5,8% no total da exportação estadual, a um valor de 178 milhões, valor este que apresentou uma variação de 322%. Os dados referentes ao ano de 2022 nos mostra como as matérias brutas de animais tem crescido ao decorrer do ano e tem sido uma fonte nova de riqueza para o estado.
-\
-(Milho não moído) O milho correspondeu a 14% das exportações estaduais em 2022, registrando um valor de US$ 422 milhões. Esse valor apresentou um aumento significativo em relação ao ano anterior. 
-
-Entre os produtos exportados pelo Tocantins, a soja assumiu a liderança, com uma impressionante participação de 58% e um valor total de US$ 1,8 bilhão. As exportações registraram um aumento de 41%. 
-
-O acumulado de importações de Adubos ou fertilizantes é um fator notável na economia do estado em 2022, atingindo um valor de US$ 247 milhões, o que equivale a uma parcela significativa de 28% do total das importações. 
-
-```{r produtos_import, fig.cap = "Principais produtos importados", fig.subcap = "Em milhões de US$", fig.source = "\\acrshort{comex}", wrap = TRUE}
-# Produtos importados
-read_xlsx("cap_balancacomercial/cap_balancacomercialbc_2022.xlsx", sheet = "produtos_import")  %>%
-  ggplot(aes(data, valor, fill = produto)) +
-  geom_bar(stat = "identity", position = "dodge", gap = "s") +
-  scale_y_continuous(labels = function(x) x / m) +
-  guides(fill = guide_legend(nrow = 3, byrow = TRUE))
-```
-
-Ao observar o Gráfico [fig:@produtos_import], a importação de lentes e itens óticos teve recuperação em 2021, mas 2022 teve uma leve redução, O item é o de menor valor de importações dos cinco itens aqui apontados, atingindo um valor de 17,1 milhões e com participação de 1,9%. mas com peso significativo nas importações do estado. 
-\
-
-Óleos e combustíveis são extremamente significativos na pauta, sendo o item de maior valor de importação do período selecionado. O item sofreu queda significativa em 2019, mas se recuperou nos anos seguintes. Nos anos de 2020 o volume importado alcançou os 100 milhões de dólares e, em 2021, os 300 milhões de dólares.
-\
-
-Nas importações tiveram destaque os óleos e combustíveis com um total de US$ 439 milhões e participação de 50% no total importado.
-\
-
+Durante o decorrer dos últimos 5 anos o saldo comercial tem oscilado, mas sempre se mantendo com um saldo superavitário. Conforme a tabela [tab:@status], dentre os estados da região Norte do país, o Tocantins ficou na 15ª posição nas exportações e a 25ª posição nas importações, cedendo uma posição tanto nas vendas quanto nas compras internacionais. O estado também representou 0,75% das exportações e 0,048% das importações para o comércio exterior brasileiro. 
 
 ```{r total, fig.cap = "Balança Comercial do estado", fig.subcap = "Em bilhões de USD", fig.source = "\\acrshort{comex}", wrap = TRUE}
 # Saldo, Exportação e Importaçao 2012--2022
 c("export", "import", "saldo") %>%
   purrr::map(
-    ~readxl::read_xlsx("cap_balancacomercial/cap_balancacomercialbc_2022.xlsx", sheet = .x) %>%
+    ~readxl::read_xlsx("C:/Users/Lorenzo Costa/Desktop/Boletim 2024/cap_balancacomercial/_Boletim_dados_2024.xlsx.xlsx", sheet = .x) %>%
     dplyr::mutate(conta = .x)
   ) %>%
   purrr::map_dfr(~tidyr::unnest(.)) %>%
@@ -93,36 +56,70 @@ c("export", "import", "saldo") %>%
   scale_x_date(labels = date_format("%Y"), date_breaks = "1 year")
 ```
 
-Ainda no Gráfico [fig:@produtos_import], nota-se que, diferente dos óleos e combustíveis, os produtos residuais de petróleo apresentaram somente um ligeiro aumento nas importações para o ano de 2022 em relação ao ano de 2021. Nos anos anteriores, se manteve, relativamente, ainda mais baixo, tendo algum aumento no valor importado em 2020.  Em 2021, o valor importado chega próximo dos 100 milhões em importações, todavia em diante não apresenta um crescimento de vulto considerável. Os demais produtos da pauta de importações não apresentaram, também, variação significativa. Nos cinco anos do período selecionado os demais produtos se mantiveram abaixo dos 50 milhões de valor importado de maneira que não demonstraram, nem peso significativo, nem variação significativa na pauta.
-\
+Ao analisar o gráfico [fig:@produtos_expo] é notório observar que, a soja foi o produto mais exportado no ano 2024, atingindo US\$ 1,35 bilhões em sua comercialização, que resultou uma participação significante de 64,9% na balança comercial do Tocantins. Além disso, é relevante observar que este produto registrou uma queda de 29,2% em volume exportado. Na segunda posição, o milho não moído correspondeu a uma participação de 7,4% no total exportado pelo estado em 2024, totalizando US\$ 185,2 milhões. Com isso, houve uma redução de 58% em relação ao ano anterior.   
 
+Com 17,7% de participação na balança comercial do estado, a carne bovina (fresca/congelada ou refrigerada) apresentou no mesmo ano de 2024 um valor total de U\$443 milhões. Em comparação ao ano de 2023, o produto sofreu um aumento relevante de aproximadamente 10,1% em detrimento do aumento das transações com um dos seus principais parceiros comerciais, a China.
 
-A Tabela [tab:@origem] apresenta os principais parceiros comerciais do Tocantins e seus principais blocos econômicos que exportaram e importaram no ano de 2022. Quando o assunto é exportação, o Tocantins desempenha um papel de relevo comparado ao pouco tempo que o estado tem de existência, e mesmo sendo relativamente pequeno, está na 14a colocação no ranking de maiores exportadores brasileiros. No ano de 2022 teve uma variação de 67,3% de aumento das exportações em relação ao ano de 2021 atingindo o valor bruto de 3,1 bilhões em dólares.  Em 2022, o Tocantins comercializou seus produtos com 80 países, entre eles a China, seu principal parceiro, que teve participação de 52% no total das exportações, reduzindo em 4% em comparação ao ano passado. A diversidade de países com relações comerciais com o Tocantins é visível na Tabela [tab:@origem], pois além da China, grande compradora dos grãos e carnes produzidos no estado, encontra-se também países como Espanha, representando 12% do total exportado, que, aproximadamente, aumentou 4% e Tailândia com 4,3%, no qual não cresceu de forma tão expressiva ao comparar com o ano passado (cerca de 0,7%). Nas importações os EUA se destacaram com 36% de representatividade, Óleos de petróleo de minerais betuminosos e adubos fertilizantes estão entre os produtos mais importados pelo estado. Outros países no qual o Tocantins aparece dependente nas importações são Rússia, a própria China, Argentina e Venezuela. 
+Os Farelos de soja e outros alimentos para animais são o quarto item de maior vulto da pauta exportadora do estado. Eles apresentam, porém, somente 7\% da participação total, com o valor de US\$ 174 milhões para o ano de 2024, que veio de crescimento em relação ao ano de 2023 em aproximadamente 48,8\%. Os demais produtos da pauta exportadora apresentaram totalizaram um valor de aproximadamente US$ 351,3 milhões, que surgiu por meio de uma redução em relação ao ano anterior de -16,8\%.
+
+```{r produtos_expo, fig.cap = "Principais produtos exportados", fig.subcap = "Em milhões de US$", fig.source = "\\acrshort{comex}", wrap = TRUE}
+# Produtos exportados
+read_xlsx("C:/Users/Lorenzo Costa/Desktop/Boletim 2024/cap_balancacomercial/_Boletim_dados_2024.xlsx.xlsx", sheet = "produtos_export") %>%
+  ggplot(aes(data, valor, fill = produto)) +
+  geom_bar(stat = "identity", position = "dodge", gap = "s") +
+  scale_y_continuous(labels = function(x) x / m) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE))
+```
+
+No ano de 2024 as importações do estado tiveram uma queda bastante representativa comparado ao valor total de bens importados no ano anterior, já que o valor totalizado de 2023 foi de US\$ 271,3 milhões, e o valor do ano referente foi de US$ 125 Milhões, uma queda de 53%. Observando o gráfico [fig:@produtos_import], pode-se concluir essa diferença na magnitude das colunas em seus respectivos anos e itens. Os principais produtos que mais foram importados pelo Tocantins foram: Adubos ou fertilizantes químicos, lentes e itens óticos, produtos residuais de petróleo e materiais relacionados e gorduras e óleos vegetais.
+
+O primeiro representou uma participação de 14,8% do total importado pelo estado, e alcançou o saldo de US\$ 18,7 milhões, valor inferior ao ano anterior, cuja variação para o ano de análise foi de 74,5\% negativa. Lentes e itens óticos foram os o segundo item com maior valor importado, com uma participação de 11,4% e totalizando US\$ 14,4 milhões, esse valor é 4\% menor que o de 2023.
+
+Na terceira posição, ao analisar o gráfico [fig:@produtos_import], os produtos residuais de petróleo atingiram um valor de US\$ 14,3 milhões no ano de 2024, tendo uma redução de 69,3\% de seu valor importado em comparação à 2023, o que resultou em uma participação geral de 11,3% nas importações da balança comercial do estado. Gorduras e óleos vegetais, apresentaram uma participação 8,8% na pauta e totalizaram um montante de US$ 10,99 milhões, isto é, um aumento de 160% em relação ao ano de 2023, o colocando entre os principais itens importados do ano.
+
+Por último, têm-se os demais produtos da pauta de importação, no qual apresentaram uma participação 53,7% e totalizando um montante de US$ 66,61 milhões.
+
+```{r produtos_import, fig.cap = "Principais produtos importados", fig.subcap = "Em milhões de US$", fig.source = "\\acrshort{comex}", wrap = TRUE}
+# Produtos importados
+read_xlsx("C:/Users/Lorenzo Costa/Desktop/Boletim 2024/cap_balancacomercial/_Boletim_dados_2024.xlsx.xlsx", sheet = "produtos_import")  %>%
+  ggplot(aes(data, valor, fill = produto)) +
+  geom_bar(stat = "identity", position = "dodge", gap = "s") +
+  scale_y_continuous(labels = function(x) x / m) +
+  guides(fill = guide_legend(nrow = 3, byrow = TRUE))
+```
+
+A Tabela [tab:@origem] apresenta os principais parceiros comerciais do Tocantins e seus principais blocos econômicos que exportaram e importaram no ano de 2024, e, quando o assunto é exportação, o Tocantins desempenha um papel relevante comparado ao pouco tempo que o estado tem de existência, e mesmo sendo relativamente pequeno, ostenta números significativos para a sua região. 
+
+Como observado anteriormente, o ano de 2024 apresentou uma variação de 17% de queda das exportações em relação ao ano de 2023, atingindo o valor bruto de US\$2,50 bilhões em dólares. Dessa quantia, o Tocantins comercializou seus produtos com inúmeros países, entre eles a China, seu principal parceiro, que teve participação de 47,3% no total das exportações, reduzindo em 13,7 pontos percentuais em comparação ao ano de 2023. 
+
+A diversidade de países que mantêm relações comerciais com o Tocantins é visível na mesma tabela, pois além da China, grande compradora dos grãos e carnes produzidos no estado, encontra-se também países como Espanha, representando 7,5% do total exportado, mas que também atestou uma queda de 0,5 pontos percentuais em relação ao ano anterior, e Suíça com 5,1% de participação.
+
+Nas importações, a China também se destacou ficando em 1º lugar, com 38,9% de representatividade,armações para óculos e atigos semelhantes e suas partes estão entre os produtos mais importados pelo estado. Outros países com o que o Tocantins mantém relações nas importações são os Estados Unidos, com 12% de participação, seguida pela Rússia com 10,2%, Indonésia com 7,4% e Canadá com 6,8%.
 
 
 ```{r origem}
 dplyr::bind_cols(
   tribble(
     ~x, ~y,
-    "China", 52,
-    "Espanha", 12,
-    "Tailândia", 4.3,
-    "Turquia", 4.0,
-    "Arábia Saudita", 2.7
+    "China", 47.3,
+    "Espanha", 7.5,
+    "Arábia Saudita", 5.1,
+    "Turquia", 4.8,
+    "Tailândia", 4.1
   ),
   tribble(
     ~x, ~y,
-    "EUA", 36,
-    "Rússia", 27,
-    "China", 10,
-    "Argentina", 7.9,
-    "Venezuela", 3.2
+    "China", 38.9,
+    "China", 12,
+    "Bélgica", 10.2,
+    "Estônia", 7.4,
+    "EUA", 6.8
   )
 ) %>%
   kbl(
     booktabs = TRUE,
-    col.names = c("", "Exportação", "", "Importação"),
-    caption = "Origem das Exportações e Importações\\label{tab:import_export}",
+    col.names = c("País", "Exportação", "País", "Importação"),
+    caption = "Origem das Exportações e Importações em percentual \\label{tab:import_export}",
     # label = "import_export",
     centering = FALSE
   ) %>%
@@ -132,3 +129,39 @@ dplyr::bind_cols(
     footnote_as_chunk = TRUE
   )
 ```
+
+```{r status}
+dplyr::bind_cols(
+  tribble(
+    ~x, ~y,
+    "Exportações", 2.500,
+    "Importações", 125.9,
+    "Corrente", 2.600,
+    "Saldo", 2.400
+  ),
+  tribble(
+    ~x, ~y,
+    "Exportações (%)", "0.75",
+    "Rank Exportações", "15",
+    "Importações (%)", "0.048",
+    "Rank Importações", "25"
+  ) ) %>%
+  kbl(
+    booktabs = TRUE,
+    col.names = c("", "US$ Milhões", "Participação", ""),
+    caption = "Status Geral do Tocantins em 2023",
+    # label = "import_export",
+    centering = FALSE
+  ) %>%
+  footnote(
+    general = "COMEXSTAT",
+    general_title = "Fonte:",
+    footnote_as_chunk = TRUE
+  )
+```
+
+
+
+
+
+

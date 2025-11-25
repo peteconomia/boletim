@@ -22,6 +22,8 @@
 \usepackage{kvsetkeys}
 \usepackage{lipsum} % generate paragraph
 \usepackage{xstring}
+\usepackage{stfloats}
+
 
 % Required by KableExtra R package
 %\usepackage{xcolor}
@@ -45,6 +47,7 @@
 
 % Cores
 \definecolor{primarycolor}{RGB}{0, 96, 157}
+\definecolor{primary2color}{RGB}{254, 254, 254}
 \definecolor{secondarycolor}{RGB}{34, 192, 221}
 \definecolor{boxbackground}{RGB}{225, 233, 246}
 \definecolor{primarytext}{RGB}{0, 0, 0}
@@ -210,30 +213,20 @@
     $if(fullversion)$
     \onecolumn
     \pagenumbering{gobble}
-    \newpagecolor{primarycolor}
+    \newpagecolor{primary2color}
     \begin{titlepage}
         \begin{flushleft}
             \color{white}
             \fontsize{50}{50}
             \selectfont
-            Boletim de
-            \\ Conjuntura
-            \\ Econômica
+            Boletim de Conjuntura
+            \\ Econômica do Estado
+            \\ do Tocantins
         \end{flushleft}
         \begin{tikzpicture}[overlay, scale=1]
-            \node[anchor=center] at (8.5,-8){\includegraphics{images/bg.pdf}};
+            \node[anchor=center] at (8.5,-7){\includegraphics[width=22cm]{images/Capa do Boletim atualizada.pdf}};
         \end{tikzpicture}
-        \vspace{\fill}
-        \begin{flushleft}
-            \color{white}
-            {\Large Volume $volume$ \\[5pt] Número $number$}
-            \\[1cm]
-            \fontsize{50}{50}\selectfont
-            $year$
-            \hfill
-            \includegraphics[width=1.6cm]{images/pet.png}
-            \includegraphics[width=1.8cm]{images/uft.png}
-        \end{flushleft}
+
         \end{titlepage}
     \newpagecolor{white}
 
@@ -261,7 +254,7 @@
         \begin{itemize}
             \item{Telefone:} $tel$
             \item{Email:} $email$
-            \item{Local:} Universidade Federal do Tocantins (UFT), Palmas, Bloco II, Sala 29. 109 Norte Av. NS-15, ALCNO-14. Plano Diretor Norte. CEP: 77001--090. Av. Juscelino Kubitscheck
+            \item{Local:} Universidade Federal do Tocantins (UFT), Palmas, Bloco II, Sala 22. 109 Norte Av. NS-15, ALCNO-14. Plano Diretor Norte. CEP: 77001--090.
         \end{itemize}
         \par{\bf Direitos de Reprodução:}
         É permitida a reprodução do conteúdo desse documento, desde que mencionada a fonte: Boletim de Conjuntura Econômica do Tocantins, Palmas v. $volume$ nº $number$ $month$. $year$ p. $pages$.
@@ -302,6 +295,8 @@
             \includegraphics[width=1.6cm]{images/pet.png}
             \hspace{5pt}
             \includegraphics[width=1.8cm]{images/uft.png}
+            \hspace{5pt}
+            \includegraphics[width=3.5cm]{images/corecon.png}
         \end{figure}
         \normalsize{Universidade Federal do Tocantins}
     $endif$

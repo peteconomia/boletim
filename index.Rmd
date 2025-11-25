@@ -1,25 +1,28 @@
 ---
 title: Boletim de Conjuntura Econômica do Tocantins
-volume: 11
+volume: 13
 number: 1
-year: 2023
-month: Dezembro
-pages: 1--17
-tag: v2.0.0
+year: 2025
+month: Outubro
+pages: 1--18
+tag: v1.0.0
 coordinator: Prof. Dr. Nilton Marques de Oliveira
 team:
   - theme: Panorama Econômico
-    students: Vicenzo Teixeira Mensato
+    students: Vicenzo Teixeira Mensato, Kamilla Ellen Rodrigues Silva
   - theme: Contas Públicas Estadual
-    students: Pedro Afonso Castro Gomes, Klannarrara Wanderffanny Xavier, Tarcisio Iago Silva Nunes
+    students: Tarcisio Iago Silva Nunes e Suanny Evellyn Costa e Sousa
   - theme: Indicadores Sociais
-    students: Giovana Francini Mazetto
+    students: Ana Flavia Araujo Cavalcante, Thallyta Ferreira Marques
   - theme: Mercado de Trabalho
-    students: João Gilberto Nolêto Perna da Silva, Laralisse Carvalho de Oliveira 
+    students: Melk Marques do Nascimento
   - theme: Comércio Exterior  
-    students: Laralisse Carvalho de Oliveira, Lorenzo Costa Miranda
+    students: Lorenzo Costa Miranda, Lucas Ruan Araújo de Oliveira
   - theme: Agronegócio
-    students: Thallyta Ferreira
+    students: Letícia Silva Alves
+  - theme: Compilação do Boletim
+    students: Lorenzo Costa Miranda, Maria Eduarda Aires Martins, Nathalie Lindsay Silva Araujo
+    
 tel: (63) 3229--4915
 email: peteconomia@uft.edu.br
 fullversion: true
